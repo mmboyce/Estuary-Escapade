@@ -4,10 +4,12 @@ import java.awt.Graphics;
 import java.awt.event.MouseListener;
 
 import gameobject.Animal;
+import gameobject.Camera;
 
 public class ResearchView extends View {
 
 	Animal caughtFish;
+	Camera camera;
 	
 	public ResearchView(MouseListener m) {
 		super(m);
