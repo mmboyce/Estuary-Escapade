@@ -4,7 +4,7 @@ import java.awt.event.MouseEvent;
 
 import gameobject.*;
 
-public class ResearchModel extends Model {
+public class ResearchModel extends Model implements GameState {
 
 	// uml says doneWeighing etc. but boolean conventions say is wouldbe better
 	boolean isWeighed;
@@ -48,6 +48,12 @@ public class ResearchModel extends Model {
 	private void weighing() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public int timeUp() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 }

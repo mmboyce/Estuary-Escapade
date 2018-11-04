@@ -7,7 +7,7 @@ import javax.swing.Timer;
 import model.*;
 import view.*;
 
-public class Controller implements GameState {
+public class Controller {
 	
 	Timer t;
 	Model model;
@@ -20,9 +20,4 @@ public class Controller implements GameState {
 
 	}
 
-	@Override
-	public int timeUp() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 }

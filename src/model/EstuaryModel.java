@@ -4,7 +4,7 @@ import java.awt.event.MouseEvent;
 import java.util.Collection;
 import gameobject.*;
 
-public class EstuaryModel extends Model {
+public class EstuaryModel extends Model implements GameState {
 
 	Collection<Animal> schoolOfFish;
 	Animal target;
@@ -33,6 +33,12 @@ public class EstuaryModel extends Model {
 	private void animalCaught() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public int timeUp() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
