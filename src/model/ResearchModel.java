@@ -6,14 +6,35 @@ import gameobject.*;
 
 public class ResearchModel extends Model implements GameState {
 
-	// uml says doneWeighing etc. but boolean conventions say is wouldbe better
-	boolean isWeighed;
-	boolean isMeasured;
-	boolean isPhotographed;
-	Camera camera;
-	Ruler ruler;
-	Scale scale;
+	private boolean isWeighed;
+	private boolean isMeasured;
+	private boolean isPhotographed;
+	private Camera camera;
 	
+	public boolean isWeighed() {
+		return isWeighed;
+	}
+
+	public void setWeighed(boolean isWeighed) {
+		this.isWeighed = isWeighed;
+	}
+
+	public boolean isMeasured() {
+		return isMeasured;
+	}
+
+	public void setMeasured(boolean isMeasured) {
+		this.isMeasured = isMeasured;
+	}
+
+	public boolean isPhotographed() {
+		return isPhotographed;
+	}
+
+	public void setPhotographed(boolean isPhotographed) {
+		this.isPhotographed = isPhotographed;
+	}
+
 	public ResearchModel(int frameWidth, int frameHeight, Model nextModel) {
 		super(frameWidth, frameHeight, nextModel);
 		// TODO Auto-generated constructor stub

@@ -2,8 +2,8 @@ package model;
 
 public class EndModel extends Model {
 
-	int score;
-	boolean quizCorrect;
+	private int score;
+	private boolean quizCorrect;
 	
 	public EndModel(int frameWidth, int frameHeight, Model nextModel) {
 		super(frameWidth, frameHeight, nextModel);

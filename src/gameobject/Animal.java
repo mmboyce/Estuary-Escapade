@@ -1,26 +1,38 @@
 package gameobject;
 
-import java.awt.image.BufferedImage;
-
-public abstract class Animal {
-	private int yPos;
-	private int xPos;
-	
+public abstract class Animal extends GameObject {	
 	private String name;
 	private int weight;
 	private int size;
-	private BufferedImage image;
 	private int speed;
 	private String funFact;
+	private String question;
 	
-	public Animal(int xPos, int yPos) {
-		this.xPos = xPos;
-		this.yPos = yPos;
+	public Animal(int xPos, int yPos, int depth, String imagePath, String name, int weight,
+			int size, int speed, String funFact, String question) {
+		super(xPos, yPos, depth, imagePath);
 		
-		// the other values should be assigned in
-		// constructor of each class.
+		this.name = name;
+		this.weight = weight;
+		this.size = size;
+		this.speed = speed;
+		this.funFact = funFact;
+		this.question = question;
+		
+		/* the constructor for each animal should have these values as constants,
+		 * i.e. the constructors should be something like crab(xPos, yPos) with
+		 *      setters inside to chage each field to what corresponds to the animal.
+		 */
 	}
 	
+	public String getQuestion() {
+		return question;
+	}
+
+	public void setQuestion(String question) {
+		this.question = question;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -39,24 +51,7 @@ public abstract class Animal {
 	public void setSize(int size) {
 		this.size = size;
 	}
-	public int getyPos() {
-		return yPos;
-	}
-	public void setyPos(int yPos) {
-		this.yPos = yPos;
-	}
-	public int getxPos() {
-		return xPos;
-	}
-	public void setxPos(int xPos) {
-		this.xPos = xPos;
-	}
-	public BufferedImage getImage() {
-		return image;
-	}
-	public void setImage(BufferedImage image) {
-		this.image = image;
-	}
+
 	public int getSpeed() {
 		return speed;
 	}

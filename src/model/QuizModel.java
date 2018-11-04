@@ -4,8 +4,16 @@ import java.util.Collection;
 
 public class QuizModel extends Model {
 
-	Collection questionPool;
+	private Collection<String> questionPool;
 	
+	public Collection<String> getQuestionPool() {
+		return questionPool;
+	}
+
+	public void setQuestionPool(Collection<String> questionPool) {
+		this.questionPool = questionPool;
+	}
+
 	public QuizModel(int frameWidth, int frameHeight, Model nextModel) {
 		super(frameWidth, frameHeight, nextModel);
 		// TODO Auto-generated constructor stub

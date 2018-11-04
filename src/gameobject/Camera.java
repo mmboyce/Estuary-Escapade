@@ -1,11 +1,16 @@
 package gameobject;
 
-public class Camera implements Tool {
+import java.awt.image.BufferedImage;
 
-	@Override
-	public void measure(Animal animal) {
-		// TODO Auto-generated method stub
+public class Camera extends GameObject {
 
+	public Camera(int xPos, int yPos, int depth, String imagePath) {
+		super(xPos, yPos, depth, imagePath);
 	}
 
+	public BufferedImage photograph(Animal animal) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }
