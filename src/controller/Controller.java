@@ -15,6 +15,10 @@ public class Controller {
 	private AbstractAction updateAction;
 	private Collection<String> questionPool;
 	
+	public Controller() {
+		//Controller Stub
+	}
+	
 	public Timer getT() {
 		return t;
 	}
