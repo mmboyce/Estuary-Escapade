@@ -35,8 +35,8 @@ public class ResearchModel extends Model implements GameState {
 		this.isPhotographed = isPhotographed;
 	}
 
-	public ResearchModel(int frameWidth, int frameHeight, Model nextModel) {
-		super(frameWidth, frameHeight, nextModel);
+	public ResearchModel(int frameWidth, int frameHeight) {
+		super(frameWidth, frameHeight);
 		// TODO Auto-generated constructor stub
 	}
 

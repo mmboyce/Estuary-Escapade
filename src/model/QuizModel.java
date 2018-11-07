@@ -14,8 +14,8 @@ public class QuizModel extends Model {
 		this.questionPool = questionPool;
 	}
 
-	public QuizModel(int frameWidth, int frameHeight, Model nextModel) {
-		super(frameWidth, frameHeight, nextModel);
+	public QuizModel(int frameWidth, int frameHeight) {
+		super(frameWidth, frameHeight);
 		// TODO Auto-generated constructor stub
 	}
 

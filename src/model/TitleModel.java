@@ -11,8 +11,8 @@ public class TitleModel extends Model {
 		this.title = title;
 	}
 
-	public TitleModel(int frameWidth, int frameHeight, Model nextModel) {
-		super(frameWidth, frameHeight, nextModel);
+	public TitleModel(int frameWidth, int frameHeight) {
+		super(frameWidth, frameHeight);
 		// TODO Auto-generated constructor stub
 	}
 

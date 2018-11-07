@@ -15,12 +15,12 @@ public class Controller {
 	private AbstractAction updateAction;
 	private Collection<String> questionPool;
 	private CustomMouseListner mouseListener;
+	
 	public Controller(){
-		view= new View(mouseListener);
-		model= new Model(view.getFrameWidth(),view.getFrameHeight(),model/*some model*/); 
+		
 	}
 
-	private void start() {
+	public void start() {
 		// TODO Auto-generated method stub
 		// t=new Timer(drawDelay, updateAction);
 		// t.start();

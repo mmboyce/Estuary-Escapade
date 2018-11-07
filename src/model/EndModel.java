@@ -21,8 +21,8 @@ public class EndModel extends Model {
 		this.quizCorrect = quizCorrect;
 	}
 
-	public EndModel(int frameWidth, int frameHeight, Model nextModel) {
-		super(frameWidth, frameHeight, nextModel);
+	public EndModel(int frameWidth, int frameHeight) {
+		super(frameWidth, frameHeight);
 		// TODO Auto-generated constructor stub
 	}
 
