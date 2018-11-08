@@ -11,8 +11,8 @@ public class ResearchView extends View {
 	Animal caughtFish;
 	Camera camera;
 	
-	public ResearchView(MouseListener m) {
-		super(m);
+	public ResearchView(int width, int height,MouseListener m) {
+		super(width,height,m);
 		// TODO Auto-generated constructor stub
 	}
 	

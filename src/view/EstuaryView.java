@@ -10,8 +10,8 @@ public class EstuaryView extends View {
 	
 	Collection<Animal> schoolOfFish;
 
-	public EstuaryView(MouseListener m) {
-		super(m);
+	public EstuaryView(int width, int height,MouseListener m) {
+		super(width,height,m);
 		// TODO Auto-generated constructor stub
 	}
 

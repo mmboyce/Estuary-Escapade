@@ -35,8 +35,8 @@ public class ResearchModel extends Model implements GameState {
 		this.isPhotographed = isPhotographed;
 	}
 
-	public ResearchModel(int frameWidth, int frameHeight, Model nextModel) {
-		super(frameWidth, frameHeight, nextModel);
+	public ResearchModel(int frameWidth, int frameHeight) {
+		super(frameWidth, frameHeight);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -75,6 +75,12 @@ public class ResearchModel extends Model implements GameState {
 	public int timeUp() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

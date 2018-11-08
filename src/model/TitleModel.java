@@ -13,8 +13,8 @@ public class TitleModel extends Model {
 		this.title = title;
 	}
 
-	public TitleModel(int frameWidth, int frameHeight, Model nextModel) {
-		super(frameWidth, frameHeight, nextModel);
+	public TitleModel(int frameWidth, int frameHeight) {
+		super(frameWidth, frameHeight);
 		
 	}
 
@@ -27,6 +27,12 @@ public class TitleModel extends Model {
 	private void exitGame() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

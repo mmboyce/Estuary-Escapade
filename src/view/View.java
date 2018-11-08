@@ -1,24 +1,23 @@
 package view;
 
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseListener;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
-public abstract class View extends JPanel {
+public abstract class View extends JFrame {
 	private int frameWidth;
 	private int frameHeight;
-	private JFrame frame;
 	
-	public View(MouseListener m) {
-		frame = new JFrame("Estuary Adventure");
-		
-		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
-		frame.setUndecorated(true);
-		frame.addMouseListener(m);
+	public View(int width, int height, MouseListener m) {
+		super("Estuary Adventure");
+		frameWidth = width;
+		frameHeight = height;
+
+		setSize(frameWidth, frameHeight);
+		//setUndecorated(true);
+		addMouseListener(m);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// do what else we need to do for initial view
 	}
@@ -47,11 +46,4 @@ public abstract class View extends JPanel {
 		this.frameHeight = frameHeight;
 	}
 
-	public JFrame getFrame() {
-		return frame;
-	}
-
-	public void setFrame(JFrame frame) {
-		this.frame = frame;
-	}
 }

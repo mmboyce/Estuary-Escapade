@@ -9,8 +9,8 @@ public class EstuaryModel extends Model implements GameState {
 	Collection<Animal> schoolOfFish;
 	Animal target;
 	
-	public EstuaryModel(int frameWidth, int frameHeight, Model nextModel) {
-		super(frameWidth, frameHeight, nextModel);
+	public EstuaryModel(int frameWidth, int frameHeight) {
+		super(frameWidth, frameHeight);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -39,6 +39,12 @@ public class EstuaryModel extends Model implements GameState {
 	public int timeUp() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
