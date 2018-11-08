@@ -1,8 +1,10 @@
 package view;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -12,11 +14,12 @@ public abstract class View extends JPanel {
 	private JFrame frame;
 	
 	public View(MouseListener m) {
-		frameWidth = 500;
-		frameHeight = 300;
+		frame = new JFrame("Estuary Adventure");
 		
-		frame = new JFrame();
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		frame.setUndecorated(true);
 		frame.addMouseListener(m);
+		
 		// do what else we need to do for initial view
 	}
 	

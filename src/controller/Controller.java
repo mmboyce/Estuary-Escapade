@@ -1,4 +1,6 @@
 package controller;
+import view.View;
+import model.Model;
 
 import java.util.Collection;
 
@@ -16,7 +18,9 @@ public class Controller {
 	private Collection<String> questionPool;
 	
 	public Controller() {
-		//Controller Stub
+		Model model = new TitleModel(500, 500, null);
+		CustomMouseListener listener = new CustomMouseListener(model);
+		View view = new TitleView(listener);
 	}
 	
 	public Timer getT() {
@@ -59,8 +63,8 @@ public class Controller {
 		this.questionPool = questionPool;
 	}
 
-	private void start() {
-		// TODO Auto-generated method stub
+	public void start() {
+		t = new Timer(30, null);
 
 	}
 
