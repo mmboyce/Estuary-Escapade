@@ -12,7 +12,7 @@ public class ResearchView extends View {
 	Camera camera;
 	
 	public ResearchView(int width, int height,MouseListener m) {
-		super(width,height,m);
+		super(width, height, m);
 		// TODO Auto-generated constructor stub
 	}
 	

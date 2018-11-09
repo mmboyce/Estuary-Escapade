@@ -9,9 +9,9 @@ import controller.CodeListener;
 public class TitleView extends View{
 
 	public TitleView(int width, int height,MouseListener m, CodeListener cl) {
-		super(width,height,m);
+		super(width, height, m);
 		
-		TitlePanel titleArt = new TitlePanel();
+		TitlePanel titleArt = new TitlePanel(super.getTitle());
 		TitleNavigation nav = new TitleNavigation(cl);
 		
 		setLayout(new BorderLayout());

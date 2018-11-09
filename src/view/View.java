@@ -9,8 +9,10 @@ public abstract class View extends JFrame {
 	private int frameWidth;
 	private int frameHeight;
 	
+	private final static String title = "Estuary Escapade";
+	
 	public View(int width, int height, MouseListener m) {
-		super("Estuary Adventure");
+		super(title);
 		frameWidth = width;
 		frameHeight = height;
 

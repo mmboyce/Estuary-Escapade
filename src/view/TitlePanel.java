@@ -11,8 +11,8 @@ import javax.swing.border.EmptyBorder;
 
 public class TitlePanel extends JPanel{
 	
-	TitlePanel(){
-		JLabel title = new JLabel("Estuary Escapade");
+	TitlePanel(String titleText){
+		JLabel title = new JLabel(titleText);
 		title.setHorizontalAlignment(JLabel.CENTER);
 		title.setVerticalAlignment(JLabel.TOP);
 		

@@ -19,10 +19,13 @@ public class Controller implements CodeListener{
 	private AbstractAction updateAction;
 	private Collection<String> questionPool;
 	
+	private final int width = 1000;
+	private final int height = 700;
+	
 	public Controller() {
-		Model model = new TitleModel(1000, 700);
+		Model model = new TitleModel(width, height);
 		CustomMouseListener listener = new CustomMouseListener(model);
-		view = new TitleView(model.getFrameWidth(),model.getFrameHeight(),listener,this);
+		view = new TitleView(width,height,listener,this);
 		
 		updateAction = new AbstractAction() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -36,6 +39,7 @@ public class Controller implements CodeListener{
 	public void codeEmmitted(Code c) {
 		switch (c) {
 			case NEXT:
+				//This is commented out because model.nextModel is not yet implemented
 				//model = model.nextModel();
 				break;
 			case EXIT:
@@ -43,6 +47,7 @@ public class Controller implements CodeListener{
 				view.dispatchEvent(new WindowEvent(view, WindowEvent.WINDOW_CLOSING));
 				break;
 			case TIMEUP:
+				//model.timeUp is not yet implemented but that would go here
 				break;
 		}
 	}
