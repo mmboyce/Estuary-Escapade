@@ -25,6 +25,10 @@ public abstract class Animal extends GameObject {
 		 */
 	}
 	
+	public void updatePosition() {
+		//
+	}
+	
 	public String getQuestion() {
 		return question;
 	}

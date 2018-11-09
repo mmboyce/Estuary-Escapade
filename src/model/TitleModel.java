@@ -15,7 +15,6 @@ public class TitleModel extends Model {
 
 	public TitleModel(int frameWidth, int frameHeight) {
 		super(frameWidth, frameHeight);
-		
 	}
 
 	@Override

@@ -35,7 +35,6 @@ public class EstuaryModel extends Model implements GameState {
 
 	}
 
-	@Override
 	public int timeUp() {
 		// TODO Auto-generated method stub
 		return 0;
