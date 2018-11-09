@@ -1,19 +1,28 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.event.MouseListener;
 
-public class TitleView extends View {
+import controller.CodeListener;
 
-	public TitleView(MouseListener m) {
-		super(m);
-		// TODO Auto-generated constructor stub
+public class TitleView extends View{
+
+	public TitleView(int width, int height,MouseListener m, CodeListener cl) {
+		super(width, height, m);
+		
+		TitlePanel titleArt = new TitlePanel(super.getTitle());
+		TitleNavigation nav = new TitleNavigation(cl);
+		
+		setLayout(new BorderLayout());
+		add(titleArt,BorderLayout.CENTER);
+		add(nav,BorderLayout.SOUTH);
+		setVisible(true);
 	}
 
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		
 	}
 	
 	@Override

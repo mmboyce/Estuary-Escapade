@@ -32,4 +32,10 @@ public class EndModel extends Model {
 		return null;
 	}
 
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

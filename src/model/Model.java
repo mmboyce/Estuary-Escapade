@@ -20,14 +20,19 @@ public abstract class Model {
 		this.frameHeight = frameHeight;
 	}
 
+<<<<<<< miguels-dev-branch
+=======
 	public Model getNextModel() {
 		return null;
 	}
 
+>>>>>>> master
 	public Model(int frameWidth, int frameHeight) {
 		this.frameWidth = frameWidth;
 		this.frameHeight = frameHeight;
 	}
 	
 	public abstract Model nextModel();
+
+	public abstract void update();
 }

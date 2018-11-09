@@ -76,5 +76,11 @@ public class ResearchModel extends Model implements GameState {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

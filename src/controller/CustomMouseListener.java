@@ -6,7 +6,7 @@ import java.awt.event.MouseMotionListener;
 
 import model.Model;
 
-public class CustomMouseListner implements MouseListener, MouseMotionListener {
+public class CustomMouseListener implements MouseListener, MouseMotionListener {
 
 	private Model model;
 	
@@ -48,7 +48,7 @@ public class CustomMouseListner implements MouseListener, MouseMotionListener {
 		this.model = model;
 	}
 	
-	public CustomMouseListner(Model m) {
+	public CustomMouseListener(Model m) {
 		model = m;
 	}
 

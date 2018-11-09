@@ -31,4 +31,10 @@ public class QuizModel extends Model {
 		return false;
 	}
 
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

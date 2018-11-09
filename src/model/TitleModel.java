@@ -1,5 +1,7 @@
 package model;
 
+import java.awt.Color;
+
 public class TitleModel extends Model {
 	private String title;
 	
@@ -13,7 +15,6 @@ public class TitleModel extends Model {
 
 	public TitleModel(int frameWidth, int frameHeight) {
 		super(frameWidth, frameHeight);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -25,6 +26,12 @@ public class TitleModel extends Model {
 	private void exitGame() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

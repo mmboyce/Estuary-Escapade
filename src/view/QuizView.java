@@ -5,8 +5,8 @@ import java.awt.event.MouseListener;
 
 public class QuizView extends View {
 
-	public QuizView(MouseListener m) {
-		super(m);
+	public QuizView(int width, int height,MouseListener m) {
+		super(width, height, m);
 		// TODO Auto-generated constructor stub
 	}
 	
