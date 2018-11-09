@@ -24,7 +24,7 @@ public class Controller implements CodeListener{
 	private final int height = 700;
 	
 	public Controller() {
-		Model model = new TitleModel(width, height);
+		model = new TitleModel(width, height);
 		CustomMouseListener listener = new CustomMouseListener(model);
 		view = new TitleView(width,height,listener,this);
 		
@@ -37,11 +37,12 @@ public class Controller implements CodeListener{
 	}
 	
 	@Override
-	public void codeEmmitted(Code c) {
+	public void codeEmmitted(Code c) {	
 		switch (c) {
 			case NEXT:
 				//This is commented out because model.nextModel is not yet implemented
-				//model = model.nextModel();
+				model = model.nextModel();
+				System.out.println("In: "+model);
 				break;
 			case EXIT:
 				t.stop();

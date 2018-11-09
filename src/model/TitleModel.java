@@ -20,7 +20,8 @@ public class TitleModel extends Model {
 	@Override
 	public Model nextModel() {
 		// TODO Auto-generated method stub
-		return null;
+		Model model=new EstuaryModel(super.getFrameWidth(), super.getFrameHeight());
+		return model;
 	}
 	
 	private void exitGame() {
