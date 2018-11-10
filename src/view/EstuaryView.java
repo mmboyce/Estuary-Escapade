@@ -2,9 +2,11 @@ package view;
 
 import java.awt.Graphics;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import gameobject.Animal;
+import gameobject.GameObject;
 
 public class EstuaryView extends View {
 	
@@ -21,7 +23,7 @@ public class EstuaryView extends View {
 		super.paint(g);
 	}
 	
-	public void update() {
+	public void update(ArrayList<GameObject> objects) {
 		// TODO Auto-generated method stub
 	}
 

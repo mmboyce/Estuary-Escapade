@@ -68,4 +68,5 @@ public abstract class Animal extends GameObject {
 	public void setFunFact(String funFact) {
 		this.funFact = funFact;
 	}
+	
 }

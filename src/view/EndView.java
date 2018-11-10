@@ -2,6 +2,9 @@ package view;
 
 import java.awt.Graphics;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
+
+import gameobject.GameObject;
 
 public class EndView extends View {
 
@@ -17,7 +20,7 @@ public class EndView extends View {
 	}
 	
 	@Override
-	public void update() {
+	public void update(ArrayList<GameObject> objects) {
 		// TODO Auto-generated method stub
 		
 	}

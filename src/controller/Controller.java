@@ -31,7 +31,7 @@ public class Controller implements CodeListener{
 		updateAction = new AbstractAction() {
 			public void actionPerformed(ActionEvent arg0) {
 				model.update();
-				view.update();
+				view.update(model.getGameObjects());
 			}};
 		t = new Timer(30, updateAction);
 	}
