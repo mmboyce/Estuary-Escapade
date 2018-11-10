@@ -8,7 +8,14 @@ public abstract class Animal extends GameObject {
 	private String funFact;
 	private String question;
 	
-	public Animal(int xPos, int yPos, int depth, String imagePath, String name, int weight,
+	public Animal(int xPos, int yPos, int depth) {
+		/* This constructor will be used by children classes to use setters to
+		 * assign the other values which should be constants.
+		 */
+		super(xPos, yPos, depth, "");
+	}
+	
+	private Animal(int xPos, int yPos, int depth, String imagePath, String name, int weight,
 			int size, int speed, String funFact, String question) {
 		super(xPos, yPos, depth, imagePath);
 		
@@ -22,11 +29,13 @@ public abstract class Animal extends GameObject {
 		/* the constructor for each animal should have these values as constants,
 		 * i.e. the constructors should be something like crab(xPos, yPos) with
 		 *      setters inside to chage each field to what corresponds to the animal.
+		 *      
+		 * This constructor should not be used except for debugging purposes
 		 */
 	}
 	
 	public void updatePosition() {
-		//
+		// TODO
 	}
 	
 	public String getQuestion() {
