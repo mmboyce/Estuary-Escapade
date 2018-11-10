@@ -1,8 +1,13 @@
 package model;
 
+import java.util.ArrayList;
+
+import gameobject.GameObject;
+
 public abstract class Model {
 	private int frameWidth;
 	private int frameHeight;
+	private ArrayList<GameObject> objects;
 	
 	public int getFrameWidth() {
 		return frameWidth;
@@ -21,8 +26,13 @@ public abstract class Model {
 	}
 
 	public Model(int frameWidth, int frameHeight) {
+		this.objects = new ArrayList<GameObject>();
 		this.frameWidth = frameWidth;
 		this.frameHeight = frameHeight;
+	}
+	
+	public ArrayList<GameObject> getGameObjects(){
+		return objects;
 	}
 	
 	public abstract Model nextModel();

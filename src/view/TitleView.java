@@ -3,8 +3,10 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import controller.CodeListener;
+import gameobject.GameObject;
 
 public class TitleView extends View{
 
@@ -21,7 +23,7 @@ public class TitleView extends View{
 	}
 
 	@Override
-	public void update() {
+	public void update(ArrayList<GameObject> objects) {
 		// TODO Auto-generated method stub
 	}
 	

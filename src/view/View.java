@@ -2,8 +2,11 @@ package view;
 
 import java.awt.Graphics;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
+
+import gameobject.GameObject;
 
 public abstract class View extends JFrame {
 	private int frameWidth;
@@ -30,7 +33,7 @@ public abstract class View extends JFrame {
 		super.paint(g);
 	}
 	
-	public abstract void update();
+	public abstract void update(ArrayList<GameObject> objects);
 
 	public int getFrameWidth() {
 		return frameWidth;

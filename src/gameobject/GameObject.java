@@ -46,4 +46,5 @@ public abstract class GameObject {
 		this.yPos = yPos;
 	}
 	
+	public abstract void update();
 }

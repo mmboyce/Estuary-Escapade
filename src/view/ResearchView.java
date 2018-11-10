@@ -2,9 +2,11 @@ package view;
 
 import java.awt.Graphics;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import gameobject.Animal;
 import gameobject.Camera;
+import gameobject.GameObject;
 
 public class ResearchView extends View {
 
@@ -23,7 +25,7 @@ public class ResearchView extends View {
 	}
 	
 	@Override
-	public void update() {
+	public void update(ArrayList<GameObject> objects) {
 		// TODO Auto-generated method stub
 	}
 

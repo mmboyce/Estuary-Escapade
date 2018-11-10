@@ -17,4 +17,10 @@ public class GoldFish extends Animal {
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
