@@ -7,5 +7,6 @@
 			<attribute name="add-exports" value="javafx.controls/com.sun.javafx.scene.control=ALL-UNNAMED"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

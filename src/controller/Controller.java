@@ -18,7 +18,7 @@ public class Controller implements CodeListener{
 	private View view;
 	private AbstractAction updateAction;
 	private Collection<String> questionPool;
-	private CustomMouseListner mouseListener;
+	private CustomMouseListener mouseListener;
   
 	private final int width = 1000;
 	private final int height = 700;
