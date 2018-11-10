@@ -8,6 +8,10 @@ public abstract class Animal extends GameObject {
 	private String funFact;
 	private String question;
 	
+	public Animal(int xPos, int yPos, int depth) {
+		super(xPos, yPos, depth, "");
+	}
+	
 	public Animal(int xPos, int yPos, int depth, String imagePath, String name, int weight,
 			int size, int speed, String funFact, String question) {
 		super(xPos, yPos, depth, imagePath);
@@ -26,7 +30,7 @@ public abstract class Animal extends GameObject {
 	}
 	
 	public void updatePosition() {
-		//
+		// TODO
 	}
 	
 	public String getQuestion() {
