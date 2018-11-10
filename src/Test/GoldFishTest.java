@@ -11,7 +11,7 @@ class GoldFishTest {
 	
 	@Before
 	void setUp() {
-		g = new GoldFish(0, 0, 0, null, null, 0, 0, 0, null, null);
+		//g = new GoldFish(0, 0, 0, null, null, 0, 0, 0, null, null);
 	}
 
 	@Test
