@@ -40,18 +40,16 @@ public class Controller implements CodeListener{
 	public void codeEmmitted(Code c) {	
 		switch (c) {
 			case NEXT:
-				//This is commented out because model.nextModel is not yet implemented
 				model = model.nextModel();
-				System.out.println("In: "+model);
+				System.out.println("In: "+model);//For debugging
 				break;
 			case EXIT:
 				t.stop();
 				view.dispatchEvent(new WindowEvent(view, WindowEvent.WINDOW_CLOSING));
 				break;
 			case TIMEUP:
-				//model.timeUp is not yet implemented but that would go here
 				model=new model.QuizModel(width,height);
-				System.out.println("In: "+model);
+				System.out.println("In: "+model);//for debugging
 				break;
 		}
 	}
