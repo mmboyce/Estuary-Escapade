@@ -40,13 +40,13 @@ public class TitleNavigation extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent buttonPress) {
 		JButton pressed = (JButton) buttonPress.getSource();
 		if(pressed == start) {
-			CodeListener.codeEmmitted(Code.NEXT);
+			CodeListener.codeEmitted(Code.NEXT);
 		}
 		else if(pressed == exit) {
-			CodeListener.codeEmmitted(Code.EXIT);
+			CodeListener.codeEmitted(Code.EXIT);
 		}
 		else if(pressed == timeup){//////////////////////////////Temporary Timeup button
-			CodeListener.codeEmmitted(Code.TIMEUP);
+			CodeListener.codeEmitted(Code.TIMEUP);
 		}
 	}
 

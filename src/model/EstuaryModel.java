@@ -37,7 +37,8 @@ public class EstuaryModel extends Model implements GameState {
 	 * 
 	 * Returns our researchModel and removes the target fish from the school
 	 * 
-	 * returns: ther researchModel
+	 * returns:
+	 *  the researchModel for the fish we caught
 	 */
 	@Override
 	public Model nextModel() {
