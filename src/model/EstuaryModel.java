@@ -15,6 +15,10 @@ public class EstuaryModel extends Model implements GameState {
 		instantiateFish();
 	}
 
+	/* void instantiateFish
+	 * 
+	 * sets the target and loads all fish into the schoolOfFish
+	 */
 	private void instantiateFish() {
 		// TODO add all fish to this
 		target = new GoldFish(0,0,0);
@@ -25,19 +29,45 @@ public class EstuaryModel extends Model implements GameState {
 		
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see model.Model#nextModel()
+	 * 
+	 * Model nextModel
+	 * 
+	 * Returns our researchModel and removes the target fish from the school
+	 * 
+	 * returns: ther researchModel
+	 */
 	@Override
 	public Model nextModel() {
 		// TODO Auto-generated method stub
-		Model model = new ResearchModel(super.getFrameWidth(), super.getFrameHeight());
+		Model model = new ResearchModel(super.getFrameWidth(), super.getFrameHeight(), target);
+		
+		schoolOfFish.remove(target);
+		
 		return model;
 	}
 	
+	/* void updatePositions
+	 * 
+	 * moves each fish in the pattern they are expected to move
+	 * 
+	 */
 	private void updatePositions() {
 		for(Animal fish : schoolOfFish) {
 			fish.update();
 		}
 	}
 	
+	/* void registerClick
+	 * 
+	 * checks where the user has clicked and checks for if they clicked the right fish
+	 * 
+	 * params: 
+	 * 	MouseEvent E: the MouseEvent telling us where the click occurred
+	 * 
+	 */
 	public void registerClick(MouseEvent e) {
 		int mouseX = e.getX();
 		int mouseY = e.getY();
@@ -68,15 +98,25 @@ public class EstuaryModel extends Model implements GameState {
 		
 	}
 	
-	
-	private Model animalCaught(Animal animal) {
+	/* void animalCaught
+	 * 
+	 * Evaluates if the right animal was clicked on, if it was we go to
+	 * our next model
+	 * 
+	 * params:
+	 * 	Animal animal: the animal clicked on
+	 * 
+	 */
+	private void animalCaught(Animal animal) {
 		if(animal.equals(target)) {
-			return nextModel();
+			nextModel();
 		}
-		
-		return null;
+		else {
+		// TODO figure out what to do if it's the wrong animal
+		}
 	}
 
+	
 	public int timeUp() {
 		// TODO Auto-generated method stub
 		return 0;
