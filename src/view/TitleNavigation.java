@@ -45,7 +45,7 @@ public class TitleNavigation extends JPanel implements ActionListener {
 		else if(pressed == exit) {
 			CodeListener.codeEmmitted(Code.EXIT);
 		}
-		else if(pressed==timeup){//////////////////////////////Temporary Timeup button
+		else if(pressed == timeup){//////////////////////////////Temporary Timeup button
 			CodeListener.codeEmmitted(Code.TIMEUP);
 		}
 	}

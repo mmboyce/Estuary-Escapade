@@ -37,7 +37,7 @@ public class Controller implements CodeListener{
 	}
 	/*
 	*void codeEmmited
-	
+
 	*updates game on click based on command
 
 	*params Code code the command uses
@@ -46,7 +46,7 @@ public class Controller implements CodeListener{
 	public void codeEmmitted(Code c) {	
 		switch (c) {
 			case NEXT:
-				model = model.nextModel();
+				model = model.nextModel();//calls nextmodel and move to next game state
 				System.out.println("In: "+model);//For debugging
 				break;
 			case EXIT:
@@ -54,7 +54,7 @@ public class Controller implements CodeListener{
 				view.dispatchEvent(new WindowEvent(view, WindowEvent.WINDOW_CLOSING));
 				break;
 			case TIMEUP:
-				model=new model.QuizModel(width,height);
+				model=new model.QuizModel(width,height);//regardless of current model move to quiz model
 				System.out.println("In: "+model);//for debugging
 				break;
 		}
