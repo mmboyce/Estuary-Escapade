@@ -10,6 +10,7 @@ public class ResearchModel extends Model implements GameState {
 	private boolean isMeasured;
 	private boolean isPhotographed;
 	private Camera camera;
+	private Animal caught;
 	
 	public boolean isWeighed() {
 		return isWeighed;
@@ -35,8 +36,9 @@ public class ResearchModel extends Model implements GameState {
 		this.isPhotographed = isPhotographed;
 	}
 
-	public ResearchModel(int frameWidth, int frameHeight) {
+	public ResearchModel(int frameWidth, int frameHeight, Animal caught) {
 		super(frameWidth, frameHeight);
+		this.caught = caught;
 		// TODO Auto-generated constructor stub
 	}
 
