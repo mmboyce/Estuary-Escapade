@@ -29,7 +29,7 @@ public class EndModel extends Model {
 	@Override
 	public Model nextModel() {
 		// TODO Auto-generated method stub
-		Model model=new TitleModel(super.getFrameWidth(), super.getFrameHeight());
+		Model model = new TitleModel(super.getFrameWidth(), super.getFrameHeight());
 		return model;
 	}
 
