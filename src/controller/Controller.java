@@ -50,6 +50,8 @@ public class Controller implements CodeListener{
 				break;
 			case TIMEUP:
 				//model.timeUp is not yet implemented but that would go here
+				model=new model.QuizModel(width,height);
+				System.out.println("In: "+model);
 				break;
 		}
 	}
