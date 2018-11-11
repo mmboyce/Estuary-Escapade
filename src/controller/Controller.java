@@ -35,7 +35,13 @@ public class Controller implements CodeListener{
 			}};
 		t = new Timer(30, updateAction);
 	}
+	/*
+	*void codeEmmited
 	
+	*updates game on click based on command
+
+	*params Code code the command uses
+	*/
 	@Override
 	public void codeEmmitted(Code c) {	
 		switch (c) {

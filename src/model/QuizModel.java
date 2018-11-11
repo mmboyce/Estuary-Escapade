@@ -22,7 +22,7 @@ public class QuizModel extends Model {
 	@Override
 	public Model nextModel() {
 		// TODO Auto-generated method stub
-		Model model=new EndModel(super.getFrameWidth(), super.getFrameHeight());
+		Model model = new EndModel(super.getFrameWidth(), super.getFrameHeight());
 		return model;
 	}
 	

@@ -17,7 +17,7 @@ public class EstuaryModel extends Model implements GameState {
 	@Override
 	public Model nextModel() {
 		// TODO Auto-generated method stub
-		Model model=new ResearchModel(super.getFrameWidth(), super.getFrameHeight());
+		Model model = new ResearchModel(super.getFrameWidth(), super.getFrameHeight());
 		return model;
 	}
 	
