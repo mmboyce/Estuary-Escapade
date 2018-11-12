@@ -10,6 +10,9 @@ public class ResearchModel extends Model implements GameState {
 	private boolean isMeasured;
 	private boolean isPhotographed;
 	private Camera camera;
+	private Animal caught;
+	// the EstuaryModel that gave us this ResearchModel
+	private EstuaryModel goBack;
 	
 	public boolean isWeighed() {
 		return isWeighed;
@@ -35,16 +38,16 @@ public class ResearchModel extends Model implements GameState {
 		this.isPhotographed = isPhotographed;
 	}
 
-	public ResearchModel(int frameWidth, int frameHeight) {
+	public ResearchModel(int frameWidth, int frameHeight, Animal caught, EstuaryModel goBack) {
 		super(frameWidth, frameHeight);
-		// TODO Auto-generated constructor stub
+		this.caught = caught;
+		this.goBack = goBack;
 	}
 
 	@Override
 	public Model nextModel() {
 		// TODO Auto-generated method stub
-		Model model = new EstuaryModel(super.getFrameWidth(), super.getFrameHeight());
-		return model;
+		return this.goBack;
 	}
 	
 	private void startDrag(MouseEvent e) {
@@ -73,9 +76,9 @@ public class ResearchModel extends Model implements GameState {
 	}
 
 	@Override
-	public int timeUp() {
+	public QuizModel timeUp() {
 		// TODO Auto-generated method stub
-		return 0;
+		return null;
 	}
 
 	@Override

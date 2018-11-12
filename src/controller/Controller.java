@@ -6,6 +6,7 @@ import java.util.Collection;
 import javax.swing.AbstractAction;
 import javax.swing.Timer;
 
+import model.GameState;
 import model.Model;
 import model.TitleModel;
 import view.TitleView;
@@ -35,27 +36,30 @@ public class Controller implements CodeListener{
 			}};
 		t = new Timer(30, updateAction);
 	}
+	 
 	/*
-	*void codeEmmited
+	*void codeEmited
 
 	*updates game on click based on command
 
 	*params Code code the command uses
 	*/
 	@Override
-	public void codeEmmitted(Code c) {	
+	public void codeEmitted(Code c) {	
 		switch (c) {
 			case NEXT:
-				model = model.nextModel();//calls nextmodel and move to next game state
-				System.out.println("In: "+model);//For debugging
+				model = model.nextModel(); //calls nextmodel and move to next game state
+				System.out.println("In: "+model); //For debugging
 				break;
 			case EXIT:
 				t.stop();
 				view.dispatchEvent(new WindowEvent(view, WindowEvent.WINDOW_CLOSING));
 				break;
 			case TIMEUP:
-				model=new model.QuizModel(width,height);//regardless of current model move to quiz model
-				System.out.println("In: "+model);//for debugging
+				if(model instanceof GameState ) {
+					model = ((GameState) model).timeUp();
+				}
+				System.out.println("In: "+model); //for debugging
 				break;
 		}
 	}

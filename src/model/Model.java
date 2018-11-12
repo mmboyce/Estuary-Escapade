@@ -38,4 +38,5 @@ public abstract class Model {
 	public abstract Model nextModel();
 
 	public abstract void update();
+
 }
