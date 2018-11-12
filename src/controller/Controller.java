@@ -6,6 +6,9 @@ import java.util.Collection;
 import javax.swing.AbstractAction;
 import javax.swing.Timer;
 
+import org.hamcrest.core.IsInstanceOf;
+
+import model.GameState;
 import model.Model;
 import model.TitleModel;
 import view.TitleView;
@@ -55,7 +58,9 @@ public class Controller implements CodeListener{
 				view.dispatchEvent(new WindowEvent(view, WindowEvent.WINDOW_CLOSING));
 				break;
 			case TIMEUP:
-				model = new model.QuizModel(width,height); //regardless of current model move to quiz model
+				if(model instanceof GameState ) {
+					model = ((GameState) model).timeUp();
+				}
 				System.out.println("In: "+model); //for debugging
 				break;
 		}

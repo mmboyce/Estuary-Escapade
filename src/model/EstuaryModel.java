@@ -2,12 +2,15 @@ package model;
 
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
+
 import gameobject.*;
+import model.QuizModel;
 
 public class EstuaryModel extends Model implements GameState {
 
-	Collection<Animal> schoolOfFish;
+	List<Animal> schoolOfFish;
+	List<Animal> researched;
 	Animal target;
 	
 	public EstuaryModel(int frameWidth, int frameHeight) {
@@ -24,9 +27,11 @@ public class EstuaryModel extends Model implements GameState {
 		target = new GoldFish(0,0,0);
 		
 		schoolOfFish = new ArrayList<Animal>();
+		researched = new ArrayList<Animal>();
+		
 		schoolOfFish.add(new GoldFish(10, 20, 0));
 		schoolOfFish.add(target);
-		
+
 	}
 	
 	/*
@@ -43,9 +48,10 @@ public class EstuaryModel extends Model implements GameState {
 	@Override
 	public Model nextModel() {
 		// TODO Auto-generated method stub
-		Model model = new ResearchModel(super.getFrameWidth(), super.getFrameHeight(), target);
+		Model model = new ResearchModel(super.getFrameWidth(), super.getFrameHeight(), target, this);
 		
 		schoolOfFish.remove(target);
+		researched.add(target);		
 		
 		return model;
 	}
@@ -117,16 +123,47 @@ public class EstuaryModel extends Model implements GameState {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see model.GameState#timeUp()
+	 * 
+	 * QuizModel timeUp
+	 * 
+	 * Runs when we've run out of time and takes us to the QuizModel regarding
+	 * 	all the animals we've studied.
+	 * 
+	 * returns:
+	 * 	The QuizModel representing everything we've researched thus far.
+	 */
+	public QuizModel timeUp() {
+		return new QuizModel(getFrameWidth(), getFrameHeight(), researched);
+	}
 	
-	public int timeUp() {
-		// TODO Auto-generated method stub
-		return 0;
+	/* boolean allResearched
+	 * 
+	 * Checks to see if all fish have been researched.
+	 * If this is true we should trigger our timeUp() call in the controller.
+	 * 
+	 * returns:
+	 * 	True if 0 fish remain in the school of fish, else false.
+	 * 
+	 */
+	public boolean allResearched() {
+ 
+		return schoolOfFish.size() == 0;
 	}
 
 	@Override
+	/*
+	 * (non-Javadoc)
+	 * @see model.Model#update()
+	 * 
+	 * void update
+	 * 
+	 * Updates all data in the model such as fish pathfinding
+	 */
 	public void update() {
-		// TODO complete this
+		// TODO complete this		
 		updatePositions();
 	}
-
 }
