@@ -31,7 +31,7 @@ public class Controller implements CodeListener{
 		updateAction = new AbstractAction() {
 			public void actionPerformed(ActionEvent arg0) {
 				model.update();
-				view.update(model.getGameObjects());
+//				view.update();
 			}};
 		t = new Timer(30, updateAction);
 	}
@@ -41,7 +41,7 @@ public class Controller implements CodeListener{
 		switch (c) {
 			case NEXT:
 				//This is commented out because model.nextModel is not yet implemented
-				//model = model.nextModel();
+				model = model.nextModel();
 				break;
 			case EXIT:
 				t.stop();

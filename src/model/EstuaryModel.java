@@ -2,6 +2,8 @@ package model;
 
 import java.awt.event.MouseEvent;
 import java.util.Collection;
+import java.util.Iterator;
+
 import gameobject.*;
 
 public class EstuaryModel extends Model implements GameState {
@@ -11,7 +13,8 @@ public class EstuaryModel extends Model implements GameState {
 	
 	public EstuaryModel(int frameWidth, int frameHeight) {
 		super(frameWidth, frameHeight);
-		// TODO Auto-generated constructor stub
+		Animal goldfish = new GoldFish(5,5,1);
+		schoolOfFish.add(goldfish);
 	}
 
 	@Override
@@ -43,7 +46,10 @@ public class EstuaryModel extends Model implements GameState {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		
+		Iterator itr = schoolOfFish.iterator();
+		while(itr.hasNext()) {
+			System.out.println(itr.next());
+		}
 	}
 
 }
