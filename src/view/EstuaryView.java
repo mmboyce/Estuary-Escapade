@@ -19,13 +19,8 @@ import gameobject.GameObject;
 
 public class EstuaryView extends View {
 	
-	HashMap<GameObject, BufferedImage[]> map = new HashMap<>();
+	HashMap<GameObject, BufferedImage> map = new HashMap<>();
 	ArrayList<GameObject> objects;
-	
-	// CHANGE THESE
-	int frameCount = 10;
-	int imgWidth = 150;
-	int imgHeight = 150;
 	
 	// void EstuaryView (constructor)
 	// constructs the estuaryview by populating an arraylist with game objects and then iterating over it to extract the images for animation
@@ -35,21 +30,15 @@ public class EstuaryView extends View {
 	//     MouseListener m: mouse listener to verify clicks 
 	//     ArrayList<GameObject> objects: an arraylist of game objects, mostly estuary animals, to load the images.
 
-	public EstuaryView(int width, int height, MouseListener m, ArrayList<GameObject> objects) {
-		super(width, height, m);
+	public EstuaryView(int width, int height, ArrayList<GameObject> objects) {
+		super(width, height);
 		this.objects = objects;
 		
-		Iterator<GameObject> yuh = objects.iterator(); // Create an iterator over the game objects 
-		while(yuh.hasNext()) {
-			GameObject currentObj = yuh.next(); // Set the current object in the iterator so next() isn't called multiple times
+		Iterator<GameObject> gameObjectIterator = objects.iterator(); // Create an iterator over the game objects 
+		while(gameObjectIterator.hasNext()) {
+			GameObject currentObj = gameObjectIterator.next(); // Set the current object in the iterator so next() isn't called multiple times
 	    	BufferedImage img = createImage(currentObj.getImagePath()); // Read the image from the current game object
-	    	BufferedImage[] pics = new BufferedImage[10]; // Declare a new buffered image array to hold each frame of the animation
-	    	
-	    	for(int i = 0; i < frameCount; i++) { 
-	    		pics[i] = img.getSubimage(imgWidth * i, 0, imgWidth, imgHeight); // Iterate over the bitmap to snapshot each frame
-	    	}
-	    	
-	    	map.put(currentObj, pics); // Place the game object and the animation frames in the hash map as a key-value pair
+	    	map.put(currentObj, img); // Place the game object and the animation frames in the hash map as a key-value pair
 		}
 		
 	}
@@ -62,8 +51,8 @@ public class EstuaryView extends View {
 
 	
 	public void paint(Graphics g) {
-		for(GameObject dab : this.map.keySet()) {
-			g.drawImage(map.get(dab), dab.getxPos(), dab.getyPos(), FIX THIS);
+		for(GameObject object : this.map.keySet()) {
+			g.drawImage(map.get(object), object.getxPos(), object.getyPos(),(ImageObserver)this);
 		}
 	}
 	
@@ -89,4 +78,10 @@ public class EstuaryView extends View {
     		e.printStackTrace();
     	}
     	return null;
-    }}
+    }
+
+	@Override
+	public View nextView(ArrayList<GameObject> objects) {
+		// TODO Auto-generated method stub
+		return null;
+	}}

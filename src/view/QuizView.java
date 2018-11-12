@@ -3,13 +3,14 @@ package view;
 import java.awt.Graphics;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import gameobject.GameObject;
 
 public class QuizView extends View {
 
-	public QuizView(int width, int height,MouseListener m) {
-		super(width, height, m);
+	public QuizView(int width, int height) {
+		super(width, height);
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -23,6 +24,12 @@ public class QuizView extends View {
 	public void paint(Graphics g) {
 		// TODO Auto-generated method stub
 		super.paint(g);
+	}
+
+	@Override
+	public View nextView(ArrayList<GameObject> objects) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -13,6 +14,7 @@ public class EstuaryModel extends Model implements GameState {
 	
 	public EstuaryModel(int frameWidth, int frameHeight) {
 		super(frameWidth, frameHeight);
+		schoolOfFish = new ArrayList<Animal>();
 		Animal goldfish = new GoldFish(5,5,1);
 		schoolOfFish.add(goldfish);
 	}
