@@ -149,7 +149,6 @@ public class EstuaryModel extends Model implements GameState {
 	 * 
 	 */
 	public boolean allResearched() {
- 
 		return schoolOfFish.size() == 0;
 	}
 
