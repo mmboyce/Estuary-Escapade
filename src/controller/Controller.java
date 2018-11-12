@@ -6,8 +6,6 @@ import java.util.Collection;
 import javax.swing.AbstractAction;
 import javax.swing.Timer;
 
-import org.hamcrest.core.IsInstanceOf;
-
 import model.GameState;
 import model.Model;
 import model.TitleModel;
