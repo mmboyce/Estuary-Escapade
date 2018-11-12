@@ -4,7 +4,8 @@ public abstract class Animal extends GameObject {
 	private String name;
 	private int weight;
 	private int size;
-	private int speed;
+	private int xSpeed;
+	private int ySpeed;
 	private String funFact;
 	private String question;
 	
@@ -28,7 +29,7 @@ public abstract class Animal extends GameObject {
 		super(xPos, yPos, depth, "");
 	}
 	
-	private Animal(int xPos, int yPos, int depth, String imagePath, String name,
+  private Animal(int xPos, int yPos, int depth, String imagePath, String name,
 			int weight, int size, int speed, String funFact, String question,
 			int pathState, int pathLength, boolean movingForward) {
 		super(xPos, yPos, depth, imagePath);
@@ -36,7 +37,8 @@ public abstract class Animal extends GameObject {
 		this.name = name;
 		this.weight = weight;
 		this.size = size;
-		this.speed = speed;
+		this.xSpeed = xSpeed;
+		this.ySpeed = ySpeed;
 		this.funFact = funFact;
 		this.question = question;
 		this.pathState = pathState;
@@ -103,8 +105,8 @@ public abstract class Animal extends GameObject {
 	public int getSpeed() {
 		return speed;
 	}
-	public void setSpeed(int speed) {
-		this.speed = speed;
+	public void setySpeed(int speed) {
+		this.ySpeed = speed;
 	}
 	public String getFunFact() {
 		return funFact;

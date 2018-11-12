@@ -1,8 +1,8 @@
 package gameobject;
 
 public class GoldFish extends Animal {
-	
-	
+	private int pathstate = 0;
+	private int pathlength = 40;
 	public GoldFish(int xPos, int yPos, int depth) {		
 		super(xPos, yPos, depth);
 		
