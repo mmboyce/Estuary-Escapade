@@ -24,7 +24,7 @@ public class Controller implements CodeListener{
 	private final int height = 700;
 	
 	public Controller() {
-		Model model = new TitleModel(width, height);
+		model = new TitleModel(width, height);
 		CustomMouseListener listener = new CustomMouseListener(model);
 		view = new TitleView(width,height,listener,this);
 		
@@ -35,20 +35,27 @@ public class Controller implements CodeListener{
 			}};
 		t = new Timer(30, updateAction);
 	}
-	
+	/*
+	*void codeEmmited
+
+	*updates game on click based on command
+
+	*params Code code the command uses
+	*/
 	@Override
-	public void codeEmmitted(Code c) {
+	public void codeEmmitted(Code c) {	
 		switch (c) {
 			case NEXT:
-				//This is commented out because model.nextModel is not yet implemented
-				model = model.nextModel();
+				model = model.nextModel();//calls nextmodel and move to next game state
+				System.out.println("In: "+model);//For debugging
 				break;
 			case EXIT:
 				t.stop();
 				view.dispatchEvent(new WindowEvent(view, WindowEvent.WINDOW_CLOSING));
 				break;
 			case TIMEUP:
-				//model.timeUp is not yet implemented but that would go here
+				model=new model.QuizModel(width,height);//regardless of current model move to quiz model
+				System.out.println("In: "+model);//for debugging
 				break;
 		}
 	}
