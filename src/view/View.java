@@ -1,11 +1,9 @@
 package view;
 
+import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.Collection;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import gameobject.GameObject;
@@ -15,17 +13,16 @@ public abstract class View extends JPanel {
 	private int frameHeight;
 	private ArrayList<GameObject> objects;
 	
+	final static Color SEA_BLUE = Color.decode("#006994");
+
 	public View(int width, int height, ArrayList<GameObject> objects) {
-		
 		frameWidth = width;
 		frameHeight = height;
 		this.objects = objects;
 
 		setSize(frameWidth, frameHeight);
-		
-		// do what else we need to do for initial view
 	}
-	
+
 	@Override
 	public void paint(Graphics g) {
 		// TODO Auto-generated method stub
@@ -33,7 +30,7 @@ public abstract class View extends JPanel {
 	}
 	
 	public abstract void update(ArrayList<GameObject> objects);
-	
+
 	public abstract View nextView(ArrayList<GameObject> objects);
 
 	public int getFrameWidth() {

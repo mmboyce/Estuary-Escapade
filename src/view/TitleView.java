@@ -7,17 +7,17 @@ import java.util.ArrayList;
 import controller.CodeListener;
 import gameobject.GameObject;
 
-public class TitleView extends View{
+public class TitleView extends View {
 
 	public TitleView(String title, int width, int height, CodeListener cl, ArrayList<GameObject> objects) {
 		super(width, height, objects);
 
-		TitlePanel titleArt = new TitlePanel(title);
-		TitleNavigation nav = new TitleNavigation(cl);
-		
+		TitlePanel titleArt = new TitlePanel(title); // This will display the title and any art
+		TitleNavigation nav = new TitleNavigation(cl); // This holds buttons for navigation
+
 		setLayout(new BorderLayout());
-		add(titleArt,BorderLayout.CENTER);
-		add(nav,BorderLayout.SOUTH);
+		add(titleArt, BorderLayout.CENTER);
+		add(nav, BorderLayout.SOUTH);
 		setVisible(true);
 	}
 
@@ -25,7 +25,7 @@ public class TitleView extends View{
 	public void update(ArrayList<GameObject> objects) {
 		// TODO Auto-generated method stub
 	}
-	
+
 	@Override
 	public void paint(Graphics g) {
 		// TODO Auto-generated method stub
