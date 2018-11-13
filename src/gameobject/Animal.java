@@ -5,8 +5,7 @@ public abstract class Animal extends GameObject {
 	private int weight;
 	private int size;
 	private int speed;
-	private String funFact;
-	private String question;
+	private Question question;
 
 	// the fields below are for pathfinding.
 
@@ -30,14 +29,13 @@ public abstract class Animal extends GameObject {
 	}
 
 	private Animal(int xPos, int yPos, int depth, String imagePath, String name, int weight, int size, int speed,
-			String funFact, String question, int pathState, int pathLength, boolean movingForward) {
+			Question question, int pathState, int pathLength, boolean movingForward) {
 		super(xPos, yPos, depth, imagePath);
 
 		this.name = name;
 		this.weight = weight;
 		this.size = size;
 		this.speed = speed;
-		this.funFact = funFact;
 		this.question = question;
 		this.pathState = pathState;
 		this.pathLength = pathLength;
@@ -76,11 +74,11 @@ public abstract class Animal extends GameObject {
 		}
 	}
 
-	public String getQuestion() {
+	public Question getQuestion() {
 		return question;
 	}
 
-	public void setQuestion(String question) {
+	public void setQuestion(Question question) {
 		this.question = question;
 	}
 
@@ -114,14 +112,6 @@ public abstract class Animal extends GameObject {
 
 	public void setSpeed(int speed) {
 		this.speed = speed;
-	}
-
-	public String getFunFact() {
-		return funFact;
-	}
-
-	public void setFunFact(String funFact) {
-		this.funFact = funFact;
 	}
 
 	public int getPathLength() {

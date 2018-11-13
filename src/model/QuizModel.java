@@ -5,18 +5,19 @@ import java.util.List;
 
 import controller.CodeListener;
 import gameobject.Animal;
+import gameobject.Question;
 
 public class QuizModel extends Model {
 	// A collection of all the possible questions that can be asked on the quiz
-	private Collection<String> questionPool;
+	private Collection<Question> questionPool;
 	// A list of the animals the player researched over the course of the game
 	private List<Animal> researched;
 
-	public Collection<String> getQuestionPool() {
+	public Collection<Question> getQuestionPool() {
 		return questionPool;
 	}
 
-	public void setQuestionPool(Collection<String> questionPool) {
+	public void setQuestionPool(Collection<Question> questionPool) {
 		this.questionPool = questionPool;
 	}
 
@@ -28,8 +29,7 @@ public class QuizModel extends Model {
 
 		// Adds all the questions for the animals researched
 		for (Animal caught : this.researched) {
-			// TODO build upon this functionality
-			questionPool.add(caught.getFunFact());
+			questionPool.add(caught.getQuestion());
 		}
 	}
 
