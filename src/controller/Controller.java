@@ -1,6 +1,6 @@
 package controller;
+
 import java.awt.event.ActionEvent;
-import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.util.Collection;
 
@@ -14,8 +14,8 @@ import model.TitleModel;
 import view.TitleView;
 import view.View;
 
-public class Controller implements CodeListener{
-	
+public class Controller implements CodeListener {
+
 	private Timer t;
 	private Model model;
 	private View view;
@@ -23,63 +23,64 @@ public class Controller implements CodeListener{
 	private Collection<String> questionPool;
 	private CustomMouseListener mouseListener;
 	private JFrame frame;
-  
+
 	private final int width = 1000;
 	private final int height = 700;
 	private final static String title = "Estuary Escapade";
-	
+
 	public Controller() {
-		model = new TitleModel(width, height,this);
+		model = new TitleModel(width, height, this);
 		mouseListener = new CustomMouseListener(model);
-		
+
 		frame = new JFrame(title);
-		frame.setSize(width,height);
+		frame.setSize(width, height);
 		frame.addMouseListener(mouseListener);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		view = new TitleView(title,width,height,this,model.getGameObjects());
-		
+
+		view = new TitleView(title, width, height, this, model.getGameObjects());
+
 		updateAction = new AbstractAction() {
 			public void actionPerformed(ActionEvent arg0) {
 				model.update();
 				view.update(model.getGameObjects());
 				frame.repaint();
-			}};
+			}
+		};
 		t = new Timer(30, updateAction);
 	}
-	 
+
 	/*
-	*void codeEmited
-
-	*updates game on click based on command
-
-	*params Code code the command uses
-	*/
+	 * void codeEmited
+	 * 
+	 * updates game on click based on command
+	 * 
+	 * params Code code the command uses
+	 */
 	@Override
-	public void codeEmitted(Code c) {	
+	public void codeEmitted(Code c) {
 		switch (c) {
-			case NEXT:
-				model = model.nextModel();//calls nextmodel and move to next game state
-				view = view.nextView(model.getGameObjects());
-				
-				frame.getContentPane().removeAll();
-				frame.validate();
-				frame.repaint();
-				frame.add(view);
-				mouseListener.setModel(model);
-				
-				System.out.println("In: "+model);//For debugging
-				break;
-			case EXIT:
-				t.stop();
-				frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
-				break;
-			case TIMEUP:
-				if(model instanceof GameState ) {
-					model = ((GameState) model).timeUp();
-				}
-				System.out.println("In: "+model); //for debugging
-				break;
+		case NEXT:
+			model = model.nextModel();// calls nextmodel and move to next game state
+			view = view.nextView(model.getGameObjects());
+
+			frame.getContentPane().removeAll();
+			frame.validate();
+			frame.repaint();
+			frame.add(view);
+			mouseListener.setModel(model);
+
+			System.out.println("In: " + model);// For debugging
+			break;
+		case EXIT:
+			t.stop();
+			frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+			break;
+		case TIMEUP:
+			if (model instanceof GameState) {
+				model = ((GameState) model).timeUp();
+			}
+			System.out.println("In: " + model); // for debugging
+			break;
 		}
 	}
 
@@ -88,7 +89,7 @@ public class Controller implements CodeListener{
 		frame.add(view);
 		frame.setVisible(true);
 	}
-	
+
 	public Timer getT() {
 		return t;
 	}
