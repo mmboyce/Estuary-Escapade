@@ -56,14 +56,9 @@ public class ResearchModel extends Model implements GameState {
 		return this.goBack;
 	}
 
-	private void startDrag(MouseEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	private void releaseDrag(MouseEvent e) {
-		// TODO Auto-generated method stub
-
+	@Override
+	public void registerClick(MouseEvent e) {
+		
 	}
 
 	private void measuring() {
