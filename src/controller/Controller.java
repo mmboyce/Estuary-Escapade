@@ -29,10 +29,11 @@ public class Controller implements CodeListener {
 	private final int width = 1000;
 	private final int height = 700;
 	private final static String title = "Estuary Escapade";
-	private final int cycles = 1000;
+	private final int cycles = 400;
 
 	public Controller() {
 		time = 0;
+		timerRunning = false;
 		model = new TitleModel(width, height, this);
 		mouseListener = new CustomMouseListener(model);
 

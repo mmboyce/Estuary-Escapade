@@ -18,6 +18,7 @@ public class EstuaryModel extends Model implements GameStateModel {
 
 	public EstuaryModel(int frameWidth, int frameHeight, CodeListener listener) {
 		super(frameWidth, frameHeight, listener);
+		listener.codeEmitted(Code.STARTTIMER);
 		researched = new ArrayList<Animal>();
 		instantiateFish();
 	}
