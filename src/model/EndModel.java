@@ -26,7 +26,6 @@ public class EndModel extends Model {
 
 	public EndModel(int frameWidth, int frameHeight, CodeListener listener) {
 		super(frameWidth, frameHeight, listener);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

@@ -3,7 +3,7 @@ package model;
 import controller.CodeListener;
 
 public class TitleModel extends Model {
-	// The title of the game --> like duh
+	// The title of the game
 	private String title;
 
 	public String getTitle() {
@@ -21,7 +21,6 @@ public class TitleModel extends Model {
 
 	@Override
 	public Model nextModel() {
-		// TODO Auto-generated method stub
 		Model model = new EstuaryModel(super.getFrameWidth(), super.getFrameHeight(), getListener());
 		return model;
 	}
