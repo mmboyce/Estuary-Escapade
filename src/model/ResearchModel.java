@@ -56,10 +56,10 @@ public class ResearchModel extends Model implements GameStateModel {
 		super(frameWidth, frameHeight, listener);
 		this.caught = animalCaught;
 		this.goBack = goBack;
-		instantiateYeet();
+		instantiateObjects();
 	}
 	
-	public void instantiateYeet() {
+	public void instantiateObjects() {
 		// TODO: make this so its not hard coded
 		this.caught.setxPos(right);
 		this.caught.setyPos(top);
@@ -138,6 +138,7 @@ public class ResearchModel extends Model implements GameStateModel {
 				if (this.isMeasured() && this.isPhotographed()) {
 					this.caught.setxPos(0);
 					this.caught.setyPos(0);
+					goBack.researched.add(caught);
 					getListener().codeEmitted(Code.NEXT);
 				}
 				

@@ -50,9 +50,7 @@ public class EstuaryModel extends Model implements GameStateModel {
 	@Override
 	public Model nextModel() {
 		// sets the next model to the research model
-		Model model = new ResearchModel(super.getFrameWidth(), super.getFrameHeight(), target, this, getListener());
-		researched.add(target);
-		return model;
+		return new ResearchModel(super.getFrameWidth(), super.getFrameHeight(), target, this, getListener());
 	}
 
 	/*
