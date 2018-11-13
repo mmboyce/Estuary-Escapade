@@ -22,13 +22,17 @@ public class Controller implements CodeListener {
 	private View view;
 	private AbstractAction updateAction;
 	private CustomMouseListener mouseListener;
+	private boolean timerRunning;
+	private int time;
 	private JFrame frame;
 
 	private final int width = 1000;
 	private final int height = 700;
 	private final static String title = "Estuary Escapade";
+	private final int cycles = 1000;
 
 	public Controller() {
+		time = 0;
 		model = new TitleModel(width, height, this);
 		mouseListener = new CustomMouseListener(model);
 
@@ -44,6 +48,12 @@ public class Controller implements CodeListener {
 				model.update();
 				view.update(model.getGameObjects());
 				frame.repaint();
+				if(timerRunning) {
+					time++;
+				}
+				if(time >= cycles) {
+					codeEmitted(Code.TIMEUP);
+				}
 			}
 		};
 		t = new Timer(30, updateAction);
@@ -63,6 +73,7 @@ public class Controller implements CodeListener {
 			model = model.nextModel();// calls nextmodel and move to next game state
 			view = view.nextView(model.getGameObjects());
 			System.out.println("In: " + model);// For debugging
+			resetView();
 			break;
 		case EXIT:
 			t.stop();
@@ -74,8 +85,16 @@ public class Controller implements CodeListener {
 				view = ((ObjectView) view).timeUp(((QuizModel) model).getQuestion());
 			}
 			System.out.println("In: " + model); // for debugging
+			resetView();
+			timerRunning = false;
+			time = 0;
 			break;
+		case STARTTIMER:
+			timerRunning = true;
 		}
+	}
+	
+	private void resetView() {
 		frame.getContentPane().removeAll();
 		frame.validate();
 		frame.repaint();

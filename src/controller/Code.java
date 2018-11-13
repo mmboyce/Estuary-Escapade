@@ -1,5 +1,5 @@
 package controller;
 
 public enum Code {
-	NEXT, EXIT, TIMEUP
+	NEXT, EXIT, TIMEUP, STARTTIMER
 }
