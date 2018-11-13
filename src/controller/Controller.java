@@ -1,5 +1,6 @@
 package controller;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.util.Collection;
 
@@ -28,7 +29,7 @@ public class Controller implements CodeListener{
 	private final static String title = "Estuary Escapade";
 	
 	public Controller() {
-		model = new TitleModel(width, height);
+		model = new TitleModel(width, height,this);
 		mouseListener = new CustomMouseListener(model);
 		
 		frame = new JFrame(title);
@@ -36,12 +37,13 @@ public class Controller implements CodeListener{
 		frame.addMouseListener(mouseListener);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		view = new TitleView(title,width,height,this);
+		view = new TitleView(title,width,height,this,model.getGameObjects());
 		
 		updateAction = new AbstractAction() {
 			public void actionPerformed(ActionEvent arg0) {
 				model.update();
 				view.update(model.getGameObjects());
+				frame.repaint();
 			}};
 		t = new Timer(30, updateAction);
 	}
@@ -59,10 +61,13 @@ public class Controller implements CodeListener{
 			case NEXT:
 				model = model.nextModel();//calls nextmodel and move to next game state
 				view = view.nextView(model.getGameObjects());
+				
 				frame.getContentPane().removeAll();
 				frame.validate();
 				frame.repaint();
 				frame.add(view);
+				mouseListener.setModel(model);
+				
 				System.out.println("In: "+model);//For debugging
 				break;
 			case EXIT:

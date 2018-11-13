@@ -2,6 +2,8 @@ package model;
 
 import java.awt.Color;
 
+import controller.CodeListener;
+
 public class TitleModel extends Model {
 	private String title;
 	
@@ -13,14 +15,14 @@ public class TitleModel extends Model {
 		this.title = title;
 	}
 
-	public TitleModel(int frameWidth, int frameHeight) {
-		super(frameWidth, frameHeight);
+	public TitleModel(int frameWidth, int frameHeight, CodeListener listener) {
+		super(frameWidth, frameHeight,listener);
 	}
 
 	@Override
 	public Model nextModel() {
 		// TODO Auto-generated method stub
-		Model model = new EstuaryModel(super.getFrameWidth(), super.getFrameHeight());
+		Model model = new EstuaryModel(super.getFrameWidth(), super.getFrameHeight(), getListener());
 		return model;
 	}
 	

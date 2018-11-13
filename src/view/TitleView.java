@@ -9,8 +9,8 @@ import gameobject.GameObject;
 
 public class TitleView extends View{
 
-	public TitleView(String title, int width, int height, CodeListener cl) {
-		super(width, height);
+	public TitleView(String title, int width, int height, CodeListener cl, ArrayList<GameObject> objects) {
+		super(width, height, objects);
 
 		TitlePanel titleArt = new TitlePanel(title);
 		TitleNavigation nav = new TitleNavigation(cl);

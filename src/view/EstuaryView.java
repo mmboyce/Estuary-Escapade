@@ -14,13 +14,14 @@ import java.util.Map.Entry;
 
 import javax.imageio.ImageIO;
 
+import controller.CodeListener;
 import gameobject.Animal;
 import gameobject.GameObject;
 
 public class EstuaryView extends View {
 	
 	HashMap<GameObject, BufferedImage> map = new HashMap<>();
-	ArrayList<GameObject> objects;
+	
 	
 	// void EstuaryView (constructor)
 	// constructs the estuaryview by populating an arraylist with game objects and then iterating over it to extract the images for animation
@@ -31,16 +32,13 @@ public class EstuaryView extends View {
 	//     ArrayList<GameObject> objects: an arraylist of game objects, mostly estuary animals, to load the images.
 
 	public EstuaryView(int width, int height, ArrayList<GameObject> objects) {
-		super(width, height);
-		this.objects = objects;
+		super(width, height,objects);
 		
-		Iterator<GameObject> gameObjectIterator = objects.iterator(); // Create an iterator over the game objects 
-		while(gameObjectIterator.hasNext()) {
-			GameObject currentObj = gameObjectIterator.next(); // Set the current object in the iterator so next() isn't called multiple times
-	    	BufferedImage img = createImage(currentObj.getImagePath()); // Read the image from the current game object
+		for(GameObject currentObj : getObjects()) {
+			System.out.println(currentObj);
+			BufferedImage img = createImage(currentObj.getImagePath()); // Read the image from the current game object
 	    	map.put(currentObj, img); // Place the game object and the animation frames in the hash map as a key-value pair
 		}
-		
 	}
 
 	@Override
@@ -61,8 +59,7 @@ public class EstuaryView extends View {
 	// params: ArrayList<GameObject> objects: an arraylist of the game objects with updated attributes
 	
 	public void update(ArrayList<GameObject> objects) {
-		this.objects = objects; // Update the objects attribute
-		this.repaint(); // Call paint
+		setObjects(objects); // Update the objects attribute
 	}
 	
 	// BufferedImage createImage
@@ -83,5 +80,5 @@ public class EstuaryView extends View {
 	@Override
 	public View nextView(ArrayList<GameObject> objects) {
 		// TODO Auto-generated method stub
-		return null;
+		return new ResearchView(getFrameWidth(),getFrameHeight(),getObjects());
 	}}

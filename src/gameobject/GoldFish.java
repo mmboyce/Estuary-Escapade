@@ -6,8 +6,8 @@ public class GoldFish extends Animal {
 	public GoldFish(int xPos, int yPos, int depth) {		
 		super(xPos, yPos, depth);
 		
-		setImagePath("0"); // TODO put imagePath here
-		setName("danny"); // TODO put name here
+		setImagePath("images/Fish_east_2.png"); // TODO put imagePath here
+		setName("Greg"); // TODO put name here
 		setWeight(0); // TODO put weight here
 		setSize(0); // TODO put size here
 		setSpeed(5); // TODO put speed here
@@ -74,7 +74,7 @@ public class GoldFish extends Animal {
 			}
 		}
 		updatePosition();
-		System.out.println("Fish at x: " + super.getxPos() + " y: " + super.getyPos());
+		//System.out.println("Fish at x: " + super.getxPos() + " y: " + super.getyPos()); Prints the position for debugging
 	}
 
 	public int getPathstate() {

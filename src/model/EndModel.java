@@ -1,5 +1,7 @@
 package model;
 
+import controller.CodeListener;
+
 public class EndModel extends Model {
 
 	private int score;
@@ -21,15 +23,15 @@ public class EndModel extends Model {
 		this.quizCorrect = quizCorrect;
 	}
 
-	public EndModel(int frameWidth, int frameHeight) {
-		super(frameWidth, frameHeight);
+	public EndModel(int frameWidth, int frameHeight, CodeListener listener) {
+		super(frameWidth, frameHeight, listener);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public Model nextModel() {
 		// TODO Auto-generated method stub
-		Model model = new TitleModel(super.getFrameWidth(), super.getFrameHeight());
+		Model model = new TitleModel(super.getFrameWidth(), super.getFrameHeight(), getListener());
 		return model;
 	}
 

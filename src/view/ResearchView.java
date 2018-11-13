@@ -10,12 +10,9 @@ import gameobject.Camera;
 import gameobject.GameObject;
 
 public class ResearchView extends View {
-
-	Animal caughtFish;
-	Camera camera;
 	
-	public ResearchView(int width, int height) {
-		super(width, height);
+	public ResearchView(int width, int height, ArrayList<GameObject> objects) {
+		super(width, height, objects);
 		// TODO Auto-generated constructor stub
 	}
 	
