@@ -70,7 +70,7 @@ public class QuizView extends View implements ActionListener {
 	@Override
 	public View nextView(ArrayList<GameObject> objects) {
 		// TODO Auto-generated method stub
-		return null;
+		return new EndView(getWidth(), getHeight(), objects, super.getListener());
 	}
 
 	@Override

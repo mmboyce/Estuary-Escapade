@@ -98,7 +98,7 @@ public class EstuaryModel extends Model implements GameStateModel {
 
 				if ((mouseX >= xLeftBound && mouseX <= xRightBound) && (mouseY >= yUpBound && mouseY <= yDownBound)) {
 					clicked = (Animal) fish;
-					System.out.println("Clicked on the fish");
+					//System.out.println("Clicked on the fish");
 					break;
 				}
 			}
@@ -107,7 +107,7 @@ public class EstuaryModel extends Model implements GameStateModel {
 		if (clicked != null) {
 			animalCaught(clicked);
 		}
-		System.out.println("Mouse Clicked at x: " + mouseX + " y: " + mouseY);
+		//System.out.println("Mouse Clicked at x: " + mouseX + " y: " + mouseY); Print used for debugging
 	}
 
 	/*
