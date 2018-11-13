@@ -37,6 +37,7 @@ public abstract class ObjectView extends View {
 			g.drawImage(map.get(object), object.getxPos(), object.getyPos(), (ImageObserver) this);
 		}
 	}
+	
 
 	// void update
 	// Updates the game objects array
