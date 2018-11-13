@@ -3,9 +3,9 @@ package model;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 
-import gameobject.*;
+import gameobject.Animal;
+import gameobject.GoldFish;
 
 public class EstuaryModel extends Model implements GameState {
 

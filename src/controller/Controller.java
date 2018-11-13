@@ -7,10 +7,8 @@ import javax.swing.AbstractAction;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
-import model.EstuaryModel;
 import model.Model;
 import model.TitleModel;
-import view.EstuaryView;
 import view.TitleView;
 import view.View;
 

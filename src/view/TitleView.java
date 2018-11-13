@@ -2,9 +2,7 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Graphics;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.Collection;
 
 import controller.CodeListener;
 import gameobject.GameObject;
