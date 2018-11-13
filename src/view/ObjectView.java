@@ -10,14 +10,16 @@ import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 
+import controller.CodeListener;
 import gameobject.GameObject;
+import gameobject.Question;
 
 public abstract class ObjectView extends View {
 
 	HashMap<GameObject, BufferedImage> map = new HashMap<>();
 
-	public ObjectView(int width, int height, ArrayList<GameObject> objects) {
-		super(width, height, objects);
+	public ObjectView(int width, int height, ArrayList<GameObject> objects, CodeListener listener) {
+		super(width, height, objects, listener);
 		// TODO Auto-generated constructor stub
 		for (GameObject currentObj : getObjects()) {
 			BufferedImage img = createImage(currentObj.getImagePath()); // Read the image from the current game object
@@ -61,6 +63,10 @@ public abstract class ObjectView extends View {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	public QuizView timeUp(Question q) {
+		return new QuizView(super.getWidth(),super.getHeight(),q,new ArrayList<GameObject>(), super.getListener());
 	}
 
 }

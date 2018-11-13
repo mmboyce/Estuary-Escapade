@@ -10,7 +10,7 @@ import gameobject.Animal;
 import gameobject.GameObject;
 import gameobject.GoldFish;
 
-public class EstuaryModel extends Model implements GameState {
+public class EstuaryModel extends Model implements GameStateModel {
 	// A list of all the animals the user researched
 	List<Animal> researched;
 	// The animal the user is currently researching
@@ -18,6 +18,7 @@ public class EstuaryModel extends Model implements GameState {
 
 	public EstuaryModel(int frameWidth, int frameHeight, CodeListener listener) {
 		super(frameWidth, frameHeight, listener);
+		researched = new ArrayList<Animal>();
 		instantiateFish();
 	}
 
@@ -29,8 +30,6 @@ public class EstuaryModel extends Model implements GameState {
 	private void instantiateFish() {
 		// Adds all the fish that are in the estuary
 		target = new GoldFish(0, 0, 0);
-
-		researched = new ArrayList<Animal>();
 
 		// addGameObject(new GoldFish(10, 20, 0)); Wanted only one animal for debugging
 		addGameObject(target);
@@ -52,9 +51,7 @@ public class EstuaryModel extends Model implements GameState {
 	public Model nextModel() {
 		// sets the next model to the research model
 		Model model = new ResearchModel(super.getFrameWidth(), super.getFrameHeight(), target, this, getListener());
-
 		researched.add(target);
-
 		return model;
 	}
 

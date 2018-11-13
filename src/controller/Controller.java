@@ -2,15 +2,16 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowEvent;
-import java.util.Collection;
 
 import javax.swing.AbstractAction;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
-import model.GameState;
+import model.GameStateModel;
 import model.Model;
+import model.QuizModel;
 import model.TitleModel;
+import view.ObjectView;
 import view.TitleView;
 import view.View;
 
@@ -20,7 +21,6 @@ public class Controller implements CodeListener {
 	private Model model;
 	private View view;
 	private AbstractAction updateAction;
-	private Collection<String> questionPool;
 	private CustomMouseListener mouseListener;
 	private JFrame frame;
 
@@ -62,13 +62,6 @@ public class Controller implements CodeListener {
 		case NEXT:
 			model = model.nextModel();// calls nextmodel and move to next game state
 			view = view.nextView(model.getGameObjects());
-
-			frame.getContentPane().removeAll();
-			frame.validate();
-			frame.repaint();
-			frame.add(view);
-			mouseListener.setModel(model);
-
 			System.out.println("In: " + model);// For debugging
 			break;
 		case EXIT:
@@ -76,12 +69,18 @@ public class Controller implements CodeListener {
 			frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
 			break;
 		case TIMEUP:
-			if (model instanceof GameState) {
-				model = ((GameState) model).timeUp();
+			if (model instanceof GameStateModel && view instanceof ObjectView) {
+				model = ((GameStateModel) model).timeUp();
+				view = ((ObjectView) view).timeUp(((QuizModel) model).getQuestion());
 			}
 			System.out.println("In: " + model); // for debugging
 			break;
 		}
+		frame.getContentPane().removeAll();
+		frame.validate();
+		frame.repaint();
+		frame.add(view);
+		mouseListener.setModel(model);
 	}
 
 	public void start() {
@@ -122,11 +121,4 @@ public class Controller implements CodeListener {
 		this.updateAction = updateAction;
 	}
 
-	public Collection<String> getQuestionPool() {
-		return questionPool;
-	}
-
-	public void setQuestionPool(Collection<String> questionPool) {
-		this.questionPool = questionPool;
-	}
 }

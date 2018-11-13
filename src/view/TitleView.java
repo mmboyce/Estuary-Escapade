@@ -9,11 +9,11 @@ import gameobject.GameObject;
 
 public class TitleView extends View {
 
-	public TitleView(String title, int width, int height, CodeListener cl, ArrayList<GameObject> objects) {
-		super(width, height, objects);
+	public TitleView(String title, int width, int height, CodeListener listener, ArrayList<GameObject> objects) {
+		super(width, height, objects,listener);
 
 		TitlePanel titleArt = new TitlePanel(title); // This will display the title and any art
-		TitleNavigation nav = new TitleNavigation(cl); // This holds buttons for navigation
+		TitleNavigation nav = new TitleNavigation(listener); // This holds buttons for navigation
 
 		setLayout(new BorderLayout());
 		add(titleArt, BorderLayout.CENTER);
@@ -35,7 +35,7 @@ public class TitleView extends View {
 	@Override
 	public View nextView(ArrayList<GameObject> objects) {
 		// TODO Auto-generated method stub
-		return new EstuaryView(getWidth(), getHeight(), objects);
+		return new EstuaryView(getWidth(), getHeight(), objects, super.getListener());
 	}
 
 }
