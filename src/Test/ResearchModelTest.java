@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
+
+import model.EstuaryModel;
 import model.ResearchModel;
 import gameobject.GoldFish;
 
@@ -12,7 +14,7 @@ class ResearchModelTest {
 	
 	@Before
 	void setUp() {
-		ResearchModel model = new ResearchModel(500,500, new GoldFish(0,0,0));
+		ResearchModel model = new ResearchModel(500,500, new GoldFish(0,0,0), new EstuaryModel(0, 0));
 	}
 
 	@Test
