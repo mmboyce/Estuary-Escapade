@@ -7,13 +7,14 @@ public class Question {
 	private String correctAnswer;
 	private String[] distractionAnswers;
 
-	public Question(String f, String q, String correct, String a, String b, String c) {
-		setQuestion(q);
+	public Question(String funFact, String question, String correct, String a, String b, String c) {
+		setQuestion(question);
 		setCorrectAnswer(correct);
 		distractionAnswers = new String[3];
 		distractionAnswers[0] = a;
 		distractionAnswers[1] = b;
 		distractionAnswers[2] = c;
+		this.funFact = funFact;
 	}
 
 	public String getQuestion() {
