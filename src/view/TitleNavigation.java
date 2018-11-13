@@ -14,7 +14,6 @@ public class TitleNavigation extends JPanel implements ActionListener {
 
 	JButton start;
 	JButton exit;
-	JButton timeup;////////////////////////////////////// Temporary Timeup button
 	CodeListener CodeListener;
 
 	public TitleNavigation(CodeListener cl) {
@@ -28,13 +27,9 @@ public class TitleNavigation extends JPanel implements ActionListener {
 		exit = new JButton("Exit");
 		exit.addActionListener(this);
 
-		timeup = new JButton("timeup");//////////////////// Temporary Timeup button
-		timeup.addActionListener(this);//////////////////// Temporary Timeup button
-
 		setLayout(new FlowLayout());
 		add(start);
 		add(exit);
-		add(timeup);/////////////////////////////////////// Temporary Timeup button
 	}
 
 	@Override
@@ -44,8 +39,6 @@ public class TitleNavigation extends JPanel implements ActionListener {
 			CodeListener.codeEmitted(Code.NEXT);
 		} else if (pressed == exit) {
 			CodeListener.codeEmitted(Code.EXIT);
-		} else if (pressed == timeup) {////////////////////////////// Temporary Timeup button
-			CodeListener.codeEmitted(Code.TIMEUP);
 		}
 	}
 
