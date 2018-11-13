@@ -16,6 +16,7 @@ public class QuizModel extends Model {
 	private List<Animal> researched;
 	
 	public Question getQuestion() {
+		// grab random question
 		return questionPool.get(new Random().nextInt(questionPool.size()));
 	}
 
