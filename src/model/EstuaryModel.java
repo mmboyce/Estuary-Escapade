@@ -6,6 +6,9 @@ import java.util.Collection;
 import gameobject.Animal;
 import gameobject.GoldFish;
 import java.util.List;
+
+import controller.Code;
+import controller.CodeListener;
 import gameobject.*;
 import model.QuizModel;
 
@@ -14,8 +17,8 @@ public class EstuaryModel extends Model implements GameState {
 	List<Animal> researched;
 	Animal target;
 	
-	public EstuaryModel(int frameWidth, int frameHeight) {
-		super(frameWidth, frameHeight);
+	public EstuaryModel(int frameWidth, int frameHeight, CodeListener listener) {
+		super(frameWidth, frameHeight,listener);
 		instantiateFish();
 	}
 
@@ -48,7 +51,7 @@ public class EstuaryModel extends Model implements GameState {
 	@Override
 	public Model nextModel() {
 		// TODO Auto-generated method stub
-		Model model = new ResearchModel(super.getFrameWidth(), super.getFrameHeight(), target, this);
+		Model model = new ResearchModel(super.getFrameWidth(), super.getFrameHeight(), target, this, getListener());
 		
 		researched.add(target);		
 		
@@ -74,6 +77,7 @@ public class EstuaryModel extends Model implements GameState {
 	 * 	MouseEvent E: the MouseEvent telling us where the click occurred
 	 * 
 	 */
+	@Override
 	public void registerClick(MouseEvent e) {
 		int mouseX = e.getX();
 		int mouseY = e.getY();
@@ -86,15 +90,16 @@ public class EstuaryModel extends Model implements GameState {
 		
 		for(GameObject fish : getGameObjects()) {
 			if(fish instanceof Animal) {
-				xLeftBound = fish.getxPos() - 30; //TODO figure out values for fish's size
-				xRightBound = fish.getxPos() + 30;
+				xLeftBound = fish.getxPos(); //TODO figure out values for fish's size
+				xRightBound = fish.getxPos() + 500;
 				
-				yUpBound = fish.getyPos() - 30;
-				yDownBound = fish.getyPos() + 30;
+				yUpBound = fish.getyPos();
+				yDownBound = fish.getyPos() + 500;
 				
 				if((mouseX >= xLeftBound && mouseX <= xRightBound)
 						&& (mouseY >= yUpBound && mouseY <= yDownBound)) {
 					clicked = (Animal)fish;
+					System.out.println("Clicked on the fish");
 					break;
 				}
 			}
@@ -103,7 +108,7 @@ public class EstuaryModel extends Model implements GameState {
 		if(clicked != null) {
 			animalCaught(clicked);
 		}
-		
+		System.out.println("Mouse Clicked at x: " + mouseX + " y: " + mouseY);
 	}
 	
 	/* void animalCaught
@@ -117,7 +122,7 @@ public class EstuaryModel extends Model implements GameState {
 	 */
 	private void animalCaught(Animal animal) {
 		if(animal.equals(target)) {
-			nextModel();
+			getListener().codeEmitted(Code.NEXT);
 		}
 		else {
 		// TODO figure out what to do if it's the wrong animal
@@ -137,7 +142,7 @@ public class EstuaryModel extends Model implements GameState {
 	 * 	The QuizModel representing everything we've researched thus far.
 	 */
 	public QuizModel timeUp() {
-		return new QuizModel(getFrameWidth(), getFrameHeight(), researched);
+		return new QuizModel(getFrameWidth(), getFrameHeight(), researched, getListener());
 	}
 	
 	/* boolean allResearched

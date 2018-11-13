@@ -2,6 +2,7 @@ package model;
 
 import java.awt.event.MouseEvent;
 
+import controller.CodeListener;
 import gameobject.*;
 
 public class ResearchModel extends Model implements GameState {
@@ -38,8 +39,8 @@ public class ResearchModel extends Model implements GameState {
 		this.isPhotographed = isPhotographed;
 	}
 
-	public ResearchModel(int frameWidth, int frameHeight, Animal caught, EstuaryModel goBack) {
-		super(frameWidth, frameHeight);
+	public ResearchModel(int frameWidth, int frameHeight, Animal caught, EstuaryModel goBack, CodeListener listener) {
+		super(frameWidth, frameHeight,listener);
 		this.caught = caught;
 		this.goBack = goBack;
 	}

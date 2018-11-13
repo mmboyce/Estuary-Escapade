@@ -9,8 +9,8 @@ import gameobject.GameObject;
 
 public class EndView extends View {
 
-	public EndView(int width, int height) {
-		super(width, height);
+	public EndView(int width, int height, ArrayList<GameObject> objects) {
+		super(width, height, objects);
 		// TODO Auto-generated constructor stub
 	}
 	

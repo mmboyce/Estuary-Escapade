@@ -3,6 +3,7 @@ package model;
 import java.util.Collection;
 import java.util.List;
 
+import controller.CodeListener;
 import gameobject.Animal;
 
 public class QuizModel extends Model {
@@ -18,8 +19,8 @@ public class QuizModel extends Model {
 		this.questionPool = questionPool;
 	}
 
-	public QuizModel(int frameWidth, int frameHeight, List<Animal> researched) {
-		super(frameWidth, frameHeight);
+	public QuizModel(int frameWidth, int frameHeight, List<Animal> researched, CodeListener listener) {
+		super(frameWidth, frameHeight,listener);
 		
 		this.researched = researched;
 		
@@ -32,7 +33,7 @@ public class QuizModel extends Model {
 	@Override
 	public Model nextModel() {
 		// TODO Auto-generated method stub
-		Model model = new EndModel(super.getFrameWidth(), super.getFrameHeight());
+		Model model = new EndModel(super.getFrameWidth(), super.getFrameHeight(), getListener());
 		return model;
 	}
 	

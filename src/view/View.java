@@ -13,11 +13,13 @@ import gameobject.GameObject;
 public abstract class View extends JPanel {
 	private int frameWidth;
 	private int frameHeight;
+	private ArrayList<GameObject> objects;
 	
-	public View(int width, int height) {
+	public View(int width, int height, ArrayList<GameObject> objects) {
 		
 		frameWidth = width;
 		frameHeight = height;
+		this.objects = objects;
 
 		setSize(frameWidth, frameHeight);
 		
@@ -48,6 +50,14 @@ public abstract class View extends JPanel {
 
 	public void setFrameHeight(int frameHeight) {
 		this.frameHeight = frameHeight;
+	}
+
+	public ArrayList<GameObject> getObjects() {
+		return objects;
+	}
+
+	public void setObjects(ArrayList<GameObject> objects) {
+		this.objects = objects;
 	}
 
 }
