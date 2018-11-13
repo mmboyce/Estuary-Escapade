@@ -12,8 +12,7 @@ public class GoldFish extends Animal {
 		setWeight(0); // TODO put weight here
 		setSize(0); // TODO put size here
 		setSpeed(5); // TODO put speed here
-		setFunFact("This fish knows how to swim"); // TODO put funFact here
-		setQuestion("Can this fish swim?"); // TODO put question here
+		setQuestion(new Question("This fish knows how to swim","Does this fish know how to swim?","Yes","No","Only on Tuesdays","No, but it can fly!"));
 		setPathLength(30);
 
 		// TODO Auto-generated constructor stub
