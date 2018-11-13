@@ -31,7 +31,7 @@ public class EstuaryModel extends Model implements GameState {
 		schoolOfFish = new ArrayList<Animal>();
 		researched = new ArrayList<Animal>();
 		
-		schoolOfFish.add(new GoldFish(10, 20, 0));
+		//schoolOfFish.add(new GoldFish(10, 20, 0)); Wanted only one animal for debugging
 		schoolOfFish.add(target);
 
 	}
