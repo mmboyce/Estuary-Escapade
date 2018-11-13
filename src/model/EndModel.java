@@ -3,10 +3,11 @@ package model;
 import controller.CodeListener;
 
 public class EndModel extends Model {
-
+	// The players final score
 	private int score;
+	// Is true if the player answers the quiz correctly
 	private boolean quizCorrect;
-	
+
 	public int getScore() {
 		return score;
 	}
@@ -30,7 +31,7 @@ public class EndModel extends Model {
 
 	@Override
 	public Model nextModel() {
-		// TODO Auto-generated method stub
+		// Sets the next model back to the title screen
 		Model model = new TitleModel(super.getFrameWidth(), super.getFrameHeight(), getListener());
 		return model;
 	}
@@ -38,7 +39,7 @@ public class EndModel extends Model {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
