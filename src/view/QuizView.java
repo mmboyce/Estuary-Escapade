@@ -38,19 +38,26 @@ public class QuizView extends View implements ActionListener {
 		Border border = title.getBorder();
 		Border margin = new EmptyBorder(75, 0, 0, 0);
 		title.setBorder(new CompoundBorder(border, margin));
-		title.setFont(new Font("Arial", Font.BOLD, 70));
+		title.setFont(new Font("Arial", Font.BOLD, 50));
+		
+		Font buttonFont = new Font("Arial", Font.PLAIN, 40);
 
 		button1 = new JButton(question.getAllAnswers()[0]);
 		button1.addActionListener(this);
+		button1.setFont(buttonFont);
 
 		button2 = new JButton(question.getAllAnswers()[1]);
 		button2.addActionListener(this);
+		button2.setFont(buttonFont);
 
 		button3 = new JButton(question.getAllAnswers()[2]);
 		button3.addActionListener(this);
+		button3.setFont(buttonFont);
 
 		button4 = new JButton(question.getAllAnswers()[3]);
 		button4.addActionListener(this);
+		button4.setFont(buttonFont);
+
 
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		setBackground(View.SEA_BLUE);
