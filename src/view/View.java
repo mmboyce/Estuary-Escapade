@@ -3,26 +3,23 @@ package view;
 import java.awt.Graphics;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import gameobject.GameObject;
 
-public abstract class View extends JFrame {
+public abstract class View extends JPanel {
 	private int frameWidth;
 	private int frameHeight;
 	
-	private final static String title = "Estuary Escapade";
-	
-	public View(int width, int height, MouseListener m) {
-		super(title);
+	public View(int width, int height) {
+		
 		frameWidth = width;
 		frameHeight = height;
 
 		setSize(frameWidth, frameHeight);
-		//setUndecorated(true);
-		addMouseListener(m);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// do what else we need to do for initial view
 	}
@@ -34,6 +31,8 @@ public abstract class View extends JFrame {
 	}
 	
 	public abstract void update(ArrayList<GameObject> objects);
+	
+	public abstract View nextView(ArrayList<GameObject> objects);
 
 	public int getFrameWidth() {
 		return frameWidth;

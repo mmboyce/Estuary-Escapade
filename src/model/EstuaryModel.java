@@ -2,8 +2,10 @@ package model;
 
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Collection;
+import gameobject.Animal;
+import gameobject.GoldFish;
 import java.util.List;
-
 import gameobject.*;
 import model.QuizModel;
 

@@ -3,6 +3,7 @@ package view;
 import java.awt.Graphics;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import gameobject.Animal;
 import gameobject.Camera;
@@ -13,8 +14,8 @@ public class ResearchView extends View {
 	Animal caughtFish;
 	Camera camera;
 	
-	public ResearchView(int width, int height,MouseListener m) {
-		super(width, height, m);
+	public ResearchView(int width, int height) {
+		super(width, height);
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -27,6 +28,12 @@ public class ResearchView extends View {
 	@Override
 	public void update(ArrayList<GameObject> objects) {
 		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public View nextView(ArrayList<GameObject> objects) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

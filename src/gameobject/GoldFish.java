@@ -73,8 +73,23 @@ public class GoldFish extends Animal {
 				setxPos(x + (speed / 2));
 			}
 		}
-		
 		updatePosition();
+		System.out.println("Fish at x: " + super.getxPos() + " y: " + super.getyPos());
 	}
 
+	public int getPathstate() {
+		return pathstate;
+	}
+
+	public void setPathstate(int pathstate) {
+		this.pathstate = pathstate;
+	}
+
+	public int getPathlength() {
+		return pathlength;
+	}
+
+	public void setPathlength(int pathlength) {
+		this.pathlength = pathlength;
+	}
 }
