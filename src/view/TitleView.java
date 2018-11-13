@@ -35,7 +35,7 @@ public class TitleView extends View {
 	@Override
 	public View nextView(ArrayList<GameObject> objects) {
 		// TODO Auto-generated method stub
-		return new EstuaryView(super.getWidth(), super.getHeight(), objects);
+		return new EstuaryView(getWidth(), getHeight(), objects);
 	}
 
 }
