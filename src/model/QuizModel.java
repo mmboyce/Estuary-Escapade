@@ -40,9 +40,7 @@ public class QuizModel extends Model {
 
 	@Override
 	public Model nextModel() {
-
-		Model model = new EndModel(super.getFrameWidth(), super.getFrameHeight(), getListener());
-		return model;
+		return new EndModel(super.getFrameWidth(), super.getFrameHeight(), getListener());
 	}
 
 	public boolean checkAnswer(String answer) {

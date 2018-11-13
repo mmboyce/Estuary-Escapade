@@ -31,8 +31,7 @@ public class EndModel extends Model {
 	@Override
 	public Model nextModel() {
 		// Sets the next model back to the title screen
-		Model model = new TitleModel(super.getFrameWidth(), super.getFrameHeight(), getListener());
-		return model;
+		return new TitleModel(super.getFrameWidth(), super.getFrameHeight(), getListener());
 	}
 
 	@Override
