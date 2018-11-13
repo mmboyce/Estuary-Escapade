@@ -1,9 +1,7 @@
 package view;
 
 import java.awt.Graphics;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.Collection;
 
 import gameobject.GameObject;
 
@@ -13,13 +11,13 @@ public class QuizView extends View {
 		super(width, height, objects);
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	@Override
 	public void update(ArrayList<GameObject> objects) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	@Override
 	public void paint(Graphics g) {
 		// TODO Auto-generated method stub
