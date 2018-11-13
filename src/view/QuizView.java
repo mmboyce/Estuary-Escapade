@@ -52,13 +52,14 @@ public class QuizView extends View implements ActionListener {
 		button4 = new JButton(question.getAllAnswers()[3]);
 		button4.addActionListener(this);
 
-		setBackground(View.SEA_BLUE);
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		setBackground(View.SEA_BLUE);
 		add(title);
 		add(button1);
 		add(button2);
 		add(button3);
-		add(button4);
+		add(button4);		
+		
 	}
 
 	@Override

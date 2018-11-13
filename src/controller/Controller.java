@@ -29,7 +29,7 @@ public class Controller implements CodeListener {
 	private final int width = 1000;
 	private final int height = 700;
 	private final static String title = "Estuary Escapade";
-	private final int cycles = 400;
+	private final int cycles = 300;
 
 	public Controller() {
 		time = 0;
@@ -97,9 +97,9 @@ public class Controller implements CodeListener {
 	
 	private void resetView() {
 		frame.getContentPane().removeAll();
+		frame.add(view);
 		frame.validate();
 		frame.repaint();
-		frame.add(view);
 		mouseListener.setModel(model);
 	}
 
