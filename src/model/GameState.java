@@ -1,5 +1,5 @@
 package model;
 
 public interface GameState {
-	public int timeUp();
+	public QuizModel timeUp();
 }

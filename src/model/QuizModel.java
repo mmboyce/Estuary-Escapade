@@ -1,10 +1,14 @@
 package model;
 
 import java.util.Collection;
+import java.util.List;
+
+import gameobject.Animal;
 
 public class QuizModel extends Model {
 
 	private Collection<String> questionPool;
+	private List<Animal> researched;
 	
 	public Collection<String> getQuestionPool() {
 		return questionPool;
@@ -14,9 +18,15 @@ public class QuizModel extends Model {
 		this.questionPool = questionPool;
 	}
 
-	public QuizModel(int frameWidth, int frameHeight) {
+	public QuizModel(int frameWidth, int frameHeight, List<Animal> researched) {
 		super(frameWidth, frameHeight);
-		// TODO Auto-generated constructor stub
+		
+		this.researched = researched;
+		
+		for(Animal caught : this.researched) {
+			// TODO build upon this functionality
+			questionPool.add(caught.getFunFact());
+		}
 	}
 
 	@Override
