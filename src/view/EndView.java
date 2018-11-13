@@ -3,12 +3,13 @@ package view;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+import controller.CodeListener;
 import gameobject.GameObject;
 
 public class EndView extends View {
 
-	public EndView(int width, int height, ArrayList<GameObject> objects) {
-		super(width, height, objects);
+	public EndView(int width, int height, ArrayList<GameObject> objects, CodeListener listener) {
+		super(width, height, objects, listener);
 		// TODO Auto-generated constructor stub
 	}
 

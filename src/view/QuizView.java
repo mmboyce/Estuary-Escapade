@@ -3,24 +3,24 @@ package view;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+import controller.CodeListener;
 import gameobject.GameObject;
+import gameobject.Question;
 
 public class QuizView extends View {
+	
+	Question question;
 
-	public QuizView(int width, int height, ArrayList<GameObject> objects) {
-		super(width, height, objects);
-		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public void update(ArrayList<GameObject> objects) {
-		// TODO Auto-generated method stub
-
+	public QuizView(int width, int height, Question question, ArrayList<GameObject> objects, CodeListener listener) {
+		super(width, height, objects, listener);
+		this.question = question;
+		
+		
 	}
 
 	@Override
 	public void paint(Graphics g) {
-		// TODO Auto-generated method stub
+		// Do Nothing
 		super.paint(g);
 	}
 
@@ -28,6 +28,12 @@ public class QuizView extends View {
 	public View nextView(ArrayList<GameObject> objects) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void update(ArrayList<GameObject> objects) {
+		// Do nothing
+		
 	}
 
 }

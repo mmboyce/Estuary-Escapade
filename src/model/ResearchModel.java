@@ -6,7 +6,7 @@ import controller.CodeListener;
 import gameobject.Animal;
 import gameobject.Camera;
 
-public class ResearchModel extends Model implements GameState {
+public class ResearchModel extends Model implements GameStateModel {
 
 	// Used to determine if the animal is fully researched
 	private boolean isWeighed;
@@ -52,7 +52,6 @@ public class ResearchModel extends Model implements GameState {
 
 	@Override
 	public Model nextModel() {
-		// TODO Auto-generated method stub
 		return this.goBack;
 	}
 
@@ -78,8 +77,7 @@ public class ResearchModel extends Model implements GameState {
 
 	@Override
 	public QuizModel timeUp() {
-		// TODO Auto-generated method stub
-		return null;
+		return new QuizModel(getFrameWidth(), getFrameHeight(), goBack.researched, getListener());
 	}
 
 	@Override
