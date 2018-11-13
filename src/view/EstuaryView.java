@@ -34,9 +34,7 @@ public class EstuaryView extends View {
 		super(width, height);
 		this.objects = objects;
 		
-		Iterator<GameObject> gameObjectIterator = objects.iterator(); // Create an iterator over the game objects 
-		while(gameObjectIterator.hasNext()) {
-			GameObject currentObj = gameObjectIterator.next(); // Set the current object in the iterator so next() isn't called multiple times
+		for(GameObject currentObj : objects) {
 			System.out.println(currentObj);
 			BufferedImage img = createImage(currentObj.getImagePath()); // Read the image from the current game object
 	    	map.put(currentObj, img); // Place the game object and the animation frames in the hash map as a key-value pair
