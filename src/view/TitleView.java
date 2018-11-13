@@ -23,7 +23,7 @@ public class TitleView extends View {
 
 	@Override
 	public void update(ArrayList<GameObject> objects) {
-		// TODO Auto-generated method stub
+
 	}
 
 	@Override
