@@ -117,14 +117,30 @@ public class ResearchModel extends Model implements GameState {
 				this.camera.setyPos(9000);
 				this.setPhotographed(true);
 				this.setHolding(false);
+				
+				if (this.isMeasured() && this.isPhotographed()) {
+					this.caught.setxPos(0);
+					this.caught.setyPos(0);
+					getListener().codeEmitted(Code.NEXT);
+				}
 			
 			}
 			else if ((mouseX >= rulerLeftBound && mouseX <= rulerRightBound) && (mouseY >= rulerUpBound && mouseY <= rulerDownBound)) {
+				this.caught.setxPos(right);
+				this.caught.setyPos(top);
+				
+				this.ruler.setxPos(9000);
+				this.ruler.setyPos(9000);
 				this.setMeasured(true);
-				this.caught.setxPos(0);
-				this.caught.setyPos(0);
 				this.setHolding(false);
-				getListener().codeEmitted(Code.NEXT);
+
+				
+				if (this.isMeasured() && this.isPhotographed()) {
+					this.caught.setxPos(0);
+					this.caught.setyPos(0);
+					getListener().codeEmitted(Code.NEXT);
+				}
+				
 			}
 			
 		}
