@@ -7,11 +7,14 @@ import controller.CodeListener;
 import gameobject.GameObject;
 
 public abstract class Model {
+	// The size of the window
 	private int frameWidth;
 	private int frameHeight;
+	// A list of all the objects in the model
 	private ArrayList<GameObject> objects;
+	// Listens for codes to trigger actions
 	private CodeListener listener;
-	
+
 	public int getFrameWidth() {
 		return frameWidth;
 	}
@@ -28,21 +31,22 @@ public abstract class Model {
 		this.frameHeight = frameHeight;
 	}
 
-	public Model(int frameWidth, int frameHeight,CodeListener listener) {
+	// Constructor
+	public Model(int frameWidth, int frameHeight, CodeListener listener) {
 		this.objects = new ArrayList<GameObject>();
 		this.frameWidth = frameWidth;
 		this.frameHeight = frameHeight;
 		this.setListener(listener);
 	}
-	
-	public ArrayList<GameObject> getGameObjects(){
+
+	public ArrayList<GameObject> getGameObjects() {
 		return objects;
 	}
-	
+
 	public void addGameObject(GameObject o) {
 		objects.add(o);
 	}
-	
+
 	public abstract Model nextModel();
 
 	public abstract void update();

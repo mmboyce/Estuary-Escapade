@@ -1,12 +1,11 @@
 package model;
 
-import java.awt.Color;
-
 import controller.CodeListener;
 
 public class TitleModel extends Model {
+	// The title of the game --> like duh
 	private String title;
-	
+
 	public String getTitle() {
 		return title;
 	}
@@ -15,8 +14,9 @@ public class TitleModel extends Model {
 		this.title = title;
 	}
 
+	// Constructor
 	public TitleModel(int frameWidth, int frameHeight, CodeListener listener) {
-		super(frameWidth, frameHeight,listener);
+		super(frameWidth, frameHeight, listener);
 	}
 
 	@Override
@@ -25,7 +25,7 @@ public class TitleModel extends Model {
 		Model model = new EstuaryModel(super.getFrameWidth(), super.getFrameHeight(), getListener());
 		return model;
 	}
-	
+
 	private void exitGame() {
 		// TODO Auto-generated method stub
 
@@ -34,7 +34,7 @@ public class TitleModel extends Model {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
