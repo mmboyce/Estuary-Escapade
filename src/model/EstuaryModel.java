@@ -163,7 +163,6 @@ public class EstuaryModel extends Model implements GameState {
 				count++;
 			}
 		}
-		;
 		return count == researched.size();
 	}
 
