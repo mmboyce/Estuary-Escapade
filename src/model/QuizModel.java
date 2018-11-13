@@ -31,6 +31,7 @@ public class QuizModel extends Model {
 	public QuizModel(int frameWidth, int frameHeight, List<Animal> researched, CodeListener listener) {
 		super(frameWidth, frameHeight, listener);
 		this.researched = researched;
+		questionPool = new ArrayList<Question>();
 
 		// Adds all the questions for the animals researched
 		for (Animal caught : this.researched) {

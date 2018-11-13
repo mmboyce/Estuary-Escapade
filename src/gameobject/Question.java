@@ -1,19 +1,25 @@
 package gameobject;
 
 public class Question {
-	
+
 	private String question;
 	private String funFact;
 	private String correctAnswer;
 	private String[] distractionAnswers;
 
 	public Question(String f, String q, String correct, String a, String b, String c) {
+		funFact = f;
 		setQuestion(q);
 		setCorrectAnswer(correct);
 		distractionAnswers = new String[3];
 		distractionAnswers[0] = a;
 		distractionAnswers[1] = b;
 		distractionAnswers[2] = c;
+	}
+
+	public String toString() {
+		return ("Fun Fact: " + funFact + "/nQuestion: " + question + "/nCorrect Answer: " + correctAnswer
+				+ "/nDisctraction Answer 1: " + distractionAnswers[0]);
 	}
 
 	public String getQuestion() {
@@ -31,12 +37,12 @@ public class Question {
 	public void setCorrectAnswer(String correctAnswer) {
 		this.correctAnswer = correctAnswer;
 	}
-	
+
 	public String[] getAllAnswers() {
 		String[] answerArr = new String[4];
 		answerArr[0] = correctAnswer;
-		for(int i = 1; i < 4; i++) {
-			answerArr[i] = distractionAnswers[i-1];
+		for (int i = 1; i < 4; i++) {
+			answerArr[i] = distractionAnswers[i - 1];
 		}
 		return answerArr;
 	}

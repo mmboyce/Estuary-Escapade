@@ -121,6 +121,7 @@ public class ResearchModel extends Model implements GameStateModel {
 				if (this.isMeasured() && this.isPhotographed()) {
 					this.caught.setxPos(0);
 					this.caught.setyPos(0);
+					goBack.researched.add(caught);
 					getListener().codeEmitted(Code.NEXT);
 				}
 			
@@ -185,8 +186,7 @@ public class ResearchModel extends Model implements GameStateModel {
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub		
 	}
 
 }
