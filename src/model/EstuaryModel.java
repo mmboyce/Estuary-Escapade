@@ -11,7 +11,6 @@ import model.QuizModel;
 
 public class EstuaryModel extends Model implements GameState {
 
-	List<Animal> schoolOfFish;
 	List<Animal> researched;
 	Animal target;
 	
@@ -28,11 +27,10 @@ public class EstuaryModel extends Model implements GameState {
 		// TODO add all fish to this
 		target = new GoldFish(0,0,0);
 		
-		schoolOfFish = new ArrayList<Animal>();
 		researched = new ArrayList<Animal>();
 		
-		//schoolOfFish.add(new GoldFish(10, 20, 0)); Wanted only one animal for debugging
-		schoolOfFish.add(target);
+		//addGameObject(new GoldFish(10, 20, 0)); Wanted only one animal for debugging
+		addGameObject(target);
 
 	}
 	
@@ -52,7 +50,6 @@ public class EstuaryModel extends Model implements GameState {
 		// TODO Auto-generated method stub
 		Model model = new ResearchModel(super.getFrameWidth(), super.getFrameHeight(), target, this);
 		
-		schoolOfFish.remove(target);
 		researched.add(target);		
 		
 		return model;
@@ -64,8 +61,8 @@ public class EstuaryModel extends Model implements GameState {
 	 * 
 	 */
 	private void updatePositions() {
-		for(Animal fish : schoolOfFish) {
-			fish.update();
+		for(GameObject object : getGameObjects()) {
+			object.update();
 		}
 	}
 	
@@ -87,17 +84,19 @@ public class EstuaryModel extends Model implements GameState {
 		int yUpBound;
 		int yDownBound;
 		
-		for(Animal fish : schoolOfFish) {
-			xLeftBound = fish.getxPos() - 30; //TODO figure out values for fish's size
-			xRightBound = fish.getxPos() + 30;
-			
-			yUpBound = fish.getyPos() - 30;
-			yDownBound = fish.getyPos() + 30;
-			
-			if((mouseX >= xLeftBound && mouseX <= xRightBound)
-					&& (mouseY >= yUpBound && mouseY <= yDownBound)) {
-				clicked = fish;
-				break;
+		for(GameObject fish : getGameObjects()) {
+			if(fish instanceof Animal) {
+				xLeftBound = fish.getxPos() - 30; //TODO figure out values for fish's size
+				xRightBound = fish.getxPos() + 30;
+				
+				yUpBound = fish.getyPos() - 30;
+				yDownBound = fish.getyPos() + 30;
+				
+				if((mouseX >= xLeftBound && mouseX <= xRightBound)
+						&& (mouseY >= yUpBound && mouseY <= yDownBound)) {
+					clicked = (Animal)fish;
+					break;
+				}
 			}
 		}
 		
@@ -151,7 +150,13 @@ public class EstuaryModel extends Model implements GameState {
 	 * 
 	 */
 	public boolean allResearched() {
-		return schoolOfFish.size() == 0;
+		int count = 0;
+		for (Object o: getGameObjects()) {
+			if(o instanceof Animal) {
+				count++;
+			}
+		};
+		return count == researched.size();
 	}
 
 	@Override

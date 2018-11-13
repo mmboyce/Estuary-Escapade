@@ -35,6 +35,10 @@ public abstract class Model {
 		return objects;
 	}
 	
+	public void addGameObject(GameObject o) {
+		objects.add(o);
+	}
+	
 	public abstract Model nextModel();
 
 	public abstract void update();

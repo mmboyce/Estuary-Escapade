@@ -39,7 +39,6 @@ public class EstuaryView extends View {
 			BufferedImage img = createImage(currentObj.getImagePath()); // Read the image from the current game object
 	    	map.put(currentObj, img); // Place the game object and the animation frames in the hash map as a key-value pair
 		}
-		
 	}
 
 	@Override
