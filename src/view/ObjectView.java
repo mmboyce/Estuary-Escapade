@@ -36,7 +36,7 @@ public abstract class ObjectView extends View {
 
 	public void paint(Graphics g) {
 		for (GameObject object : this.map.keySet()) {
-			g.drawImage(map.get(object), object.getxPos(), object.getyPos(), (ImageObserver) this);
+			g.drawImage(map.get(object), object.getxPos(), object.getyPos(), object.getxSize(), object.getySize(), (ImageObserver) this);
 		}
 	}
 	

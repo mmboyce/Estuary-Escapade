@@ -18,8 +18,8 @@ public class ResearchModel extends Model implements GameStateModel {
 	private boolean isHolding = false;
 	
 	// Different research tools
-	private Camera camera = new Camera(50, 50, 1, "images/camera.png");
-	private Camera ruler = new Camera(50, 300, 1, "images/ruler.png");
+	private Camera camera = new Camera(50, 50, 1, 100, 100, "images/camera.png");
+	private Camera ruler = new Camera(50, 300, 1, 100, 100, "images/ruler.png");
 	private Animal caught;
 	// the EstuaryModel that gave us this ResearchModel
 	private EstuaryModel goBack;
@@ -78,38 +78,10 @@ public class ResearchModel extends Model implements GameStateModel {
 		int mouseX = e.getX();
 		int mouseY = e.getY();
 		
-		// Maybe put all these attributes in their respective object classes instead of defining them here?
-
-		int xLeftBound;
-		int xRightBound;
-		int yUpBound;
-		int yDownBound;
-
-		xLeftBound = caught.getxPos(); // TODO figure out values for fish's size
-		xRightBound = caught.getxPos() + 500;
-
-		yUpBound = caught.getyPos();
-		yDownBound = caught.getyPos() + 500;
-		
-		int camLeftBound = camera.getxPos();
-		int camRightBound = camera.getxPos() + 100;
-		
-		int camUpBound = camera.getyPos();
-		int camDownBound = camera.getyPos() + 100;
-		
-		int rulerLeftBound = ruler.getxPos();
-		int rulerRightBound = ruler.getxPos() + 100;
-		
-		int rulerUpBound = ruler.getyPos();
-		int rulerDownBound = ruler.getyPos() + 100;
-		
-		
-		
-		
-		if (this.getHolding()) {
+		if (isHolding) {
 			this.caught.setxPos(mouseX - 250);
 			this.caught.setyPos(mouseY - 250);
-			if ((mouseX >= camLeftBound && mouseX <= camRightBound) && (mouseY >= camUpBound && mouseY <= camDownBound)) {
+			if (camera.clickedOn(mouseX, mouseY)) {
 				this.caught.setxPos(right);
 				this.caught.setyPos(top);
 				
@@ -119,14 +91,11 @@ public class ResearchModel extends Model implements GameStateModel {
 				this.setHolding(false);
 				
 				if (this.isMeasured() && this.isPhotographed()) {
-					this.caught.setxPos(0);
-					this.caught.setyPos(0);
-					goBack.researched.add(caught);
-					getListener().codeEmitted(Code.NEXT);
+					doneResearching();
 				}
 			
 			}
-			else if ((mouseX >= rulerLeftBound && mouseX <= rulerRightBound) && (mouseY >= rulerUpBound && mouseY <= rulerDownBound)) {
+			else if (ruler.clickedOn(mouseX, mouseY)) {
 				this.caught.setxPos(right);
 				this.caught.setyPos(top);
 				
@@ -137,23 +106,27 @@ public class ResearchModel extends Model implements GameStateModel {
 
 				
 				if (this.isMeasured() && this.isPhotographed()) {
-					this.caught.setxPos(0);
-					this.caught.setyPos(0);
-					goBack.researched.add(caught);
-					getListener().codeEmitted(Code.NEXT);
+					doneResearching();
 				}
 				
 			}
 			
 		}
 		else {
-			if ((mouseX >= xLeftBound && mouseX <= xRightBound) && (mouseY >= yUpBound && mouseY <= yDownBound)) {
+			if (caught.clickedOn(mouseX, mouseY)) {
 				setHolding(true);
 				this.caught.setxPos(9000);
 				this.caught.setyPos(9000);
 				
 			}
 		}
+	}
+	
+	private void doneResearching() {
+		this.caught.setxPos(0);
+		this.caught.setyPos(0);
+		goBack.researched.add(caught);
+		getListener().codeEmitted(Code.NEXT);
 	}
 
 	private void measuring() {

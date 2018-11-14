@@ -3,7 +3,6 @@ package gameobject;
 public abstract class Animal extends GameObject {
 	private String name;
 	private int weight;
-	private int size;
 	private int speed;
 	private Question question;
 
@@ -20,21 +19,20 @@ public abstract class Animal extends GameObject {
 	// false if returning from last waypoint.
 	private boolean movingForward = true;
 
-	public Animal(int xPos, int yPos, int depth) {
+	public Animal(int xPos, int yPos, int depth, int xSize, int ySize) {
 		/*
 		 * This constructor will be used by children classes to use setters to assign
 		 * the other values which should be constants.
 		 */
-		super(xPos, yPos, depth, "");
+		super(xPos, yPos, depth, xSize, ySize, "");
 	}
 
-	private Animal(int xPos, int yPos, int depth, String imagePath, String name, int weight, int size, int speed,
-			Question question, int pathState, int pathLength, boolean movingForward) {
-		super(xPos, yPos, depth, imagePath);
+	private Animal(int xPos, int yPos, int depth, String imagePath, String name, int xSize, int ySize, int weight,
+			int size, int speed, Question question, int pathState, int pathLength, boolean movingForward) {
+		super(xPos, yPos, depth, xSize, ySize, imagePath);
 
 		this.name = name;
 		this.weight = weight;
-		this.size = size;
 		this.speed = speed;
 		this.question = question;
 		this.pathState = pathState;
@@ -96,14 +94,6 @@ public abstract class Animal extends GameObject {
 
 	public void setWeight(int weight) {
 		this.weight = weight;
-	}
-
-	public int getSize() {
-		return size;
-	}
-
-	public void setSize(int size) {
-		this.size = size;
 	}
 
 	public int getSpeed() {

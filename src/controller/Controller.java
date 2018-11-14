@@ -29,7 +29,7 @@ public class Controller implements CodeListener {
 	private final int width = 1000;
 	private final int height = 700;
 	private final static String title = "Estuary Escapade";
-	private final int cycles = 300;
+	private final int cycles = 500;
 
 	public Controller() {
 		time = 0;

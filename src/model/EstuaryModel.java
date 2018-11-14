@@ -30,11 +30,8 @@ public class EstuaryModel extends Model implements GameStateModel {
 	 */
 	private void instantiateFish() {
 		// Adds all the fish that are in the estuary
-		target = new GoldFish(0, 0, 0);
-
-		// addGameObject(new GoldFish(10, 20, 0)); Wanted only one animal for debugging
+		target = new GoldFish(0, 0, 0, 500, 500);
 		addGameObject(target);
-
 	}
 
 	/*
@@ -82,21 +79,10 @@ public class EstuaryModel extends Model implements GameStateModel {
 		int mouseY = e.getY();
 		Animal clicked = null;
 
-		int xLeftBound;
-		int xRightBound;
-		int yUpBound;
-		int yDownBound;
-
-		for (GameObject fish : getGameObjects()) {
-			if (fish instanceof Animal) {
-				xLeftBound = fish.getxPos(); // TODO figure out values for fish's size
-				xRightBound = fish.getxPos() + 500;
-
-				yUpBound = fish.getyPos();
-				yDownBound = fish.getyPos() + 500;
-
-				if ((mouseX >= xLeftBound && mouseX <= xRightBound) && (mouseY >= yUpBound && mouseY <= yDownBound)) {
-					clicked = (Animal) fish;
+		for (GameObject object : getGameObjects()) {
+			if (object instanceof Animal) {
+				if (object.clickedOn(mouseX, mouseY)) {
+					clicked = (Animal) object;
 					//System.out.println("Clicked on the fish");
 					break;
 				}
