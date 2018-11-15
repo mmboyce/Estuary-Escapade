@@ -27,14 +27,7 @@ public class TitleView extends View {
 	}
 
 	@Override
-	public void paint(Graphics g) {
-		// TODO Auto-generated method stub
-		super.paint(g);
-	}
-
-	@Override
 	public View nextView(ArrayList<GameObject> objects) {
-		// TODO Auto-generated method stub
 		return new EstuaryView(getWidth(), getHeight(), objects, super.getListener());
 	}
 

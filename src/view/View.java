@@ -14,7 +14,7 @@ public abstract class View extends JPanel {
 	private int frameHeight;
 	private ArrayList<GameObject> objects;
 	private CodeListener listener;
-	
+
 	final static Color SEA_BLUE = Color.decode("#006994");
 
 	public View(int width, int height, ArrayList<GameObject> objects, CodeListener listener) {
@@ -26,12 +26,8 @@ public abstract class View extends JPanel {
 		setSize(frameWidth, frameHeight);
 	}
 
-	@Override
-	public void paint(Graphics g) {
-		// TODO Auto-generated method stub
-		super.paint(g);
-	}
-	
+	// TODO consider not making this abstract and defining it as an epmty function
+	// because most of the views leave this blank
 	public abstract void update(ArrayList<GameObject> objects);
 
 	public abstract View nextView(ArrayList<GameObject> objects);

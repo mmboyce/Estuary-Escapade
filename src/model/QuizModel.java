@@ -14,7 +14,7 @@ public class QuizModel extends Model {
 	private ArrayList<Question> questionPool;
 	// A list of the animals the player researched over the course of the game
 	private List<Animal> researched;
-	
+
 	public Question getQuestion() {
 		// grab random question
 		return questionPool.get(new Random().nextInt(questionPool.size()));
@@ -42,19 +42,19 @@ public class QuizModel extends Model {
 
 	@Override
 	public Model nextModel() {
+		// Transition to the end screen which displays the score
 		return new EndModel(super.getFrameWidth(), super.getFrameHeight(), getListener());
 	}
 
 	public boolean checkAnswer(String answer) {
-		// stub
-
+		// TODO figure out how to communicate with the view to see if the button which
+		// is pressed corresponds to the correct answer
 		return false;
 	}
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-
+		// Intentionally empty
 	}
 
 }

@@ -19,6 +19,8 @@ public abstract class GameObject {
 	}
 
 	public boolean clickedOn(int clickX, int clickY) {
+		// Given a click x and y this returns a boolean for whether or not this object
+		// was clicked on
 		return ((clickX >= xPos && clickX <= xPos + xSize) && (clickY >= yPos && clickY <= yPos + ySize));
 	}
 
@@ -70,5 +72,7 @@ public abstract class GameObject {
 		this.ySize = ySize;
 	}
 
+	// Every object should have an update function, if the object does not move it
+	// should be empty
 	public abstract void update();
 }

@@ -25,39 +25,49 @@ public class Controller implements CodeListener {
 	private boolean timerRunning;
 	private int time;
 	private JFrame frame;
+	private int width;
+	private int height;
 
-	private final int width = 1000;
-	private final int height = 700;
 	private final static String title = "Estuary Escapade";
-	private final int cycles = 500;
+	private final int cycles = 500; // This controlls how long the game runs for
+	private final int timerDelay = 30; // The delay between every game state update
 
 	public Controller() {
 		time = 0;
-		timerRunning = false;
-		model = new TitleModel(width, height, this);
-		mouseListener = new CustomMouseListener(model);
+		timerRunning = false; // The time will only start once the player leaves the start screen
 
 		frame = new JFrame(title);
-		frame.setSize(width, height);
-		frame.addMouseListener(mouseListener);
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // This fullscreens the game
+		frame.setUndecorated(true); // This removes the window border
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+		width = frame.getContentPane().getWidth();
+		height = frame.getContentPane().getHeight();
+
+		model = new TitleModel(width, height, this);
+		mouseListener = new CustomMouseListener(model);
+		frame.addMouseListener(mouseListener);
 		view = new TitleView(title, width, height, this, model.getGameObjects());
 
 		updateAction = new AbstractAction() {
 			public void actionPerformed(ActionEvent arg0) {
+				/*
+				 * This runs for every time step in the game, the model updates then passes
+				 * objects to the view and the view draws a new frame. If the timer is running
+				 * the time increments and if the time runs out the TIMEUP code is emitted
+				 */
 				model.update();
 				view.update(model.getGameObjects());
 				frame.repaint();
-				if(timerRunning) {
+				if (timerRunning) {
 					time++;
 				}
-				if(time >= cycles) {
+				if (time >= cycles) {
 					codeEmitted(Code.TIMEUP);
 				}
 			}
 		};
-		t = new Timer(30, updateAction);
+		t = new Timer(timerDelay, updateAction);
 	}
 
 	/*
@@ -73,19 +83,22 @@ public class Controller implements CodeListener {
 		case NEXT:
 			model = model.nextModel();// calls nextmodel and move to next game state
 			view = view.nextView(model.getGameObjects());
-			System.out.println("In: " + model);// For debugging
+			// System.out.println("In: " + model); Used for debugging
 			resetView();
 			break;
 		case EXIT:
 			t.stop();
+			// Since the program is set to exit on closing this fully terminates the game
 			frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
 			break;
 		case TIMEUP:
+			// This makes sure the game is in an applicable model then calls the timeUp
+			// methods to transition to the Quiz
 			if (model instanceof GameStateModel && view instanceof ObjectView) {
 				model = ((GameStateModel) model).timeUp();
 				view = ((ObjectView) view).timeUp(((QuizModel) model).getQuestion());
 			}
-			System.out.println("In: " + model); // for debugging
+			// System.out.println("In: " + model); for debugging
 			resetView();
 			timerRunning = false;
 			time = 0;
@@ -94,8 +107,10 @@ public class Controller implements CodeListener {
 			timerRunning = true;
 		}
 	}
-	
+
 	private void resetView() {
+		// If this is not done the JFrame will not display properly and things will look
+		// wrong
 		frame.getContentPane().removeAll();
 		frame.add(view);
 		frame.validate();

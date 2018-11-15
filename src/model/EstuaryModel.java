@@ -139,6 +139,7 @@ public class EstuaryModel extends Model implements GameStateModel {
 	 * 
 	 */
 	public boolean allResearched() {
+		// TODO we should check this somewhere currently we never check this
 		int count = 0;
 		for (Object o : getGameObjects()) {
 			if (o instanceof Animal) {

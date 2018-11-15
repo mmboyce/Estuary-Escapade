@@ -12,6 +12,7 @@ import javax.swing.border.EmptyBorder;
 public class TitlePanel extends JPanel {
 
 	TitlePanel(String titleText) {
+		// TODO find art to put in the background of this instead of one solid color
 		JLabel title = new JLabel(titleText);
 		title.setHorizontalAlignment(JLabel.CENTER);
 		title.setVerticalAlignment(JLabel.TOP);

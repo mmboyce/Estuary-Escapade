@@ -30,18 +30,21 @@ public class QuizView extends View implements ActionListener {
 		super(width, height, objects, listener);
 		this.question = question;
 
+		// TODO find a way to make the question multi-line if it is too long
 		JLabel title = new JLabel(question.getQuestion());
 		title.setHorizontalAlignment(JLabel.CENTER);
 		title.setVerticalAlignment(JLabel.TOP);
 
-		// This border is used to line up the title
+		// This border is used to line up the question text
 		Border border = title.getBorder();
 		Border margin = new EmptyBorder(75, 0, 0, 0);
 		title.setBorder(new CompoundBorder(border, margin));
 		title.setFont(new Font("Arial", Font.BOLD, 50));
-		
+
 		Font buttonFont = new Font("Arial", Font.PLAIN, 40);
 
+		// TODO find a way to shuffle the order of questions and still keep track of the
+		// correct answer
 		button1 = new JButton(question.getAllAnswers()[0]);
 		button1.addActionListener(this);
 		button1.setFont(buttonFont);
@@ -58,44 +61,36 @@ public class QuizView extends View implements ActionListener {
 		button4.addActionListener(this);
 		button4.setFont(buttonFont);
 
-
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		setBackground(View.SEA_BLUE);
 		add(title);
 		add(button1);
 		add(button2);
 		add(button3);
-		add(button4);		
-		
-	}
+		add(button4);
 
-	@Override
-	public void paint(Graphics g) {
-		// Do Nothing
-		super.paint(g);
 	}
 
 	@Override
 	public View nextView(ArrayList<GameObject> objects) {
-		// TODO Auto-generated method stub
 		return new EndView(getWidth(), getHeight(), objects, super.getListener());
 	}
 
 	@Override
 	public void update(ArrayList<GameObject> objects) {
 		// Do nothing
-
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		// TODO make this keep track of the correct answer as it gets shuffled, also do
+		// something to increase the score if the answer is correct
 		if (e.getSource() == button1) {
 			System.out.println("CorrectAnswer");
 		} else {
 			System.out.println("IncorrectAnswer");
 		}
 		super.getListener().codeEmitted(Code.NEXT);
-		;
 	}
 
 }

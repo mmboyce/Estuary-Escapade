@@ -9,11 +9,11 @@ import gameobject.GameObject;
 
 public class EndView extends View {
 
-
 	public EndView(int width, int height, ArrayList<GameObject> objects, CodeListener listener) {
 		super(width, height, objects, listener);
-		Integer score = 12; // TODO FIX THIS
+		Integer score = 12; // TODO Get this score programatically instead of hard coding it
 		String scoreStr = "Your Score is : " + score.toString();
+		
 		TitlePanel Score = new TitlePanel(scoreStr); // This will display the title and any art
 		TitleNavigation nav = new TitleNavigation(listener); // This holds buttons for navigation
 
@@ -24,15 +24,8 @@ public class EndView extends View {
 	}
 
 	@Override
-	public void paint(Graphics g) {
-		// TODO Auto-generated method stub
-		super.paint(g);
-	}
-
-	@Override
 	public void update(ArrayList<GameObject> objects) {
-		// TODO Auto-generated method stub
-
+		// Intentionally blank
 	}
 
 	@Override

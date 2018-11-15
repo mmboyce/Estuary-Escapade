@@ -1,6 +1,11 @@
 package gameobject;
 
 public class Question {
+	/*
+	 * This class stores the question, fun-fact, and answers to the question. One of
+	 * these is passed to the QuizView to populate the quiz. Each animal in the game
+	 * will have it's own question
+	 */
 
 	private String question;
 	private String funFact;
@@ -39,6 +44,7 @@ public class Question {
 	}
 
 	public String[] getAllAnswers() {
+		// Returns all answers correct and distraction
 		String[] answerArr = new String[4];
 		answerArr[0] = correctAnswer;
 		for (int i = 1; i < 4; i++) {
