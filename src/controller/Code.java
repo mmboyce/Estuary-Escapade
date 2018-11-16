@@ -1,5 +1,6 @@
 package controller;
 
 public enum Code {
-	NEXT, EXIT, TIMEUP
+	// List of codes that the model and view can cause transitions in the controller
+	NEXT, EXIT, TIMEUP, STARTTIMER
 }

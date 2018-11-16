@@ -10,34 +10,37 @@ import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 
+import controller.CodeListener;
 import gameobject.GameObject;
+import gameobject.Question;
 
 public abstract class ObjectView extends View {
 
 	HashMap<GameObject, BufferedImage> map = new HashMap<>();
 
-	public ObjectView(int width, int height, ArrayList<GameObject> objects) {
-		super(width, height, objects);
+	public ObjectView(int width, int height, ArrayList<GameObject> objects, CodeListener listener) {
+		super(width, height, objects, listener);
 		// TODO Auto-generated constructor stub
 		for (GameObject currentObj : getObjects()) {
-			BufferedImage img = createImage(currentObj.getImagePath()); // Read the image from the current game object
-			map.put(currentObj, img); // Place the game object and the animation frames in the hash map as a key-value
-										// pair
+			// Read the image from the current game object
+			BufferedImage img = createImage(currentObj.getImagePath());
+			// Place the game object and the animation frames in the hash map as a key-value
+			// pair
+			map.put(currentObj, img);
 		}
 	}
-
-	@Override
 
 	// void paint
 	// Paints the updated game objects to the screen
 	// params: Graphics g: the graphics object used for the drawImage method
 
+	@Override
 	public void paint(Graphics g) {
 		for (GameObject object : this.map.keySet()) {
-			g.drawImage(map.get(object), object.getxPos(), object.getyPos(), (ImageObserver) this);
+			g.drawImage(map.get(object), object.getxPos(), object.getyPos(), object.getxSize(), object.getySize(),
+					(ImageObserver) this);
 		}
 	}
-	
 
 	// void update
 	// Updates the game objects array
@@ -56,12 +59,17 @@ public abstract class ObjectView extends View {
 	private BufferedImage createImage(String imagePath) {
 		BufferedImage bufferedImage;
 		try {
+			// Try to read the file
 			bufferedImage = ImageIO.read(new File(imagePath));
 			return bufferedImage;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public QuizView timeUp(Question q) {
+		return new QuizView(super.getWidth(), super.getHeight(), q, new ArrayList<GameObject>(), super.getListener());
 	}
 
 }

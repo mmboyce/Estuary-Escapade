@@ -4,19 +4,16 @@ public class GoldFish extends Animal {
 	private int pathstate = 0;
 	private int pathlength = 40;
 
-	public GoldFish(int xPos, int yPos, int depth) {
-		super(xPos, yPos, depth);
+	public GoldFish(int xPos, int yPos, int depth, int xSize, int ySize) {
+		super(xPos, yPos, depth, xSize, ySize);
 
-		setImagePath("images/Fish_east_2.png"); // TODO put imagePath here
-		setName("Greg"); // TODO put name here
-		setWeight(0); // TODO put weight here
-		setSize(0); // TODO put size here
-		setSpeed(5); // TODO put speed here
-		setFunFact("This fish knows how to swim"); // TODO put funFact here
-		setQuestion("Can this fish swim?"); // TODO put question here
+		setImagePath("images/Fish_east_2.png");
+		setName("Greg"); // TODO put the name of the actual fish here
+		setWeight(0); // TODO put real fish weight here
+		setSpeed(5);
+		setQuestion(new Question("This fish knows how to swim", "Does this fish know how to swim?", "Yes", "No",
+				"Only on Tuesdays", "No, but it can fly!"));
 		setPathLength(30);
-
-		// TODO Auto-generated constructor stub
 	}
 
 	/*

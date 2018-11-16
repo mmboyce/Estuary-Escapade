@@ -8,7 +8,7 @@ import gameobject.Animal;
 import gameobject.Camera;
 import gameobject.GameObject;
 
-public class ResearchModel extends Model implements GameState {
+public class ResearchModel extends Model implements GameStateModel {
 
 	// Used to determine if the animal is fully researched
 	private boolean isWeighed = false;
@@ -16,14 +16,19 @@ public class ResearchModel extends Model implements GameState {
 	private boolean isPhotographed = false;
 	// Used to determine if the user is holding an animal or nots
 	private boolean isHolding = false;
-	
+
 	// Different research tools
-	private Camera camera = new Camera(50, 50, 1, "images/camera.png");
-	private Camera ruler = new Camera(50, 300, 1, "images/ruler.png");
+	// TODO decide what functionality we should have from camera and if it should be
+	// move
+	private Camera camera = new Camera(50, 50, 1, 100, 100, "images/camera.png");
+	// TODO decide if we want to make a ruler class or not
+	private Camera ruler = new Camera(50, 300, 1, 100, 100, "images/ruler.png");
 	private Animal caught;
 	// the EstuaryModel that gave us this ResearchModel
 	private EstuaryModel goBack;
-	
+
+	// TODO figure out how to set this relationally based on screen size instead of
+	// hard coding
 	private int right = 500;
 	private int top = -100;
 
@@ -52,22 +57,24 @@ public class ResearchModel extends Model implements GameState {
 	}
 
 	// Constructor
-	public ResearchModel(int frameWidth, int frameHeight, Animal animalCaught, EstuaryModel goBack, CodeListener listener) {
+	public ResearchModel(int frameWidth, int frameHeight, Animal animalCaught, EstuaryModel goBack,
+			CodeListener listener) {
 		super(frameWidth, frameHeight, listener);
 		this.caught = animalCaught;
 		this.goBack = goBack;
-		instantiateYeet();
+		instantiateObjects();
 	}
-	
-	public void instantiateYeet() {
+
+	public void instantiateObjects() {
 		// TODO: make this so its not hard coded
 		this.caught.setxPos(right);
 		this.caught.setyPos(top);
-		
+
 		addGameObject(this.caught);
 		addGameObject(this.camera);
 		addGameObject(this.ruler);
 	}
+
 	@Override
 	public Model nextModel() {
 		return this.goBack;
@@ -77,116 +84,92 @@ public class ResearchModel extends Model implements GameState {
 	public void registerClick(MouseEvent e) {
 		int mouseX = e.getX();
 		int mouseY = e.getY();
-		
-		// Maybe put all these attributes in their respective object classes instead of defining them here?
 
-		int xLeftBound;
-		int xRightBound;
-		int yUpBound;
-		int yDownBound;
-
-		xLeftBound = caught.getxPos(); // TODO figure out values for fish's size
-		xRightBound = caught.getxPos() + 500;
-
-		yUpBound = caught.getyPos();
-		yDownBound = caught.getyPos() + 500;
-		
-		int camLeftBound = camera.getxPos();
-		int camRightBound = camera.getxPos() + 100;
-		
-		int camUpBound = camera.getyPos();
-		int camDownBound = camera.getyPos() + 100;
-		
-		int rulerLeftBound = ruler.getxPos();
-		int rulerRightBound = ruler.getxPos() + 100;
-		
-		int rulerUpBound = ruler.getyPos();
-		int rulerDownBound = ruler.getyPos() + 100;
-		
-		
-		
-		
-		if (this.getHolding()) {
-			this.caught.setxPos(mouseX - 250);
-			this.caught.setyPos(mouseY - 250);
-			if ((mouseX >= camLeftBound && mouseX <= camRightBound) && (mouseY >= camUpBound && mouseY <= camDownBound)) {
+		if (isHolding) {
+			// This moves the caught animal to the mouse click location
+			this.caught.setxPos(mouseX - caught.getxSize() / 2);
+			this.caught.setyPos(mouseY - caught.getySize() / 2);
+			if (camera.clickedOn(mouseX, mouseY)) {
 				this.caught.setxPos(right);
 				this.caught.setyPos(top);
-				
+
+				// TODO Put a boolean in GameObject to make it invisible instead of moving it
+				// off screen
 				this.camera.setxPos(9000);
 				this.camera.setyPos(9000);
 				this.setPhotographed(true);
 				this.setHolding(false);
-				
+
 				if (this.isMeasured() && this.isPhotographed()) {
-					this.caught.setxPos(0);
-					this.caught.setyPos(0);
-					getListener().codeEmitted(Code.NEXT);
+					doneResearching();
 				}
-			
-			}
-			else if ((mouseX >= rulerLeftBound && mouseX <= rulerRightBound) && (mouseY >= rulerUpBound && mouseY <= rulerDownBound)) {
+
+			} else if (ruler.clickedOn(mouseX, mouseY)) {
 				this.caught.setxPos(right);
 				this.caught.setyPos(top);
-				
+
+				// TODO Put a boolean in GameObject to make it invisible instead of moving it
+				// off screen
 				this.ruler.setxPos(9000);
 				this.ruler.setyPos(9000);
 				this.setMeasured(true);
 				this.setHolding(false);
 
-				
 				if (this.isMeasured() && this.isPhotographed()) {
-					this.caught.setxPos(0);
-					this.caught.setyPos(0);
-					getListener().codeEmitted(Code.NEXT);
+					doneResearching();
 				}
-				
+
 			}
-			
-		}
-		else {
-			if ((mouseX >= xLeftBound && mouseX <= xRightBound) && (mouseY >= yUpBound && mouseY <= yDownBound)) {
+
+		} else {
+			if (caught.clickedOn(mouseX, mouseY)) {
 				setHolding(true);
+				// TODO Put a boolean in GameObject to make it invisible (or remove it) instead
+				// of moving it off screen
 				this.caught.setxPos(9000);
 				this.caught.setyPos(9000);
-				
+
 			}
 		}
+	}
+
+	private void doneResearching() {
+		this.caught.setxPos(0);
+		this.caught.setyPos(0);
+		goBack.researched.add(caught);
+		getListener().codeEmitted(Code.NEXT);
 	}
 
 	private void measuring() {
-		// TODO Auto-generated method stub
-
+		// TODO Re-evaluate does this need to exist?
 	}
 
 	private void photographing() {
-		// TODO Auto-generated method stub
-
+		// TODO Re-evaluate does this need to exist?
 	}
 
 	private void weighing() {
-		// TODO Auto-generated method stub
-
+		// TODO Re-evaluate does this need to exist?
 	}
-	
+
 	private void setHolding(boolean value) {
 		this.isHolding = value;
 	}
-	
+
 	private boolean getHolding() {
 		return this.isHolding;
 	}
 
 	@Override
 	public QuizModel timeUp() {
-		// TODO Auto-generated method stub
-		return null;
+		// Transition to the QuizModel
+		return new QuizModel(getFrameWidth(), getFrameHeight(), goBack.researched, getListener());
 	}
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-		
+		// TODO We may need to move some of the positional logic here to move the animal
+		// across the screen once the user clicks on it
 	}
 
 }

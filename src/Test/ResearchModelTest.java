@@ -14,7 +14,7 @@ class ResearchModelTest {
 	
 	@Before
 	void setUp() {
-		ResearchModel model = new ResearchModel(500,500, new GoldFish(0,0,0), new EstuaryModel(0, 0,null), null);
+		ResearchModel model = new ResearchModel(500,500, new GoldFish(0,0,0, 500, 500), new EstuaryModel(0, 0,null), null);
 	}
 
 	@Test

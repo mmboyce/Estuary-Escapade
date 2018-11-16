@@ -10,7 +10,7 @@ import gameobject.Animal;
 import gameobject.GameObject;
 import gameobject.GoldFish;
 
-public class EstuaryModel extends Model implements GameState {
+public class EstuaryModel extends Model implements GameStateModel {
 	// A list of all the animals the user researched
 	List<Animal> researched;
 	// The animal the user is currently researching
@@ -18,6 +18,8 @@ public class EstuaryModel extends Model implements GameState {
 
 	public EstuaryModel(int frameWidth, int frameHeight, CodeListener listener) {
 		super(frameWidth, frameHeight, listener);
+		listener.codeEmitted(Code.STARTTIMER);
+		researched = new ArrayList<Animal>();
 		instantiateFish();
 	}
 
@@ -28,13 +30,8 @@ public class EstuaryModel extends Model implements GameState {
 	 */
 	private void instantiateFish() {
 		// Adds all the fish that are in the estuary
-		target = new GoldFish(0, 0, 0);
-
-		researched = new ArrayList<Animal>();
-
-		// addGameObject(new GoldFish(10, 20, 0)); Wanted only one animal for debugging
+		target = new GoldFish(0, 0, 0, 500, 500);
 		addGameObject(target);
-
 	}
 
 	/*
@@ -51,11 +48,7 @@ public class EstuaryModel extends Model implements GameState {
 	@Override
 	public Model nextModel() {
 		// sets the next model to the research model
-		Model model = new ResearchModel(super.getFrameWidth(), super.getFrameHeight(), target, this, getListener());
-
-		researched.add(target);
-
-		return model;
+		return new ResearchModel(super.getFrameWidth(), super.getFrameHeight(), target, this, getListener());
 	}
 
 	/*
@@ -86,22 +79,11 @@ public class EstuaryModel extends Model implements GameState {
 		int mouseY = e.getY();
 		Animal clicked = null;
 
-		int xLeftBound;
-		int xRightBound;
-		int yUpBound;
-		int yDownBound;
-
-		for (GameObject fish : getGameObjects()) {
-			if (fish instanceof Animal) {
-				xLeftBound = fish.getxPos(); // TODO figure out values for fish's size
-				xRightBound = fish.getxPos() + 500;
-
-				yUpBound = fish.getyPos();
-				yDownBound = fish.getyPos() + 500;
-
-				if ((mouseX >= xLeftBound && mouseX <= xRightBound) && (mouseY >= yUpBound && mouseY <= yDownBound)) {
-					clicked = (Animal) fish;
-					System.out.println("Clicked on the fish");
+		for (GameObject object : getGameObjects()) {
+			if (object instanceof Animal) {
+				if (object.clickedOn(mouseX, mouseY)) {
+					clicked = (Animal) object;
+					//System.out.println("Clicked on the fish");
 					break;
 				}
 			}
@@ -110,7 +92,7 @@ public class EstuaryModel extends Model implements GameState {
 		if (clicked != null) {
 			animalCaught(clicked);
 		}
-		System.out.println("Mouse Clicked at x: " + mouseX + " y: " + mouseY);
+		//System.out.println("Mouse Clicked at x: " + mouseX + " y: " + mouseY); Print used for debugging
 	}
 
 	/*
@@ -157,6 +139,7 @@ public class EstuaryModel extends Model implements GameState {
 	 * 
 	 */
 	public boolean allResearched() {
+		// TODO we should check this somewhere currently we never check this
 		int count = 0;
 		for (Object o : getGameObjects()) {
 			if (o instanceof Animal) {

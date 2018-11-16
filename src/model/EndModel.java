@@ -26,14 +26,12 @@ public class EndModel extends Model {
 
 	public EndModel(int frameWidth, int frameHeight, CodeListener listener) {
 		super(frameWidth, frameHeight, listener);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public Model nextModel() {
 		// Sets the next model back to the title screen
-		Model model = new TitleModel(super.getFrameWidth(), super.getFrameHeight(), getListener());
-		return model;
+		return new TitleModel(super.getFrameWidth(), super.getFrameHeight(), getListener());
 	}
 
 	@Override
