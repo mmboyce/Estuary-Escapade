@@ -24,10 +24,4 @@ public class TitleModel extends Model {
 		// Transitions into the next model
 		return new EstuaryModel(super.getFrameWidth(), super.getFrameHeight(), getListener());
 	}
-
-	@Override
-	public void update() {
-		// This is intentionally empty
-	}
-
 }

@@ -33,11 +33,4 @@ public class EndModel extends Model {
 		// Sets the next model back to the title screen
 		return new TitleModel(super.getFrameWidth(), super.getFrameHeight(), getListener());
 	}
-
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-
-	}
-
 }

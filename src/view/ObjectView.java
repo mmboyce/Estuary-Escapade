@@ -20,7 +20,6 @@ public abstract class ObjectView extends View {
 
 	public ObjectView(int width, int height, ArrayList<GameObject> objects, CodeListener listener) {
 		super(width, height, objects, listener);
-		// TODO Auto-generated constructor stub
 		for (GameObject currentObj : getObjects()) {
 			// Read the image from the current game object
 			BufferedImage img = createImage(currentObj.getImagePath());

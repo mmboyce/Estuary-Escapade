@@ -49,11 +49,9 @@ public abstract class Model {
 
 	public abstract Model nextModel();
 
-	public abstract void update();
+	public void update() {};
 
-	public void registerClick(MouseEvent e) {
-		// TODO Auto-generated method stub
-	}
+	public void registerClick(MouseEvent e) {}
 
 	public CodeListener getListener() {
 		return listener;
