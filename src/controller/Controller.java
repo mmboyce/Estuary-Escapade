@@ -113,7 +113,9 @@ public class Controller implements CodeListener {
 		// wrong
 		frame.getContentPane().removeAll();
 		frame.add(view);
-		System.out.println("view: "+view.getNameOfView());
+		if(view.getNameOfView().equals("EstuaryView") || view.getNameOfView().equals("ResearchView")){
+			System.out.println("here it works");
+		}
 		frame.validate();
 		frame.repaint();
 		mouseListener.setModel(model);
