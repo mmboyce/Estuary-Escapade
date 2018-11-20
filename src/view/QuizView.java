@@ -19,6 +19,7 @@ import gameobject.GameObject;
 import gameobject.Question;
 
 public class QuizView extends View implements ActionListener {
+	
 
 	Question question;
 	JButton button1;
@@ -28,6 +29,7 @@ public class QuizView extends View implements ActionListener {
 
 	public QuizView(int width, int height, Question question, ArrayList<GameObject> objects, CodeListener listener) {
 		super(width, height, objects, listener);
+		nameOfView="QuizView";
 		this.question = question;
 
 		// TODO find a way to make the question multi-line if it is too long

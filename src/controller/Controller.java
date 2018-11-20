@@ -38,7 +38,7 @@ public class Controller implements CodeListener {
 
 		frame = new JFrame(title);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // This fullscreens the game
-		frame.setUndecorated(true); // This removes the window border
+		//frame.setUndecorated(true); // This removes the window border
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		width = frame.getContentPane().getWidth();
@@ -57,7 +57,7 @@ public class Controller implements CodeListener {
 				 * the time increments and if the time runs out the TIMEUP code is emitted
 				 */
 				model.update();
-				view.update(model.getGameObjects());
+				//view.update(model.getGameObjects());/////////////////////////I dont think this does anything 
 				frame.repaint();
 				if (timerRunning) {
 					time++;
@@ -113,6 +113,7 @@ public class Controller implements CodeListener {
 		// wrong
 		frame.getContentPane().removeAll();
 		frame.add(view);
+		System.out.println("view: "+view.getNameOfView());
 		frame.validate();
 		frame.repaint();
 		mouseListener.setModel(model);
