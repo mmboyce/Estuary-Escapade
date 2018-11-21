@@ -60,6 +60,7 @@ public class Controller implements CodeListener {
 				 */
 				model.update();
 				//view.update(model.getGameObjects());/////////////////////////I dont think this does anything 
+				timerView.setTime(time);
 				frame.repaint();
 				if (timerRunning) {
 					time++;
@@ -70,7 +71,7 @@ public class Controller implements CodeListener {
 			}
 		};
 		t = new Timer(timerDelay, updateAction);
-		timerView=new TimerView(t);
+		timerView=new TimerView();
 	}
 
 	/*
