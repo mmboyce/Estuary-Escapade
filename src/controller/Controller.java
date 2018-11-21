@@ -72,6 +72,7 @@ public class Controller implements CodeListener {
 		};
 		t = new Timer(timerDelay, updateAction);
 		timerView=new TimerView();
+		timerView.setNumPoints(cycles);
 	}
 
 	/*
