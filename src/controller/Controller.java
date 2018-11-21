@@ -14,12 +14,14 @@ import model.TitleModel;
 import view.ObjectView;
 import view.TitleView;
 import view.View;
+import view.TimerView;
 
 public class Controller implements CodeListener {
 
 	private Timer t;
 	private Model model;
 	private View view;
+	private TimerView timerView;
 	private AbstractAction updateAction;
 	private CustomMouseListener mouseListener;
 	private boolean timerRunning;
@@ -68,6 +70,7 @@ public class Controller implements CodeListener {
 			}
 		};
 		t = new Timer(timerDelay, updateAction);
+		timerView=new TimerView(t);
 	}
 
 	/*
@@ -114,7 +117,7 @@ public class Controller implements CodeListener {
 		frame.getContentPane().removeAll();
 		frame.add(view);
 		if(view.getNameOfView().equals("EstuaryView") || view.getNameOfView().equals("ResearchView")){
-			System.out.println("here it works");
+			frame.add(timerView);
 		}
 		frame.validate();
 		frame.repaint();
