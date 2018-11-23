@@ -50,7 +50,7 @@ public class Controller implements CodeListener {
 		mouseListener = new CustomMouseListener(model);
 		frame.addMouseListener(mouseListener);
 		view = new TitleView(title, width, height, this, model.getGameObjects());
-
+		
 		updateAction = new AbstractAction() {
 			public void actionPerformed(ActionEvent arg0) {
 				/*
@@ -60,7 +60,7 @@ public class Controller implements CodeListener {
 				 */
 				model.update();
 				//view.update(model.getGameObjects());/////////////////////////I dont think this does anything 
-				timerView.setTime(time);
+				timerView.update(time,width);
 				frame.repaint();
 				if (timerRunning) {
 					time++;
@@ -71,8 +71,8 @@ public class Controller implements CodeListener {
 			}
 		};
 		t = new Timer(timerDelay, updateAction);
-		timerView=new TimerView();
-		timerView.setNumPoints(cycles);
+		timerView=new TimerView(cycles, width);
+		
 	}
 
 	/*
