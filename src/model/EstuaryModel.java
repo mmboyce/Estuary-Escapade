@@ -108,8 +108,6 @@ public class EstuaryModel extends Model implements GameStateModel {
 		// determines that the animal clicked on is the target animal
 		if (animal.equals(target)) {
 			getListener().codeEmitted(Code.NEXT);
-		} else {
-
 		}
 	}
 
