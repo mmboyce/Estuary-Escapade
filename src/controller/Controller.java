@@ -74,7 +74,7 @@ public class Controller implements CodeListener {
 			}
 		};
 		t = new Timer(timerDelay, updateAction);
-		timerImage=new TimerImage(cycles, width);
+		timerImage = new TimerImage(cycles, width);
 		
 	}
 
