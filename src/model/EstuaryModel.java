@@ -7,8 +7,12 @@ import java.util.List;
 import controller.Code;
 import controller.CodeListener;
 import gameobject.Animal;
+import gameobject.Crab;
 import gameobject.GameObject;
 import gameobject.GoldFish;
+import gameobject.GreenFish;
+import gameobject.PufferFish;
+import gameobject.ZappyBoi;
 
 public class EstuaryModel extends Model implements GameStateModel {
 	// A list of all the animals the user researched
@@ -30,7 +34,15 @@ public class EstuaryModel extends Model implements GameStateModel {
 	 */
 	private void instantiateFish() {
 		// Adds all the fish that are in the estuary
-		target = new GoldFish(0, 0, 0, 500, 500);
+		target = new GoldFish(0, 0, 0, 100, 100);
+		addGameObject(target);
+		target = new PufferFish(600,400,0,100,100);
+		addGameObject(target);
+		target = new Crab(200,800,0,100,100);
+		addGameObject(target);
+		target = new ZappyBoi(400,600,0,100,100);
+		addGameObject(target);
+		target = new GreenFish(700,300,0,100,100);
 		addGameObject(target);
 	}
 
@@ -83,6 +95,7 @@ public class EstuaryModel extends Model implements GameStateModel {
 			if (object instanceof Animal) {
 				if (object.clickedOn(mouseX, mouseY)) {
 					clicked = (Animal) object;
+					System.out.println(((Animal) object).getName());
 					//System.out.println("Clicked on the fish");
 					break;
 				}
@@ -90,6 +103,7 @@ public class EstuaryModel extends Model implements GameStateModel {
 		}
 
 		if (clicked != null) {
+			System.out.println("here");
 			animalCaught(clicked);
 		}
 		//System.out.println("Mouse Clicked at x: " + mouseX + " y: " + mouseY); Print used for debugging
@@ -106,11 +120,10 @@ public class EstuaryModel extends Model implements GameStateModel {
 	 */
 	private void animalCaught(Animal animal) {
 		// determines that the animal clicked on is the target animal
-		if (animal.equals(target)) {
+//		if (animal.equals(target)) {
+			this.target = animal;
 			getListener().codeEmitted(Code.NEXT);
-		} else {
-
-		}
+//		}
 	}
 
 	/*
