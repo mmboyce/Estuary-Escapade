@@ -9,7 +9,6 @@ import model.GameStateModel;
 import model.Model;
 import model.QuizModel;
 import model.TitleModel;
-import view.TimerImage;
 import view.ViewContainer;
 
 
@@ -18,7 +17,6 @@ public class Controller implements CodeListener {
 	private Timer t;
 	private Model model;
 	private ViewContainer view;
-	private TimerImage timerImage;
 	private AbstractAction updateAction;
 	private CustomMouseListener mouseListener;
 	private boolean timerRunning;
@@ -40,6 +38,8 @@ public class Controller implements CodeListener {
 
 		model = new TitleModel(width, height, this);
 		mouseListener = new CustomMouseListener(model);
+		view.initialize(mouseListener, this, model.getGameObjects());
+
 		updateAction = new AbstractAction() {
 			public void actionPerformed(ActionEvent arg0) {
 				/*
@@ -87,6 +87,7 @@ public class Controller implements CodeListener {
 			// methods to transition to the Quiz
 			if (model instanceof GameStateModel && view.checkObjectView()) {
 				model = ((GameStateModel) model).timeUp();
+				mouseListener.setModel(model);
 				view.timeUp((QuizModel) model);
 			}
 			// System.out.println("In: " + model); for debugging
