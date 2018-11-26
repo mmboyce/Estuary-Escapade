@@ -41,6 +41,7 @@ public abstract class ObjectView extends View {
 			
 			g.drawImage(createImage(object.getImagePath()), object.getxPos(), object.getyPos(), object.getxSize(), object.getySize(),
 					(ImageObserver) this);
+
 		}
 	}
 

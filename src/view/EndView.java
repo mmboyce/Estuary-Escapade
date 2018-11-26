@@ -8,7 +8,6 @@ import controller.CodeListener;
 import gameobject.GameObject;
 
 public class EndView extends View {
-
 	public EndView(int width, int height, ArrayList<GameObject> objects, CodeListener listener) {
 		super(width, height, objects, listener);
 		Integer score = 12; // TODO Get this score programatically instead of hard coding it

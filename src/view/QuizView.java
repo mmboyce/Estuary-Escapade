@@ -19,6 +19,7 @@ import gameobject.GameObject;
 import gameobject.Question;
 
 public class QuizView extends View implements ActionListener {
+	
 
 	Question question;
 	JButton button1;

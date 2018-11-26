@@ -5,6 +5,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import model.Model;
+import model.ResearchModel;
 
 public class CustomMouseListener implements MouseListener, MouseMotionListener {
 
@@ -15,17 +16,21 @@ public class CustomMouseListener implements MouseListener, MouseMotionListener {
 	}
 
 	@Override
+
 	public void mouseClicked(MouseEvent e) {
 		// For debugging
 		System.out.println("Click Registered");
 		System.out.println(model);
 		model.registerClick(e);
-	}
+}
+	public void mouseMoved(MouseEvent e) {
+		if(model instanceof ResearchModel) {
+			((ResearchModel) model).mouseMoved(e.getX(), e.getY());
+		}
 
-	@Override
-	public void mouseMoved(MouseEvent arg0) {
-		// TODO Write this so that selected animals follow cursor
 	}
+	
+	
 
 	public Model getModel() {
 		return model;
@@ -56,7 +61,7 @@ public class CustomMouseListener implements MouseListener, MouseMotionListener {
 	}
 
 	@Override
-	public void mouseDragged(MouseEvent arg0) {
+	public void mouseDragged(MouseEvent e) {
 		// Intentionally empty
 	}
 
