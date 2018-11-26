@@ -13,7 +13,7 @@ public class GoldFish extends Animal {
 		setSpeed(5);
 		setQuestion(new Question("This fish knows how to swim", "Does this fish know how to swim?", "Yes", "No",
 				"Only on Tuesdays", "No, but it can fly!"));
-		setPathLength(30);
+		setPathLength(250);
 	}
 
 	/*
@@ -44,7 +44,7 @@ public class GoldFish extends Animal {
 			wayPoint1 *= -1;
 			wayPoint2 *= -1;
 			wayPoint3 *= -1;
-
+			this.setImagePath("images/Fish_west_2.png");
 			// we switch to a greater than sign because we are headed the
 			// opposite direction
 			if (pathState > wayPoint1) {
@@ -55,6 +55,7 @@ public class GoldFish extends Animal {
 				setxPos(x + (speed / 2));
 			}
 		} else {
+			setImagePath("images/Fish_east_2.png");
 			if (pathState < wayPoint1) {
 				// swim right until waypoint1
 				setxPos(x + speed);

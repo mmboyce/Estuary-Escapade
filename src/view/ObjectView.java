@@ -20,6 +20,8 @@ public abstract class ObjectView extends View {
 
 	public ObjectView(int width, int height, ArrayList<GameObject> objects, CodeListener listener) {
 		super(width, height, objects, listener);
+		this.setBackground(View.SEA_BLUE);
+
 		for (GameObject currentObj : getObjects()) {
 			// Read the image from the current game object
 			BufferedImage img = createImage(currentObj.getImagePath());
@@ -36,7 +38,8 @@ public abstract class ObjectView extends View {
 	@Override
 	public void paint(Graphics g) {
 		for (GameObject object : this.map.keySet()) {
-			g.drawImage(map.get(object), object.getxPos(), object.getyPos(), object.getxSize(), object.getySize(),
+			
+			g.drawImage(createImage(object.getImagePath()), object.getxPos(), object.getyPos(), object.getxSize(), object.getySize(),
 					(ImageObserver) this);
 		}
 	}
