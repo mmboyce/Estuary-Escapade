@@ -37,6 +37,7 @@ public class Controller implements CodeListener {
 
 		model = new TitleModel(width, height, this);
 		mouseListener = new CustomMouseListener(model);
+		view.initialize(mouseListener, this, model.getGameObjects());
 
 		updateAction = new AbstractAction() {
 			public void actionPerformed(ActionEvent arg0) {
