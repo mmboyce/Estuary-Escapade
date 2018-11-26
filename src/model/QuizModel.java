@@ -16,8 +16,12 @@ public class QuizModel extends Model {
 	private List<Animal> researched;
 
 	public Question getQuestion() {
-		// grab random question
-		return questionPool.get(new Random().nextInt(questionPool.size()));
+		try {
+			return questionPool.get(new Random().nextInt(questionPool.size()));
+		}
+		catch(Exception e) {
+			return new Question("You Did Not Catch Anything","You did not catch anything, but what is 2+2","4","5","6","1002341234");
+		}
 	}
 
 	public Collection<Question> getQuestionPool() {
