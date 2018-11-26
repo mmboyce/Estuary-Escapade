@@ -14,7 +14,6 @@ public abstract class View extends JPanel {
 	private int frameHeight;
 	private ArrayList<GameObject> objects;
 	private CodeListener listener;
-	public String nameOfView;
 
 	final static Color SEA_BLUE = Color.decode("#006994");
 
@@ -33,9 +32,6 @@ public abstract class View extends JPanel {
 
 	public abstract View nextView(ArrayList<GameObject> objects);
 	
-	public String getNameOfView(){//Returns title of page on
-		return nameOfView;
-	}
 	public int getFrameWidth() {
 		return frameWidth;
 	}

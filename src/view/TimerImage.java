@@ -31,8 +31,6 @@ public class TimerImage extends JPanel {
         numPoints = fullCircle/cycles;
     }
     public void setFrameSize(int width,int height) {
-        System.out.println(width);
-        System.out.println(height);
         this.frameWidth = width;
         this.frameHeight= height;
     }

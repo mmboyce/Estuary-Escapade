@@ -59,7 +59,7 @@ public class ViewContainer {
 		// wrong
 		frame.getContentPane().removeAll();
 		frame.add(view);
-		if(view instanceof EstuaryView || view instanceof ResearchView){//add a physical representation of the timer
+		if(view instanceof ObjectView){//add a physical representation of the timer
 			int frameWidth = view.getWidth();
 			int frameHeight = view.getHeight();
 			timerImage.setFrameSize(frameWidth, frameHeight);
