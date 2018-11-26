@@ -13,6 +13,7 @@ public class EstuaryView extends ObjectView {
 	
 	public EstuaryView(int width, int height, ArrayList<GameObject> objects, CodeListener listener) {
 		super(width, height, objects, listener);
+		System.out.println(width);
 	}
 
 	@Override

@@ -13,9 +13,9 @@ import javax.swing.Timer;
 public class TimerImage extends JPanel {
     public int time = 0;//current time 
     public double numPoints = 1;//number of points around full circle when drawing arc
-    public double fullCircle = 360.0;//degrees of a full circle
-    
+    public double fullCircle = 360.0;//degrees of a full circle 
     public int frameWidth;
+    public int frameHeight;
 
     /**
      *  void update
@@ -27,15 +27,20 @@ public class TimerImage extends JPanel {
     public void update(int time){
         this.time = time;
     }
-    public TimerImage(int cycles, int width){
+    public TimerImage(int cycles){
         numPoints = fullCircle/cycles;
+    }
+    public void setFrameSize(int width,int height) {
+        System.out.println(width);
+        System.out.println(height);
         this.frameWidth = width;
+        this.frameHeight= height;
     }
     @Override
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         Arc2D arc = new Arc2D.Float(Arc2D.PIE);
-        arc.setFrame(1440-100,100,100,100);
+        arc.setFrame(frameWidth-(frameWidth/10),frameHeight/100,100,100);
         arc.setAngleStart(360);
         arc.setAngleExtent(-time*numPoints);      
         g2d.setColor(Color.ORANGE);

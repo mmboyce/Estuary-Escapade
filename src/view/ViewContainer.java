@@ -28,11 +28,9 @@ public class ViewContainer {
 		// These get the size of the screen
 		width = frame.getContentPane().getWidth();
 		height = frame.getContentPane().getHeight();
-		//
-		timerImage = new TimerImage(cycles, width); //Adds timer image
 	}
 
-	public void initialize(CustomMouseListener m, CodeListener c, ArrayList<GameObject> o) {
+	public void initialize(CustomMouseListener m, CodeListener c, ArrayList<GameObject> o,int cycles) {
 		/*
 		 * This adds the MouseListener to the frame and initializes the view, this has
 		 * to happen after the constructor because the model needs to be set up first
@@ -41,6 +39,7 @@ public class ViewContainer {
 		frame.addMouseListener(m);
 		frame.addMouseMotionListener(m);
 		view = new TitleView(title, width, height, c, o);
+		timerImage = new TimerImage(cycles); //Adds timer image
 	}
 
 	public void next(ArrayList<GameObject> o) {
@@ -61,6 +60,9 @@ public class ViewContainer {
 		frame.getContentPane().removeAll();
 		frame.add(view);
 		if(view instanceof EstuaryView || view instanceof ResearchView){//add a physical representation of the timer
+			int frameWidth = view.getWidth();
+			int frameHeight = view.getHeight();
+			timerImage.setFrameSize(frameWidth, frameHeight);
 			frame.add(timerImage);										//only if in Estuary/Research view
 		}
 		frame.validate();
