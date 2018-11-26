@@ -16,6 +16,14 @@ public class TimerImage extends JPanel {
     public double fullCircle=360.0;//degrees of a full circle
     
     public int frameWidth;
+
+    /**
+     *  void update
+     * 
+     * updates the time so that paint redraws the arc to correlate with that time on a full circle
+     * 
+     * @param time time current indicated by timer
+     */
     public void update(int time){
         this.time=time;
     }
@@ -25,7 +33,6 @@ public class TimerImage extends JPanel {
     }
     @Override
     public void paint(Graphics g) {
-        //System.out.println(frameWidth);
         Graphics2D g2d = (Graphics2D) g;
         Arc2D arc=new Arc2D.Float(Arc2D.PIE);
         arc.setFrame(1440-100,100,100,100);
