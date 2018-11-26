@@ -11,12 +11,18 @@ import javax.swing.JPanel;
 
 import javax.swing.Timer;
 public class TimerImage extends JPanel {
-    public int time = 0;//current time 
-    public double numPoints = 1;//number of points around full circle when drawing arc
-    public double fullCircle = 360.0;//degrees of a full circle 
+    public int time; //current time 
+    public double numPoints; //number of points around full circle when drawing arc
+    public double fullCircle; //degrees of a full circle 
     public int frameWidth;
     public int frameHeight;
 
+    public TimerImage(int cycles){
+    	fullCircle = 360.0;
+    	time = 0;
+        numPoints = fullCircle/cycles;
+    }
+    
     /**
      *  void update
      * 
@@ -27,9 +33,7 @@ public class TimerImage extends JPanel {
     public void update(int time){
         this.time = time;
     }
-    public TimerImage(int cycles){
-        numPoints = fullCircle/cycles;
-    }
+    
     public void setFrameSize(int width,int height) {
         this.frameWidth = width;
         this.frameHeight= height;
