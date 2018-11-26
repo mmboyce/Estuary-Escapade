@@ -12,16 +12,19 @@ import model.Model;
 import model.QuizModel;
 import model.TitleModel;
 import view.ObjectView;
+import view.ResearchView;
+import view.EstuaryView;
+import view.TimerImage;
 import view.TitleView;
 import view.View;
-import view.TimerView;
+
 
 public class Controller implements CodeListener {
 
 	private Timer t;
 	private Model model;
 	private View view;
-	private TimerView timerView;
+	private TimerImage timerImage;
 	private AbstractAction updateAction;
 	private CustomMouseListener mouseListener;
 	private boolean timerRunning;
@@ -40,7 +43,7 @@ public class Controller implements CodeListener {
 
 		frame = new JFrame(title);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // This fullscreens the game
-		//frame.setUndecorated(true); // This removes the window border
+		frame.setUndecorated(true); // This removes the window border
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		width = frame.getContentPane().getWidth();
@@ -60,7 +63,7 @@ public class Controller implements CodeListener {
 				 */
 				model.update();
 				//view.update(model.getGameObjects());/////////////////////////I dont think this does anything 
-				timerView.update(time,width);
+				timerImage.update(time);
 				frame.repaint();
 				if (timerRunning) {
 					time++;
@@ -71,7 +74,7 @@ public class Controller implements CodeListener {
 			}
 		};
 		t = new Timer(timerDelay, updateAction);
-		timerView=new TimerView(cycles, width);
+		timerImage=new TimerImage(cycles, width);
 		
 	}
 
@@ -118,8 +121,8 @@ public class Controller implements CodeListener {
 		// wrong
 		frame.getContentPane().removeAll();
 		frame.add(view);
-		if(view.getNameOfView().equals("EstuaryView") || view.getNameOfView().equals("ResearchView")){
-			frame.add(timerView);
+		if(view instanceof EstuaryView || view instanceof ResearchView){//add a physical representation of the timer
+			frame.add(timerImage);										//only if in Estuary/Research view
 		}
 		frame.validate();
 		frame.repaint();

@@ -11,7 +11,6 @@ public class TitleView extends View {
 	
 	public TitleView(String title, int width, int height, CodeListener listener, ArrayList<GameObject> objects) {
 		super(width, height, objects,listener);
-		nameOfView="View";
 
 		TitlePanel titleArt = new TitlePanel(title); // This will display the title and any art
 		TitleNavigation nav = new TitleNavigation(listener); // This holds buttons for navigation
