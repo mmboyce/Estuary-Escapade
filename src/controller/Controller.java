@@ -1,7 +1,6 @@
 package controller;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.WindowEvent;
 
 import javax.swing.AbstractAction;
 import javax.swing.Timer;
@@ -10,8 +9,6 @@ import model.GameStateModel;
 import model.Model;
 import model.QuizModel;
 import model.TitleModel;
-import view.ObjectView;
-import view.View;
 import view.ViewContainer;
 
 public class Controller implements CodeListener {
@@ -32,16 +29,15 @@ public class Controller implements CodeListener {
 	public Controller() {
 		time = 0;
 		timerRunning = false; // The time will only start once the player leaves the start screen
-		
+
 		view = new ViewContainer();
-		
+
 		width = view.getWidth();
 		height = view.getHeight();
 
 		model = new TitleModel(width, height, this);
 		mouseListener = new CustomMouseListener(model);
-		view.initialize(mouseListener, this, model.getGameObjects());
-		
+
 		updateAction = new AbstractAction() {
 			public void actionPerformed(ActionEvent arg0) {
 				/*
