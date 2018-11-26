@@ -95,6 +95,7 @@ public class EstuaryModel extends Model implements GameStateModel {
 			if (object instanceof Animal) {
 				if (object.clickedOn(mouseX, mouseY)) {
 					clicked = (Animal) object;
+					System.out.println(((Animal) object).getName());
 					//System.out.println("Clicked on the fish");
 					break;
 				}
@@ -102,6 +103,7 @@ public class EstuaryModel extends Model implements GameStateModel {
 		}
 
 		if (clicked != null) {
+			System.out.println("here");
 			animalCaught(clicked);
 		}
 		//System.out.println("Mouse Clicked at x: " + mouseX + " y: " + mouseY); Print used for debugging
@@ -118,9 +120,10 @@ public class EstuaryModel extends Model implements GameStateModel {
 	 */
 	private void animalCaught(Animal animal) {
 		// determines that the animal clicked on is the target animal
-		if (animal.equals(target)) {
+//		if (animal.equals(target)) {
+			this.target = animal;
 			getListener().codeEmitted(Code.NEXT);
-		}
+//		}
 	}
 
 	/*

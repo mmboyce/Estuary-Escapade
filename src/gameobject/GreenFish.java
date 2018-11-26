@@ -4,10 +4,10 @@ public class GreenFish extends Animal{
 	private int pathCount = 0;
 	public GreenFish(int xPos, int yPos, int depth, int xSize, int ySize) {
 		super(xPos, yPos, depth, xSize, ySize);
-		this.setImagePath("i\"images/GreenFishRight.png");
+		this.setImagePath("images/GreenFishRight.png");
 		this.setName("Crusty");
 		this.setWeight(10);
-		this.setSpeed(10);
+		this.setSpeed(3);
 		this.setQuestion(new Question(" This animal cant swim.",
 				"Can crabs swim?", "No",
 				"Yes", "Sometimes","Only when in danger" ));
