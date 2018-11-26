@@ -160,8 +160,7 @@ public class EstuaryModel extends Model implements GameStateModel {
 	 * Updates all data in the model such as fish pathfinding
 	 */
 	public void update() {
-		// Updates all the positions of all the objects in the estuary view --> seems
-		// kinda redundant dont ya think
+		// TODO decide if this is too redundant
 		updatePositions();
 	}
 }

@@ -51,10 +51,4 @@ public class QuizModel extends Model {
 		// is pressed corresponds to the correct answer
 		return false;
 	}
-
-	@Override
-	public void update() {
-		// Intentionally empty
-	}
-
 }
