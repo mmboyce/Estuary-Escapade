@@ -1,7 +1,6 @@
 package gameobject;
 
 public class PufferFish extends Animal {
-	private int pathCount = 0;
 	// Constructor
 	public PufferFish(int xPos, int yPos, int depth, int xSize, int ySize) {
 		super(xPos, yPos, depth, xSize, ySize);

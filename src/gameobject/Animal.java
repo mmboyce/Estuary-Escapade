@@ -14,6 +14,9 @@ public abstract class Animal extends GameObject {
 	// how many steps are in our path
 	// this should be assigned in the constructor of child classes
 	private int pathLength;
+	
+	// this is so the fish knows which way to go
+	protected int pathCount = 0;
 
 	// true if we are heading to our last waypoint,
 	// false if returning from last waypoint.

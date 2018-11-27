@@ -1,9 +1,6 @@
 package gameobject;
 
 public class GoldFish extends Animal {
-	private int pathstate = 0;
-	private int pathlength = 40;
-
 	public GoldFish(int xPos, int yPos, int depth, int xSize, int ySize) {
 		super(xPos, yPos, depth, xSize, ySize);
 
@@ -70,21 +67,5 @@ public class GoldFish extends Animal {
 		updatePosition();
 		// System.out.println("Fish at x: " + super.getxPos() + " y: " +
 		// super.getyPos()); Prints the position for debugging
-	}
-
-	public int getPathstate() {
-		return pathstate;
-	}
-
-	public void setPathstate(int pathstate) {
-		this.pathstate = pathstate;
-	}
-
-	public int getPathlength() {
-		return pathlength;
-	}
-
-	public void setPathlength(int pathlength) {
-		this.pathlength = pathlength;
 	}
 }
