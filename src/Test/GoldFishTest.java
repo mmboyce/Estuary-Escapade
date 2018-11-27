@@ -17,7 +17,7 @@ class GoldFishTest {
 	@Test
 	void testMoving() {
 		g.updatePosition();
-		assertTrue(!(g.getxPos() == 0 && g.getyPos() == 0),"GoldFish not moving when updatePositionCalled");
+		assertTrue(!(g.getxPos() == 0 && g.getyPos() == 0), "GoldFish not moving when updatePositionCalled");
 	}
 
 }

@@ -140,23 +140,11 @@ public class ResearchModel extends Model implements GameStateModel {
 		getListener().codeEmitted(Code.NEXT);
 	}
 
-	private void measuring() {
-		// TODO Re-evaluate does this need to exist?
-	}
-
-	private void photographing() {
-		// TODO Re-evaluate does this need to exist?
-	}
-
-	private void weighing() {
-		// TODO Re-evaluate does this need to exist?
-	}
-
-	private void setHolding(boolean value) {
+	public void setHolding(boolean value) {
 		this.isHolding = value;
 	}
 
-	private boolean getHolding() {
+	public boolean getHolding() {
 		return this.isHolding;
 	}
 
