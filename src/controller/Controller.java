@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.Timer;
 
+import model.EndModel;
 import model.GameStateModel;
 import model.Model;
 import model.QuizModel;
@@ -76,7 +77,6 @@ public class Controller implements CodeListener {
 			model = model.nextModel();// calls nextmodel and move to next game state
 			view.next(model.getGameObjects());
 			mouseListener.setModel(model);
-			// System.out.println("In: " + model); Used for debugging
 			break;
 		case EXIT:
 			t.stop();
@@ -91,12 +91,23 @@ public class Controller implements CodeListener {
 				mouseListener.setModel(model);
 				view.timeUp((QuizModel) model);
 			}
-			// System.out.println("In: " + model); for debugging
 			timerRunning = false;
 			time = 0;
 			break;
 		case STARTTIMER:
 			timerRunning = true;
+		case RIGHT:
+			if(model instanceof QuizModel && view.checkQuizView()) {
+				model = ((QuizModel)model).questionAnswered(true);
+				view.questionAnswered(model.getGameObjects(),((EndModel)model).getScore());
+			}
+			break;
+		case WRONG:
+			if(model instanceof QuizModel && view.checkQuizView()) {
+				model = ((QuizModel)model).questionAnswered(false);
+				view.questionAnswered(model.getGameObjects(),((EndModel)model).getScore());
+			}
+			break;
 		}
 	}
 

@@ -8,9 +8,9 @@ import controller.CodeListener;
 import gameobject.GameObject;
 
 public class EndView extends View {
-	public EndView(int width, int height, ArrayList<GameObject> objects, CodeListener listener) {
+	public EndView(int width, int height, ArrayList<GameObject> objects, CodeListener listener,int scoreIn) {
 		super(width, height, objects, listener);
-		Integer score = 12; // TODO Get this score programatically instead of hard coding it
+		Integer score = scoreIn;
 		String scoreStr = "Your Score is : " + score.toString();
 		
 		TitlePanel Score = new TitlePanel(scoreStr); // This will display the title and any art
