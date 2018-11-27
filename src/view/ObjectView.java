@@ -17,6 +17,7 @@ import gameobject.Question;
 public abstract class ObjectView extends View {
 
 	HashMap<GameObject, BufferedImage> map = new HashMap<>();
+	TimerImage timer;
 
 	public ObjectView(int width, int height, ArrayList<GameObject> objects, CodeListener listener) {
 		super(width, height, objects, listener);
@@ -37,12 +38,16 @@ public abstract class ObjectView extends View {
 
 	@Override
 	public void paint(Graphics g) {
+		g.drawImage(createImage("images/underwater.png"), 0, 0, getWidth(), getHeight(), (ImageObserver) this);
+		
 		for (GameObject object : this.map.keySet()) {
 			
 			g.drawImage(createImage(object.getImagePath()), object.getxPos(), object.getyPos(), object.getxSize(), object.getySize(),
 					(ImageObserver) this);
 
 		}
+		
+		timer.paint(g);
 	}
 
 	// void update
@@ -69,6 +74,10 @@ public abstract class ObjectView extends View {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	public void passTimer(TimerImage t) {
+		timer = t;
 	}
 
 	public QuizView timeUp(Question q) {

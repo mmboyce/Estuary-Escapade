@@ -81,6 +81,9 @@ public class ViewContainer {
 
 	public void repaint(int time) {
 		timerImage.update(time);
+		if(view instanceof ObjectView) {
+			((ObjectView) view).passTimer(timerImage);
+		}
 		frame.repaint();
 	}
 
