@@ -73,7 +73,9 @@ class GameTests {
 	
 	@Test
 	void ResearchTests() {
-		ResearchModel rm  = new ResearchModel(500, 500, new GoldFish(0, 0, 0, 0, 0), em, c);
+		em = new EstuaryModel(500,500,c);
+		GoldFish goldie = new GoldFish(20, 20, 0, 100, 100);
+		ResearchModel rm  = new ResearchModel(500, 500, goldie, em, c);
 		// Test setters and getters
 		assertEquals(rm.getFrameHeight(), 500);
 		assertEquals(rm.getFrameWidth(), 500);
@@ -88,31 +90,44 @@ class GameTests {
 		rm.setMeasured(false);
 		assertFalse(rm.isPhotographed());
 		GoldFish fish = null;
-		Camera cam = null;
+		Camera cam = rm.getCamera();
+		Camera ruler = rm.getRuler();
 		for (int i = 0; i < rm.getGameObjects().size(); i++) {
 			if (rm.getGameObjects().get(i) instanceof GoldFish) {
 				fish = (GoldFish) rm.getGameObjects().get(i);
-			} else if (rm.getGameObjects().get(i) instanceof Camera) {
-				cam = (Camera) rm.getGameObjects().get(i);
-			}
+			} 
 		}
 		Button btn = new Button();
-		MouseEvent me = new MouseEvent(btn, 0, 0, 0, fish.getxPos(), fish.getyPos(), 1, false);
-		rm.registerClick(me);
-		me = new MouseEvent(btn, 0, 0, 0, cam.getxPos(), cam.getyPos(), 1, false);
-		rm.registerClick(me);
-		assertTrue(rm.isMeasured());	
+		MouseEvent fishLoc = new MouseEvent(btn, 0, 0, 0, fish.getxPos(), fish.getyPos(), 1, false);
+		MouseEvent camPos = new MouseEvent(btn, 0, 0, 0, cam.getxPos(), cam.getyPos(), 1, false);
+		MouseEvent rulerPos = new MouseEvent(btn, 0, 0, 0, ruler.getxPos(), ruler.getyPos(), 1, false);
+		rm.registerClick(fishLoc);
+		rm.mouseMoved(30, 40);
+		rm.registerClick(camPos);
+		fishLoc = new MouseEvent(btn, 0, 0, 0, fish.getxPos(), fish.getyPos(), 1, false);
+		rm.registerClick(fishLoc);
+		rm.mouseMoved(20, 30);
+		rm.registerClick(camPos);
+		rm.registerClick(rulerPos);	
+		rm.update();
+		assertEquals(rm.nextModel(),em);
+		assertTrue(rm.timeUp() instanceof QuizModel);
 	}	
 	
 	@Test
 	void QuizTests() {
 		ArrayList<Animal> animals = new ArrayList<>();
-		animals.add(new GoldFish(0, 0, 0, 0, 0));
+		GoldFish gf = new GoldFish(0, 0, 0, 0, 0);
+		animals.add(gf);
 		qm = new QuizModel(500, 500, animals, c);
+		assertEquals(gf.getQuestion(),qm.getQuestion());
+		assertTrue(qm.checkAnswer(gf.getQuestion().getCorrectAnswer()));
 		assertEquals(qm.getFrameHeight(), 500);
 		assertEquals(qm.getFrameWidth(), 500);
 		assertTrue(qm.getQuestionPool() instanceof ArrayList<?>);
 		assertTrue(qm.nextModel() instanceof Model);
+		EndModel m1 = (EndModel)qm.questionAnswered(true);
+		EndModel m2 = (EndModel)qm.questionAnswered(false);
 	}
 	
 	@Test
@@ -120,10 +135,6 @@ class GameTests {
 		EndModel em = new EndModel(500, 500, c);
 		em.setScore(19);
 		assertEquals(em.getScore(), 19);
-		em.setQuizCorrect(true);
-		assertTrue(em.isQuizCorrect());
-		em.setQuizCorrect(false);
-		assertFalse(em.isQuizCorrect());
 		assertTrue(em.nextModel() instanceof Model);
 	}
 	
@@ -162,7 +173,7 @@ class GameTests {
 	
 	@Test
 	void EndViewTests() {
-		EndView ev = new EndView(500, 500, animals, c);
+		EndView ev = new EndView(500, 500, animals, c, 0);
 		assertTrue(ev.nextView(animals) instanceof View);
 	}
 }

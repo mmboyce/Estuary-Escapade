@@ -149,5 +149,13 @@ public class ResearchModel extends Model implements GameStateModel {
 		// TODO We may need to move some of the positional logic here to move the animal
 		// across the screen once the user clicks on it
 	}
+	
+	public Camera getRuler() {
+		return ruler;
+	}
+	
+	public Camera getCamera() {
+		return camera;
+	}
 
 }
