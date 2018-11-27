@@ -30,7 +30,7 @@ public class ResearchModel extends Model implements GameStateModel {
 	// TODO figure out how to set this relationally based on screen size instead of
 	// hard coding
 	private int right = 500;
-	private int top = -100;
+	private int top = 300;
 
 	public boolean isWeighed() {
 		return isWeighed;
@@ -126,6 +126,7 @@ public class ResearchModel extends Model implements GameStateModel {
 
 	private void doneResearching() {
 		goBack.researched.add(caught);
+		goBack.getGameObjects().remove(caught);
 		getListener().codeEmitted(Code.NEXT);
 	}
 
