@@ -130,23 +130,11 @@ public class ResearchModel extends Model implements GameStateModel {
 		getListener().codeEmitted(Code.NEXT);
 	}
 
-	private void measuring() {
-		// TODO Re-evaluate does this need to exist?
-	}
-
-	private void photographing() {
-		// TODO Re-evaluate does this need to exist?
-	}
-
-	private void weighing() {
-		// TODO Re-evaluate does this need to exist?
-	}
-
-	private void setHolding(boolean value) {
+	public void setHolding(boolean value) {
 		this.isHolding = value;
 	}
 
-	private boolean getHolding() {
+	public boolean getHolding() {
 		return this.isHolding;
 	}
 
@@ -160,6 +148,14 @@ public class ResearchModel extends Model implements GameStateModel {
 	public void update() {
 		// TODO We may need to move some of the positional logic here to move the animal
 		// across the screen once the user clicks on it
+	}
+	
+	public Camera getRuler() {
+		return ruler;
+	}
+	
+	public Camera getCamera() {
+		return camera;
 	}
 
 }
