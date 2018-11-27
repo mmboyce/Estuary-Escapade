@@ -16,21 +16,16 @@ public class CustomMouseListener implements MouseListener, MouseMotionListener {
 	}
 
 	@Override
-
 	public void mouseClicked(MouseEvent e) {
-		// For debugging
-		System.out.println("Click Registered");
-		System.out.println(model);
 		model.registerClick(e);
-}
+	}
+
 	public void mouseMoved(MouseEvent e) {
-		if(model instanceof ResearchModel) {
+		if (model instanceof ResearchModel) {
 			((ResearchModel) model).mouseMoved(e.getX(), e.getY());
 		}
 
 	}
-	
-	
 
 	public Model getModel() {
 		return model;

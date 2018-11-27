@@ -53,6 +53,11 @@ public class ViewContainer {
 		view = ((ObjectView) view).timeUp(model.getQuestion());
 		resetView();
 	}
+	
+	public void questionAnswered(ArrayList<GameObject> o, int score) {
+		view = ((QuizView)view).questionAnswered(o, score);
+		resetView();
+	}
 
 	private void resetView() {
 		// If this is not done the JFrame will not display properly and things will look
@@ -89,6 +94,10 @@ public class ViewContainer {
 
 	public boolean checkObjectView() {
 		return (view instanceof ObjectView);
+	}
+	
+	public boolean checkQuizView() {
+		return (view instanceof QuizView);
 	}
 
 	public int getWidth() {
