@@ -5,13 +5,13 @@ public class ZappyBoi extends Animal{
 	public ZappyBoi(int xPos, int yPos, int depth, int xSize, int ySize) {
 		super(xPos, yPos, depth, xSize, ySize);
 		this.setImagePath("images/ZappyBoiRight.png");
-		this.setName("Bill");
+		this.setName("American Eel");
 		this.setWeight(7);
 		this.setSpeed(4);
-		this.setQuestion(new Question(" Eels have to come to the surfact for air every ten minutes.",
-				"How often do eels have to come to the surface for air? ", "every 10 minutes",
-				"every 5 minutes", "an hour","once a day" ));
-		this.setPathLength(200);
+		this.setQuestion(new Question("The American Eel has to come to the surface for air every ten minutes.",
+				"How often does the American Eel have to come to the surface for air? ", "Every 10 minutes",
+				"Every 5 minutes", "Every hour","Once a day" ));
+		this.setPathLength(this.getxSize() * 7 / this.getSpeed());
 	}
 
 	@Override

@@ -3,14 +3,16 @@ package gameobject;
 public class GreenFish extends Animal{
 	public GreenFish(int xPos, int yPos, int depth, int xSize, int ySize) {
 		super(xPos, yPos, depth, xSize, ySize);
+		// Initail image
 		this.setImagePath("images/GreenFishRight.png");
-		this.setName("Crusty");
+		// Species Name weight and speed
+		this.setName("American Shad");
 		this.setWeight(10);
-		this.setSpeed(3);
-		this.setQuestion(new Question(" This animal cant swim.",
-				"Can crabs swim?", "No",
-				"Yes", "Sometimes","Only when in danger" ));
-		this.setPathLength(100);
+		this.setSpeed(7);
+		this.setQuestion(new Question("American Shads are found in fresh water.",
+				"Where are American Shads found?", "Fresh water",
+				"Salt Water", "Seashore","All the Above" ));
+		this.setPathLength(xSize*5/this.getSpeed());
 	}
 
 	@Override

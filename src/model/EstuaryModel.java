@@ -19,6 +19,7 @@ public class EstuaryModel extends Model implements GameStateModel {
 	List<Animal> researched;
 	// The animal the user is currently researching
 	Animal target;
+	private final int spriteSize = this.getFrameHeight()/10;
 
 	public EstuaryModel(int frameWidth, int frameHeight, CodeListener listener) {
 		super(frameWidth, frameHeight, listener);
@@ -33,16 +34,27 @@ public class EstuaryModel extends Model implements GameStateModel {
 	 * sets the target and loads all fish into the schoolOfFish
 	 */
 	private void instantiateFish() {
+		/* TODO:
+		 * FISH TO DO 
+		 * Crab 
+		 * Zappiboi 
+		 * Puffer 
+		 * Gold
+		 * 
+		 * FISH DONE
+		 * Green
+		 * 
+		 */
 		// Adds all the fish that are in the estuary
-		target = new GoldFish(0, 0, 0, 100, 100);
+//		target = new GoldFish(0, 0, 0, 100, 100);
+//		addGameObject(target);
+//		target = new PufferFish(600,400,0,100,100);
+//		addGameObject(target);
+//		target = new Crab(200,800,0,100,100);
+//		addGameObject(target);
+		target = new ZappyBoi(this.getFrameWidth()/4,this.getFrameHeight()*3/4,0,spriteSize,spriteSize);
 		addGameObject(target);
-		target = new PufferFish(600,400,0,100,100);
-		addGameObject(target);
-		target = new Crab(200,800,0,100,100);
-		addGameObject(target);
-		target = new ZappyBoi(400,600,0,100,100);
-		addGameObject(target);
-		target = new GreenFish(700,300,0,100,100);
+		target = new GreenFish(this.getFrameWidth()/2,this.getFrameHeight()/4,0,spriteSize,spriteSize);
 		addGameObject(target);
 	}
 
