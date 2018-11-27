@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -19,7 +21,6 @@ import gameobject.GameObject;
 import gameobject.Question;
 
 public class QuizView extends View implements ActionListener {
-	
 
 	Question question;
 	JButton response1;
@@ -44,21 +45,22 @@ public class QuizView extends View implements ActionListener {
 
 		Font buttonFont = new Font("Arial", Font.PLAIN, 40);
 
-		// TODO find a way to shuffle the order of questions and still keep track of the
-		// correct answer
-		response1 = new JButton(question.getAllAnswers()[0]);
+		ArrayList<String> answers = new ArrayList<String>(Arrays.asList(question.getAllAnswers()));
+		Collections.shuffle(answers);
+
+		response1 = new JButton(answers.get(0));
 		response1.addActionListener(this);
 		response1.setFont(buttonFont);
 
-		response2 = new JButton(question.getAllAnswers()[1]);
+		response2 = new JButton(answers.get(1));
 		response2.addActionListener(this);
 		response2.setFont(buttonFont);
 
-		response3 = new JButton(question.getAllAnswers()[2]);
+		response3 = new JButton(answers.get(2));
 		response3.addActionListener(this);
 		response3.setFont(buttonFont);
 
-		response4 = new JButton(question.getAllAnswers()[3]);
+		response4 = new JButton(answers.get(3));
 		response4.addActionListener(this);
 		response4.setFont(buttonFont);
 
@@ -74,7 +76,7 @@ public class QuizView extends View implements ActionListener {
 
 	@Override
 	public View nextView(ArrayList<GameObject> objects) {
-		return new EndView(getWidth(), getHeight(), objects, super.getListener());
+		return new EndView(getWidth(), getHeight(), objects, super.getListener(),-1);
 	}
 
 	@Override
@@ -84,14 +86,15 @@ public class QuizView extends View implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO make this keep track of the correct answer as it gets shuffled, also do
-		// something to increase the score if the answer is correct
-		if (e.getSource() == response1) {
-			System.out.println("CorrectAnswer");
+		if (((JButton) e.getSource()).getText() == question.getCorrectAnswer()) {
+			super.getListener().codeEmitted(Code.RIGHT);
 		} else {
-			System.out.println("IncorrectAnswer");
+			super.getListener().codeEmitted(Code.WRONG);
 		}
-		super.getListener().codeEmitted(Code.NEXT);
+	}
+
+	public View questionAnswered(ArrayList<GameObject> objects, int score) {
+		return new EndView(getWidth(), getHeight(), objects, super.getListener(),score);
 	}
 
 }
