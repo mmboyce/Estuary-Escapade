@@ -1,7 +1,6 @@
 package gameobject;
 
 public class GreenFish extends Animal{
-	private int pathCount = 0;
 	public GreenFish(int xPos, int yPos, int depth, int xSize, int ySize) {
 		super(xPos, yPos, depth, xSize, ySize);
 		this.setImagePath("images/GreenFishRight.png");

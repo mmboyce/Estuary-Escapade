@@ -1,7 +1,6 @@
 package gameobject;
 
 public class Crab extends Animal {
-	private int pathCount = 0;
 	public Crab(int xPos, int yPos, int depth, int xSize, int ySize) {
 		super(xPos, yPos, depth, xSize, ySize);
 		this.setImagePath("images/Crab_UW_F1.png");
