@@ -14,10 +14,10 @@ public class TitleNavigation extends JPanel implements ActionListener {
 
 	JButton start;
 	JButton exit;
-	CodeListener CodeListener;
+	CodeListener codeListener;
 
 	public TitleNavigation(CodeListener cl) {
-		CodeListener = cl;
+		codeListener = cl;
 
 		// This moves you to the EstuaryModel
 		start = new JButton("Start");
@@ -36,9 +36,9 @@ public class TitleNavigation extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent buttonPress) {
 		JButton pressed = (JButton) buttonPress.getSource();
 		if (pressed == start) {
-			CodeListener.codeEmitted(Code.NEXT);
+			codeListener.codeEmitted(Code.NEXT);
 		} else if (pressed == exit) {
-			CodeListener.codeEmitted(Code.EXIT);
+			codeListener.codeEmitted(Code.EXIT);
 		}
 	}
 

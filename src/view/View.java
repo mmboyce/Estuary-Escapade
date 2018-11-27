@@ -31,7 +31,7 @@ public abstract class View extends JPanel {
 	public abstract void update(ArrayList<GameObject> objects);
 
 	public abstract View nextView(ArrayList<GameObject> objects);
-
+	
 	public int getFrameWidth() {
 		return frameWidth;
 	}

@@ -1,53 +1,46 @@
 package controller;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.WindowEvent;
 
 import javax.swing.AbstractAction;
-import javax.swing.JFrame;
 import javax.swing.Timer;
 
+import model.EndModel;
 import model.GameStateModel;
 import model.Model;
 import model.QuizModel;
 import model.TitleModel;
-import view.ObjectView;
-import view.TitleView;
-import view.View;
+import view.ViewContainer;
+
 
 public class Controller implements CodeListener {
 
 	private Timer t;
 	private Model model;
-	private View view;
+	private ViewContainer view;
 	private AbstractAction updateAction;
 	private CustomMouseListener mouseListener;
 	private boolean timerRunning;
 	private int time;
-	private JFrame frame;
 	private int width;
 	private int height;
 
 	private final static String title = "Estuary Escapade";
-	private final int cycles = 500; // This controlls how long the game runs for
+	private final int cycles = 1500; // This controlls how long the game runs for
 	private final int timerDelay = 30; // The delay between every game state update
 
 	public Controller() {
 		time = 0;
 		timerRunning = false; // The time will only start once the player leaves the start screen
 
-		frame = new JFrame(title);
-		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // This fullscreens the game
-		frame.setUndecorated(true); // This removes the window border
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		view = new ViewContainer(cycles);
 
-		width = frame.getContentPane().getWidth();
-		height = frame.getContentPane().getHeight();
+		width = view.getWidth();
+		height = view.getHeight();
 
 		model = new TitleModel(width, height, this);
 		mouseListener = new CustomMouseListener(model);
-		frame.addMouseListener(mouseListener);
-		view = new TitleView(title, width, height, this, model.getGameObjects());
+		view.initialize(mouseListener, this, model.getGameObjects(),cycles);
 
 		updateAction = new AbstractAction() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -57,8 +50,7 @@ public class Controller implements CodeListener {
 				 * the time increments and if the time runs out the TIMEUP code is emitted
 				 */
 				model.update();
-				view.update(model.getGameObjects());
-				frame.repaint();
+				view.repaint(time);
 				if (timerRunning) {
 					time++;
 				}
@@ -68,6 +60,7 @@ public class Controller implements CodeListener {
 			}
 		};
 		t = new Timer(timerDelay, updateAction);
+		
 	}
 
 	/*
@@ -82,46 +75,45 @@ public class Controller implements CodeListener {
 		switch (c) {
 		case NEXT:
 			model = model.nextModel();// calls nextmodel and move to next game state
-			view = view.nextView(model.getGameObjects());
-			// System.out.println("In: " + model); Used for debugging
-			resetView();
+			view.next(model.getGameObjects());
+			mouseListener.setModel(model);
 			break;
 		case EXIT:
 			t.stop();
 			// Since the program is set to exit on closing this fully terminates the game
-			frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+			view.close();
 			break;
 		case TIMEUP:
 			// This makes sure the game is in an applicable model then calls the timeUp
 			// methods to transition to the Quiz
-			if (model instanceof GameStateModel && view instanceof ObjectView) {
+			if (model instanceof GameStateModel && view.checkObjectView()) {
 				model = ((GameStateModel) model).timeUp();
-				view = ((ObjectView) view).timeUp(((QuizModel) model).getQuestion());
+				mouseListener.setModel(model);
+				view.timeUp((QuizModel) model);
 			}
-			// System.out.println("In: " + model); for debugging
-			resetView();
 			timerRunning = false;
 			time = 0;
 			break;
 		case STARTTIMER:
 			timerRunning = true;
+		case RIGHT:
+			if(model instanceof QuizModel && view.checkQuizView()) {
+				model = ((QuizModel)model).questionAnswered(true);
+				view.questionAnswered(model.getGameObjects(),((EndModel)model).getScore());
+			}
+			break;
+		case WRONG:
+			if(model instanceof QuizModel && view.checkQuizView()) {
+				model = ((QuizModel)model).questionAnswered(false);
+				view.questionAnswered(model.getGameObjects(),((EndModel)model).getScore());
+			}
+			break;
 		}
-	}
-
-	private void resetView() {
-		// If this is not done the JFrame will not display properly and things will look
-		// wrong
-		frame.getContentPane().removeAll();
-		frame.add(view);
-		frame.validate();
-		frame.repaint();
-		mouseListener.setModel(model);
 	}
 
 	public void start() {
 		t.start();
-		frame.add(view);
-		frame.setVisible(true);
+		view.start();
 	}
 
 	public Timer getT() {
@@ -140,11 +132,11 @@ public class Controller implements CodeListener {
 		this.model = model;
 	}
 
-	public View getView() {
+	public ViewContainer getViewContainer() {
 		return view;
 	}
 
-	public void setView(View view) {
+	public void setViewContainer(ViewContainer view) {
 		this.view = view;
 	}
 

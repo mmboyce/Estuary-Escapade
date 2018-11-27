@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -21,10 +23,10 @@ import gameobject.Question;
 public class QuizView extends View implements ActionListener {
 
 	Question question;
-	JButton button1;
-	JButton button2;
-	JButton button3;
-	JButton button4;
+	JButton response1;
+	JButton response2;
+	JButton response3;
+	JButton response4;
 
 	public QuizView(int width, int height, Question question, ArrayList<GameObject> objects, CodeListener listener) {
 		super(width, height, objects, listener);
@@ -43,37 +45,38 @@ public class QuizView extends View implements ActionListener {
 
 		Font buttonFont = new Font("Arial", Font.PLAIN, 40);
 
-		// TODO find a way to shuffle the order of questions and still keep track of the
-		// correct answer
-		button1 = new JButton(question.getAllAnswers()[0]);
-		button1.addActionListener(this);
-		button1.setFont(buttonFont);
+		ArrayList<String> answers = new ArrayList<String>(Arrays.asList(question.getAllAnswers()));
+		Collections.shuffle(answers);
 
-		button2 = new JButton(question.getAllAnswers()[1]);
-		button2.addActionListener(this);
-		button2.setFont(buttonFont);
+		response1 = new JButton(answers.get(0));
+		response1.addActionListener(this);
+		response1.setFont(buttonFont);
 
-		button3 = new JButton(question.getAllAnswers()[2]);
-		button3.addActionListener(this);
-		button3.setFont(buttonFont);
+		response2 = new JButton(answers.get(1));
+		response2.addActionListener(this);
+		response2.setFont(buttonFont);
 
-		button4 = new JButton(question.getAllAnswers()[3]);
-		button4.addActionListener(this);
-		button4.setFont(buttonFont);
+		response3 = new JButton(answers.get(2));
+		response3.addActionListener(this);
+		response3.setFont(buttonFont);
+
+		response4 = new JButton(answers.get(3));
+		response4.addActionListener(this);
+		response4.setFont(buttonFont);
 
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		setBackground(View.SEA_BLUE);
 		add(title);
-		add(button1);
-		add(button2);
-		add(button3);
-		add(button4);
+		add(response1);
+		add(response2);
+		add(response3);
+		add(response4);
 
 	}
 
 	@Override
 	public View nextView(ArrayList<GameObject> objects) {
-		return new EndView(getWidth(), getHeight(), objects, super.getListener());
+		return new EndView(getWidth(), getHeight(), objects, super.getListener(),-1);
 	}
 
 	@Override
@@ -83,14 +86,15 @@ public class QuizView extends View implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO make this keep track of the correct answer as it gets shuffled, also do
-		// something to increase the score if the answer is correct
-		if (e.getSource() == button1) {
-			System.out.println("CorrectAnswer");
+		if (((JButton) e.getSource()).getText() == question.getCorrectAnswer()) {
+			super.getListener().codeEmitted(Code.RIGHT);
 		} else {
-			System.out.println("IncorrectAnswer");
+			super.getListener().codeEmitted(Code.WRONG);
 		}
-		super.getListener().codeEmitted(Code.NEXT);
+	}
+
+	public View questionAnswered(ArrayList<GameObject> objects, int score) {
+		return new EndView(getWidth(), getHeight(), objects, super.getListener(),score);
 	}
 
 }
