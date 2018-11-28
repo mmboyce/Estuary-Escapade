@@ -5,12 +5,12 @@ public class GoldFish extends Animal {
 		super(xPos, yPos, depth, xSize, ySize);
 
 		setImagePath("images/GoldfishRight.png");
-		setName("Greg"); // TODO put the name of the actual fish here
-		setWeight(0); // TODO put real fish weight here
+		setName("Yellow Tail Flounder"); 
+		setWeight(8); 
 		setSpeed(5);
-		setQuestion(new Question("The .", "Does this fish know how to swim?", "Yes", "No",
-				"Only on Tuesdays", "No, but it can fly!"));
-		setPathLength(250);
+		setQuestion(new Question("Yellow Tail Flounder use camouflage and can change the color and pattern of their dark side to match the surrounding bottom.", 
+				"The yellow Tail Flounder can ...", "use camoflage to blend into its surroundings", "jump out of the water", "swim very fast", "squirt ink at predators"));
+		setPathLength(xSize*3);
 	}
 
 	/*
@@ -41,7 +41,7 @@ public class GoldFish extends Animal {
 			wayPoint1 *= -1;
 			wayPoint2 *= -1;
 			wayPoint3 *= -1;
-			this.setImagePath("images/GoldfishLeft");
+			this.setImagePath("images/GoldfishLeft.png");
 			// we switch to a greater than sign because we are headed the
 			// opposite direction
 			if (pathState > wayPoint1) {

@@ -58,7 +58,6 @@ public class ZappyBoi extends Animal{
 			}
 		}
 		updatePosition();
-		
 	}
 
 }

@@ -7,6 +7,7 @@ import java.util.List;
 import controller.Code;
 import controller.CodeListener;
 import gameobject.Animal;
+import gameobject.BlueFish;
 import gameobject.Crab;
 import gameobject.GameObject;
 import gameobject.GoldFish;
@@ -37,24 +38,26 @@ public class EstuaryModel extends Model implements GameStateModel {
 		/* TODO:
 		 * FISH TO DO 
 		 * Crab 
-		 * Zappiboi 
 		 * Puffer 
 		 * Gold
 		 * 
 		 * FISH DONE
 		 * Green
+		 * ZappyBoi
 		 * 
 		 */
 		// Adds all the fish that are in the estuary
-//		target = new GoldFish(0, 0, 0, 100, 100);
-//		addGameObject(target);
-//		target = new PufferFish(600,400,0,100,100);
-//		addGameObject(target);
-//		target = new Crab(200,800,0,100,100);
-//		addGameObject(target);
-		target = new ZappyBoi(this.getFrameWidth()/4,this.getFrameHeight()*3/4,0,spriteSize,spriteSize);
+		target = new GoldFish(this.getFrameWidth()/8, this.getFrameHeight()/6, 0, spriteSize, spriteSize);
+		addGameObject(target);
+		target = new PufferFish(this.getFrameWidth()/3,this.getFrameHeight()/3,0,spriteSize,spriteSize);
+		addGameObject(target);
+		target = new Crab(this.getFrameWidth()/8,this.getFrameHeight()*5/6,0,spriteSize,spriteSize);
+		addGameObject(target);
+		target = new ZappyBoi(this.getFrameWidth()/4,this.getFrameHeight()*4/6,0,spriteSize,spriteSize);
 		addGameObject(target);
 		target = new GreenFish(this.getFrameWidth()/2,this.getFrameHeight()/4,0,spriteSize,spriteSize);
+		addGameObject(target);
+		target = new BlueFish(this.getFrameWidth() / 6,this.getFrameHeight()/5, 0, spriteSize, spriteSize);
 		addGameObject(target);
 	}
 
