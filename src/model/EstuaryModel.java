@@ -13,6 +13,8 @@ import gameobject.GameObject;
 import gameobject.GoldFish;
 import gameobject.GreenFish;
 import gameobject.PufferFish;
+import gameobject.PurpleFish;
+import gameobject.RedFish;
 import gameobject.ZappyBoi;
 
 public class EstuaryModel extends Model implements GameStateModel {
@@ -58,6 +60,10 @@ public class EstuaryModel extends Model implements GameStateModel {
 		target = new GreenFish(this.getFrameWidth()/2,this.getFrameHeight()/4,0,spriteSize,spriteSize);
 		addGameObject(target);
 		target = new BlueFish(this.getFrameWidth() / 6,this.getFrameHeight()/5, 0, spriteSize, spriteSize);
+		addGameObject(target);
+		target = new RedFish(this.getFrameWidth()*5/6, this.getFrameHeight()/2, 0, spriteSize, spriteSize);
+		addGameObject(target);
+		target = new PurpleFish(this.getFrameWidth()*6/5, this.getFrameHeight()/3, 0, spriteSize, spriteSize);
 		addGameObject(target);
 	}
 
