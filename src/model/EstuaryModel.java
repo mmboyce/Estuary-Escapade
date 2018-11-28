@@ -7,11 +7,14 @@ import java.util.List;
 import controller.Code;
 import controller.CodeListener;
 import gameobject.Animal;
+import gameobject.BlueFish;
 import gameobject.Crab;
 import gameobject.GameObject;
 import gameobject.GoldFish;
 import gameobject.GreenFish;
 import gameobject.PufferFish;
+import gameobject.PurpleFish;
+import gameobject.RedFish;
 import gameobject.ZappyBoi;
 
 public class EstuaryModel extends Model implements GameStateModel {
@@ -19,6 +22,7 @@ public class EstuaryModel extends Model implements GameStateModel {
 	List<Animal> researched;
 	// The animal the user is currently researching
 	Animal target;
+	private final int spriteSize = this.getFrameHeight()/10;
 
 	public EstuaryModel(int frameWidth, int frameHeight, CodeListener listener) {
 		super(frameWidth, frameHeight, listener);
@@ -33,16 +37,33 @@ public class EstuaryModel extends Model implements GameStateModel {
 	 * sets the target and loads all fish into the schoolOfFish
 	 */
 	private void instantiateFish() {
+		/* TODO:
+		 * FISH TO DO 
+		 * Crab 
+		 * Puffer 
+		 * Gold
+		 * 
+		 * FISH DONE
+		 * Green
+		 * ZappyBoi
+		 * 
+		 */
 		// Adds all the fish that are in the estuary
-		target = new GoldFish(0, 0, 0, 100, 100);
+		target = new GoldFish(this.getFrameWidth()/8, this.getFrameHeight()/6, 0, spriteSize, spriteSize);
 		addGameObject(target);
-		target = new PufferFish(600,400,0,100,100);
+		target = new PufferFish(this.getFrameWidth()/3,this.getFrameHeight()/3,0,spriteSize,spriteSize);
 		addGameObject(target);
-		target = new Crab(200,800,0,100,100);
+		target = new Crab(this.getFrameWidth()/8,this.getFrameHeight()*5/6,0,spriteSize,spriteSize);
 		addGameObject(target);
-		target = new ZappyBoi(400,600,0,100,100);
+		target = new ZappyBoi(this.getFrameWidth()/4,this.getFrameHeight()*4/6,0,spriteSize,spriteSize);
 		addGameObject(target);
-		target = new GreenFish(700,300,0,100,100);
+		target = new GreenFish(this.getFrameWidth()/2,this.getFrameHeight()/4,0,spriteSize,spriteSize);
+		addGameObject(target);
+		target = new BlueFish(this.getFrameWidth() / 6,this.getFrameHeight()/5, 0, spriteSize, spriteSize);
+		addGameObject(target);
+		target = new RedFish(this.getFrameWidth()*5/6, this.getFrameHeight()/2, 0, spriteSize, spriteSize);
+		addGameObject(target);
+		target = new PurpleFish(this.getFrameWidth()*6/5, this.getFrameHeight()/3, 0, spriteSize, spriteSize);
 		addGameObject(target);
 	}
 

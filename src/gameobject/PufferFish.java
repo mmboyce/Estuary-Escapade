@@ -5,13 +5,13 @@ public class PufferFish extends Animal {
 	public PufferFish(int xPos, int yPos, int depth, int xSize, int ySize) {
 		super(xPos, yPos, depth, xSize, ySize);
 		this.setImagePath("images/PuffDaddyRight.png");
-		this.setName("Bill");
+		this.setName("Northern Puffer");
 		this.setWeight(3);
 		this.setSpeed(7);
-		this.setQuestion(new Question(" This fish blows up like a baloon when threatened.",
-				"What does this fish do when threatened?", "Blow up like a baloon",
-				"swin away", "dance","start quoting lines from spongebob" ));
-		this.setPathLength(500);
+		this.setQuestion(new Question("The Northern Puffer blows up like a balloon when threatened.",
+				"What does this fish do when threatened?", "Blow up like a balloon",
+				"Swim away", "Squirt ink","Bite"));
+		this.setPathLength(xSize*20);
 	}
 
 	@Override

@@ -4,13 +4,13 @@ public class GoldFish extends Animal {
 	public GoldFish(int xPos, int yPos, int depth, int xSize, int ySize) {
 		super(xPos, yPos, depth, xSize, ySize);
 
-		setImagePath("images/Fish_east_2.png");
-		setName("Greg"); // TODO put the name of the actual fish here
-		setWeight(0); // TODO put real fish weight here
+		setImagePath("images/GoldfishRight.png");
+		setName("Yellow Tail Flounder"); 
+		setWeight(8); 
 		setSpeed(5);
-		setQuestion(new Question("This fish knows how to swim", "Does this fish know how to swim?", "Yes", "No",
-				"Only on Tuesdays", "No, but it can fly!"));
-		setPathLength(250);
+		setQuestion(new Question("Yellow Tail Flounder use camouflage and can change the color and pattern of their dark side to match the surrounding bottom.", 
+				"The yellow Tail Flounder can ...", "use camoflage to blend into its surroundings", "jump out of the water", "swim very fast", "squirt ink at predators"));
+		setPathLength(xSize*3);
 	}
 
 	/*
@@ -41,7 +41,7 @@ public class GoldFish extends Animal {
 			wayPoint1 *= -1;
 			wayPoint2 *= -1;
 			wayPoint3 *= -1;
-			this.setImagePath("images/Fish_west_2.png");
+			this.setImagePath("images/GoldfishLeft.png");
 			// we switch to a greater than sign because we are headed the
 			// opposite direction
 			if (pathState > wayPoint1) {
@@ -52,7 +52,7 @@ public class GoldFish extends Animal {
 				setxPos(x + (speed / 2));
 			}
 		} else {
-			setImagePath("images/Fish_east_2.png");
+			setImagePath("images/GoldfishRight.png");
 			if (pathState < wayPoint1) {
 				// swim right until waypoint1
 				setxPos(x + speed);
