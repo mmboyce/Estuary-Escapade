@@ -14,10 +14,18 @@ import controller.CodeListener;
 import gameobject.GameObject;
 import gameobject.Question;
 
+import java.awt.Graphics2D;
+import java.awt.AlphaComposite;
+import java.awt.Color;
+import java.awt.RenderingHints;
+
 public abstract class ObjectView extends View {
 
 	HashMap<GameObject, BufferedImage> map = new HashMap<>();
 	TimerImage timer;
+	private boolean startFlash=false;
+	private boolean stopFlash=false;
+	private float alpha=0.0f; // for opacity of camera flash the f at the end makes it so that it does not have to typecast
 
 	public ObjectView(int width, int height, ArrayList<GameObject> objects, CodeListener listener) {
 		super(width, height, objects, listener);
@@ -46,8 +54,45 @@ public abstract class ObjectView extends View {
 					(ImageObserver) this);
 
 		}
+		if (startFlash){
+			System.out.println("flash");
+			Graphics2D g2d = (Graphics2D) g;
+			//set the opacity
+			g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
+			g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);//blends the existing colors of the pixels
+
+			g2d.setColor(Color.RED);
+			g2d.fillRect(10, 10, 100, 100);
+			
+			alpha+=0.5f;
+			if(alpha>=1.0f){
+				alpha=1.0f;
+				startFlash=false;
+				stopFlash=true;
+			}	
+		}
+		if (stopFlash){
+			System.out.println("flashout");
+			Graphics2D g2d = (Graphics2D) g;
+			//set the opacity
+			g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
+			g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);//blends the existing colors of the pixels
+
+			g2d.setColor(Color.RED);
+			g2d.fillRect(10, 10, 100, 100);
+			
+			alpha-=0.05f;
+			if(alpha<=0.0f){
+				alpha=0.0f;
+				stopFlash=false;
+			}	
+		}
 		
-		timer.paint(g);
+		//timer.paint(g);
+	}
+
+	public void flash(){
+		startFlash=true;
 	}
 
 	// void update

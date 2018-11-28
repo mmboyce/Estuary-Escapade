@@ -108,6 +108,8 @@ public class Controller implements CodeListener {
 				view.questionAnswered(model.getGameObjects(),((EndModel)model).getScore());
 			}
 			break;
+		case FLASHSCREEN:
+			view.flash();	
 		}
 	}
 

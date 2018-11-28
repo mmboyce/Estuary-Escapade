@@ -107,5 +107,10 @@ public class ViewContainer {
 	public int getHeight() {
 		return height;
 	}
+	public void flash(){
+		if (view instanceof ResearchView){
+			view.flash();
+		}
+	}
 
 }
