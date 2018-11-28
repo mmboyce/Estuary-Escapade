@@ -26,7 +26,7 @@ public class Controller implements CodeListener {
 	private int height;
 
 	private final static String title = "Estuary Escapade";
-	private final int cycles = 1500; // This controlls how long the game runs for
+	private final int cycles = 750; // This controlls how long the game runs for
 	private final int timerDelay = 30; // The delay between every game state update
 
 	public Controller() {

@@ -1,5 +1,7 @@
 package view;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
@@ -24,10 +26,12 @@ public class ViewContainer {
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // This fullscreens the game
 		frame.setUndecorated(true); // This removes the window border
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		frame.pack();
 		// These get the size of the screen
-		width = frame.getContentPane().getWidth();
-		height = frame.getContentPane().getHeight();
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		width = screenSize.width;
+		height = screenSize.height;
+		System.out.println("Height: " + height + " Width: " + width);
 	}
 
 	public void initialize(CustomMouseListener m, CodeListener c, ArrayList<GameObject> o,int cycles) {
