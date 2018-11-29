@@ -77,6 +77,8 @@ public class ResearchModel extends Model implements GameStateModel {
 
 	@Override
 	public Model nextModel() {
+		goBack.setPopupHappened(false);
+		goBack.chooseTarget();
 		return this.goBack;
 	}
 

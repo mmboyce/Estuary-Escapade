@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.Timer;
 
+import gameobject.Animal;
 import model.EndModel;
 import model.GameStateModel;
 import model.Model;
@@ -27,7 +28,7 @@ public class Controller implements CodeListener {
 
 	private final static String title = "Estuary Escapade";
 	private final int cycles = 750; // This controlls how long the game runs for
-	private final int timerDelay = 30; // The delay between every game state update
+	private final int timerDelay = 40; // The delay between every game state update
 
 	public Controller() {
 		time = 0;
@@ -108,6 +109,14 @@ public class Controller implements CodeListener {
 				view.questionAnswered(model.getGameObjects(),((EndModel)model).getScore());
 			}
 			break;
+		case PAUSE:
+			t.stop();
+			System.out.println("Stopped Timer");
+			break;
+		case RESUME:
+			view.resetView();
+			t.restart();
+			break;
 		}
 	}
 
@@ -146,6 +155,14 @@ public class Controller implements CodeListener {
 
 	public void setUpdateAction(AbstractAction updateAction) {
 		this.updateAction = updateAction;
+	}
+
+	@Override
+	public void estuaryPopup(Animal a) {
+		this.codeEmitted(Code.PAUSE);
+		System.out.println("Emitted Pause");
+		view.estuaryPopup(a,this);
+		System.out.println("EstuaryPopup Done");
 	}
 
 }
