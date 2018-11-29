@@ -8,4 +8,6 @@ public interface CodeListener {
 	public void codeEmitted(Code c);
 
 	public void estuaryPopup(Animal a);
+
+	public void researchPopup(Animal a);
 }

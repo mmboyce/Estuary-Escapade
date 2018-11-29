@@ -6,6 +6,7 @@ import javax.swing.AbstractAction;
 import javax.swing.Timer;
 
 import gameobject.Animal;
+import gameobject.Question;
 import model.EndModel;
 import model.GameStateModel;
 import model.Model;
@@ -159,6 +160,12 @@ public class Controller implements CodeListener {
 	public void estuaryPopup(Animal a) {
 		this.codeEmitted(Code.PAUSE);
 		view.estuaryPopup(a, this);
+	}
+
+	@Override
+	public void researchPopup(Animal a) {
+		this.codeEmitted(Code.PAUSE);
+		view.researchPopup(a, this);
 	}
 
 }
