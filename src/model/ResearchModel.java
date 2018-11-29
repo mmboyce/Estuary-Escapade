@@ -6,7 +6,6 @@ import controller.Code;
 import controller.CodeListener;
 import gameobject.Animal;
 import gameobject.Camera;
-import gameobject.GameObject;
 
 public class ResearchModel extends Model implements GameStateModel {
 
@@ -148,14 +147,12 @@ public class ResearchModel extends Model implements GameStateModel {
 
 	@Override
 	public void update() {
-		// TODO We may need to move some of the positional logic here to move the animal
-		// across the screen once the user clicks on it
 	}
-	
+
 	public Camera getRuler() {
 		return ruler;
 	}
-	
+
 	public Camera getCamera() {
 		return camera;
 	}

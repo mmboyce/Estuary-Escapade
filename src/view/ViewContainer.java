@@ -12,7 +12,6 @@ import controller.CodeListener;
 import controller.CustomMouseListener;
 import gameobject.Animal;
 import gameobject.GameObject;
-import gameobject.GoldFish;
 import model.QuizModel;
 
 public class ViewContainer {
@@ -102,8 +101,8 @@ public class ViewContainer {
 	public void estuaryPopup(Animal a, CodeListener cl) {
 		pane = frame.getLayeredPane();
 		pane.removeAll();
-		EstuaryPopup pop = new EstuaryPopup(a,cl);
-		pop.setBounds(width/4, height/4, width/2, height/2);
+		EstuaryPopup pop = new EstuaryPopup(a, cl);
+		pop.setBounds(width / 4, height / 4, width / 2, height / 2);
 		pane.add(view, JLayeredPane.DEFAULT_LAYER);
 		pane.add(pop, JLayeredPane.POPUP_LAYER);
 		frame.revalidate();

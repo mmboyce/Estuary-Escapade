@@ -13,7 +13,6 @@ import model.QuizModel;
 import model.TitleModel;
 import view.ViewContainer;
 
-
 public class Controller implements CodeListener {
 
 	private Timer t;
@@ -41,7 +40,7 @@ public class Controller implements CodeListener {
 
 		model = new TitleModel(width, height, this);
 		mouseListener = new CustomMouseListener(model);
-		view.initialize(mouseListener, this, model.getGameObjects(),cycles);
+		view.initialize(mouseListener, this, model.getGameObjects(), cycles);
 
 		updateAction = new AbstractAction() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -61,7 +60,7 @@ public class Controller implements CodeListener {
 			}
 		};
 		t = new Timer(timerDelay, updateAction);
-		
+
 	}
 
 	/*
@@ -98,20 +97,19 @@ public class Controller implements CodeListener {
 		case STARTTIMER:
 			timerRunning = true;
 		case RIGHT:
-			if(model instanceof QuizModel && view.checkQuizView()) {
-				model = ((QuizModel)model).questionAnswered(true);
-				view.questionAnswered(model.getGameObjects(),((EndModel)model).getScore());
+			if (model instanceof QuizModel && view.checkQuizView()) {
+				model = ((QuizModel) model).questionAnswered(true);
+				view.questionAnswered(model.getGameObjects(), ((EndModel) model).getScore());
 			}
 			break;
 		case WRONG:
-			if(model instanceof QuizModel && view.checkQuizView()) {
-				model = ((QuizModel)model).questionAnswered(false);
-				view.questionAnswered(model.getGameObjects(),((EndModel)model).getScore());
+			if (model instanceof QuizModel && view.checkQuizView()) {
+				model = ((QuizModel) model).questionAnswered(false);
+				view.questionAnswered(model.getGameObjects(), ((EndModel) model).getScore());
 			}
 			break;
 		case PAUSE:
 			t.stop();
-			System.out.println("Stopped Timer");
 			break;
 		case RESUME:
 			view.resetView();
@@ -160,9 +158,7 @@ public class Controller implements CodeListener {
 	@Override
 	public void estuaryPopup(Animal a) {
 		this.codeEmitted(Code.PAUSE);
-		System.out.println("Emitted Pause");
-		view.estuaryPopup(a,this);
-		System.out.println("EstuaryPopup Done");
+		view.estuaryPopup(a, this);
 	}
 
 }
