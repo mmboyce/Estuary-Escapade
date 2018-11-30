@@ -11,6 +11,7 @@ import java.util.HashMap;
 import javax.imageio.ImageIO;
 
 import controller.CodeListener;
+import gameobject.Camera;
 import gameobject.GameObject;
 import gameobject.Question;
 
@@ -25,6 +26,8 @@ public abstract class ObjectView extends View {
 	TimerImage timer;
 	private boolean startFlash=false;
 	private boolean stopFlash=false;
+	private int xPosCamera = 0;
+	private int yPosCamera = 0;
 	private float alpha=0.0f; // for opacity of camera flash the f at the end makes it so that it does not have to typecast
 
 	public ObjectView(int width, int height, ArrayList<GameObject> objects, CodeListener listener) {
@@ -60,11 +63,11 @@ public abstract class ObjectView extends View {
 			System.out.println("flash");
 			Graphics2D g2d = (Graphics2D) g;
 			//set the opacity
-			g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
+			g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));//for the fade in and out
 			g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);//blends the existing colors of the pixels
 
 			g2d.setColor(Color.RED);
-			g2d.fillRect(10, 10, 100, 100);
+			g2d.fillRect(xPosCamera, yPosCamera, 100, 100);
 			if (startFlash){
 				alpha+=0.5f;
 			}
@@ -91,6 +94,12 @@ public abstract class ObjectView extends View {
 	 */
 	public void flash(){
 		startFlash=true;
+		for (GameObject object : this.map.keySet()) {
+			if(object instanceof Camera){
+				xPosCamera = object.getxPos();
+				yPosCamera = object.getyPos();
+			}
+		}
 	}
 
 	/**
