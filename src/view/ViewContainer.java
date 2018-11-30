@@ -48,6 +48,10 @@ public class ViewContainer {
 
 	public void next(ArrayList<GameObject> o) {
 		view = view.nextView(o);
+		if(view instanceof ObjectView) {
+			timerImage.setFrameSize(view.getWidth(), view.getHeight());
+			((ObjectView) view).passTimer(timerImage);
+		}
 		resetView();
 	}
 
@@ -68,12 +72,6 @@ public class ViewContainer {
 		// wrong
 		frame.getContentPane().removeAll();
 		frame.add(view);
-		if(view instanceof ObjectView){//add a physical representation of the timer
-			int frameWidth = view.getWidth();
-			int frameHeight = view.getHeight();
-			timerImage.setFrameSize(frameWidth, frameHeight);
-			frame.add(timerImage);										//only if in Estuary/Research view
-		}
 		frame.validate();
 		frame.repaint();
 	}
@@ -85,9 +83,6 @@ public class ViewContainer {
 
 	public void repaint(int time) {
 		timerImage.update(time);
-		if(view instanceof ObjectView) {
-			((ObjectView) view).passTimer(timerImage);
-		}
 		frame.repaint();
 	}
 
