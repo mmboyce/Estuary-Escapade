@@ -28,6 +28,8 @@ public abstract class ObjectView extends View {
 	private boolean stopFlash=false;
 	private int xPosCamera = 0;
 	private int yPosCamera = 0;
+	private int expandX = 0;
+	private int expandY = 0;
 	private float alpha=0.0f; // for opacity of camera flash the f at the end makes it so that it does not have to typecast
 
 	public ObjectView(int width, int height, ArrayList<GameObject> objects, CodeListener listener) {
@@ -67,12 +69,16 @@ public abstract class ObjectView extends View {
 			g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);//blends the existing colors of the pixels
 
 			g2d.setColor(Color.RED);
-			g2d.fillRect(xPosCamera, yPosCamera, 100, 100);
+			g2d.fillRect(xPosCamera-expandX, yPosCamera-expandY, 2*expandX, 2*expandY);
 			if (startFlash){
-				alpha+=0.5f;
+				alpha+=0.05f;
+				expandX+=getWidth()/10;
+				expandY+=getHeight()/10;
 			}
 			else if (stopFlash){
 				alpha-=0.05f;
+				expandX+=getWidth()/10;
+				expandY+=getHeight()/10;
 			}
 			
 			if(alpha>=1.0f){
