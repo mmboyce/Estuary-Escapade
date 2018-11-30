@@ -68,15 +68,15 @@ public abstract class ObjectView extends View {
 			g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));//for the fade in and out
 			g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);//blends the existing colors of the pixels
 
-			g2d.setColor(Color.RED);
-			g2d.fillRect(xPosCamera-expandX, yPosCamera-expandY, 2*expandX, 2*expandY);
+			g2d.setColor(Color.WHITE);
+			g2d.fillRect(xPosCamera-expandX, yPosCamera-expandY, 3*expandX, 3*expandY);
 			if (startFlash){
-				alpha+=0.05f;
-				expandX+=getWidth()/10;
-				expandY+=getHeight()/10;
+				alpha+=0.5f;
+				expandX+=getWidth()/5;
+				expandY+=getHeight()/5;
 			}
 			else if (stopFlash){
-				alpha-=0.05f;
+				alpha-=0.2f;
 				expandX+=getWidth()/10;
 				expandY+=getHeight()/10;
 			}
@@ -91,7 +91,7 @@ public abstract class ObjectView extends View {
 				stopFlash=false;
 			}		
 		}
-		//timer.paint(g);
+		timer.paint(g);
 	}
 	/**
 	 * void flash
