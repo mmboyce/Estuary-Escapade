@@ -54,10 +54,10 @@ public abstract class ObjectView extends View {
 		g.drawImage(createImage("images/underwater.png"), 0, 0, getWidth(), getHeight(), (ImageObserver) this);
 		
 		for (GameObject object : this.map.keySet()) {
-			
-			g.drawImage(createImage(object.getImagePath()), object.getxPos(), object.getyPos(), object.getxSize(), object.getySize(),
-					(ImageObserver) this);
-
+			if(object.isVisible()){
+				g.drawImage(createImage(object.getImagePath()), object.getxPos(), object.getyPos(), object.getxSize(), object.getySize(),
+						(ImageObserver) this);
+			}
 		}
 		if (startFlash||stopFlash){
 			System.out.println("flash");
