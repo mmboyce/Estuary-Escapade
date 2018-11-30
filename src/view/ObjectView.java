@@ -40,9 +40,11 @@ public abstract class ObjectView extends View {
 		}
 	}
 
-	// void paint
-	// Paints the updated game objects to the screen
-	// params: Graphics g: the graphics object used for the drawImage method
+	/**  
+	 * void paint
+	 * Paints the updated game objects to the screen
+	 * @param g the graphics object used for the drawImage method
+	 */
 
 	@Override
 	public void paint(Graphics g) {
@@ -80,40 +82,31 @@ public abstract class ObjectView extends View {
 				stopFlash=false;
 			}		
 		}
-		// if (stopFlash){
-		// 	System.out.println("flashout");
-		// 	Graphics2D g2d = (Graphics2D) g;
-		// 	//set the opacity
-		// 	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
-		// 	g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);//blends the existing colors of the pixels
-
-		// 	g2d.setColor(Color.RED);
-		// 	g2d.fillRect(10, 10, 100, 100);
-			
-			
-			
-		// }
-		
 		//timer.paint(g);
 	}
-
+	/**
+	 * void flash
+	 * Sets the startFlash boolean to true and that is used to paint a flash animation
+	 * @return void
+	 */
 	public void flash(){
 		startFlash=true;
 	}
 
-	// void update
-	// Updates the game objects array
-	// params: ArrayList<GameObject> objects: an arraylist of the game objects with
-	// updated attributes
+	/**
+	 * void update
+	 * Updates the game objects array
+	 * @param objects an arraylist of the game objects with updated attributes
+	 */ 
 
 	public void update(ArrayList<GameObject> objects) {
 		setObjects(objects); // Update the objects attribute
 	}
 
-	// BufferedImage createImage
-	// Reads an image from the file system and returns it as a BufferedImage, or an
-	// IOException if not found
-	// params: String imagePath: the path to the image taken from the game object
+	/** BufferedImage createImage 
+	 * Reads an image from the file system and returns it as a BufferedImage, or an IOException if not found
+	 * @param imagePath: the path to the image taken from the game object
+	 */ 
 
 	private BufferedImage createImage(String imagePath) {
 		BufferedImage bufferedImage;
