@@ -54,7 +54,7 @@ public abstract class ObjectView extends View {
 					(ImageObserver) this);
 
 		}
-		if (startFlash){
+		if (startFlash||stopFlash){
 			System.out.println("flash");
 			Graphics2D g2d = (Graphics2D) g;
 			//set the opacity
@@ -63,30 +63,36 @@ public abstract class ObjectView extends View {
 
 			g2d.setColor(Color.RED);
 			g2d.fillRect(10, 10, 100, 100);
+			if (startFlash){
+				alpha+=0.5f;
+			}
+			else if (stopFlash){
+				alpha-=0.05f;
+			}
 			
-			alpha+=0.5f;
 			if(alpha>=1.0f){
-				alpha=1.0f;
-				startFlash=false;
-				stopFlash=true;
-			}	
-		}
-		if (stopFlash){
-			System.out.println("flashout");
-			Graphics2D g2d = (Graphics2D) g;
-			//set the opacity
-			g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
-			g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);//blends the existing colors of the pixels
-
-			g2d.setColor(Color.RED);
-			g2d.fillRect(10, 10, 100, 100);
-			
-			alpha-=0.05f;
-			if(alpha<=0.0f){
+				alpha = 1.0f;
+				startFlash = false;
+				stopFlash = true;
+			}
+			else if(alpha<=0.0f){
 				alpha=0.0f;
 				stopFlash=false;
-			}	
+			}		
 		}
+		// if (stopFlash){
+		// 	System.out.println("flashout");
+		// 	Graphics2D g2d = (Graphics2D) g;
+		// 	//set the opacity
+		// 	g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
+		// 	g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);//blends the existing colors of the pixels
+
+		// 	g2d.setColor(Color.RED);
+		// 	g2d.fillRect(10, 10, 100, 100);
+			
+			
+			
+		// }
 		
 		//timer.paint(g);
 	}
