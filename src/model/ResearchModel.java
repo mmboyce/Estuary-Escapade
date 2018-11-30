@@ -16,6 +16,8 @@ public class ResearchModel extends Model implements GameStateModel {
 	private boolean isPhotographed = false;
 	// Used to determine if the user is holding an animal or nots
 	private boolean isHolding = false;
+	private boolean isHoldingCamera=false;
+	private boolean isHoldingRuler=false;
 
 	// Different research tools
 	// TODO decide what functionality we should have from camera and if it should be
@@ -85,43 +87,54 @@ public class ResearchModel extends Model implements GameStateModel {
 		int mouseX = e.getX();
 		int mouseY = e.getY();
 
-		if (isHolding) {
-			if (camera.clickedOn(mouseX, mouseY)) {
-				getListener().codeEmitted(Code.FLASHSCREEN);
-				this.caught.setxPos(right);
-				this.caught.setyPos(top);
+		if (isHoldingCamera||isHoldingRuler) {
+			if (caught.clickedOn(mouseX, mouseY)) {
+				// this.caught.setxPos(right);
+				// this.caught.setyPos(top);
+				if(isHoldingCamera){
+					getListener().codeEmitted(Code.FLASHSCREEN);
+	
+					this.camera.setVisible(false);
+					this.setPhotographed(true);
+					this.setCameraHolding(false);
 
-				this.camera.setVisible(false);
-				this.setPhotographed(true);
-				this.setHolding(false);
+					// if (this.isMeasured() && this.isPhotographed()) {
+					// 	doneResearching();
+					// }
+				} 
+				else if (isHoldingRuler) {
 
-				if (this.isMeasured() && this.isPhotographed()) {
-					doneResearching();
+					this.ruler.setVisible(false);
+					this.setMeasured(true);
+					this.setRulerHolding(false);
+
+					// if (this.isMeasured() && this.isPhotographed()) {
+					// 	doneResearching();
+					// }
 				}
-
-			} else if (ruler.clickedOn(mouseX, mouseY)) {
-				this.caught.setxPos(right);
-				this.caught.setyPos(top);
-
-				this.ruler.setVisible(false);
-				this.setMeasured(true);
-				this.setHolding(false);
-
 				if (this.isMeasured() && this.isPhotographed()) {
 					doneResearching();
 				}
 			}
-		} else {
-			if (caught.clickedOn(mouseX, mouseY)) {
-				setHolding(true);
+		} 
+		else {
+			if (camera.clickedOn(mouseX, mouseY)) {
+				setCameraHolding(true);
+			}
+			else if (ruler.clickedOn(mouseX, mouseY)) {
+				setRulerHolding(true);
 			}
 		}
 	}
 
 	public void mouseMoved(int mouseX, int mouseY) {
-		if (isHolding) {
-			this.caught.setxPos(mouseX - caught.getxSize() / 2);
-			this.caught.setyPos(mouseY - caught.getySize() / 2);
+		if (isHoldingCamera) {
+			this.camera.setxPos(mouseX - camera.getxSize() / 2);
+			this.camera.setyPos(mouseY - camera.getySize() / 2);
+		}
+		if (isHoldingRuler) {
+			this.ruler.setxPos(mouseX - ruler.getxSize() / 2);
+			this.ruler.setyPos(mouseY - ruler.getySize() / 2);
 		}
 	}
 
@@ -131,8 +144,11 @@ public class ResearchModel extends Model implements GameStateModel {
 		getListener().codeEmitted(Code.NEXT);
 	}
 
-	public void setHolding(boolean value) {
-		this.isHolding = value;
+	public void setCameraHolding(boolean value) {
+		this.isHoldingCamera = value;
+	}
+	public void setRulerHolding(boolean value) {
+		this.isHoldingRuler = value;
 	}
 
 	public boolean getHolding() {

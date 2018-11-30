@@ -51,7 +51,7 @@ public abstract class Animal extends GameObject {
 		 */
 	}
 
-	/*
+	/** 
 	 * void updatePosition
 	 * 
 	 * this is used to advance through our pathfinding.
