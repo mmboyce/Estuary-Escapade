@@ -26,10 +26,10 @@ public abstract class ObjectView extends View {
 	TimerImage timer;
 	private boolean startFlash=false;
 	private boolean stopFlash=false;
-	private int xPosCamera = 0;
-	private int yPosCamera = 0;
-	private int expandX = 0;
-	private int expandY = 0;
+	private int xPosCamera = 0; // Where you clicked the camera at x-value
+	private int yPosCamera = 0; //Where you clicked the camera at y-value
+	private int expandX = 0; // distance to expand by in x direction
+	private int expandY = 0; // distance to expand by in y direction
 	private float alpha=0.0f; // for opacity of camera flash the f at the end makes it so that it does not have to typecast
 
 	public ObjectView(int width, int height, ArrayList<GameObject> objects, CodeListener listener) {
@@ -48,6 +48,7 @@ public abstract class ObjectView extends View {
 	/**  
 	 * void paint
 	 * Paints the updated game objects to the screen
+	 * and the effects from clicking with the tools
 	 * @param g the graphics object used for the drawImage method
 	 */
 

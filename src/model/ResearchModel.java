@@ -94,24 +94,16 @@ public class ResearchModel extends Model implements GameStateModel {
 				// this.caught.setyPos(top);
 				if(isHoldingCamera){
 					getListener().codeEmitted(Code.FLASHSCREEN);
-	
+					camera.photograph(caught); //Gets the real image of animal and returns a bufferedimage
 					this.camera.setVisible(false);
 					this.setPhotographed(true);
 					this.setCameraHolding(false);
-
-					// if (this.isMeasured() && this.isPhotographed()) {
-					// 	doneResearching();
-					// }
 				} 
 				else if (isHoldingRuler) {
-
+					ruler.measured(caught); //Gets the measurement of animal and returns a double
 					this.ruler.setVisible(false);
 					this.setMeasured(true);
 					this.setRulerHolding(false);
-
-					// if (this.isMeasured() && this.isPhotographed()) {
-					// 	doneResearching();
-					// }
 				}
 				if (this.isMeasured() && this.isPhotographed()) {
 					doneResearching();

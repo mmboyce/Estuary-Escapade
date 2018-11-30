@@ -12,6 +12,8 @@ public class PufferFish extends Animal {
 				"What does this fish do when threatened?", "Blow up like a balloon",
 				"Swim away", "Squirt ink","Bite"));
 		this.setPathLength(xSize*20);
+		this.setRealPic("Real puffer fish image");
+		this.setAvgSize(2);
 	}
 
 	@Override
