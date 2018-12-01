@@ -22,7 +22,12 @@ public class PurpleFish extends Animal{
 			this.pathCount = 0;
 			this.setxPos(this.startingPos);
 			
-		}this.setxPos(this.getxPos() - this.getSpeed());
+		}if(this.pathCount % 8 == 0 || this.pathCount % 8 == 1) {
+			this.setyPos(this.getyPos() + 2);
+		}else if (this.pathCount % 8 == 4 || this.pathCount % 8 == 5) {
+			this.setyPos(this.getyPos() - 2);
+		}
+		this.setxPos(this.getxPos() - this.getSpeed());
 		this.pathCount++;
 	}
 

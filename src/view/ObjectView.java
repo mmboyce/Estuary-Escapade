@@ -39,14 +39,34 @@ public abstract class ObjectView extends View {
 	@Override
 	public void paint(Graphics g) {
 		g.drawImage(createImage("images/underwater.png"), 0, 0, getWidth(), getHeight(), (ImageObserver) this);
+		// Start of experimental code
+		int xpos = 0;
+		int ypos = getHeight()*9/10;
+		// Renders in plants on the sand
+		BufferedImage weed = createImage("images/GreenWeed.png");
+		int imgHeight = getHeight()/5;
+		g.drawImage(weed, getWidth()/4, ypos + (ypos / 20) - imgHeight, getWidth() / 10, imgHeight,
+				(ImageObserver) this);
+		g.drawImage(weed, getWidth()/2, ypos + (ypos / 20) - imgHeight, getWidth() / 10, imgHeight,
+				(ImageObserver) this);
+		g.drawImage(weed, getWidth()/4*3, ypos + (ypos / 20) - imgHeight, getWidth() / 10, imgHeight,
+				(ImageObserver) this);
+		// Renders in sand at the bottom of the screen
+		BufferedImage sand = createImage("images/SandBlock.png");
 		
+		do {
+			g.drawImage(sand, xpos, ypos, getHeight() / 10, getHeight() / 10, (ImageObserver) this);
+			xpos += getHeight() / 10;
+		} while (xpos < getWidth());
+
+		// End of experimental code
 		for (GameObject object : this.map.keySet()) {
-			
-			g.drawImage(createImage(object.getImagePath()), object.getxPos(), object.getyPos(), object.getxSize(), object.getySize(),
-					(ImageObserver) this);
+
+			g.drawImage(createImage(object.getImagePath()), object.getxPos(), object.getyPos(), object.getxSize(),
+					object.getySize(), (ImageObserver) this);
 
 		}
-		
+
 		timer.paint(g);
 	}
 
@@ -75,7 +95,7 @@ public abstract class ObjectView extends View {
 		}
 		return null;
 	}
-	
+
 	public void passTimer(TimerImage t) {
 		timer = t;
 	}
