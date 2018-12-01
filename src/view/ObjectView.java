@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.imageio.ImageIO;
+import javax.swing.JLayeredPane;
 
 import controller.CodeListener;
 import gameobject.GameObject;
@@ -18,6 +19,7 @@ public abstract class ObjectView extends View {
 
 	HashMap<GameObject, BufferedImage> map = new HashMap<>();
 	TimerImage timer;
+	BufferedImage background;
 
 	public ObjectView(int width, int height, ArrayList<GameObject> objects, CodeListener listener) {
 		super(width, height, objects, listener);
@@ -30,6 +32,7 @@ public abstract class ObjectView extends View {
 			// pair
 			map.put(currentObj, img);
 		}
+		background = createImage("images/underwater.png");
 	}
 
 	// void paint
@@ -38,16 +41,17 @@ public abstract class ObjectView extends View {
 
 	@Override
 	public void paint(Graphics g) {
-		g.drawImage(createImage("images/underwater.png"), 0, 0, getWidth(), getHeight(), (ImageObserver) this);
-		
+		super.paint(g);
+		g.drawImage(background, 0, 0, getWidth(), getHeight(), (ImageObserver) this);
 		for (GameObject object : this.map.keySet()) {
-			
-			g.drawImage(createImage(object.getImagePath()), object.getxPos(), object.getyPos(), object.getxSize(), object.getySize(),
-					(ImageObserver) this);
 
+			g.drawImage(createImage(object.getImagePath()), object.getxPos(), object.getyPos(), object.getxSize(),
+					object.getySize(), (ImageObserver) this);
 		}
-		
-		timer.paint(g);
+		try {
+			timer.paint(g);
+		}
+		catch (Exception e) {};
 	}
 
 	// void update
@@ -63,8 +67,10 @@ public abstract class ObjectView extends View {
 	// Reads an image from the file system and returns it as a BufferedImage, or an
 	// IOException if not found
 	// params: String imagePath: the path to the image taken from the game object
+	// this was made static because it does not rely on this object being instanciated
+	// visibility was set to package so that EstuaryPopup could access it
 
-	private BufferedImage createImage(String imagePath) {
+	static BufferedImage createImage(String imagePath) {
 		BufferedImage bufferedImage;
 		try {
 			// Try to read the file
@@ -75,7 +81,7 @@ public abstract class ObjectView extends View {
 		}
 		return null;
 	}
-	
+
 	public void passTimer(TimerImage t) {
 		timer = t;
 	}

@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,19 +13,22 @@ import controller.CodeListener;
 
 public class TitleNavigation extends JPanel implements ActionListener {
 
-	JButton start;
-	JButton exit;
-	CodeListener codeListener;
+	private JButton start;
+	private JButton exit;
+	private CodeListener codeListener;
+	private final Font font = new Font("Arial", Font.PLAIN, 40);
 
 	public TitleNavigation(CodeListener cl) {
 		codeListener = cl;
-
+		
 		// This moves you to the EstuaryModel
 		start = new JButton("Start");
+		start.setFont(font);
 		start.addActionListener(this);
 
 		// This exits the game
 		exit = new JButton("Exit");
+		exit.setFont(font);
 		exit.addActionListener(this);
 
 		setLayout(new FlowLayout());
