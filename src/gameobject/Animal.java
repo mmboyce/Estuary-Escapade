@@ -26,7 +26,7 @@ public abstract class Animal extends GameObject {
 
 	//Real information on animal real pic from Nat geo
 	//and Aveage size 
-	private String realPic;
+	private String realPic = "";
 	private double avgSize=0;
 
 	public Animal(int xPos, int yPos, int depth, int xSize, int ySize) {
