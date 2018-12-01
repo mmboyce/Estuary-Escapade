@@ -6,14 +6,17 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
 
 import controller.CodeListener;
 import controller.CustomMouseListener;
+import gameobject.Animal;
 import gameobject.GameObject;
 import model.QuizModel;
 
 public class ViewContainer {
 	private JFrame frame;
+	private JLayeredPane pane;
 	private View view;
 	private TimerImage timerImage;
 	private int width;
@@ -26,24 +29,24 @@ public class ViewContainer {
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // This fullscreens the game
 		frame.setUndecorated(true); // This removes the window border
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.pack();
+
+		pane = frame.getLayeredPane();
 		// These get the size of the screen
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		width = screenSize.width;
 		height = screenSize.height;
-		System.out.println("Height: " + height + " Width: " + width);
 	}
 
-	public void initialize(CustomMouseListener m, CodeListener c, ArrayList<GameObject> o,int cycles) {
+	public void initialize(CustomMouseListener m, CodeListener c, ArrayList<GameObject> o, int cycles) {
 		/*
 		 * This adds the MouseListener to the frame and initializes the view, this has
 		 * to happen after the constructor because the model needs to be set up first
 		 * and that requires the size of the screen
 		 */
-		frame.addMouseListener(m);
-		frame.addMouseMotionListener(m);
+		pane.addMouseListener(m);
+		pane.addMouseMotionListener(m);
 		view = new TitleView(title, width, height, c, o);
-		timerImage = new TimerImage(cycles); //Adds timer image
+		timerImage = new TimerImage(cycles); // Adds timer image
 	}
 
 	public void next(ArrayList<GameObject> o) {
@@ -57,35 +60,34 @@ public class ViewContainer {
 		view = ((ObjectView) view).timeUp(model.getQuestion());
 		resetView();
 	}
-	
+
 	public void questionAnswered(ArrayList<GameObject> o, int score) {
-		view = ((QuizView)view).questionAnswered(o, score);
+		view = ((QuizView) view).questionAnswered(o, score);
 		resetView();
 	}
 
-	private void resetView() {
+	public void resetView() {
 		// If this is not done the JFrame will not display properly and things will look
 		// wrong
-		frame.getContentPane().removeAll();
-		frame.add(view);
-		if(view instanceof ObjectView){//add a physical representation of the timer
+		pane.removeAll();
+		pane.add(view, JLayeredPane.DEFAULT_LAYER);
+		if (view instanceof ObjectView) {// add a physical representation of the timer
 			int frameWidth = view.getWidth();
 			int frameHeight = view.getHeight();
 			timerImage.setFrameSize(frameWidth, frameHeight);
-			frame.add(timerImage);										//only if in Estuary/Research view
 		}
-		frame.validate();
+		frame.revalidate();
 		frame.repaint();
 	}
 
 	public void start() {
-		frame.add(view);
+		pane.add(view, JLayeredPane.DEFAULT_LAYER);
 		frame.setVisible(true);
 	}
 
 	public void repaint(int time) {
 		timerImage.update(time);
-		if(view instanceof ObjectView) {
+		if (view instanceof ObjectView) {
 			((ObjectView) view).passTimer(timerImage);
 		}
 		frame.repaint();
@@ -96,10 +98,26 @@ public class ViewContainer {
 		frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
 	}
 
+	public void estuaryPopup(Animal a, CodeListener cl) {
+		EstuaryPopup pop = new EstuaryPopup(a, cl);
+		pop.setBounds(width / 4, height / 4, width / 2, height / 2);
+		pane.add(pop, JLayeredPane.POPUP_LAYER);
+		frame.revalidate();
+		frame.repaint();
+	}
+	
+	public void researchPopup(Animal a, CodeListener cl) {
+		ResearchPopup pop = new ResearchPopup(a, cl);
+		pop.setBounds(width / 4, height / 4, width / 2, height / 2);
+		pane.add(pop, JLayeredPane.POPUP_LAYER);
+		frame.revalidate();
+		frame.repaint();
+	}
+
 	public boolean checkObjectView() {
 		return (view instanceof ObjectView);
 	}
-	
+
 	public boolean checkQuizView() {
 		return (view instanceof QuizView);
 	}

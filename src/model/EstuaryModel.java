@@ -3,6 +3,7 @@ package model;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import controller.Code;
 import controller.CodeListener;
@@ -23,13 +24,21 @@ public class EstuaryModel extends Model implements GameStateModel {
 	List<Animal> researched;
 	// The animal the user is currently researching
 	Animal target;
+	private boolean popupHappened;
 	private final int spriteSize = this.getFrameHeight()/10;
 
 	public EstuaryModel(int frameWidth, int frameHeight, CodeListener listener) {
 		super(frameWidth, frameHeight, listener);
+		popupHappened = false;
 		listener.codeEmitted(Code.STARTTIMER);
 		researched = new ArrayList<Animal>();
 		instantiateFish();
+	    chooseTarget();
+	}
+	
+	public void chooseTarget() {
+		Random rand = new Random();
+		target = (Animal) super.getGameObjects().get(rand.nextInt(super.getGameObjects().size()));
 	}
 
 	/*
@@ -48,24 +57,15 @@ public class EstuaryModel extends Model implements GameStateModel {
 
 		
 		// Adds all the fish that are in the estuary
-		target = new GoldFish(this.getFrameWidth()/8, this.getFrameHeight()/6, 0, spriteSize, spriteSize);
-		addGameObject(target);
-		target = new PufferFish(this.getFrameWidth()/3,this.getFrameHeight()/3,0,spriteSize,spriteSize);
-		addGameObject(target);
-		target = new Crab(this.getFrameWidth()/8,this.getFrameHeight()*5/6,0,spriteSize,spriteSize);
-		addGameObject(target);
-		target = new ZappyBoi(this.getFrameWidth()/4,this.getFrameHeight()*4/6,0,spriteSize,spriteSize);
-		addGameObject(target);
-		target = new GreenFish(this.getFrameWidth()/2,this.getFrameHeight()/4,0,spriteSize,spriteSize);
-		addGameObject(target);
-		target = new BlueFish(this.getFrameWidth()/6,this.getFrameHeight()/5, 0, spriteSize, spriteSize);
-		addGameObject(target);
-		target = new RedFish(this.getFrameWidth()*5/6, this.getFrameHeight()/2, 0, spriteSize, spriteSize);
-		addGameObject(target);
-		target = new PurpleFish(this.getFrameWidth()*6/5, this.getFrameHeight()/3, 0, spriteSize, spriteSize);
-		addGameObject(target);
-		
-		
+		addGameObject(new GoldFish(this.getFrameWidth()/8, this.getFrameHeight()/6, 0, spriteSize, spriteSize));
+		addGameObject(new PufferFish(this.getFrameWidth()/3,this.getFrameHeight()/3,0,spriteSize,spriteSize));
+		addGameObject(new Crab(this.getFrameWidth()/8,this.getFrameHeight()*5/6,0,spriteSize,spriteSize));
+		addGameObject(new ZappyBoi(this.getFrameWidth()/4,this.getFrameHeight()*4/6,0,spriteSize,spriteSize));
+		addGameObject(new GreenFish(this.getFrameWidth()/2,this.getFrameHeight()/4,0,spriteSize,spriteSize));
+		addGameObject(new BlueFish(this.getFrameWidth() / 6,this.getFrameHeight()/5, 0, spriteSize, spriteSize));
+		addGameObject(new RedFish(this.getFrameWidth()*5/6, this.getFrameHeight()/2, 0, spriteSize, spriteSize));
+		addGameObject(new PurpleFish(this.getFrameWidth()*6/5, this.getFrameHeight()/3, 0, spriteSize, spriteSize));
+
 	}
 
 	/*
@@ -117,18 +117,14 @@ public class EstuaryModel extends Model implements GameStateModel {
 			if (object instanceof Animal) {
 				if (object.clickedOn(mouseX, mouseY)) {
 					clicked = (Animal) object;
-					System.out.println(((Animal) object).getName());
-					//System.out.println("Clicked on the fish");
 					break;
 				}
 			}
 		}
 
-		if (clicked != null) {
-			System.out.println("here");
+		if (clicked == target) {
 			animalCaught(clicked);
 		}
-		//System.out.println("Mouse Clicked at x: " + mouseX + " y: " + mouseY); Print used for debugging
 	}
 
 	/*
@@ -195,7 +191,14 @@ public class EstuaryModel extends Model implements GameStateModel {
 	 * Updates all data in the model such as fish pathfinding
 	 */
 	public void update() {
-		// TODO decide if this is too redundant
+		if(!popupHappened) {
+			super.getListener().estuaryPopup(target);
+			popupHappened = true;
+		}
 		updatePositions();
+	}
+	
+	public void setPopupHappened(boolean b) {
+		popupHappened = b;
 	}
 }
