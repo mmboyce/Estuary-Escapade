@@ -5,13 +5,14 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.Timer;
 
+import gameobject.Animal;
+import gameobject.Question;
 import model.EndModel;
 import model.GameStateModel;
 import model.Model;
 import model.QuizModel;
 import model.TitleModel;
 import view.ViewContainer;
-
 
 public class Controller implements CodeListener {
 
@@ -27,7 +28,7 @@ public class Controller implements CodeListener {
 
 	private final static String title = "Estuary Escapade";
 	private final int cycles = 750; // This controlls how long the game runs for
-	private final int timerDelay = 30; // The delay between every game state update
+	private final int timerDelay = 40; // The delay between every game state update
 
 	public Controller() {
 		time = 0;
@@ -40,7 +41,7 @@ public class Controller implements CodeListener {
 
 		model = new TitleModel(width, height, this);
 		mouseListener = new CustomMouseListener(model);
-		view.initialize(mouseListener, this, model.getGameObjects(),cycles);
+		view.initialize(mouseListener, this, model.getGameObjects(), cycles);
 
 		updateAction = new AbstractAction() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -60,7 +61,7 @@ public class Controller implements CodeListener {
 			}
 		};
 		t = new Timer(timerDelay, updateAction);
-		
+
 	}
 
 	/*
@@ -97,19 +98,27 @@ public class Controller implements CodeListener {
 		case STARTTIMER:
 			timerRunning = true;
 		case RIGHT:
-			if(model instanceof QuizModel && view.checkQuizView()) {
-				model = ((QuizModel)model).questionAnswered(true);
-				view.questionAnswered(model.getGameObjects(),((EndModel)model).getScore());
+			if (model instanceof QuizModel && view.checkQuizView()) {
+				model = ((QuizModel) model).questionAnswered(true);
+				view.questionAnswered(model.getGameObjects(), ((EndModel) model).getScore());
 			}
 			break;
 		case WRONG:
-			if(model instanceof QuizModel && view.checkQuizView()) {
-				model = ((QuizModel)model).questionAnswered(false);
-				view.questionAnswered(model.getGameObjects(),((EndModel)model).getScore());
+			if (model instanceof QuizModel && view.checkQuizView()) {
+				model = ((QuizModel) model).questionAnswered(false);
+				view.questionAnswered(model.getGameObjects(), ((EndModel) model).getScore());
 			}
 			break;
 		case FLASHSCREEN:
-			view.flash();	
+			view.flash();
+			break;	
+		case PAUSE:
+			t.stop();
+			break;
+		case RESUME:
+			view.resetView();
+			t.restart();
+			break;
 		}
 	}
 
@@ -148,6 +157,18 @@ public class Controller implements CodeListener {
 
 	public void setUpdateAction(AbstractAction updateAction) {
 		this.updateAction = updateAction;
+	}
+
+	@Override
+	public void estuaryPopup(Animal a) {
+		this.codeEmitted(Code.PAUSE);
+		view.estuaryPopup(a, this);
+	}
+
+	@Override
+	public void researchPopup(Animal a) {
+		this.codeEmitted(Code.PAUSE);
+		view.researchPopup(a, this);
 	}
 
 }

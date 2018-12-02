@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.imageio.ImageIO;
+import javax.swing.JLayeredPane;
 
 import controller.CodeListener;
 import gameobject.Camera;
@@ -31,6 +32,7 @@ public abstract class ObjectView extends View {
 	private int expandX = 0; // distance to expand by in x direction
 	private int expandY = 0; // distance to expand by in y direction
 	private float alpha=0.0f; // for opacity of camera flash the f at the end makes it so that it does not have to typecast
+	BufferedImage background;
 
 	public ObjectView(int width, int height, ArrayList<GameObject> objects, CodeListener listener) {
 		super(width, height, objects, listener);
@@ -43,6 +45,7 @@ public abstract class ObjectView extends View {
 			// pair
 			map.put(currentObj, img);
 		}
+		background = createImage("images/underwater.png");
 	}
 
 	/**  
@@ -121,10 +124,10 @@ public abstract class ObjectView extends View {
 
 	/** BufferedImage createImage 
 	 * Reads an image from the file system and returns it as a BufferedImage, or an IOException if not found
-	 * @param imagePath: the path to the image taken from the game object
+	 * @param imagePath: the path to the image taken from the game object this was made static because it does not rely on this object being instanciated visibility was set to package so that EstuaryPopup could access it
 	 */ 
 
-	private BufferedImage createImage(String imagePath) {
+	static BufferedImage createImage(String imagePath) {
 		BufferedImage bufferedImage;
 		try {
 			// Try to read the file
@@ -135,7 +138,7 @@ public abstract class ObjectView extends View {
 		}
 		return null;
 	}
-	
+
 	public void passTimer(TimerImage t) {
 		timer = t;
 	}

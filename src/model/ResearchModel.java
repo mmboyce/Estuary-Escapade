@@ -15,6 +15,7 @@ public class ResearchModel extends Model implements GameStateModel {
 	private boolean isWeighed = false;
 	private boolean isMeasured = false;
 	private boolean isPhotographed = false;
+	private boolean popupClosed;
 	// Used to determine if the user is holding an animal or nots
 	private boolean isHolding = false;
 	private boolean isHoldingCamera=false;
@@ -63,6 +64,7 @@ public class ResearchModel extends Model implements GameStateModel {
 	public ResearchModel(int frameWidth, int frameHeight, Animal animalCaught, EstuaryModel goBack,
 			CodeListener listener) {
 		super(frameWidth, frameHeight, listener);
+		popupClosed = false;
 		this.caught = animalCaught;
 		this.goBack = goBack;
 		instantiateObjects();
@@ -80,6 +82,8 @@ public class ResearchModel extends Model implements GameStateModel {
 
 	@Override
 	public Model nextModel() {
+		goBack.setPopupHappened(false);
+		goBack.chooseTarget();
 		return this.goBack;
 	}
 
@@ -134,7 +138,8 @@ public class ResearchModel extends Model implements GameStateModel {
 	private void doneResearching() {
 		goBack.researched.add(caught);
 		goBack.getGameObjects().remove(caught);
-		getListener().codeEmitted(Code.NEXT);
+		super.getListener().researchPopup(caught);
+		popupClosed = true;
 	}
 
 	public void setCameraHolding(boolean value) {
@@ -156,14 +161,15 @@ public class ResearchModel extends Model implements GameStateModel {
 
 	@Override
 	public void update() {
-		// TODO We may need to move some of the positional logic here to move the animal
-		// across the screen once the user clicks on it
+		if(popupClosed) {
+			super.getListener().codeEmitted(Code.NEXT);
+		}
 	}
 	
 	public Ruler getRuler() {
 		return ruler;
 	}
-	
+
 	public Camera getCamera() {
 		return camera;
 	}
