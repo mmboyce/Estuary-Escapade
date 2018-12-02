@@ -18,6 +18,7 @@ public class TitleView extends View {
 		setLayout(new BorderLayout());
 		add(titleArt, BorderLayout.CENTER);
 		add(nav, BorderLayout.SOUTH);
+		this.validate();
 		setVisible(true);
 	}
 

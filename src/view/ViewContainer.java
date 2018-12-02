@@ -77,11 +77,13 @@ public class ViewContainer {
 			timerImage.setFrameSize(frameWidth, frameHeight);
 		}
 		frame.revalidate();
+		frame.pack();
 		frame.repaint();
 	}
 
 	public void start() {
 		pane.add(view, JLayeredPane.DEFAULT_LAYER);
+		frame.pack();
 		frame.setVisible(true);
 	}
 
@@ -103,6 +105,7 @@ public class ViewContainer {
 		pop.setBounds(width / 4, height / 4, width / 2, height / 2);
 		pane.add(pop, JLayeredPane.POPUP_LAYER);
 		frame.revalidate();
+		frame.pack();
 		frame.repaint();
 	}
 	
@@ -111,6 +114,7 @@ public class ViewContainer {
 		pop.setBounds(width / 4, height / 4, width / 2, height / 2);
 		pane.add(pop, JLayeredPane.POPUP_LAYER);
 		frame.revalidate();
+		frame.pack();
 		frame.repaint();
 	}
 
