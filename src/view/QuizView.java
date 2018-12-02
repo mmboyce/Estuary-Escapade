@@ -91,7 +91,7 @@ public class QuizView extends View implements ActionListener {
 		button.addActionListener(this);
 		button.setFont(buttonFont);
 		button.setPreferredSize(this.getMaximumSize());
-		button.setAlignmentX(Component.CENTER_ALIGNMENT);
+		//button.setAlignmentX(Component.CENTER_ALIGNMENT);
 		return button;
 	}
 
