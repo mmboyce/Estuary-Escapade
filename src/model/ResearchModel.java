@@ -20,6 +20,7 @@ public class ResearchModel extends Model implements GameStateModel {
 	private boolean isHolding = false;
 	private boolean isHoldingCamera=false;
 	private boolean isHoldingRuler=false;
+	private boolean isHoldingScale=false;
 
 	// Different research tools
 	// TODO decide what functionality we should have from camera and if it should be
@@ -27,6 +28,7 @@ public class ResearchModel extends Model implements GameStateModel {
 	private Camera camera = new Camera(50, 50, 1, 100, 100, "images/camera.png");
 	// TODO decide if we want to make a ruler class or not
 	private Measure ruler = new Measure(50, 300, 1, 100, 100, "images/ruler.png");
+	private Measure scale = new Measure(50, 300, 1, 100, 100, "images/ruler.png");
 	private Animal caught;
 	// the EstuaryModel that gave us this ResearchModel
 	private EstuaryModel goBack;
@@ -78,6 +80,7 @@ public class ResearchModel extends Model implements GameStateModel {
 		addGameObject(this.caught);
 		addGameObject(this.camera);
 		addGameObject(this.ruler);
+		addGameObject(this.scale);
 	}
 
 	@Override
@@ -92,7 +95,7 @@ public class ResearchModel extends Model implements GameStateModel {
 		int mouseX = e.getX();
 		int mouseY = e.getY();
 
-		if (isHoldingCamera||isHoldingRuler) {
+		if (isHoldingCamera||isHoldingRuler||isHoldingScale) {
 			if (caught.clickedOn(mouseX, mouseY)) {
 				// this.caught.setxPos(right);
 				// this.caught.setyPos(top);
@@ -107,7 +110,12 @@ public class ResearchModel extends Model implements GameStateModel {
 					this.setMeasured(true);
 					this.setRulerHolding(false);
 				}
-				if (this.isMeasured() && this.isPhotographed()) {
+				else if (isHoldingScale) {
+					this.scale.setVisible(false);
+					this.setWeighed(true);
+					this.setScaleHolding(false);
+				}
+				if (this.isMeasured() && this.isPhotographed() && this.isWeighed()) {
 					doneResearching();
 				}
 			}
@@ -118,6 +126,9 @@ public class ResearchModel extends Model implements GameStateModel {
 			}
 			else if (ruler.clickedOn(mouseX, mouseY)) {
 				setRulerHolding(true);
+			}
+			else if (scale.clickedOn(mouseX, mouseY)) {
+				setScaleHolding(true);
 			}
 		}
 	}
@@ -130,6 +141,10 @@ public class ResearchModel extends Model implements GameStateModel {
 		if (isHoldingRuler) {
 			this.ruler.setxPos(mouseX - ruler.getxSize() / 2);
 			this.ruler.setyPos(mouseY - ruler.getySize() / 2);
+		}
+		if (isHoldingScale) {
+			this.scale.setxPos(mouseX - scale.getxSize() / 2);
+			this.scale.setyPos(mouseY - scale.getySize() / 2);
 		}
 	}
 
@@ -146,7 +161,9 @@ public class ResearchModel extends Model implements GameStateModel {
 	public void setRulerHolding(boolean value) {
 		this.isHoldingRuler = value;
 	}
-
+	public void setScaleHolding(boolean value) {
+		this.isHoldingScale = value;
+	}
 	public boolean getHolding() {
 		return this.isHolding;
 	}
@@ -164,8 +181,12 @@ public class ResearchModel extends Model implements GameStateModel {
 		}
 	}
 	
-	public Ruler getRuler() {
+	public Measure getRuler() {
 		return ruler;
+	}
+
+	public Measure getScale() {
+		return scale;
 	}
 
 	public Camera getCamera() {
