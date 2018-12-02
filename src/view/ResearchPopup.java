@@ -30,7 +30,7 @@ public class ResearchPopup extends JPanel implements ActionListener {
 		name = new JLabel("Animal Name: " + a.getName());
 		name.setFont(font);
 		name.setHorizontalAlignment(JLabel.CENTER);
-		funFact = new JLabel(a.getQuestion().getFunFact());
+		funFact = new JLabel("<HTML>" + a.getQuestion().getFunFact() + "<HTML>");
 		funFact.setFont(font);
 		weight = new JLabel("Weight: " + a.getWeight() + "g");
 		weight.setFont(font);

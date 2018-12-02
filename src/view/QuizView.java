@@ -27,43 +27,31 @@ public class QuizView extends View implements ActionListener {
 	JButton response2;
 	JButton response3;
 	JButton response4;
-
+	
+	private final Font buttonFont = new Font("Arial", Font.PLAIN, 40);
+	
 	public QuizView(int width, int height, Question question, ArrayList<GameObject> objects, CodeListener listener) {
 		super(width, height, objects, listener);
 		this.question = question;
 
-		// TODO find a way to make the question multi-line if it is too long
-		JLabel title = new JLabel(question.getQuestion());
+		JLabel title = new JLabel("<HTML>" + question.getQuestion() + "<HTML>");
 		title.setHorizontalAlignment(JLabel.CENTER);
 		title.setVerticalAlignment(JLabel.TOP);
 
 		// This border is used to line up the question text
 		Border border = title.getBorder();
-		Border margin = new EmptyBorder(75, 0, 0, 0);
+		Border margin = new EmptyBorder(50, 0, 0, 0);
 		title.setBorder(new CompoundBorder(border, margin));
 		title.setFont(new Font("Arial", Font.BOLD, 50));
-
-		Font buttonFont = new Font("Arial", Font.PLAIN, 40);
 
 		ArrayList<String> answers = new ArrayList<String>(Arrays.asList(question.getAllAnswers()));
 		Collections.shuffle(answers);
 
-		response1 = new JButton(answers.get(0));
-		response1.addActionListener(this);
-		response1.setFont(buttonFont);
-
-		response2 = new JButton(answers.get(1));
-		response2.addActionListener(this);
-		response2.setFont(buttonFont);
-
-		response3 = new JButton(answers.get(2));
-		response3.addActionListener(this);
-		response3.setFont(buttonFont);
-
-		response4 = new JButton(answers.get(3));
-		response4.addActionListener(this);
-		response4.setFont(buttonFont);
-
+		response1 = buttonFactory(answers.get(0));
+		response2 = buttonFactory(answers.get(1));
+		response3 = buttonFactory(answers.get(2));
+		response4 = buttonFactory(answers.get(3));
+	
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		setBackground(View.SEA_BLUE);
 		add(title);
@@ -95,6 +83,13 @@ public class QuizView extends View implements ActionListener {
 
 	public View questionAnswered(ArrayList<GameObject> objects, int score) {
 		return new EndView(getWidth(), getHeight(), objects, super.getListener(),score);
+	}
+	
+	private JButton buttonFactory(String text) {
+		JButton button = new JButton(text);
+		button.addActionListener(this);
+		button.setFont(buttonFont);
+		return button;
 	}
 
 }
