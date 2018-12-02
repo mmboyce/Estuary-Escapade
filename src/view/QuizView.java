@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -89,6 +90,8 @@ public class QuizView extends View implements ActionListener {
 		JButton button = new JButton(text);
 		button.addActionListener(this);
 		button.setFont(buttonFont);
+		button.setPreferredSize(this.getMaximumSize());
+		button.setAlignmentX(Component.CENTER_ALIGNMENT);
 		return button;
 	}
 
