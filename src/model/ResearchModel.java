@@ -28,7 +28,7 @@ public class ResearchModel extends Model implements GameStateModel {
 	private Camera camera = new Camera(50, 50, 1, 100, 100, "images/camera.png");
 	// TODO decide if we want to make a ruler class or not
 	private Measure ruler = new Measure(50, 300, 1, 100, 100, "images/ruler.png");
-	private Measure scale = new Measure(50, 300, 1, 100, 100, "images/ruler.png");
+	private Measure scale = new Measure(50, 550, 1, 100, 100, "images/scale.png");
 	private Animal caught;
 	// the EstuaryModel that gave us this ResearchModel
 	private EstuaryModel goBack;
