@@ -1,8 +1,8 @@
 package gameobject;
 
-public class Ruler extends GameObject {
+public class Scale extends GameObject {
 
-	public Ruler(int xPos, int yPos, int depth, int xSize, int ySize, String imagePath) {
+	public Scale(int xPos, int yPos, int depth, int xSize, int ySize, String imagePath) {
 		super(xPos, yPos, depth, xSize, ySize, imagePath);
 	}
 
