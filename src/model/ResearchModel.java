@@ -89,7 +89,12 @@ public class ResearchModel extends Model implements GameStateModel {
 		goBack.chooseTarget();
 		return this.goBack;
 	}
-
+	/**
+	 * void registerClick
+	 * takes x and y location of click and compares it to the locations of the different objects on the screen. When the values are equal it holds the object. 
+	 * @param e a mouse event
+	 * 
+	 */
 	@Override
 	public void registerClick(MouseEvent e) {
 		int mouseX = e.getX();
@@ -130,7 +135,12 @@ public class ResearchModel extends Model implements GameStateModel {
 			}
 		}
 	}
-
+	/**
+	 * void mouseMoved
+	 * if hold a tool moving the mouse changes the location of that object
+	 * @param mouseX
+	 * @param mouseY
+	 */
 	public void mouseMoved(int mouseX, int mouseY) {
 		if (isHoldingCamera) {
 			this.camera.setxPos(mouseX - camera.getxSize() / 2);
