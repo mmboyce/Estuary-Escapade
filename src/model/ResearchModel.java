@@ -97,8 +97,6 @@ public class ResearchModel extends Model implements GameStateModel {
 
 		if (isHoldingCamera||isHoldingRuler||isHoldingScale) {
 			if (caught.clickedOn(mouseX, mouseY)) {
-				// this.caught.setxPos(right);
-				// this.caught.setyPos(top);
 				if(isHoldingCamera){
 					getListener().codeEmitted(Code.FLASHSCREEN);
 					this.camera.setVisible(false);

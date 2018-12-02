@@ -11,6 +11,7 @@ public class Crab extends Animal {
 				"What do Blue Crabs have in their stomach?", "Teeth",
 				"Eyes", "Claws","Hair" ));
 		this.setPathLength(xSize*16/this.getSpeed());
+		this.setRealPic("images/bluecrab.jpg");
 	}
 
 	@Override
