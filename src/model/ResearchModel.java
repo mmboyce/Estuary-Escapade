@@ -6,7 +6,7 @@ import controller.Code;
 import controller.CodeListener;
 import gameobject.Animal;
 import gameobject.Camera;
-import gameobject.Ruler;
+import gameobject.Measure;
 import gameobject.GameObject;
 
 public class ResearchModel extends Model implements GameStateModel {
@@ -26,7 +26,7 @@ public class ResearchModel extends Model implements GameStateModel {
 	// move
 	private Camera camera = new Camera(50, 50, 1, 100, 100, "images/camera.png");
 	// TODO decide if we want to make a ruler class or not
-	private Ruler ruler = new Ruler(50, 300, 1, 100, 100, "images/ruler.png");
+	private Measure ruler = new Measure(50, 300, 1, 100, 100, "images/ruler.png");
 	private Animal caught;
 	// the EstuaryModel that gave us this ResearchModel
 	private EstuaryModel goBack;
