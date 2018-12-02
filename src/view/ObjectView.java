@@ -57,7 +57,7 @@ public abstract class ObjectView extends View {
 
 	@Override
 	public void paint(Graphics g) {
-		g.drawImage(createImage("images/underwater.png"), 0, 0, getWidth(), getHeight(), (ImageObserver) this);
+		g.drawImage(background, 0, 0, getWidth(), getHeight(), (ImageObserver) this);
 		timer.paint(g);
 		for (GameObject object : this.map.keySet()) {
 			if(object.isVisible()){
