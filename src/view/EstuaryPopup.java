@@ -22,11 +22,12 @@ public class EstuaryPopup extends JPanel implements ActionListener {
 	JLabel text;
 	CodeListener listener;
 
-	private final Font font = new Font("Arial", Font.PLAIN, 25);
+	private Font font;
 
-	public EstuaryPopup(Animal a, CodeListener cl) {
+	public EstuaryPopup(Animal a, CodeListener cl, int width) {
 		listener = cl;
 		this.setLayout(new BorderLayout());
+		font = new Font("Arial", Font.PLAIN, width/50);
 		
 		animalImg = ObjectView.createImage(a.getImagePath());
 		JLabel picLabel = new JLabel(new ImageIcon(animalImg));

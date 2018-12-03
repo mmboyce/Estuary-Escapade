@@ -77,7 +77,6 @@ public class ViewContainer {
 			timerImage.setFrameSize(frameWidth, frameHeight);
 		}
 		frame.revalidate();
-		frame.pack();
 		frame.repaint();
 	}
 
@@ -101,20 +100,18 @@ public class ViewContainer {
 	}
 
 	public void estuaryPopup(Animal a, CodeListener cl) {
-		EstuaryPopup pop = new EstuaryPopup(a, cl);
+		EstuaryPopup pop = new EstuaryPopup(a, cl, width);
 		pop.setBounds(width / 4, height / 4, width / 2, height / 2);
 		pane.add(pop, JLayeredPane.POPUP_LAYER);
 		frame.revalidate();
-		frame.pack();
 		frame.repaint();
 	}
-	
+
 	public void researchPopup(Animal a, CodeListener cl) {
-		ResearchPopup pop = new ResearchPopup(a, cl);
+		ResearchPopup pop = new ResearchPopup(a, cl, width);
 		pop.setBounds(width / 4, height / 4, width / 2, height / 2);
 		pane.add(pop, JLayeredPane.POPUP_LAYER);
 		frame.revalidate();
-		frame.pack();
 		frame.repaint();
 	}
 

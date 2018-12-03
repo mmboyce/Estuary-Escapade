@@ -16,10 +16,11 @@ public class TitleNavigation extends JPanel implements ActionListener {
 	private JButton start;
 	private JButton exit;
 	private CodeListener codeListener;
-	private final Font font = new Font("Arial", Font.PLAIN, 40);
+	private Font font;
 
-	public TitleNavigation(CodeListener cl) {
+	public TitleNavigation(CodeListener cl, int width) {
 		codeListener = cl;
+		font = new Font("Arial", Font.PLAIN, width/40);
 		
 		// This moves you to the EstuaryModel
 		start = new JButton("Start");

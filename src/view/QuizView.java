@@ -29,11 +29,12 @@ public class QuizView extends View implements ActionListener {
 	JButton response3;
 	JButton response4;
 	
-	private final Font buttonFont = new Font("Arial", Font.PLAIN, 40);
+	private Font font;
 	
 	public QuizView(int width, int height, Question question, ArrayList<GameObject> objects, CodeListener listener) {
 		super(width, height, objects, listener);
 		this.question = question;
+		font = new Font("Arial", Font.PLAIN, width/20);
 
 		JLabel title = new JLabel("<HTML>" + question.getQuestion() + "<HTML>");
 		title.setHorizontalAlignment(JLabel.CENTER);
@@ -41,9 +42,9 @@ public class QuizView extends View implements ActionListener {
 
 		// This border is used to line up the question text
 		Border border = title.getBorder();
-		Border margin = new EmptyBorder(50, 0, 0, 0);
+		Border margin = new EmptyBorder(width/100, width/100, width/100, width/100);
 		title.setBorder(new CompoundBorder(border, margin));
-		title.setFont(new Font("Arial", Font.BOLD, 50));
+		title.setFont(font);
 
 		ArrayList<String> answers = new ArrayList<String>(Arrays.asList(question.getAllAnswers()));
 		Collections.shuffle(answers);
@@ -89,9 +90,7 @@ public class QuizView extends View implements ActionListener {
 	private JButton buttonFactory(String text) {
 		JButton button = new JButton(text);
 		button.addActionListener(this);
-		button.setFont(buttonFont);
-		button.setPreferredSize(this.getMaximumSize());
-		//button.setAlignmentX(Component.CENTER_ALIGNMENT);
+		button.setFont(font);
 		return button;
 	}
 

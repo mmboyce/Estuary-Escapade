@@ -21,16 +21,17 @@ public class ResearchPopup extends JPanel implements ActionListener {
 	JButton exit;
 	CodeListener listener;
 
-	private final Font font = new Font("Arial", Font.PLAIN, 25);
+	private Font font;
 
-	public ResearchPopup(Animal a, CodeListener cl) {
+	public ResearchPopup(Animal a, CodeListener cl, int width) {
 		listener = cl;
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+		font = new Font("Arial", Font.PLAIN, width/35);
 		
 		name = new JLabel("Animal Name: " + a.getName());
 		name.setFont(font);
 		name.setHorizontalAlignment(JLabel.CENTER);
-		funFact = new JLabel("<HTML>" + a.getQuestion().getFunFact() + "<HTML>");
+		funFact = new JLabel("<HTML>Fun Fact: " + a.getQuestion().getFunFact() + "<HTML>");
 		funFact.setFont(font);
 		weight = new JLabel("Weight: " + a.getWeight() + "g");
 		weight.setFont(font);

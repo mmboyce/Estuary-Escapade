@@ -13,8 +13,8 @@ public class EndView extends View {
 		Integer score = scoreIn;
 		String scoreStr = "Your Score is : " + score.toString();
 		
-		TitlePanel Score = new TitlePanel(scoreStr); // This will display the title and any art
-		TitleNavigation nav = new TitleNavigation(listener); // This holds buttons for navigation
+		TitlePanel Score = new TitlePanel(scoreStr,width); // This will display the title and any art
+		TitleNavigation nav = new TitleNavigation(listener,width); // This holds buttons for navigation
 
 		setLayout(new BorderLayout());
 		add(Score, BorderLayout.CENTER);
