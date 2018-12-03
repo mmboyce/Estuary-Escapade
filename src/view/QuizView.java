@@ -61,8 +61,6 @@ public class QuizView extends View implements ActionListener {
 		add(response2);
 		add(response3);
 		add(response4);
-
-		listener.codeEmitted(Code.QUIZPOPUP);
 	}
 
 	@Override
