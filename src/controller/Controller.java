@@ -27,7 +27,7 @@ public class Controller implements CodeListener {
 	private int height;
 
 	private final static String title = "Estuary Escapade";
-	private final int cycles = 750; // This controlls how long the game runs for
+	private final int cycles = 200; // This controlls how long the game runs for
 	private final int timerDelay = 40; // The delay between every game state update
 
 	public Controller() {
@@ -115,6 +115,10 @@ public class Controller implements CodeListener {
 		case RESUME:
 			view.resetView();
 			t.restart();
+			break;
+		case QUIZPOPUP:
+			t.stop();
+			view.quizPopup(this);
 			break;
 		}
 	}

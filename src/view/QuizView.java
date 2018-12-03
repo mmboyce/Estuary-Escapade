@@ -62,6 +62,7 @@ public class QuizView extends View implements ActionListener {
 		add(response3);
 		add(response4);
 
+		listener.codeEmitted(Code.QUIZPOPUP);
 	}
 
 	@Override
@@ -88,7 +89,7 @@ public class QuizView extends View implements ActionListener {
 	}
 	
 	private JButton buttonFactory(String text) {
-		JButton button = new JButton(text);
+		JButton button = new JButton("<HTML>" + text + "<HTML>");
 		button.addActionListener(this);
 		button.setFont(font);
 		return button;
