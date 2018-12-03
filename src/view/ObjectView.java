@@ -25,13 +25,14 @@ public abstract class ObjectView extends View {
 
 	HashMap<GameObject, BufferedImage> map = new HashMap<>();
 	TimerImage timer;
-	private boolean startFlash=false;
-	private boolean stopFlash=false;
+	private boolean startFlash = false;
+	private boolean stopFlash = false;
 	private int xPosCamera = 0; // Where you clicked the camera at x-value
-	private int yPosCamera = 0; //Where you clicked the camera at y-value
+	private int yPosCamera = 0; // Where you clicked the camera at y-value
 	private int expandX = 0; // distance to expand by in x direction
 	private int expandY = 0; // distance to expand by in y direction
-	private float alpha=0.0f; // for opacity of camera flash the f at the end makes it so that it does not have to typecast
+	private float alpha = 0.0f; // for opacity of camera flash the f at the end makes it so that it does not
+								// have to typecast
 	BufferedImage background;
 
 	public ObjectView(int width, int height, ArrayList<GameObject> objects, CodeListener listener) {
@@ -48,10 +49,10 @@ public abstract class ObjectView extends View {
 		background = createImage("images/underwater.png");
 	}
 
-	/**  
-	 * void paint
-	 * Paints the updated game objects to the screen
-	 * and the effects from clicking with the tools
+	/**
+	 * void paint Paints the updated game objects to the screen and the effects from
+	 * clicking with the tools
+	 * 
 	 * @param g the graphics object used for the drawImage method
 	 */
 
@@ -60,52 +61,54 @@ public abstract class ObjectView extends View {
 		g.drawImage(background, 0, 0, getWidth(), getHeight(), (ImageObserver) this);
 		timer.paint(g);
 		for (GameObject object : this.map.keySet()) {
-			if(object.isVisible()){
-				g.drawImage(createImage(object.getImagePath()), object.getxPos(), object.getyPos(), object.getxSize(), object.getySize(),
-						(ImageObserver) this);
+			if (object.isVisible()) {
+				g.drawImage(createImage(object.getImagePath()), object.getxPos(), object.getyPos(), object.getxSize(),
+						object.getySize(), (ImageObserver) this);
 			}
 		}
-		if (startFlash||stopFlash){
-			System.out.println("flash");
+		if (startFlash || stopFlash) {
 			Graphics2D g2d = (Graphics2D) g;
-			//set the opacity
-			g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));//for the fade in and out
-			g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);//blends the existing colors of the pixels
+			// set the opacity
+			g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));// for the fade in and out
+			g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);// blends the
+																										// existing
+																										// colors of the
+																										// pixels
 
 			g2d.setColor(Color.WHITE);
-			g2d.fillRect(xPosCamera-expandX, yPosCamera-expandY, 3*expandX, 3*expandY);
-			if (startFlash){
-				alpha+=0.5f;
-				expandX+=getWidth()/5;
-				expandY+=getHeight()/5;
+			g2d.fillRect(xPosCamera - expandX, yPosCamera - expandY, 3 * expandX, 3 * expandY);
+			if (startFlash) {
+				alpha += 0.5f;
+				expandX += getWidth() / 5;
+				expandY += getHeight() / 5;
+			} else if (stopFlash) {
+				alpha -= 0.2f;
+				expandX += getWidth() / 10;
+				expandY += getHeight() / 10;
 			}
-			else if (stopFlash){
-				alpha-=0.2f;
-				expandX+=getWidth()/10;
-				expandY+=getHeight()/10;
-			}
-			
-			if(alpha>=1.0f){
+
+			if (alpha >= 1.0f) {
 				alpha = 1.0f;
 				startFlash = false;
 				stopFlash = true;
+			} else if (alpha <= 0.0f) {
+				alpha = 0.0f;
+				stopFlash = false;
 			}
-			else if(alpha<=0.0f){
-				alpha=0.0f;
-				stopFlash=false;
-			}		
 		}
-		
+
 	}
+
 	/**
-	 * void flash
-	 * Sets the startFlash boolean to true and that is used to paint a flash animation
+	 * void flash Sets the startFlash boolean to true and that is used to paint a
+	 * flash animation
+	 * 
 	 * @return void
 	 */
-	public void flash(){
-		startFlash=true;
+	public void flash() {
+		startFlash = true;
 		for (GameObject object : this.map.keySet()) {
-			if(object instanceof Camera){
+			if (object instanceof Camera) {
 				xPosCamera = object.getxPos();
 				yPosCamera = object.getyPos();
 			}
@@ -113,19 +116,23 @@ public abstract class ObjectView extends View {
 	}
 
 	/**
-	 * void update
-	 * Updates the game objects array
+	 * void update Updates the game objects array
+	 * 
 	 * @param objects an arraylist of the game objects with updated attributes
-	 */ 
+	 */
 
 	public void update(ArrayList<GameObject> objects) {
 		setObjects(objects); // Update the objects attribute
 	}
 
-	/** BufferedImage createImage 
-	 * Reads an image from the file system and returns it as a BufferedImage, or an IOException if not found
-	 * @param imagePath: the path to the image taken from the game object this was made static because it does not rely on this object being instanciated visibility was set to package so that EstuaryPopup could access it
-	 */ 
+	/**
+	 * BufferedImage createImage Reads an image from the file system and returns it
+	 * as a BufferedImage, or an IOException if not found
+	 * 
+	 * @param imagePath: the path to the image taken from the game object this was
+	 *        made static because it does not rely on this object being instanciated
+	 *        visibility was set to package so that EstuaryPopup could access it
+	 */
 
 	static BufferedImage createImage(String imagePath) {
 		BufferedImage bufferedImage;

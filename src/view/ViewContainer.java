@@ -51,7 +51,7 @@ public class ViewContainer {
 
 	public void next(ArrayList<GameObject> o) {
 		view = view.nextView(o);
-		if(view instanceof ObjectView) {
+		if (view instanceof ObjectView) {
 			timerImage.setFrameSize(view.getWidth(), view.getHeight());
 			((ObjectView) view).passTimer(timerImage);
 		}
@@ -101,7 +101,7 @@ public class ViewContainer {
 		frame.revalidate();
 		frame.repaint();
 	}
-	
+
 	public void researchPopup(Animal a, CodeListener cl) {
 		ResearchPopup pop = new ResearchPopup(a, cl);
 		pop.setBounds(width / 4, height / 4, width / 2, height / 2);
@@ -125,8 +125,9 @@ public class ViewContainer {
 	public int getHeight() {
 		return height;
 	}
-	public void flash(){
-		if (view instanceof ResearchView){
+
+	public void flash() {
+		if (view instanceof ResearchView) {
 			view.flash();
 		}
 	}
