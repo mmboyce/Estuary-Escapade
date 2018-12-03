@@ -116,10 +116,6 @@ public class Controller implements CodeListener {
 			view.resetView();
 			t.restart();
 			break;
-		case QUIZPOPUP:
-			t.stop();
-			view.quizPopup(this);
-			break;
 		}
 	}
 

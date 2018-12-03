@@ -115,15 +115,6 @@ public class ViewContainer {
 		frame.repaint();
 	}
 
-	public void quizPopup(CodeListener cl) {
-		pane.removeAll();
-		QuizPopup pop = new QuizPopup(cl, width);
-		pop.setBounds(width / 4, height / 4, width / 2, height / 2);
-		pane.add(pop, JLayeredPane.POPUP_LAYER);
-		frame.revalidate();
-		frame.repaint();
-	}
-
 	public boolean checkObjectView() {
 		return (view instanceof ObjectView);
 	}
