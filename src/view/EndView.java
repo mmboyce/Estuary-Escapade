@@ -29,7 +29,7 @@ public class EndView extends View {
 
 	@Override
 	public View nextView(ArrayList<GameObject> objects) {
-		return new TitleView("Estuary Escipade", getWidth(), getHeight(), super.getListener(), objects);
+		return new TitleView("Estuary Escapade", getWidth(), getHeight(), super.getListener(), objects);
 	}
 
 }

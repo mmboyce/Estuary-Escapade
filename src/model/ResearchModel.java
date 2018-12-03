@@ -6,6 +6,8 @@ import controller.Code;
 import controller.CodeListener;
 import gameobject.Animal;
 import gameobject.Camera;
+import gameobject.Measure;
+import gameobject.GameObject;
 
 public class ResearchModel extends Model implements GameStateModel {
 
@@ -16,13 +18,17 @@ public class ResearchModel extends Model implements GameStateModel {
 	private boolean popupClosed;
 	// Used to determine if the user is holding an animal or nots
 	private boolean isHolding = false;
+	private boolean isHoldingCamera=false;
+	private boolean isHoldingRuler=false;
+	private boolean isHoldingScale=false;
 
 	// Different research tools
 	// TODO decide what functionality we should have from camera and if it should be
 	// move
 	private Camera camera = new Camera(50, 50, 1, 100, 100, "images/camera.png");
 	// TODO decide if we want to make a ruler class or not
-	private Camera ruler = new Camera(50, 300, 1, 100, 100, "images/ruler.png");
+	private Measure ruler = new Measure(50, 300, 1, 100, 100, "images/ruler.png");
+	private Measure scale = new Measure(50, 550, 1, 100, 100, "images/scale.png");
 	private Animal caught;
 	// the EstuaryModel that gave us this ResearchModel
 	private EstuaryModel goBack;
@@ -74,6 +80,7 @@ public class ResearchModel extends Model implements GameStateModel {
 		addGameObject(this.caught);
 		addGameObject(this.camera);
 		addGameObject(this.ruler);
+		addGameObject(this.scale);
 	}
 
 	@Override
@@ -82,48 +89,70 @@ public class ResearchModel extends Model implements GameStateModel {
 		goBack.chooseTarget();
 		return this.goBack;
 	}
-
+	/**
+	 * void registerClick
+	 * takes x and y location of click and compares it to the locations of the different objects on the screen. When the values are equal it holds the object. 
+	 * @param e a mouse event
+	 * 
+	 */
 	@Override
 	public void registerClick(MouseEvent e) {
 		int mouseX = e.getX();
 		int mouseY = e.getY();
 
-		if (isHolding) {
-			if (camera.clickedOn(mouseX, mouseY)) {
-				this.caught.setxPos(right);
-				this.caught.setyPos(top);
-
-				this.camera.setVisible(false);
-				this.setPhotographed(true);
-				this.setHolding(false);
-
-				if (this.isMeasured() && this.isPhotographed()) {
-					doneResearching();
+		if (isHoldingCamera||isHoldingRuler||isHoldingScale) {
+			if (caught.clickedOn(mouseX, mouseY)) {
+				if(isHoldingCamera){
+					getListener().codeEmitted(Code.FLASHSCREEN);
+					this.camera.setVisible(false);
+					this.setPhotographed(true);
+					this.setCameraHolding(false);
+				} 
+				else if (isHoldingRuler) {
+					this.ruler.setVisible(false);
+					this.setMeasured(true);
+					this.setRulerHolding(false);
 				}
-
-			} else if (ruler.clickedOn(mouseX, mouseY)) {
-				this.caught.setxPos(right);
-				this.caught.setyPos(top);
-
-				this.ruler.setVisible(false);
-				this.setMeasured(true);
-				this.setHolding(false);
-
-				if (this.isMeasured() && this.isPhotographed()) {
+				else if (isHoldingScale) {
+					this.scale.setVisible(false);
+					this.setWeighed(true);
+					this.setScaleHolding(false);
+				}
+				if (this.isMeasured() && this.isPhotographed() && this.isWeighed()) {
 					doneResearching();
 				}
 			}
-		} else {
-			if (caught.clickedOn(mouseX, mouseY)) {
-				setHolding(true);
+		} 
+		else {
+			if (camera.clickedOn(mouseX, mouseY)) {
+				setCameraHolding(true);
+			}
+			else if (ruler.clickedOn(mouseX, mouseY)) {
+				setRulerHolding(true);
+			}
+			else if (scale.clickedOn(mouseX, mouseY)) {
+				setScaleHolding(true);
 			}
 		}
 	}
-
+	/**
+	 * void mouseMoved
+	 * if hold a tool moving the mouse changes the location of that object
+	 * @param mouseX
+	 * @param mouseY
+	 */
 	public void mouseMoved(int mouseX, int mouseY) {
-		if (isHolding) {
-			this.caught.setxPos(mouseX - caught.getxSize() / 2);
-			this.caught.setyPos(mouseY - caught.getySize() / 2);
+		if (isHoldingCamera) {
+			this.camera.setxPos(mouseX - camera.getxSize() / 2);
+			this.camera.setyPos(mouseY - camera.getySize() / 2);
+		}
+		if (isHoldingRuler) {
+			this.ruler.setxPos(mouseX - ruler.getxSize() / 2);
+			this.ruler.setyPos(mouseY - ruler.getySize() / 2);
+		}
+		if (isHoldingScale) {
+			this.scale.setxPos(mouseX - scale.getxSize() / 2);
+			this.scale.setyPos(mouseY - scale.getySize() / 2);
 		}
 	}
 
@@ -134,10 +163,15 @@ public class ResearchModel extends Model implements GameStateModel {
 		popupClosed = true;
 	}
 
-	public void setHolding(boolean value) {
-		this.isHolding = value;
+	public void setCameraHolding(boolean value) {
+		this.isHoldingCamera = value;
 	}
-
+	public void setRulerHolding(boolean value) {
+		this.isHoldingRuler = value;
+	}
+	public void setScaleHolding(boolean value) {
+		this.isHoldingScale = value;
+	}
 	public boolean getHolding() {
 		return this.isHolding;
 	}
@@ -154,9 +188,13 @@ public class ResearchModel extends Model implements GameStateModel {
 			super.getListener().codeEmitted(Code.NEXT);
 		}
 	}
-
-	public Camera getRuler() {
+	
+	public Measure getRuler() {
 		return ruler;
+	}
+
+	public Measure getScale() {
+		return scale;
 	}
 
 	public Camera getCamera() {

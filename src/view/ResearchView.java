@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Graphics;
 import java.util.ArrayList;
 
 import controller.CodeListener;
@@ -16,4 +17,5 @@ public class ResearchView extends ObjectView {
 		// Returns the next model for transition purposes
 		return new EstuaryView(getWidth(), getHeight(), objects, super.getListener());
 	}
+	
 }

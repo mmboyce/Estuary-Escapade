@@ -11,6 +11,7 @@ public class RedFish extends Animal{
 		this.setQuestion(new Question("Big Red Drum are reffered to as Red Bulls.",
 				"What are large Red Drum called?","Red Bulls","Red Fish","Big Fish","Puppy Drum"));
 		this.setPathLength(xSize * 22);
+		this.setRealPic("images/reddrum.jpg");
 	}
 
 	@Override

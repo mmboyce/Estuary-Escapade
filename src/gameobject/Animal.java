@@ -1,5 +1,7 @@
 package gameobject;
 
+import java.awt.image.BufferedImage;
+
 public abstract class Animal extends GameObject {
 	private String name;
 	private int weight;
@@ -21,6 +23,11 @@ public abstract class Animal extends GameObject {
 	// true if we are heading to our last waypoint,
 	// false if returning from last waypoint.
 	private boolean movingForward = true;
+
+	//Real information on animal real pic from Nat geo
+	//and Aveage size 
+	private String realPic = "";
+	private double avgSize=0;
 
 	public Animal(int xPos, int yPos, int depth, int xSize, int ySize) {
 		/*
@@ -51,7 +58,7 @@ public abstract class Animal extends GameObject {
 		 */
 	}
 
-	/*
+	/** 
 	 * void updatePosition
 	 * 
 	 * this is used to advance through our pathfinding.
@@ -129,5 +136,17 @@ public abstract class Animal extends GameObject {
 
 	public void setMovingForward(boolean movingForward) {
 		this.movingForward = movingForward;
+	}
+	public void setAvgSize(int AvgSize){
+		this.avgSize = AvgSize;
+	}
+	public double getAvgSize(){
+		return avgSize;
+	}
+	public void setRealPic(String imagePath){
+		this.realPic = imagePath;
+	}
+	public String getRealPic(){
+		return realPic;
 	}
 }
