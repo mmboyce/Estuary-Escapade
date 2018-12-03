@@ -35,7 +35,6 @@ public class ViewContainer {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		width = screenSize.width;
 		height = screenSize.height;
-		pane.setSize(new Dimension(width,height));
 	}
 
 	public void initialize(CustomMouseListener m, CodeListener c, ArrayList<GameObject> o, int cycles) {
@@ -110,7 +109,7 @@ public class ViewContainer {
 
 	public void researchPopup(Animal a, CodeListener cl) {
 		ResearchPopup pop = new ResearchPopup(a, cl, width);
-		pop.setBounds(width / 4, height / 4, width / 2, height / 2);
+		pop.setBounds(width / 4, height / 6, width / 2, (height * 2) / 3);
 		pane.add(pop, JLayeredPane.POPUP_LAYER);
 		frame.revalidate();
 		frame.repaint();
