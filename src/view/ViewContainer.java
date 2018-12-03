@@ -35,6 +35,7 @@ public class ViewContainer {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		width = screenSize.width;
 		height = screenSize.height;
+		frame.setSize(new Dimension(width,height));
 	}
 
 	public void initialize(CustomMouseListener m, CodeListener c, ArrayList<GameObject> o, int cycles) {
