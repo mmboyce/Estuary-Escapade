@@ -91,7 +91,7 @@ class GameTests {
 		assertFalse(rm.isPhotographed());
 		GoldFish fish = null;
 		Camera cam = rm.getCamera();
-		Camera ruler = rm.getRuler();
+//		Camera ruler = rm.getRuler();
 		for (int i = 0; i < rm.getGameObjects().size(); i++) {
 			if (rm.getGameObjects().get(i) instanceof GoldFish) {
 				fish = (GoldFish) rm.getGameObjects().get(i);
@@ -100,7 +100,7 @@ class GameTests {
 		Button btn = new Button();
 		MouseEvent fishLoc = new MouseEvent(btn, 0, 0, 0, fish.getxPos(), fish.getyPos(), 1, false);
 		MouseEvent camPos = new MouseEvent(btn, 0, 0, 0, cam.getxPos(), cam.getyPos(), 1, false);
-		MouseEvent rulerPos = new MouseEvent(btn, 0, 0, 0, ruler.getxPos(), ruler.getyPos(), 1, false);
+//		MouseEvent rulerPos = new MouseEvent(btn, 0, 0, 0, ruler.getxPos(), ruler.getyPos(), 1, false);
 		rm.registerClick(fishLoc);
 		rm.mouseMoved(30, 40);
 		rm.registerClick(camPos);
@@ -108,7 +108,7 @@ class GameTests {
 		rm.registerClick(fishLoc);
 		rm.mouseMoved(20, 30);
 		rm.registerClick(camPos);
-		rm.registerClick(rulerPos);	
+//		rm.registerClick(rulerPos);	
 		rm.update();
 		assertEquals(rm.nextModel(),em);
 		assertTrue(rm.timeUp() instanceof QuizModel);
