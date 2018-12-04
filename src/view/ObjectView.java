@@ -81,21 +81,16 @@ public abstract class ObjectView extends View {
 
 		// End of experimental code
 		for (GameObject object : this.map.keySet()) {
-
-			g.drawImage(createImage(object.getImagePath()), object.getxPos(), object.getyPos(), object.getxSize(),
-					object.getySize(), (ImageObserver) this);
-
-
-			g.drawImage(createImage(object.getImagePath()), object.getxPos(), object.getyPos(), object.getxSize(),
-					object.getySize(), (ImageObserver) this);
-		}
-		timer.paint(g);
-		for (GameObject object : this.map.keySet()) {
 			if (object.isVisible()) {
+				g.drawImage(createImage(object.getImagePath()), object.getxPos(), object.getyPos(), object.getxSize(),
+						object.getySize(), (ImageObserver) this);
+
+
 				g.drawImage(createImage(object.getImagePath()), object.getxPos(), object.getyPos(), object.getxSize(),
 						object.getySize(), (ImageObserver) this);
 			}
 		}
+		timer.paint(g);
 		if (startFlash || stopFlash) {
 			Graphics2D g2d = (Graphics2D) g;
 			// set the opacity
