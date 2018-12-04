@@ -12,6 +12,7 @@ public class ZappyBoi extends Animal {
 				"How often does the American Eel have to come to the surface for air? ", "Every 10 minutes",
 				"Every 5 minutes", "Every hour", "Once a day"));
 		this.setPathLength(this.getxSize() * 7 / this.getSpeed());
+		this.setRealPic("images/americaneel.jpg");
 	}
 
 	@Override

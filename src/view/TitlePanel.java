@@ -11,7 +11,7 @@ import javax.swing.border.EmptyBorder;
 
 public class TitlePanel extends JPanel {
 
-	TitlePanel(String titleText) {
+	TitlePanel(String titleText, int width) {
 		// TODO find art to put in the background of this instead of one solid color
 		JLabel title = new JLabel(titleText);
 		title.setHorizontalAlignment(JLabel.CENTER);
@@ -19,10 +19,10 @@ public class TitlePanel extends JPanel {
 
 		// This border is used to line up the title
 		Border border = title.getBorder();
-		Border margin = new EmptyBorder(75, 0, 0, 0);
+		Border margin = new EmptyBorder(width/100, 0, 0, 0);
 		title.setBorder(new CompoundBorder(border, margin));
 
-		title.setFont(new Font("Arial", Font.BOLD, 70));
+		title.setFont(new Font("Arial", Font.BOLD, width/10));
 
 		setBackground(View.SEA_BLUE);
 		add(title);

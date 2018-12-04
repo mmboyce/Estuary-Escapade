@@ -13,6 +13,7 @@ public class GreenFish extends Animal{
 				"Where are American Shads found?", "Fresh water",
 				"Salt Water", "Seashore","All the Above" ));
 		this.setPathLength(xSize*10/this.getSpeed());
+		this.setRealPic("images/americanshad.jpg");
 	}
 
 	@Override
