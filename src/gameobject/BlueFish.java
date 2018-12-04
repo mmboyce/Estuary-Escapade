@@ -8,9 +8,8 @@ public class BlueFish extends Animal{
 		this.setName("Blue Marlin");
 		this.setSpeed(10);
 		this.setWeight(250);
-		this.setQuestion(new Question("Female Blue Marlins can weigh up to 3000 pounds", "How much can a female Blue Marlin weigh", "3000 lbs", "30 lbs", "300 lbs", "3 lbs"));
+		this.setQuestion(new Question("Female Blue Marlins can weigh up to 3000 pounds", "How much can a female Blue Marlin weigh?", "3000 lbs", "30 lbs", "300 lbs", "3 lbs"));
 		this.setPathLength(xSize * 30);
-		this.setRealPic("images/marlinblue.png");
 	}
 
 	@Override
