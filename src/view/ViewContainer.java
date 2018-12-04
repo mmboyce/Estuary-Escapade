@@ -81,6 +81,7 @@ public class ViewContainer {
 
 	public void start() {
 		pane.add(view, JLayeredPane.DEFAULT_LAYER);
+		frame.pack();
 		frame.setVisible(true);
 	}
 
@@ -95,7 +96,7 @@ public class ViewContainer {
 	}
 
 	public void estuaryPopup(Animal a, CodeListener cl) {
-		EstuaryPopup pop = new EstuaryPopup(a, cl);
+		EstuaryPopup pop = new EstuaryPopup(a, cl, width);
 		pop.setBounds(width / 4, height / 4, width / 2, height / 2);
 		pane.add(pop, JLayeredPane.POPUP_LAYER);
 		frame.revalidate();
@@ -103,8 +104,8 @@ public class ViewContainer {
 	}
 
 	public void researchPopup(Animal a, CodeListener cl) {
-		ResearchPopup pop = new ResearchPopup(a, cl);
-		pop.setBounds(width / 4, height / 4, width / 2, height / 2);
+		ResearchPopup pop = new ResearchPopup(a, cl, width);
+		pop.setBounds(width / 4, height / 6, width / 2, (height * 2) / 3);
 		pane.add(pop, JLayeredPane.POPUP_LAYER);
 		frame.revalidate();
 		frame.repaint();
