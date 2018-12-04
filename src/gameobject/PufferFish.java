@@ -9,7 +9,7 @@ public class PufferFish extends Animal {
 		this.setWeight(3);
 		this.setSpeed(7);
 		this.setQuestion(new Question("The Northern Puffer blows up like a balloon when threatened.",
-				"What does this fish do when threatened?", "Blow up like a balloon",
+				"What does the Northern Puffer do when threatened?", "Blow up like a balloon",
 				"Swim away", "Squirt ink","Bite"));
 		this.setPathLength(xSize*20);
 		this.setRealPic("images/northernpuffer.jpg");

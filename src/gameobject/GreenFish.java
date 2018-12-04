@@ -9,7 +9,7 @@ public class GreenFish extends Animal{
 		this.setName("American Shad");
 		this.setWeight(10);
 		this.setSpeed(7);
-		this.setQuestion(new Question("American Shads are found in fresh water.",
+		this.setQuestion(new Question("American Shads are found in freshwater.",
 				"Where are American Shads found?", "Fresh water",
 				"Salt Water", "Seashore","All the Above" ));
 		this.setPathLength(xSize*10/this.getSpeed());
