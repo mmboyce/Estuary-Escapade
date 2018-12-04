@@ -161,6 +161,9 @@ public class ResearchModel extends Model implements GameStateModel {
 		goBack.getGameObjects().remove(caught);
 		super.getListener().researchPopup(caught);
 		popupClosed = true;
+		if(goBack.allResearched()){
+			super.getListener().codeEmitted(Code.TIMEUP);
+		}
 	}
 
 	public void setCameraHolding(boolean value) {
