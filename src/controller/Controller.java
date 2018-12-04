@@ -6,11 +6,12 @@ import javax.swing.AbstractAction;
 import javax.swing.Timer;
 
 import gameobject.Animal;
-import gameobject.Question;
 import model.EndModel;
+import model.EstuaryModel;
 import model.GameStateModel;
 import model.Model;
 import model.QuizModel;
+import model.ResearchModel;
 import model.TitleModel;
 import view.ViewContainer;
 
@@ -21,16 +22,19 @@ public class Controller implements CodeListener {
 	private ViewContainer view;
 	private AbstractAction updateAction;
 	private CustomMouseListener mouseListener;
+	private CustomKeyListener keyListener;
 	private boolean timerRunning;
 	private int time;
 	private int width;
 	private int height;
+	private boolean debugging;
 
 	private final static String title = "Estuary Escapade";
 	private final int cycles = 750; // This controlls how long the game runs for
 	private final int timerDelay = 40; // The delay between every game state update
 
 	public Controller() {
+		debugging = false;
 		time = 0;
 		timerRunning = false; // The time will only start once the player leaves the start screen
 
@@ -41,7 +45,8 @@ public class Controller implements CodeListener {
 
 		model = new TitleModel(width, height, this);
 		mouseListener = new CustomMouseListener(model);
-		view.initialize(mouseListener, this, model.getGameObjects(), cycles);
+		keyListener = new CustomKeyListener(this);
+		view.initialize(mouseListener, keyListener, this, model.getGameObjects(), cycles);
 
 		updateAction = new AbstractAction() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -122,6 +127,19 @@ public class Controller implements CodeListener {
 		}
 	}
 
+	public void debugCatchTarget() {
+		if(model instanceof EstuaryModel) {
+			((EstuaryModel) model).debugChooseTarget();
+		}
+	}
+	
+	public void debugResearch() {
+		if (model instanceof ResearchModel) {
+			((ResearchModel) model).debugDoneResearching();
+		}
+	}
+	
+	
 	public void start() {
 		t.start();
 		view.start();
@@ -147,6 +165,14 @@ public class Controller implements CodeListener {
 		return view;
 	}
 
+	public void toggleDebugging() {
+		this.debugging = !debugging;
+	}
+	
+	public boolean isDebugging() {
+		return debugging;
+	}
+	
 	public void setViewContainer(ViewContainer view) {
 		this.view = view;
 	}

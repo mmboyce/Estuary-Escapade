@@ -162,6 +162,11 @@ public class ResearchModel extends Model implements GameStateModel {
 		super.getListener().researchPopup(caught);
 		popupClosed = true;
 	}
+	
+	public void debugDoneResearching() {
+		doneResearching();
+	}
+
 
 	public void setCameraHolding(boolean value) {
 		this.isHoldingCamera = value;

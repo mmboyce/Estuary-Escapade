@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 
 import controller.CodeListener;
+import controller.CustomKeyListener;
 import controller.CustomMouseListener;
 import gameobject.Animal;
 import gameobject.GameObject;
@@ -37,13 +38,14 @@ public class ViewContainer {
 		height = screenSize.height;
 	}
 
-	public void initialize(CustomMouseListener m, CodeListener c, ArrayList<GameObject> o, int cycles) {
+	public void initialize(CustomMouseListener m, CustomKeyListener k, CodeListener c, ArrayList<GameObject> o, int cycles) {
 		/*
 		 * This adds the MouseListener to the frame and initializes the view, this has
 		 * to happen after the constructor because the model needs to be set up first
 		 * and that requires the size of the screen
 		 */
 		pane.addMouseListener(m);
+		frame.addKeyListener(k);
 		pane.addMouseMotionListener(m);
 		view = new TitleView(title, width, height, c, o);
 		timerImage = new TimerImage(cycles); // Adds timer image
