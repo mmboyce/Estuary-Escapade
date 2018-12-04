@@ -52,7 +52,7 @@ class GameTests {
 		assertTrue(em.nextModel() instanceof ResearchModel);
 		// Test to make sure addGameObject works		
 		int tmp = em.getGameObjects().size();
-		em.addGameObject(new GoldFish(0,0,0,0,0));
+		em.addGameObject(new GoldFish(10,10,0,10,10));
 		assertEquals(em.getGameObjects().size(), tmp + 1);
 		// Test to see if update works
 		int xpos = em.getGameObjects().get(0).getxPos();
@@ -90,13 +90,13 @@ class GameTests {
 		rm.setPhotographed(false);
 		rm.setMeasured(false);
 		assertFalse(rm.isPhotographed());
+		rm.setRulerHolding(false);
+		rm.setCameraHolding(true);
+		rm.setScaleHolding(false);
 		GoldFish fish = null;
 		Camera cam = rm.getCamera();
-<<<<<<< HEAD
-//		Camera ruler = rm.getRuler();
-=======
 		Measure ruler = rm.getRuler();
->>>>>>> 451e8e835c626db2c168193498fbfc795ed22627
+		Measure scale = rm.getScale();
 		for (int i = 0; i < rm.getGameObjects().size(); i++) {
 			if (rm.getGameObjects().get(i) instanceof GoldFish) {
 				fish = (GoldFish) rm.getGameObjects().get(i);
@@ -105,7 +105,8 @@ class GameTests {
 		Button btn = new Button();
 		MouseEvent fishLoc = new MouseEvent(btn, 0, 0, 0, fish.getxPos(), fish.getyPos(), 1, false);
 		MouseEvent camPos = new MouseEvent(btn, 0, 0, 0, cam.getxPos(), cam.getyPos(), 1, false);
-//		MouseEvent rulerPos = new MouseEvent(btn, 0, 0, 0, ruler.getxPos(), ruler.getyPos(), 1, false);
+		MouseEvent rulerPos = new MouseEvent(btn, 0, 0, 0, ruler.getxPos(), ruler.getyPos(), 1, false);
+		MouseEvent scalePos = new MouseEvent(btn, 0, 0 ,0 ,scale.getxPos(), scale.getyPos(),1,false);
 		rm.registerClick(fishLoc);
 		rm.mouseMoved(30, 40);
 		rm.registerClick(camPos);
@@ -113,7 +114,25 @@ class GameTests {
 		rm.registerClick(fishLoc);
 		rm.mouseMoved(20, 30);
 		rm.registerClick(camPos);
-//		rm.registerClick(rulerPos);	
+		rm.registerClick(rulerPos);	
+		rm.registerClick(scalePos);
+		rm.setCameraHolding(false);
+		rm.setRulerHolding(true);
+		rm.mouseMoved(0, 0);
+		rm.registerClick(camPos);
+		rm.registerClick(rulerPos);	
+		rm.registerClick(scalePos);
+		rm.setRulerHolding(false);
+		rm.setScaleHolding(true);
+		rm.mouseMoved(0, 0);
+		rm.registerClick(camPos);
+		rm.registerClick(rulerPos);	
+		rm.registerClick(scalePos);
+		rm.setMeasured(true);
+		rm.setWeighed(true);
+		rm.setPhotographed(true);
+		rm.mouseMoved(0,0);
+		rm.registerClick(fishLoc);
 		rm.update();
 		assertEquals(rm.nextModel(),em);
 		assertTrue(rm.timeUp() instanceof QuizModel);
