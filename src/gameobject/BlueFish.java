@@ -18,6 +18,11 @@ public class BlueFish extends Animal{
 		if(this.pathCount % this.getPathState() < this.getPathState()/4) {
 			this.setImagePath("images/BlueFishRight.png");
 			this.setxPos(this.getxPos() + this.getSpeed());
+			if (this.pathCount % 8 == 0 || this.pathCount % 8 == 1) {
+				this.setyPos(this.getyPos() + 2);
+			} else if (this.pathCount % 8 == 4 || this.pathCount % 8 == 5) {
+				this.setyPos(this.getyPos() - 2);
+			}
 		}else if (this.pathCount % this.getPathState() < this.getPathState()/2) {
 			this.setImagePath("images/BlueFishRight.png");
 			this.setyPos(this.getyPos() + this.getSpeed()/2);
@@ -27,6 +32,11 @@ public class BlueFish extends Animal{
 		}else {
 			this.setImagePath("images/BlueFishLeft.png");
 			this.setxPos(this.getxPos() - this.getSpeed());
+			if (this.pathCount % 8 == 0 || this.pathCount % 8 == 1) {
+				this.setyPos(this.getyPos() + 2);
+			} else if (this.pathCount % 8 == 4 || this.pathCount % 8 == 5) {
+				this.setyPos(this.getyPos() - 2);
+			}
 		}
 		this.pathCount++;
 		

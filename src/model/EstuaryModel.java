@@ -59,7 +59,7 @@ public class EstuaryModel extends Model implements GameStateModel {
 		// Adds all the fish that are in the estuary
 		addGameObject(new GoldFish(this.getFrameWidth()/8, this.getFrameHeight()/6, 0, spriteSize, spriteSize));
 		addGameObject(new PufferFish(this.getFrameWidth()/3,this.getFrameHeight()/3,0,spriteSize,spriteSize));
-		addGameObject(new Crab(this.getFrameWidth()/8,this.getFrameHeight()*5/6,0,spriteSize,spriteSize));
+		addGameObject(new Crab(this.getFrameWidth()/8,this.getFrameHeight()*9/10,0,spriteSize,spriteSize));
 		addGameObject(new ZappyBoi(this.getFrameWidth()/4,this.getFrameHeight()*4/6,0,spriteSize,spriteSize));
 		addGameObject(new GreenFish(this.getFrameWidth()/2,this.getFrameHeight()/4,0,spriteSize,spriteSize));
 		addGameObject(new BlueFish(this.getFrameWidth() / 6,this.getFrameHeight()/5, 0, spriteSize, spriteSize));

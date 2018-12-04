@@ -21,9 +21,19 @@ public class GreenFish extends Animal{
 		if(this.pathCount%this.getPathLength() < this.getPathLength()/2) {
 			this.setImagePath("images/GreenFishRight.png");
 			this.setxPos(this.getxPos()+this.getSpeed());
+			if (this.pathCount % 8 == 0 || this.pathCount % 8 == 1) {
+				this.setyPos(this.getyPos() + 2);
+			} else if (this.pathCount % 8 == 4 || this.pathCount % 8 == 5) {
+				this.setyPos(this.getyPos() - 2);
+			}
 		}else {
 			this.setImagePath("images/GreenFishLeft.png");
 			this.setxPos(this.getxPos()-this.getSpeed());
+			if (this.pathCount % 8 == 0 || this.pathCount % 8 == 1) {
+				this.setyPos(this.getyPos() + 2);
+			} else if (this.pathCount % 8 == 4 || this.pathCount % 8 == 5) {
+				this.setyPos(this.getyPos() - 2);
+			}
 		}
 		this.pathCount++;
 	}

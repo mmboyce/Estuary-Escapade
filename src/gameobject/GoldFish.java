@@ -46,25 +46,46 @@ public class GoldFish extends Animal {
 			// opposite direction
 			if (pathState > wayPoint1) {
 				setxPos(x + speed);
+				if (this.pathCount % 8 == 0 || this.pathCount % 8 == 1) {
+					this.setyPos(this.getyPos() + 2);
+				} else if (this.pathCount % 8 == 4 || this.pathCount % 8 == 5) {
+					this.setyPos(this.getyPos() - 2);
+				}
 			} else if (pathState > wayPoint2) {
 				setyPos(y + speed);
 			} else if (pathState > wayPoint3) {
 				setxPos(x + (speed / 2));
+				if (this.pathCount % 8 == 0 || this.pathCount % 8 == 1) {
+					this.setyPos(this.getyPos() + 2);
+				} else if (this.pathCount % 8 == 4 || this.pathCount % 8 == 5) {
+					this.setyPos(this.getyPos() - 2);
+				}
 			}
 		} else {
 			setImagePath("images/GoldfishRight.png");
 			if (pathState < wayPoint1) {
 				// swim right until waypoint1
 				setxPos(x + speed);
+				if (this.pathCount % 8 == 0 || this.pathCount % 8 == 1) {
+					this.setyPos(this.getyPos() + 2);
+				} else if (this.pathCount % 8 == 4 || this.pathCount % 8 == 5) {
+					this.setyPos(this.getyPos() - 2);
+				}
 			} else if (pathState < wayPoint2) {
 				// swim down until waypoint2
 				setyPos(y + speed);
 			} else if (pathState < wayPoint3) {
 				// swim to waypoint3
 				setxPos(x + (speed / 2));
+				if (this.pathCount % 8 == 0 || this.pathCount % 8 == 1) {
+					this.setyPos(this.getyPos() + 2);
+				} else if (this.pathCount % 8 == 4 || this.pathCount % 8 == 5) {
+					this.setyPos(this.getyPos() - 2);
+				}
 			}
 		}
 		updatePosition();
+		this.pathCount++;
 		// System.out.println("Fish at x: " + super.getxPos() + " y: " +
 		// super.getyPos()); Prints the position for debugging
 	}

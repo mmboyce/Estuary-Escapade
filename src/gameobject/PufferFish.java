@@ -20,11 +20,21 @@ public class PufferFish extends Animal {
 		if (this.pathCount % this.getPathState() < this.getPathState()/4) {
 			this.setImagePath("images/PuffDaddyRight.png");
 			this.setxPos(this.getxPos()+this.getSpeed());
+			if (this.pathCount % 8 == 0 || this.pathCount % 8 == 1) {
+				this.setyPos(this.getyPos() + 2);
+			} else if (this.pathCount % 8 == 4 || this.pathCount % 8 == 5) {
+				this.setyPos(this.getyPos() - 2);
+			}
 		}else if (this.pathCount % this.getPathState() < this.getPathState()/2) {
 			this.setyPos(this.getyPos()+this.getSpeed()/2);
 		}else if (this.pathCount % this.getPathState() < 3*this.getPathState()/4) {
 			this.setImagePath("images/PuffDaddyLeft.png");
 			this.setxPos(this.getxPos()-this.getSpeed());
+			if (this.pathCount % 8 == 0 || this.pathCount % 8 == 1) {
+				this.setyPos(this.getyPos() + 2);
+			} else if (this.pathCount % 8 == 4 || this.pathCount % 8 == 5) {
+				this.setyPos(this.getyPos() - 2);
+			}
 		}else {
 			this.setyPos(this.getyPos()-this.getSpeed()/2);
 		}
