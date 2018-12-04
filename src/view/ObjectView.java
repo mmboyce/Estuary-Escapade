@@ -58,7 +58,7 @@ public abstract class ObjectView extends View {
 
 	@Override
 	public void paint(Graphics g) {
-		g.drawImage(createImage("images/underwater.png"), 0, 0, getWidth(), getHeight(), (ImageObserver) this);
+		g.drawImage(background, 0, 0, getWidth(), getHeight(), (ImageObserver) this);
 		// Start of experimental code
 		int xpos = 0;
 		int ypos = getHeight()*9/10;
@@ -89,7 +89,6 @@ public abstract class ObjectView extends View {
 			g.drawImage(createImage(object.getImagePath()), object.getxPos(), object.getyPos(), object.getxSize(),
 					object.getySize(), (ImageObserver) this);
 		}
-		g.drawImage(background, 0, 0, getWidth(), getHeight(), (ImageObserver) this);
 		timer.paint(g);
 		for (GameObject object : this.map.keySet()) {
 			if (object.isVisible()) {
