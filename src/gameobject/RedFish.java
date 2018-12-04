@@ -8,7 +8,7 @@ public class RedFish extends Animal{
 		this.setName("Red Drum");
 		this.setWeight(20);
 		this.setSpeed(12);
-		this.setQuestion(new Question("Big Red Drum are reffered to as Red Bulls.",
+		this.setQuestion(new Question("Big Red Drum are referred to as Red Bulls.",
 				"What are large Red Drum called?","Red Bulls","Red Fish","Big Fish","Puppy Drum"));
 		this.setPathLength(xSize * 22);
 		this.setRealPic("images/reddrum.jpg");
