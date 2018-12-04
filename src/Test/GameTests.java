@@ -33,6 +33,7 @@ import gameobject.Animal;
 import gameobject.Camera;
 import gameobject.GameObject;
 import gameobject.GoldFish;
+import gameobject.Measure;
 import gameobject.Question;
 
 class GameTests {
@@ -91,7 +92,11 @@ class GameTests {
 		assertFalse(rm.isPhotographed());
 		GoldFish fish = null;
 		Camera cam = rm.getCamera();
+<<<<<<< HEAD
 //		Camera ruler = rm.getRuler();
+=======
+		Measure ruler = rm.getRuler();
+>>>>>>> 451e8e835c626db2c168193498fbfc795ed22627
 		for (int i = 0; i < rm.getGameObjects().size(); i++) {
 			if (rm.getGameObjects().get(i) instanceof GoldFish) {
 				fish = (GoldFish) rm.getGameObjects().get(i);
