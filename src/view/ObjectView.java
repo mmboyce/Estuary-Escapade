@@ -120,7 +120,8 @@ public abstract class ObjectView extends View {
 				alpha = 0.0f;
 				stopFlash = false;
 			}
-		}
+		}		
+		timer.paint(g);
 
 	}
 
