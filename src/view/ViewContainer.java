@@ -51,6 +51,10 @@ public class ViewContainer {
 
 	public void next(ArrayList<GameObject> o) {
 		view = view.nextView(o);
+		if (view instanceof ObjectView) {
+			timerImage.setFrameSize(view.getWidth(), view.getHeight());
+			((ObjectView) view).passTimer(timerImage);
+		}
 		resetView();
 	}
 
@@ -71,25 +75,18 @@ public class ViewContainer {
 		// wrong
 		pane.removeAll();
 		pane.add(view, JLayeredPane.DEFAULT_LAYER);
-		if (view instanceof ObjectView) {// add a physical representation of the timer
-			int frameWidth = view.getWidth();
-			int frameHeight = view.getHeight();
-			timerImage.setFrameSize(frameWidth, frameHeight);
-		}
 		frame.revalidate();
 		frame.repaint();
 	}
 
 	public void start() {
 		pane.add(view, JLayeredPane.DEFAULT_LAYER);
+		frame.pack();
 		frame.setVisible(true);
 	}
 
 	public void repaint(int time) {
 		timerImage.update(time);
-		if (view instanceof ObjectView) {
-			((ObjectView) view).passTimer(timerImage);
-		}
 		frame.repaint();
 	}
 
@@ -99,16 +96,16 @@ public class ViewContainer {
 	}
 
 	public void estuaryPopup(Animal a, CodeListener cl) {
-		EstuaryPopup pop = new EstuaryPopup(a, cl);
+		EstuaryPopup pop = new EstuaryPopup(a, cl, width);
 		pop.setBounds(width / 4, height / 4, width / 2, height / 2);
 		pane.add(pop, JLayeredPane.POPUP_LAYER);
 		frame.revalidate();
 		frame.repaint();
 	}
-	
+
 	public void researchPopup(Animal a, CodeListener cl) {
-		ResearchPopup pop = new ResearchPopup(a, cl);
-		pop.setBounds(width / 4, height / 4, width / 2, height / 2);
+		ResearchPopup pop = new ResearchPopup(a, cl, width);
+		pop.setBounds(width / 4, height / 6, width / 2, (height * 2) / 3);
 		pane.add(pop, JLayeredPane.POPUP_LAYER);
 		frame.revalidate();
 		frame.repaint();
@@ -128,6 +125,12 @@ public class ViewContainer {
 
 	public int getHeight() {
 		return height;
+	}
+
+	public void flash() {
+		if (view instanceof ResearchView) {
+			view.flash();
+		}
 	}
 
 }

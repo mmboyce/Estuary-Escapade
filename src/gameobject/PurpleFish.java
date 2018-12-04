@@ -13,6 +13,7 @@ public class PurpleFish extends Animal{
 		this.setQuestion(new Question("Escolar are found in waters that range from 300 to 3000 feet deep. ", 
 				"At what depth below would you be able to find a Escolar","1000 feet","10 feet","5000 feet","200 feet"));
 		this.setPathLength(xSize * 15);
+		this.setRealPic("images/escolar.jpeg");//Not sure of the royalties on this one
 		
 	}
 
