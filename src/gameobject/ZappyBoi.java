@@ -6,7 +6,8 @@ public class ZappyBoi extends Animal {
 		super(xPos, yPos, depth, xSize, ySize);
 		this.setImagePath("images/ZappyBoiRight.png");
 		this.setName("American Eel");
-		this.setWeight(7);
+		this.setWeight(9);
+		this.setAvgSize(2);
 		this.setSpeed(4);
 		this.setQuestion(new Question("The American Eel has to come to the surface for air every ten minutes.",
 				"How often does the American Eel have to come to the surface for air? ", "Every 10 minutes",
@@ -17,6 +18,7 @@ public class ZappyBoi extends Animal {
 
 	@Override
 	public void update() {
+		// creates a path for the eel by using a series of waypoints.
 		int pathState = getPathState();
 		int x = getxPos();
 		int y = getyPos();
