@@ -27,14 +27,11 @@ public class Controller implements CodeListener {
 	private int time;
 	private int width;
 	private int height;
-	private boolean debugging;
 
-	private final static String title = "Estuary Escapade";
 	private final int cycles = 750; // This controlls how long the game runs for
 	private final int timerDelay = 40; // The delay between every game state update
 
 	public Controller() {
-		debugging = false;
 		time = 0;
 		timerRunning = false; // The time will only start once the player leaves the start screen
 
@@ -45,7 +42,7 @@ public class Controller implements CodeListener {
 
 		model = new TitleModel(width, height, this);
 		mouseListener = new CustomMouseListener(model);
-		keyListener = new CustomKeyListener(this);
+		keyListener = new CustomKeyListener(model);
 		view.initialize(mouseListener, keyListener, this, model.getGameObjects(), cycles);
 
 		updateAction = new AbstractAction() {
@@ -83,6 +80,7 @@ public class Controller implements CodeListener {
 			model = model.nextModel();// calls nextmodel and move to next game state
 			view.next(model.getGameObjects());
 			mouseListener.setModel(model);
+			keyListener.setModel(model);
 			break;
 		case EXIT:
 			t.stop();
@@ -95,6 +93,7 @@ public class Controller implements CodeListener {
 			if (model instanceof GameStateModel && view.checkObjectView()) {
 				model = ((GameStateModel) model).timeUp();
 				mouseListener.setModel(model);
+				keyListener.setModel(model);
 				view.timeUp((QuizModel) model);
 			}
 			timerRunning = false;
@@ -126,19 +125,6 @@ public class Controller implements CodeListener {
 			break;
 		}
 	}
-
-	public void debugCatchTarget() {
-		if(model instanceof EstuaryModel) {
-			((EstuaryModel) model).debugChooseTarget();
-		}
-	}
-	
-	public void debugResearch() {
-		if (model instanceof ResearchModel) {
-			((ResearchModel) model).debugDoneResearching();
-		}
-	}
-	
 	
 	public void start() {
 		t.start();
@@ -163,14 +149,6 @@ public class Controller implements CodeListener {
 
 	public ViewContainer getViewContainer() {
 		return view;
-	}
-
-	public void toggleDebugging() {
-		this.debugging = !debugging;
-	}
-	
-	public boolean isDebugging() {
-		return debugging;
 	}
 	
 	public void setViewContainer(ViewContainer view) {

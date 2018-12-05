@@ -3,34 +3,41 @@ package controller;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import model.EstuaryModel;
+import model.Model;
+import model.ResearchModel;
+
 public class CustomKeyListener implements KeyListener {
-	Controller controller;
+	private Model model;
+	private boolean debugging;
 	
-	public CustomKeyListener(Controller c) {
-		this.controller = c;
+	// CURRENTLY ONLY KEYS WORK IF YOU ALT-TAB OUT AND COME BACK
+	
+	public CustomKeyListener(Model m) {
+		this.model = m;
 	}
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
-				
+			
 		if (key == KeyEvent.VK_ESCAPE) {
-			controller.codeEmitted(Code.EXIT);
+			model.getListener().codeEmitted(Code.EXIT);
 		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
-		
+						
 		// DEBUGGING KEYS BELOW
 		
 		if(e.isShiftDown() && key == KeyEvent.VK_D) {
 			// toggle debug
-			controller.toggleDebugging();
+			toggleDebugging();
 			
 			String debugStatus;
-			if(controller.isDebugging()) {
+			if(isDebugging()) {
 				debugStatus = "Enabled";
 			}
 			else {
@@ -40,15 +47,30 @@ public class CustomKeyListener implements KeyListener {
 			System.out.println("Debugging " + debugStatus);
 		}
 		
-		if(controller.isDebugging()) {
+		if(isDebugging()) {
 			if (key == KeyEvent.VK_Q) {
 				// catch target
-				controller.debugCatchTarget();
+				if(model instanceof EstuaryModel) {
+					((EstuaryModel) model).debugChooseTarget();
+				}
 			}
 			
 			if (key == KeyEvent.VK_W) {
 				// take photo
-				controller.debugResearch();
+				if (model instanceof ResearchModel) {
+					((ResearchModel) model).debugDoneResearching();
+				}
+			}
+			
+			if (key == KeyEvent.VK_E) {
+				// skip to quiz with all caught
+				if (model instanceof EstuaryModel)
+					((EstuaryModel) model).debugResearchAll();
+			}
+			
+			if (key == KeyEvent.VK_R) {
+				// skip to quiz with current amount caught
+				model.getListener().codeEmitted(Code.TIMEUP);
 			}
 		}
 	}
@@ -58,4 +80,15 @@ public class CustomKeyListener implements KeyListener {
 		// this page intentionally left blank
 	}
 	
+	public void toggleDebugging() {
+		this.debugging = !debugging;
+	}
+	
+	public boolean isDebugging() {
+		return debugging;
+	}
+	
+	public void setModel(Model model) {
+		this.model = model;
+	}
 }

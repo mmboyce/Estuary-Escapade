@@ -190,6 +190,16 @@ public class EstuaryModel extends Model implements GameStateModel {
 		return count == 0;
 	}
 	
+	public void debugResearchAll() {
+		for(GameObject o : getGameObjects()) {
+			if(o instanceof Animal) {
+				researched.add((Animal) o);
+			}
+		}
+		getGameObjects().removeAll(researched);
+		getListener().codeEmitted(Code.TIMEUP);
+	}
+	
 	@Override
 	/*
 	 * (non-Javadoc)

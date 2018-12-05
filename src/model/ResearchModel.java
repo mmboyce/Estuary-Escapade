@@ -167,9 +167,11 @@ public class ResearchModel extends Model implements GameStateModel {
 	}
 	
 	public void debugDoneResearching() {
+		setMeasured(true);
+		setPhotographed(true);
+		setWeighed(true);
 		doneResearching();
 	}
-
 
 	public void setCameraHolding(boolean value) {
 		this.isHoldingCamera = value;

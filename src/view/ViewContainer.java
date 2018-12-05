@@ -2,6 +2,7 @@ package view;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
@@ -30,7 +31,6 @@ public class ViewContainer {
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // This fullscreens the game
 		frame.setUndecorated(true); // This removes the window border
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 		pane = frame.getLayeredPane();
 		// These get the size of the screen
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -45,8 +45,8 @@ public class ViewContainer {
 		 * and that requires the size of the screen
 		 */
 		pane.addMouseListener(m);
+		pane.addMouseMotionListener(m);	
 		frame.addKeyListener(k);
-		pane.addMouseMotionListener(m);
 		view = new TitleView(title, width, height, c, o);
 		timerImage = new TimerImage(cycles); // Adds timer image
 	}
@@ -84,6 +84,7 @@ public class ViewContainer {
 	public void start() {
 		pane.add(view, JLayeredPane.DEFAULT_LAYER);
 		frame.pack();
+		frame.setAutoRequestFocus(true); // frame must be in focus for key input to work
 		frame.setVisible(true);
 	}
 
@@ -127,6 +128,10 @@ public class ViewContainer {
 
 	public int getHeight() {
 		return height;
+	}
+	
+	public static String getTitle() {
+		return title;
 	}
 
 	public void flash() {
