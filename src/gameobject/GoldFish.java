@@ -5,12 +5,15 @@ public class GoldFish extends Animal {
 		super(xPos, yPos, depth, xSize, ySize);
 
 		setImagePath("images/GoldfishRight.png");
-		setName("Yellow Tail Flounder"); 
-		setWeight(8); 
+		setName("Yellow Tail Flounder");
+		setAvgSize(2);
+		setWeight(25);
 		setSpeed(5);
-		setQuestion(new Question("Yellowtail Flounders can use camouflage and change the color and pattern of their skin to match the surrounding environment.", 
-				"The Yellowtail Flounder can ...", "use camouflage to blend into its surroundings", "jump out of the water", "swim very fast", "squirt ink at predators"));
-		setPathLength(xSize*3);
+		setQuestion(new Question(
+				"Yellowtail Flounders can use camouflage and change the color and pattern of their skin to match the surrounding environment.",
+				"The Yellowtail Flounder can ...", "use camouflage to blend into its surroundings",
+				"jump out of the water", "swim very fast", "squirt ink at predators"));
+		setPathLength(xSize * 3);
 	}
 
 	/*

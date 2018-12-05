@@ -37,8 +37,8 @@ public class ResearchPopup extends JPanel implements ActionListener {
 
 		name = labelFactory(a.getName());
 		funFact = labelFactory("Fun Fact: " + a.getQuestion().getFunFact());
-		weight = labelFactory("Weight: " + a.getWeight() + "g");
-		length = labelFactory("Length: " + a.getWeight() + "m");
+		weight = labelFactory("Weight: " + a.getWeight() + " lbs");
+		length = labelFactory("Length: " + a.getAvgSize() + " feet");
 		exit = new JButton("Resume Game");
 		exit.setFont(font);
 		exit.addActionListener(this);

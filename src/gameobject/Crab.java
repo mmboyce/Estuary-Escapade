@@ -5,22 +5,24 @@ public class Crab extends Animal {
 		super(xPos, yPos, depth, xSize, ySize);
 		this.setImagePath("images/Crab_UW_F1.png");
 		this.setName("Blue Crab");
-		this.setWeight(10);
+		this.setWeight(5);
 		this.setSpeed(10);
+		this.setAvgSize(1/2);
 		this.setQuestion(new Question("The Blue Crab have teeth in its stomach.",
-				"What do Blue Crabs have in their stomach?", "Teeth",
-				"Eyes", "Claws","Hair" ));
-		this.setPathLength(xSize*16/this.getSpeed());
+				"What do Blue Crabs have in their stomach?", "Teeth", "Eyes", "Claws", "Hair"));
+		this.setPathLength(xSize * 16 / this.getSpeed());
 		this.setRealPic("images/bluecrab.jpg");
 	}
 
 	@Override
 	public void update() {
-		this.setPathState(this.getPathLength()/this.getSpeed());
-		if(this.pathCount%this.getPathLength() < this.getPathLength()/2) {
-			this.setxPos(this.getxPos()+this.getSpeed());
-		}else {
-			this.setxPos(this.getxPos()-this.getSpeed());
+		// Creates the path for the crab, going back and fourth at the bottom of the
+		// screen
+		this.setPathState(this.getPathLength() / this.getSpeed());
+		if (this.pathCount % this.getPathLength() < this.getPathLength() / 2) {
+			this.setxPos(this.getxPos() + this.getSpeed());
+		} else {
+			this.setxPos(this.getxPos() - this.getSpeed());
 		}
 		this.pathCount++;
 	}

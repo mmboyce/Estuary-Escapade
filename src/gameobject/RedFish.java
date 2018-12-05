@@ -7,6 +7,7 @@ public class RedFish extends Animal{
 		this.setImagePath("images/RedFishLeft.png");
 		this.setName("Red Drum");
 		this.setWeight(20);
+		this.setAvgSize(2);
 		this.setSpeed(12);
 		this.setQuestion(new Question("Big Red Drum are referred to as Red Bulls.",
 				"What are large Red Drum called?","Red Bulls","Red Fish","Big Fish","Puppy Drum"));
@@ -16,6 +17,7 @@ public class RedFish extends Animal{
 
 	@Override
 	public void update() {
+		// Creates a diamond pattern for the red fish and updates its position and sprite
 		this.setPathState(this.getPathLength()/this.getSpeed());
 		if(this.pathCount % this.getPathState() < this.getPathState()/4) {
 			this.setImagePath("images/RedFishLeft.png");
