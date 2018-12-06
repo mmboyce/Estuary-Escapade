@@ -1,6 +1,20 @@
 package gameobject;
 
+/**
+ * The GoldFish is a Yellow Tail Flounder
+ * 
+ * @author W Mathieu Mimms-Boyce
+ * @author Dylan Martin
+ * @see Animal
+ */
 public class GoldFish extends Animal {
+	
+	/**
+	 * This Constructor establishes the position, depth, and size of the fish.
+	 * Its other parameters are unique values corresponding to the fish.
+	 * 
+	 * @see Animal#Animal(int, int, int, int, int)
+	 */
 	public GoldFish(int xPos, int yPos, int depth, int xSize, int ySize) {
 		super(xPos, yPos, depth, xSize, ySize);
 
@@ -17,13 +31,8 @@ public class GoldFish extends Animal {
 		setPathLength(xSize * 3);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see gameobject.GameObject#update()
-	 * 
-	 * void update This uses the updatePosition of the Animal class to make a
-	 * waypoint system for our goldfish.
 	 */
 	@Override
 	public void update() {

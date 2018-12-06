@@ -1,7 +1,20 @@
 package gameobject;
 
+/**
+ * The PufferFish is a Northern Puffer. 
+ * 
+ * @author W Mathieu Mimms-Boyce
+ * @author Dylan Martin
+ * @see Animal
+ */
 public class PufferFish extends Animal {
-	// Constructor
+	
+	/**
+	 * This Constructor establishes the position, depth, and size of the fish.
+	 * Its other parameters are unique values corresponding to the fish.
+	 * 
+	 * @see Animal#Animal(int, int, int, int, int)
+	 */
 	public PufferFish(int xPos, int yPos, int depth, int xSize, int ySize) {
 		super(xPos, yPos, depth, xSize, ySize);
 		this.setImagePath("images/PuffDaddyRight.png");
@@ -17,6 +30,9 @@ public class PufferFish extends Animal {
 		this.setAvgSize(2);
 	}
 
+	/* (non-Javadoc)
+	 * @see gameobject.GameObject#update()
+	 */
 	@Override
 	public void update() {
 		// Creates the puffer fish path and updates its position and sprite

@@ -9,6 +9,12 @@ package gameobject;
  */
 public class BlueFish extends Animal {
 
+	/**
+	 * This Constructor establishes the position, depth, and size of the fish.
+	 * Its other parameters are unique values corresponding to the fish.
+	 * 
+	 * @see Animal#Animal(int, int, int, int, int)
+	 */
 	public BlueFish(int xPos, int yPos, int depth, int xSize, int ySize) {
 		super(xPos, yPos, depth, xSize, ySize);
 		this.setImagePath("images/BlueFishRight.png");
