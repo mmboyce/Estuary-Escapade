@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Button;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -12,6 +13,7 @@ import java.util.Collections;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
@@ -89,6 +91,7 @@ public class QuizView extends View implements ActionListener {
 
 	private JButton buttonFactory(String text) {
 		JButton button = new JButton("<HTML>" + text + "<HTML>");
+		button.setVerticalTextPosition(SwingConstants.CENTER);
 		button.addActionListener(this);
 		button.setFont(font);
 		return button;

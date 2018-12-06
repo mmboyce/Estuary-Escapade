@@ -22,7 +22,7 @@ public class EndView extends View {
 		}
 
 		TitlePanel Score = new TitlePanel(scoreStr, width); // This will display the title and any art
-		TitleNavigation nav = new TitleNavigation(listener, width); // This holds buttons for navigation
+		EndNavigation nav = new EndNavigation(listener, width); // This holds buttons for navigation
 
 		setLayout(new BorderLayout());
 		add(Score, BorderLayout.CENTER);
