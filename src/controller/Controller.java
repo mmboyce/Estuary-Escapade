@@ -14,6 +14,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import gameobject.Animal;
 import model.EndModel;
+import model.EstuaryModel;
 import model.GameStateModel;
 import model.Model;
 import model.QuizModel;
@@ -60,6 +61,7 @@ public class Controller implements CodeListener, Serializable {
 				 * the time increments and if the time runs out the TIMEUP code is emitted
 				 */
 				model.update();
+				model.setTime(time);
 				view.repaint(time);
 				if (timerRunning) {
 					time++;
@@ -70,7 +72,6 @@ public class Controller implements CodeListener, Serializable {
 			}
 		};
 		t = new Timer(timerDelay, updateAction);
-
 	}
 
 	/*
@@ -168,9 +169,9 @@ public class Controller implements CodeListener, Serializable {
 				String filename = jf.getSelectedFile().getAbsolutePath();
 				FileInputStream fis = new FileInputStream(filename);
 				ObjectInputStream in = new ObjectInputStream(fis);
-				Controller oldController = (Controller) in.readObject();
-				loadValues(oldController);
+				Model oldModel = (Model) in.readObject();
 				in.close();
+				loadValues(oldModel);
 			}
 		} catch (Exception e) {
 			System.out.println("Problem loading");
@@ -179,8 +180,24 @@ public class Controller implements CodeListener, Serializable {
 		codeEmitted(Code.RESUME);
 	}
 
-	private void loadValues(Controller oldController) {
-		System.out.println("Got to loadValues");
+	private void loadValues(Model oldModel) {
+		oldModel.setListener(this);
+		oldModel.setFrameHeight(height);
+		oldModel.setFrameWidth(width);
+		model = oldModel;
+		time = oldModel.getTime();
+		mouseListener.setModel(model);
+		if (model instanceof TitleModel) {
+			view.loadTitle(this, model.getGameObjects());
+		} else if (model instanceof EstuaryModel) {
+			view.loadEstuary(this, model.getGameObjects());
+		} else if (model instanceof ResearchModel) {
+			view.loadResearch(this, model.getGameObjects());
+		} else if (model instanceof QuizModel) {
+			view.loadQuiz(((QuizModel) model).getQuestion(), this, model.getGameObjects());
+		} else if (model instanceof EndModel) {
+			view.loadEnd(this, model.getGameObjects(), ((EndModel) model).isQuizCorrect());
+		}
 	}
 
 	public void start() {

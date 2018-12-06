@@ -16,9 +16,10 @@ import controller.CustomKeyListener;
 import controller.CustomMouseListener;
 import gameobject.Animal;
 import gameobject.GameObject;
+import gameobject.Question;
 import model.QuizModel;
 
-public class ViewContainer implements Serializable{
+public class ViewContainer implements Serializable {
 	private JFrame frame;
 	private JLayeredPane pane;
 	private View view;
@@ -174,6 +175,33 @@ public class ViewContainer implements Serializable{
 		width = oldViewContainer.width;
 		height = oldViewContainer.height;
 		frame.setContentPane(pane);
+		resetView();
+	}
+
+	public void loadTitle(CodeListener cl, ArrayList<GameObject> o) {
+		view = new TitleView(title, width, height, cl, o);
+		resetView();
+	}
+
+	public void loadEstuary(CodeListener cl, ArrayList<GameObject> o) {
+		view = new EstuaryView(width, height, o, cl);
+		((ObjectView) view).passTimer(timerImage);
+		resetView();
+	}
+
+	public void loadResearch(CodeListener cl, ArrayList<GameObject> o) {
+		view = new ResearchView(width, height, o, cl);
+		((ObjectView) view).passTimer(timerImage);
+		resetView();
+	}
+
+	public void loadQuiz(Question q, CodeListener cl, ArrayList<GameObject> o) {
+		view = new QuizView(width, height, q, o, cl);
+		resetView();
+	}
+	
+	public void loadEnd(CodeListener cl, ArrayList<GameObject> o, boolean quizCorrect) {
+		view = new EndView(width, height, o, cl, height, quizCorrect);
 		resetView();
 	}
 

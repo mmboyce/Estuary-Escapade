@@ -8,13 +8,18 @@ import controller.CodeListener;
 import gameobject.GameObject;
 
 public abstract class Model implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9220995213767240931L;
 	// The size of the window
 	private int frameWidth;
 	private int frameHeight;
+	private int time;
 	// A list of all the objects in the model
 	private ArrayList<GameObject> objects;
 	// Listens for codes to trigger actions
-	private CodeListener listener;
+	transient private CodeListener listener;
 
 	public int getFrameWidth() {
 		return frameWidth;
@@ -66,6 +71,14 @@ public abstract class Model implements Serializable{
 
 	public Model tutorialModel() {
 		return null;
+	}
+
+	public int getTime() {
+		return time;
+	}
+
+	public void setTime(int time) {
+		this.time = time;
 	}
 
 }

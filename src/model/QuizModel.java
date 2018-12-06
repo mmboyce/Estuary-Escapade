@@ -50,14 +50,14 @@ public class QuizModel extends Model {
 	@Override
 	public Model nextModel() {
 		// Transition to the end screen which displays the score
-		return new EndModel(super.getFrameWidth(), super.getFrameHeight(), getListener(), -1);
+		return new EndModel(super.getFrameWidth(), super.getFrameHeight(), getListener(), -1, false);
 	}
 
 	public Model questionAnswered(boolean questionCorrect) {
 		if (questionCorrect) {
-			return new EndModel(super.getFrameWidth(), super.getFrameHeight(), getListener(), questionPool.size() * 2);
+			return new EndModel(super.getFrameWidth(), super.getFrameHeight(), getListener(), questionPool.size() * 2, true);
 		} else {
-			return new EndModel(super.getFrameWidth(), super.getFrameHeight(), getListener(), questionPool.size());
+			return new EndModel(super.getFrameWidth(), super.getFrameHeight(), getListener(), questionPool.size(), false);
 		}
 	}
 
