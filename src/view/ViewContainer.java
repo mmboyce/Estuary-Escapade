@@ -123,6 +123,22 @@ public class ViewContainer {
 		frame.repaint();
 	}
 
+	public void tutorialPopup1(Controller controller) {
+		TutorialPopup pop = new TutorialPopup(1, controller, width);
+		pop.setBounds(width / 4, height / 6, width / 2, (height * 2) / 3);
+		pane.add(pop, JLayeredPane.POPUP_LAYER);
+		frame.revalidate();
+		frame.repaint();
+	}
+
+	public void tutorialPopup2(Controller controller) {
+		TutorialPopup pop = new TutorialPopup(2, controller, width);
+		pop.setBounds(width / 4, height / 6, width / 2, (height * 2) / 3);
+		pane.add(pop, JLayeredPane.POPUP_LAYER);
+		frame.revalidate();
+		frame.repaint();
+	}
+	
 	public boolean checkObjectView() {
 		return (view instanceof ObjectView);
 	}
@@ -147,22 +163,6 @@ public class ViewContainer {
 		if (view instanceof ResearchView) {
 			view.flash();
 		}
-	}
-
-	public void tutorialPopup1(Controller controller) {
-		TutorialPopup pop = new TutorialPopup(1, controller, width);
-		pop.setBounds(width / 4, height / 6, width / 2, (height * 2) / 3);
-		pane.add(pop, new Integer(301));
-		frame.revalidate();
-		frame.repaint();
-	}
-
-	public void tutorialPopup2(Controller controller) {
-		TutorialPopup pop = new TutorialPopup(2, controller, width);
-		pop.setBounds(width / 4, height / 6, width / 2, (height * 2) / 3);
-		pane.add(pop, new Integer(301));
-		frame.revalidate();
-		frame.repaint();
 	}
 
 }

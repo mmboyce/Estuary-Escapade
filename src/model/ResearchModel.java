@@ -20,9 +20,9 @@ public class ResearchModel extends Model implements GameStateModel {
 	private boolean tutorialMode;
 	// Used to determine if the user is holding an animal or nots
 	private boolean isHolding = false;
-	private boolean isHoldingCamera=false;
-	private boolean isHoldingRuler=false;
-	private boolean isHoldingScale=false;
+	private boolean isHoldingCamera = false;
+	private boolean isHoldingRuler = false;
+	private boolean isHoldingScale = false;
 
 	// Different research tools
 	// TODO decide what functionality we should have from camera and if it should be
@@ -65,7 +65,8 @@ public class ResearchModel extends Model implements GameStateModel {
 	}
 
 	// Constructor
-	public ResearchModel(int frameWidth, int frameHeight, Animal animalCaught, EstuaryModel goBack, CodeListener listener, boolean tutorialMode) {
+	public ResearchModel(int frameWidth, int frameHeight, Animal animalCaught, EstuaryModel goBack,
+			CodeListener listener, boolean tutorialMode) {
 		super(frameWidth, frameHeight, listener);
 		popupClosed = false;
 		this.tutorialMode = tutorialMode;
@@ -92,8 +93,10 @@ public class ResearchModel extends Model implements GameStateModel {
 		goBack.chooseTarget();
 		return this.goBack;
 	}
+
 	/**
 	 * void registerClick
+	 * 
 	 * @param e a mouse event
 	 * 
 	 */
@@ -102,20 +105,18 @@ public class ResearchModel extends Model implements GameStateModel {
 		int mouseX = e.getX();
 		int mouseY = e.getY();
 
-		if (isHoldingCamera||isHoldingRuler||isHoldingScale) {
+		if (isHoldingCamera || isHoldingRuler || isHoldingScale) {
 			if (caught.clickedOn(mouseX, mouseY)) {
-				if(isHoldingCamera){
+				if (isHoldingCamera) {
 					getListener().codeEmitted(Code.FLASHSCREEN);
 					this.camera.setVisible(false);
 					this.setPhotographed(true);
 					this.setCameraHolding(false);
-				} 
-				else if (isHoldingRuler) {
+				} else if (isHoldingRuler) {
 					this.ruler.setVisible(false);
 					this.setMeasured(true);
 					this.setRulerHolding(false);
-				}
-				else if (isHoldingScale) {
+				} else if (isHoldingScale) {
 					this.scale.setVisible(false);
 					this.setWeighed(true);
 					this.setScaleHolding(false);
@@ -124,22 +125,21 @@ public class ResearchModel extends Model implements GameStateModel {
 					doneResearching();
 				}
 			}
-		} 
-		else {
+		} else {
 			if (camera.clickedOn(mouseX, mouseY)) {
 				setCameraHolding(true);
-			}
-			else if (ruler.clickedOn(mouseX, mouseY)) {
+			} else if (ruler.clickedOn(mouseX, mouseY)) {
 				setRulerHolding(true);
-			}
-			else if (scale.clickedOn(mouseX, mouseY)) {
+			} else if (scale.clickedOn(mouseX, mouseY)) {
 				setScaleHolding(true);
 			}
 		}
 	}
+
 	/**
-	 * void mouseMoved
-	 * if hold a tool moving the mouse changes the location of that object
+	 * void mouseMoved if hold a tool moving the mouse changes the location of that
+	 * object
+	 * 
 	 * @param mouseX
 	 * @param mouseY
 	 */
@@ -164,7 +164,7 @@ public class ResearchModel extends Model implements GameStateModel {
 		super.getListener().researchPopup(caught);
 		popupClosed = true;
 	}
-	
+
 	// DEBUG finishes researching the animal we're looking at
 	public void debugDoneResearching() {
 		setMeasured(true);
@@ -176,12 +176,15 @@ public class ResearchModel extends Model implements GameStateModel {
 	public void setCameraHolding(boolean value) {
 		this.isHoldingCamera = value;
 	}
+
 	public void setRulerHolding(boolean value) {
 		this.isHoldingRuler = value;
 	}
+
 	public void setScaleHolding(boolean value) {
 		this.isHoldingScale = value;
 	}
+
 	public boolean getHolding() {
 		return this.isHolding;
 	}
@@ -195,23 +198,22 @@ public class ResearchModel extends Model implements GameStateModel {
 	@Override
 	public void update() {
 		if (tutorialMode) {
-			if(popupClosed) {
+			if (popupClosed && goBack.allResearched()) {
+				super.getListener().codeEmitted(Code.TIMEUP);
+			} else if (popupClosed) {
 				super.getListener().codeEmitted(Code.NEXT);
 			}
-			if(!tutorialPopupClosed) {
+			if (!tutorialPopupClosed) {
 				super.getListener().tutorialPopup2();
 				tutorialPopupClosed = true;
 			}
-		}
-		else if(popupClosed && goBack.allResearched()) {
+		} else if (popupClosed && goBack.allResearched()) {
 			super.getListener().codeEmitted(Code.TIMEUP);
-		}
-		else if(popupClosed) {
+		} else if (popupClosed) {
 			super.getListener().codeEmitted(Code.NEXT);
 		}
-		
 	}
-	
+
 	public Measure getRuler() {
 		return ruler;
 	}

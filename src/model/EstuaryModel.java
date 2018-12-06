@@ -237,8 +237,6 @@ public class EstuaryModel extends Model implements GameStateModel {
 				popupHappened = true;
 			}
 		}
-		
-		
 		updatePositions();
 	}
 	
