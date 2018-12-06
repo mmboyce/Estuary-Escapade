@@ -5,6 +5,7 @@ public class BlueFish extends Animal {
 	public BlueFish(int xPos, int yPos, int depth, int xSize, int ySize) {
 		super(xPos, yPos, depth, xSize, ySize);
 		this.setImagePath("images/BlueFishRight.png");
+		this.setRealPic("images/bluemarlin.png");
 		this.setName("Blue Marlin");
 		this.setSpeed(10);
 		this.setAvgSize(9);

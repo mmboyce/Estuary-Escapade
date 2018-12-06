@@ -8,9 +8,11 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 import controller.Code;
@@ -18,6 +20,7 @@ import controller.CodeListener;
 import gameobject.Animal;
 
 public class ResearchPopup extends JPanel implements ActionListener {
+	BufferedImage realAnimalImg;
 	JLabel name;
 	JLabel funFact;
 	JLabel weight;
@@ -35,6 +38,10 @@ public class ResearchPopup extends JPanel implements ActionListener {
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		font = new Font("Arial", Font.PLAIN, width / 35);
 
+		realAnimalImg = ObjectView.createImage(a.getRealPic());
+		JLabel picLabel = new JLabel(new ImageIcon(realAnimalImg));
+		picLabel.setVerticalAlignment(JLabel.CENTER);
+		
 		name = labelFactory(a.getName());
 		funFact = labelFactory("Fun Fact: " + a.getQuestion().getFunFact());
 		weight = labelFactory("Weight: " + a.getWeight() + " lbs");
@@ -43,6 +50,7 @@ public class ResearchPopup extends JPanel implements ActionListener {
 		exit.setFont(font);
 		exit.addActionListener(this);
 
+		this.add(picLabel);
 		this.setBorder(new EmptyBorder(0, width/20, 0, 0));
 		this.add(Box.createVerticalStrut(width / 25));
 		this.add(name);
