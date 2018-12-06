@@ -1,6 +1,8 @@
 package gameobject;
 
-public abstract class GameObject {
+import java.io.Serializable;
+
+public abstract class GameObject implements Serializable{
 
 	private int xPos;
 	private int yPos;

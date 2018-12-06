@@ -3,6 +3,7 @@ package view;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.swing.JComponent;
@@ -15,9 +16,10 @@ import controller.CustomKeyListener;
 import controller.CustomMouseListener;
 import gameobject.Animal;
 import gameobject.GameObject;
+import gameobject.Question;
 import model.QuizModel;
 
-public class ViewContainer {
+public class ViewContainer implements Serializable {
 	private JFrame frame;
 	private JLayeredPane pane;
 	private View view;
@@ -55,10 +57,6 @@ public class ViewContainer {
 
 	public void next(ArrayList<GameObject> o) {
 		view = view.nextView(o);
-		if (view instanceof ObjectView) {
-			timerImage.setFrameSize(view.getWidth(), view.getHeight());
-			((ObjectView) view).passTimer(timerImage);
-		}
 		resetView();
 	}
 
@@ -77,6 +75,10 @@ public class ViewContainer {
 	public void resetView() {
 		// If this is not done the JFrame will not display properly and things will look
 		// wrong
+		if (view instanceof ObjectView) {
+			timerImage.setFrameSize(view.getWidth(), view.getHeight());
+			((ObjectView) view).passTimer(timerImage);
+		}
 		pane.removeAll();
 		pane.add(view, JLayeredPane.DEFAULT_LAYER);
 		frame.revalidate();
@@ -164,6 +166,41 @@ public class ViewContainer {
 		if (view instanceof ResearchView) {
 			view.flash();
 		}
+	}
+
+	public void loadView(ViewContainer oldViewContainer) {
+		pane = oldViewContainer.pane;
+		view = oldViewContainer.view;
+		timerImage = oldViewContainer.timerImage;
+		width = oldViewContainer.width;
+		height = oldViewContainer.height;
+		frame.setContentPane(pane);
+		resetView();
+	}
+
+	public void loadTitle(CodeListener cl, ArrayList<GameObject> o) {
+		view = new TitleView(title, width, height, cl, o);
+		resetView();
+	}
+
+	public void loadEstuary(CodeListener cl, ArrayList<GameObject> o) {
+		view = new EstuaryView(width, height, o, cl);
+		resetView();
+	}
+
+	public void loadResearch(CodeListener cl, ArrayList<GameObject> o) {
+		view = new ResearchView(width, height, o, cl);
+		resetView();
+	}
+
+	public void loadQuiz(Question q, CodeListener cl, ArrayList<GameObject> o) {
+		view = new QuizView(width, height, q, o, cl);
+		resetView();
+	}
+	
+	public void loadEnd(CodeListener cl, ArrayList<GameObject> o, boolean quizCorrect) {
+		view = new EndView(width, height, o, cl, height, quizCorrect);
+		resetView();
 	}
 
 }

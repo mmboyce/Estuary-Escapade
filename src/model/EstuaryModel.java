@@ -19,6 +19,10 @@ import gameobject.RedFish;
 import gameobject.ZappyBoi;
 
 public class EstuaryModel extends Model implements GameStateModel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8103428406073445575L;
 	// A list of all the animals the user researched
 	List<Animal> researched;
 	// The animal the user is currently researching

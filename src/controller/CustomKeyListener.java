@@ -2,19 +2,22 @@ package controller;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.Serializable;
 
 import model.EstuaryModel;
-import model.Model;
 import model.ResearchModel;
 
-public class CustomKeyListener implements KeyListener {
-	private Model model;
+public class CustomKeyListener implements KeyListener, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Controller controller;
 	private boolean debugging;
 
 	// CURRENTLY ONLY KEYS WORK IF YOU ALT-TAB OUT AND COME BACK
-
-	public CustomKeyListener(Model m) {
-		this.model = m;
+	public CustomKeyListener(Controller c) {
+		this.controller = c;
 	}
 
 	@Override
@@ -22,7 +25,7 @@ public class CustomKeyListener implements KeyListener {
 		int key = e.getKeyCode();
 
 		if (key == KeyEvent.VK_ESCAPE) {
-			model.getListener().codeEmitted(Code.EXIT);
+			controller.getModel().getListener().codeEmitted(Code.EXIT);
 		}
 	}
 
@@ -45,31 +48,38 @@ public class CustomKeyListener implements KeyListener {
 
 			System.out.println("Debugging " + debugStatus);
 		}
+		if (key == KeyEvent.VK_S) {
+			controller.saveState();
+		}
+
+		if (key == KeyEvent.VK_L) {
+			controller.loadState();
+		}
 
 		if (isDebugging()) {
 			if (key == KeyEvent.VK_Q) {
 				// catch target
-				if (model instanceof EstuaryModel) {
-					((EstuaryModel) model).debugChooseTarget();
+				if (controller.getModel() instanceof EstuaryModel) {
+					((EstuaryModel) controller.getModel()).debugChooseTarget();
 				}
 			}
 
 			if (key == KeyEvent.VK_W) {
 				// research current animal
-				if (model instanceof ResearchModel) {
-					((ResearchModel) model).debugDoneResearching();
+				if (controller.getModel() instanceof ResearchModel) {
+					((ResearchModel) controller.getModel()).debugDoneResearching();
 				}
 			}
 
 			if (key == KeyEvent.VK_E) {
 				// skip to quiz with all caught
-				if (model instanceof EstuaryModel)
-					((EstuaryModel) model).debugResearchAll();
+				if (controller.getModel() instanceof EstuaryModel)
+					((EstuaryModel) controller.getModel()).debugResearchAll();
 			}
 
 			if (key == KeyEvent.VK_R) {
 				// skip to quiz with current amount caught
-				model.getListener().codeEmitted(Code.TIMEUP);
+				controller.getModel().getListener().codeEmitted(Code.TIMEUP);
 			}
 		}
 	}
@@ -85,9 +95,5 @@ public class CustomKeyListener implements KeyListener {
 
 	public boolean isDebugging() {
 		return debugging;
-	}
-
-	public void setModel(Model model) {
-		this.model = model;
 	}
 }

@@ -3,6 +3,10 @@ package model;
 import controller.CodeListener;
 
 public class TitleModel extends Model {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2507800710350804056L;
 	// The title of the game
 	private String title;
 

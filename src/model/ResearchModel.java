@@ -10,6 +10,10 @@ import gameobject.Measure;
 
 public class ResearchModel extends Model implements GameStateModel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3435910244830997851L;
 	// Used to determine if the animal is fully researched
 	private boolean isWeighed = false;
 	private boolean isMeasured = false;
@@ -24,10 +28,7 @@ public class ResearchModel extends Model implements GameStateModel {
 	private boolean isHoldingScale = false;
 
 	// Different research tools
-	// TODO decide what functionality we should have from camera and if it should be
-	// move
 	private Camera camera = new Camera(50, 50, 1, 100, 100, "images/camera.png");
-	// TODO decide if we want to make a ruler class or not
 	private Measure ruler = new Measure(50, 300, 1, 100, 100, "images/ruler.png");
 	private Measure scale = new Measure(50, 550, 1, 100, 100, "images/scale.png");
 	private Animal caught;
@@ -71,7 +72,7 @@ public class ResearchModel extends Model implements GameStateModel {
 		this.tutorialMode = tutorialMode;
 		tutorialPopupClosed = false;
 		this.caught = animalCaught;
-		this.goBack = goBack;
+		this.setGoBack(goBack);
 		instantiateObjects();
 	}
 
@@ -88,9 +89,9 @@ public class ResearchModel extends Model implements GameStateModel {
 
 	@Override
 	public Model nextModel() {
-		goBack.setPopupHappened(false);
-		goBack.chooseTarget();
-		return this.goBack;
+		getGoBack().setPopupHappened(false);
+		getGoBack().chooseTarget();
+		return this.getGoBack();
 	}
 
 	/**
@@ -158,8 +159,8 @@ public class ResearchModel extends Model implements GameStateModel {
 	}
 
 	private void doneResearching() {
-		goBack.researched.add(caught);
-		goBack.getGameObjects().remove(caught);
+		getGoBack().researched.add(caught);
+		getGoBack().getGameObjects().remove(caught);
 		super.getListener().researchPopup(caught);
 		popupClosed = true;
 	}
@@ -191,13 +192,13 @@ public class ResearchModel extends Model implements GameStateModel {
 	@Override
 	public QuizModel timeUp() {
 		// Transition to the QuizModel
-		return new QuizModel(getFrameWidth(), getFrameHeight(), goBack.researched, getListener());
+		return new QuizModel(getFrameWidth(), getFrameHeight(), getGoBack().researched, super.getListener());
 	}
 
 	@Override
 	public void update() {
 		if (tutorialMode) {
-			if (popupClosed && goBack.allResearched()) {
+			if (popupClosed && getGoBack().allResearched()) {
 				super.getListener().codeEmitted(Code.TIMEUP);
 			} else if (popupClosed) {
 				super.getListener().codeEmitted(Code.NEXT);
@@ -206,7 +207,7 @@ public class ResearchModel extends Model implements GameStateModel {
 				super.getListener().tutorialPopup2();
 				tutorialPopupClosed = true;
 			}
-		} else if (popupClosed && goBack.allResearched()) {
+		} else if (popupClosed && getGoBack().allResearched()) {
 			super.getListener().codeEmitted(Code.TIMEUP);
 		} else if (popupClosed) {
 			super.getListener().codeEmitted(Code.NEXT);
@@ -223,6 +224,14 @@ public class ResearchModel extends Model implements GameStateModel {
 
 	public Camera getCamera() {
 		return camera;
+	}
+
+	public EstuaryModel getGoBack() {
+		return goBack;
+	}
+
+	public void setGoBack(EstuaryModel goBack) {
+		this.goBack = goBack;
 	}
 
 }
