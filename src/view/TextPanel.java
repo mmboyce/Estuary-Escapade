@@ -10,12 +10,12 @@ import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 
-public class TitlePanel extends JPanel {
+public class TextPanel extends JPanel {
 
-	TitlePanel(String titleText, int width) {
+	TextPanel(String text, int width) {
 		Font font = new Font("Arial", Font.BOLD, width / 15);
 
-		JLabel title = new JLabel("<HTML>" + titleText + "<HTML>");
+		JLabel title = new JLabel("<HTML>" + text + "<HTML>");
 		title.setHorizontalAlignment(JLabel.CENTER);
 		title.setVerticalAlignment(JLabel.TOP);
 		title.setForeground(Color.white);
