@@ -22,6 +22,11 @@ public class TitleModel extends Model {
 	@Override
 	public Model nextModel() {
 		// Transitions into the next model
-		return new EstuaryModel(super.getFrameWidth(), super.getFrameHeight(), getListener());
+		return new EstuaryModel(super.getFrameWidth(), super.getFrameHeight(), getListener(), false);
+	}
+	
+	@Override
+	public Model tutorialModel() {
+		return new EstuaryModel(super.getFrameWidth(), super.getFrameHeight(), getListener(), true);
 	}
 }

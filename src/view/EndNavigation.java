@@ -11,20 +11,19 @@ import javax.swing.JPanel;
 import controller.Code;
 import controller.CodeListener;
 
-public class TitleNavigation extends JPanel implements ActionListener {
+public class EndNavigation extends JPanel implements ActionListener {
 
 	private JButton start;
 	private JButton exit;
-	private JButton tutorial;
 	private CodeListener codeListener;
 	private Font font;
 
-	public TitleNavigation(CodeListener cl, int width) {
+	public EndNavigation(CodeListener cl, int width) {
 		codeListener = cl;
-		font = new Font("Arial", Font.PLAIN, width/40);
-		
+		font = new Font("Arial", Font.PLAIN, width / 40);
+
 		// This moves you to the EstuaryModel
-		start = new JButton("Start");
+		start = new JButton("Main Menu");
 		start.setFont(font);
 		start.addActionListener(this);
 
@@ -33,16 +32,10 @@ public class TitleNavigation extends JPanel implements ActionListener {
 		exit.setFont(font);
 		exit.addActionListener(this);
 
-		// Starts the tutorial 
-		tutorial = new JButton("How To Play");
-		tutorial.setFont(font);
-		tutorial.addActionListener(this);
-		
 		setLayout(new FlowLayout());
-		
+
 		add(start);
 		add(exit);
-		add(tutorial);
 	}
 
 	@Override
@@ -52,8 +45,6 @@ public class TitleNavigation extends JPanel implements ActionListener {
 			codeListener.codeEmitted(Code.NEXT);
 		} else if (pressed == exit) {
 			codeListener.codeEmitted(Code.EXIT);
-		} else if (pressed == tutorial) {
-			codeListener.codeEmitted(Code.TUTORIAL);
 		}
 	}
 

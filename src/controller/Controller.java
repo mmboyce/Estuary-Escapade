@@ -82,6 +82,11 @@ public class Controller implements CodeListener {
 			mouseListener.setModel(model);
 			keyListener.setModel(model);
 			break;
+		case TUTORIAL:
+			model = model.tutorialModel();
+			view.next(model.getGameObjects());
+			mouseListener.setModel(model);
+			break;
 		case EXIT:
 			t.stop();
 			// Since the program is set to exit on closing this fully terminates the game
@@ -122,6 +127,8 @@ public class Controller implements CodeListener {
 		case RESUME:
 			view.resetView();
 			t.restart();
+			break;
+		default:
 			break;
 		}
 	}
@@ -174,5 +181,17 @@ public class Controller implements CodeListener {
 		this.codeEmitted(Code.PAUSE);
 		view.researchPopup(a, this);
 	}
-
+	
+	@Override
+	public void tutorialPopup1() {
+		this.codeEmitted(Code.PAUSE);
+		view.tutorialPopup1(this);
+	}
+	
+	@Override
+	public void tutorialPopup2() {
+		this.codeEmitted(Code.PAUSE);
+		view.tutorialPopup2(this);
+	}
+	
 }

@@ -2,14 +2,15 @@ package view;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 
 import controller.CodeListener;
+import controller.Controller;
 import controller.CustomKeyListener;
 import controller.CustomMouseListener;
 import gameobject.Animal;
@@ -80,6 +81,14 @@ public class ViewContainer {
 		frame.revalidate();
 		frame.repaint();
 	}
+	
+	public void resetView(JComponent component) {
+		// If this is not done the JFrame will not display properly and things will look
+		// wrong
+		pane.remove(component);
+		frame.revalidate();
+		frame.repaint();
+	}
 
 	public void start() {
 		pane.add(view, JLayeredPane.DEFAULT_LAYER);
@@ -114,6 +123,22 @@ public class ViewContainer {
 		frame.repaint();
 	}
 
+	public void tutorialPopup1(Controller controller) {
+		TutorialPopup pop = new TutorialPopup(1, controller, width);
+		pop.setBounds(width / 4, height / 6, width / 2, (height * 2) / 3);
+		pane.add(pop, JLayeredPane.POPUP_LAYER);
+		frame.revalidate();
+		frame.repaint();
+	}
+
+	public void tutorialPopup2(Controller controller) {
+		TutorialPopup pop = new TutorialPopup(2, controller, width);
+		pop.setBounds(width / 4, height / 6, width / 2, (height * 2) / 3);
+		pane.add(pop, JLayeredPane.POPUP_LAYER);
+		frame.revalidate();
+		frame.repaint();
+	}
+	
 	public boolean checkObjectView() {
 		return (view instanceof ObjectView);
 	}
