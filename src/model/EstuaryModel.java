@@ -90,7 +90,7 @@ public class EstuaryModel extends Model implements GameStateModel {
 	@Override
 	public Model nextModel() {
 		// sets the next model to the research model
-		return new ResearchModel(super.getFrameWidth(), super.getFrameHeight(), target, this, getListener());
+		return new ResearchModel(super.getFrameWidth(), super.getFrameHeight(), target, this, getListener(), this.tutorialMode);
 	}
 
 	/*
@@ -197,16 +197,24 @@ public class EstuaryModel extends Model implements GameStateModel {
 	 * Updates all data in the model such as fish pathfinding
 	 */
 	public void update() {
-		if(!popupHappened && tutorialPopupHappened ) {
-			super.getListener().estuaryPopup(target);
-			popupHappened = true;
+		if (tutorialMode) {
+			if(!popupHappened && tutorialPopupHappened ) {
+				super.getListener().estuaryPopup(target);
+				popupHappened = true;
+			}
+			
+			if(!tutorialPopupHappened) {
+				if (tutorialMode) {
+					super.getListener().tutorialPopup1();
+					tutorialPopupHappened = true;
+			    }
+			}
 		}
-		
-		if(!tutorialPopupHappened) {
-			if (tutorialMode) {
-				super.getListener().tutorialPopup1();
-				tutorialPopupHappened = true;
-		    }
+		else {
+			if(!popupHappened) {
+				super.getListener().estuaryPopup(target);
+				popupHappened = true;
+			}
 		}
 		
 		
