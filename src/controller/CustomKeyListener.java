@@ -2,12 +2,17 @@ package controller;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.Serializable;
 
 import model.EstuaryModel;
 import model.Model;
 import model.ResearchModel;
 
-public class CustomKeyListener implements KeyListener {
+public class CustomKeyListener implements KeyListener, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Model model;
 	private boolean debugging;
 	
@@ -45,6 +50,14 @@ public class CustomKeyListener implements KeyListener {
 			}
 			
 			System.out.println("Debugging " + debugStatus);
+		}
+		
+		if(key == KeyEvent.VK_S) {
+			Main.saveState();
+		}
+		
+		if(key == KeyEvent.VK_L) {
+			Main.loadState();
 		}
 		
 		if(isDebugging()) {

@@ -1,6 +1,8 @@
 package gameobject;
 
-public class Question {
+import java.io.Serializable;
+
+public class Question implements Serializable{
 	/*
 	 * This class stores the question, fun-fact, and answers to the question. One of
 	 * these is passed to the QuizView to populate the quiz. Each animal in the game

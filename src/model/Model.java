@@ -1,12 +1,13 @@
 package model;
 
 import java.awt.event.MouseEvent;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import controller.CodeListener;
 import gameobject.GameObject;
 
-public abstract class Model {
+public abstract class Model implements Serializable{
 	// The size of the window
 	private int frameWidth;
 	private int frameHeight;

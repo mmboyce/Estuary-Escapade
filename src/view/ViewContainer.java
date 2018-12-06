@@ -2,8 +2,8 @@ package view;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -16,7 +16,7 @@ import gameobject.Animal;
 import gameobject.GameObject;
 import model.QuizModel;
 
-public class ViewContainer {
+public class ViewContainer implements Serializable{
 	private JFrame frame;
 	private JLayeredPane pane;
 	private View view;
@@ -138,6 +138,16 @@ public class ViewContainer {
 		if (view instanceof ResearchView) {
 			view.flash();
 		}
+	}
+
+	public void loadView(ViewContainer oldViewContainer) {
+		pane = oldViewContainer.pane;
+		view = oldViewContainer.view;
+		timerImage = oldViewContainer.timerImage;
+		width = oldViewContainer.width;
+		height = oldViewContainer.height;
+		frame.setContentPane(pane);
+		resetView();
 	}
 
 }

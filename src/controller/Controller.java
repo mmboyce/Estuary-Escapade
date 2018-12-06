@@ -128,6 +128,19 @@ public class Controller implements CodeListener, Serializable {
 		}
 	}
 	
+	public void loadState(Controller c) {
+		t = c.getT();
+		model = c.getModel();
+		updateAction = c.getUpdateAction();
+		mouseListener = c.mouseListener;
+		keyListener = c.keyListener;
+		timerRunning = c.timerRunning;
+		time = c.time;
+		width = c.width;
+		height = c.height;
+		view.loadView(c.getViewContainer());
+	}
+	
 	public void start() {
 		t.start();
 		view.start();

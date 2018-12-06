@@ -3,11 +3,12 @@ package controller;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.io.Serializable;
 
 import model.Model;
 import model.ResearchModel;
 
-public class CustomMouseListener implements MouseListener, MouseMotionListener {
+public class CustomMouseListener implements MouseListener, MouseMotionListener, Serializable {
 
 	private Model model;
 
