@@ -17,14 +17,11 @@ public class CustomMouseListener implements MouseListener, MouseMotionListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		model.registerClick(e);
+		// Intentionally empty
 	}
 
 	public void mouseMoved(MouseEvent e) {
-		if (model instanceof ResearchModel) {
-			((ResearchModel) model).mouseMoved(e.getX(), e.getY());
-		}
-
+		// Intentionally empty
 	}
 
 	public Model getModel() {
@@ -46,18 +43,20 @@ public class CustomMouseListener implements MouseListener, MouseMotionListener {
 	}
 
 	@Override
-	public void mousePressed(MouseEvent arg0) {
-		// Intentionally empty
+	public void mousePressed(MouseEvent e) {
+		model.registerClick(e);
 	}
 
 	@Override
-	public void mouseReleased(MouseEvent arg0) {
-		// Intentionally empty
+	public void mouseReleased(MouseEvent e) {
+		model.registerClick(e);
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		// Intentionally empty
+		if (model instanceof ResearchModel) {
+			((ResearchModel) model).mouseMoved(e.getX(), e.getY());
+		}
 	}
 
 }

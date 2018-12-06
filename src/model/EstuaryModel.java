@@ -51,15 +51,6 @@ public class EstuaryModel extends Model implements GameStateModel {
 	 * sets the target and loads all fish into the schoolOfFish
 	 */
 	private void instantiateFish() {
-		//TODO: Remove these lines?
-//		// Adds all the other objects to be rendered
-//		int xpos = 0;
-//		int ypos = getFrameHeight()*17/20;
-//		do {
-//			addGameObject(new Sand(xpos,ypos,1,spriteSize, spriteSize));
-//			xpos += getFrameHeight()/10;
-//		}while(xpos < getFrameWidth());
-
 		
 		// Adds all the fish that are in the estuary
 		addGameObject(new GoldFish(this.getFrameWidth()/8, this.getFrameHeight()/6, 0, spriteSize, spriteSize));
