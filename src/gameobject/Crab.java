@@ -7,7 +7,7 @@ public class Crab extends Animal {
 		this.setName("Blue Crab");
 		this.setWeight(5);
 		this.setSpeed(10);
-		this.setAvgSize(1/2);
+		this.setAvgSize(1);
 		this.setQuestion(new Question("The Blue Crab have teeth in its stomach.",
 				"What do Blue Crabs have in their stomach?", "Teeth", "Eyes", "Claws", "Hair"));
 		this.setPathLength(xSize * 16 / this.getSpeed());
