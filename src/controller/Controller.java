@@ -10,6 +10,7 @@ import model.EndModel;
 import model.GameStateModel;
 import model.Model;
 import model.QuizModel;
+import model.ResearchModel;
 import model.TitleModel;
 import view.ViewContainer;
 
