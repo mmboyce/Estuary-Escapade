@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.Color;
-import java.awt.Graphics;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
@@ -32,10 +31,10 @@ public abstract class View extends JPanel {
 
 	public abstract View nextView(ArrayList<GameObject> objects);
 
-	public void flash(){
-		//left blank purposefully
+	public void flash() {
+		// left blank purposefully
 	}
-	
+
 	public int getFrameWidth() {
 		return frameWidth;
 	}

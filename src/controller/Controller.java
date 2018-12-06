@@ -7,11 +7,9 @@ import javax.swing.Timer;
 
 import gameobject.Animal;
 import model.EndModel;
-import model.EstuaryModel;
 import model.GameStateModel;
 import model.Model;
 import model.QuizModel;
-import model.ResearchModel;
 import model.TitleModel;
 import view.ViewContainer;
 
@@ -120,7 +118,7 @@ public class Controller implements CodeListener {
 			break;
 		case FLASHSCREEN:
 			view.flash();
-			break;	
+			break;
 		case PAUSE:
 			t.stop();
 			break;
@@ -132,7 +130,7 @@ public class Controller implements CodeListener {
 			break;
 		}
 	}
-	
+
 	public void start() {
 		t.start();
 		view.start();
@@ -157,7 +155,7 @@ public class Controller implements CodeListener {
 	public ViewContainer getViewContainer() {
 		return view;
 	}
-	
+
 	public void setViewContainer(ViewContainer view) {
 		this.view = view;
 	}
@@ -181,17 +179,17 @@ public class Controller implements CodeListener {
 		this.codeEmitted(Code.PAUSE);
 		view.researchPopup(a, this);
 	}
-	
+
 	@Override
 	public void tutorialPopup1() {
 		this.codeEmitted(Code.PAUSE);
 		view.tutorialPopup1(this);
 	}
-	
+
 	@Override
 	public void tutorialPopup2() {
 		this.codeEmitted(Code.PAUSE);
 		view.tutorialPopup2(this);
 	}
-	
+
 }

@@ -39,14 +39,15 @@ public class ViewContainer {
 		height = screenSize.height;
 	}
 
-	public void initialize(CustomMouseListener m, CustomKeyListener k, CodeListener c, ArrayList<GameObject> o, int cycles) {
+	public void initialize(CustomMouseListener m, CustomKeyListener k, CodeListener c, ArrayList<GameObject> o,
+			int cycles) {
 		/*
 		 * This adds the MouseListener to the frame and initializes the view, this has
 		 * to happen after the constructor because the model needs to be set up first
 		 * and that requires the size of the screen
 		 */
 		pane.addMouseListener(m);
-		pane.addMouseMotionListener(m);	
+		pane.addMouseMotionListener(m);
 		frame.addKeyListener(k);
 		view = new TitleView(title, width, height, c, o);
 		timerImage = new TimerImage(cycles); // Adds timer image
@@ -81,7 +82,7 @@ public class ViewContainer {
 		frame.revalidate();
 		frame.repaint();
 	}
-	
+
 	public void resetView(JComponent component) {
 		// If this is not done the JFrame will not display properly and things will look
 		// wrong
@@ -117,7 +118,7 @@ public class ViewContainer {
 
 	public void researchPopup(Animal a, CodeListener cl) {
 		ResearchPopup pop = new ResearchPopup(a, cl, width, height);
-		pop.setBounds(width / 4, 0 , width / 2, height);
+		pop.setBounds(width / 4, 0, width / 2, height);
 		pane.add(pop, JLayeredPane.POPUP_LAYER);
 		frame.revalidate();
 		frame.repaint();
@@ -138,7 +139,7 @@ public class ViewContainer {
 		frame.revalidate();
 		frame.repaint();
 	}
-	
+
 	public boolean checkObjectView() {
 		return (view instanceof ObjectView);
 	}
@@ -154,7 +155,7 @@ public class ViewContainer {
 	public int getHeight() {
 		return height;
 	}
-	
+
 	public static String getTitle() {
 		return title;
 	}

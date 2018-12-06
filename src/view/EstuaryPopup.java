@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -34,7 +33,7 @@ public class EstuaryPopup extends JPanel implements ActionListener {
 
 		animalImg = ObjectView.createImage(a.getImagePath());
 		JLabel picLabel = new JLabel(new ImageIcon(animalImg));
-		Border margin = new EmptyBorder(width/9, 0, width/9, 0);
+		Border margin = new EmptyBorder(width / 9, 0, width / 9, 0);
 		picLabel.setBorder(margin);
 		picLabel.setVerticalAlignment(JLabel.CENTER);
 

@@ -1,6 +1,10 @@
 package view;
 
+import java.awt.AlphaComposite;
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.io.File;
@@ -9,17 +13,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.imageio.ImageIO;
-import javax.swing.JLayeredPane;
 
 import controller.CodeListener;
 import gameobject.Camera;
 import gameobject.GameObject;
 import gameobject.Question;
-
-import java.awt.Graphics2D;
-import java.awt.AlphaComposite;
-import java.awt.Color;
-import java.awt.RenderingHints;
 
 public abstract class ObjectView extends View {
 
