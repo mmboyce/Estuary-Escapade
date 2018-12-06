@@ -8,13 +8,22 @@ import controller.CodeListener;
 import gameobject.GameObject;
 
 public class EndView extends View {
-	public EndView(int width, int height, ArrayList<GameObject> objects, CodeListener listener,int scoreIn) {
+	public EndView(int width, int height, ArrayList<GameObject> objects, CodeListener listener, int scoreIn,
+			boolean quizCorrect) {
 		super(width, height, objects, listener);
 		Integer score = scoreIn;
 		String scoreStr = "Your Score is : " + score.toString();
-		
-		TitlePanel Score = new TitlePanel(scoreStr,width); // This will display the title and any art
-		TitleNavigation nav = new TitleNavigation(listener,width); // This holds buttons for navigation
+
+		if (quizCorrect) {
+			scoreStr = "<HTML> You answered the quiz correctly, congratulations that doubles your score!\n" + scoreStr
+					+ "<HTML>";
+		} else {
+			scoreStr = "<HTML> You answered the quiz incorrectly, try to remember what you learned about the fish next time\n"
+					+ scoreStr + "<HTML>";
+		}
+
+		TitlePanel Score = new TitlePanel(scoreStr, width); // This will display the title and any art
+		TitleNavigation nav = new TitleNavigation(listener, width); // This holds buttons for navigation
 
 		setLayout(new BorderLayout());
 		add(Score, BorderLayout.CENTER);

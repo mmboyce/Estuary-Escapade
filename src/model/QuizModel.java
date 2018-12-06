@@ -39,27 +39,26 @@ public class QuizModel extends Model {
 		for (Animal caught : this.researched) {
 			questionPool.add(caught.getQuestion());
 		}
-		
+
 		try {
 			question = questionPool.get(new Random().nextInt(questionPool.size()));
-		}
-		catch(Exception e) {
-			question = new Question("You Did Not Catch Anything","You did not catch anything, but what is 2+2","4","5","6","1002341234");
+		} catch (Exception e) {
+			question = new Question("You Did Not Catch Anything", "You did not catch anything, but what is 2+2", "4",
+					"5", "6", "1002341234");
 		}
 	}
 
 	@Override
 	public Model nextModel() {
 		// Transition to the end screen which displays the score
-		return new EndModel(super.getFrameWidth(), super.getFrameHeight(), getListener(),-1);
+		return new EndModel(super.getFrameWidth(), super.getFrameHeight(), getListener(), -1);
 	}
-	
+
 	public Model questionAnswered(boolean questionCorrect) {
-		if(questionCorrect) {
-			return new EndModel(super.getFrameWidth(), super.getFrameHeight(), getListener(),questionPool.size() * 2);
-		}
-		else {
-			return new EndModel(super.getFrameWidth(), super.getFrameHeight(), getListener(),questionPool.size());
+		if (questionCorrect) {
+			return new EndModel(super.getFrameWidth(), super.getFrameHeight(), getListener(), questionPool.size() * 2);
+		} else {
+			return new EndModel(super.getFrameWidth(), super.getFrameHeight(), getListener(), questionPool.size());
 		}
 	}
 

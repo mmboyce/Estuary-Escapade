@@ -5,7 +5,6 @@ import controller.CodeListener;
 public class EndModel extends Model {
 	// The players final score
 	private int score;
-
 	public int getScore() {
 		return score;
 	}

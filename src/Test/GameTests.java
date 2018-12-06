@@ -197,7 +197,7 @@ class GameTests {
 	
 	@Test
 	void EndViewTests() {
-		EndView ev = new EndView(500, 500, animals, c, 0);
+		EndView ev = new EndView(500, 500, animals, c, 0, false);
 		assertTrue(ev.nextView(animals) instanceof View);
 	}
 }

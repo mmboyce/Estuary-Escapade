@@ -104,13 +104,13 @@ public class Controller implements CodeListener {
 		case RIGHT:
 			if (model instanceof QuizModel && view.checkQuizView()) {
 				model = ((QuizModel) model).questionAnswered(true);
-				view.questionAnswered(model.getGameObjects(), ((EndModel) model).getScore());
+				view.questionAnswered(model.getGameObjects(), ((EndModel) model).getScore(), true);
 			}
 			break;
 		case WRONG:
 			if (model instanceof QuizModel && view.checkQuizView()) {
 				model = ((QuizModel) model).questionAnswered(false);
-				view.questionAnswered(model.getGameObjects(), ((EndModel) model).getScore());
+				view.questionAnswered(model.getGameObjects(), ((EndModel) model).getScore(), false);
 			}
 			break;
 		case FLASHSCREEN:

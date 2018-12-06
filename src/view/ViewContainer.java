@@ -67,8 +67,8 @@ public class ViewContainer {
 		resetView();
 	}
 
-	public void questionAnswered(ArrayList<GameObject> o, int score) {
-		view = ((QuizView) view).questionAnswered(o, score);
+	public void questionAnswered(ArrayList<GameObject> o, int score, boolean quizCorrect) {
+		view = ((QuizView) view).questionAnswered(o, score, quizCorrect);
 		resetView();
 	}
 
