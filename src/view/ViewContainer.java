@@ -57,10 +57,6 @@ public class ViewContainer implements Serializable {
 
 	public void next(ArrayList<GameObject> o) {
 		view = view.nextView(o);
-		if (view instanceof ObjectView) {
-			timerImage.setFrameSize(view.getWidth(), view.getHeight());
-			((ObjectView) view).passTimer(timerImage);
-		}
 		resetView();
 	}
 
@@ -79,6 +75,10 @@ public class ViewContainer implements Serializable {
 	public void resetView() {
 		// If this is not done the JFrame will not display properly and things will look
 		// wrong
+		if (view instanceof ObjectView) {
+			timerImage.setFrameSize(view.getWidth(), view.getHeight());
+			((ObjectView) view).passTimer(timerImage);
+		}
 		pane.removeAll();
 		pane.add(view, JLayeredPane.DEFAULT_LAYER);
 		frame.revalidate();
@@ -185,13 +185,11 @@ public class ViewContainer implements Serializable {
 
 	public void loadEstuary(CodeListener cl, ArrayList<GameObject> o) {
 		view = new EstuaryView(width, height, o, cl);
-		((ObjectView) view).passTimer(timerImage);
 		resetView();
 	}
 
 	public void loadResearch(CodeListener cl, ArrayList<GameObject> o) {
 		view = new ResearchView(width, height, o, cl);
-		((ObjectView) view).passTimer(timerImage);
 		resetView();
 	}
 

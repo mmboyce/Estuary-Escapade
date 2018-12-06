@@ -63,6 +63,7 @@ public class Controller implements CodeListener, Serializable {
 				model.update();
 				model.setTime(time);
 				view.repaint(time);
+				model.setTimerRunning(timerRunning);
 				if (timerRunning) {
 					time++;
 				}
@@ -112,7 +113,6 @@ public class Controller implements CodeListener, Serializable {
 				mouseListener.setModel(model);
 				view.timeUp((QuizModel) model);
 			}
-			model.setTimerRunning(false);
 			timerRunning = false;
 			time = 0;
 			break;
