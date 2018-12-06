@@ -5,6 +5,7 @@ public class RedFish extends Animal{
 	public RedFish(int xPos, int yPos, int depth, int xSize, int ySize) {
 		super(xPos, yPos, depth, xSize, ySize);
 		this.setImagePath("images/RedFishLeft.png");
+		this.setRealPic("images/reddrum.png");
 		this.setName("Red Drum");
 		this.setWeight(20);
 		this.setAvgSize(2);
@@ -12,7 +13,6 @@ public class RedFish extends Animal{
 		this.setQuestion(new Question("Big Red Drum are referred to as Red Bulls.",
 				"What are large Red Drum called?","Red Bulls","Red Fish","Big Fish","Puppy Drum"));
 		this.setPathLength(xSize * 22);
-		this.setRealPic("images/reddrum.jpg");
 	}
 
 	@Override

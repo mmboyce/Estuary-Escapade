@@ -46,7 +46,7 @@ class GameTests {
 	@Test
 	void EstuaryTests() {
 		// Tests for the estuary model		
-		em = new EstuaryModel(500,500,c);
+		em = new EstuaryModel(500,500,c, false);
 		assertEquals(em.getFrameHeight(), 500);
 		assertEquals(em.getFrameWidth(), 500);
 		assertTrue(em.nextModel() instanceof ResearchModel);
@@ -74,9 +74,9 @@ class GameTests {
 	
 	@Test
 	void ResearchTests() {
-		em = new EstuaryModel(500,500,c);
+		em = new EstuaryModel(500,500,c, false);
 		GoldFish goldie = new GoldFish(20, 20, 0, 100, 100);
-		ResearchModel rm  = new ResearchModel(500, 500, goldie, em, c);
+		ResearchModel rm  = new ResearchModel(500, 500, goldie, em, c, false);
 		// Test setters and getters
 		assertEquals(rm.getFrameHeight(), 500);
 		assertEquals(rm.getFrameWidth(), 500);

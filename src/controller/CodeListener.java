@@ -10,4 +10,7 @@ public interface CodeListener {
 	public void estuaryPopup(Animal a);
 
 	public void researchPopup(Animal a);
+	
+	public void tutorialPopup1();
+	public void tutorialPopup2();
 }
