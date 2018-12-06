@@ -16,6 +16,7 @@ public abstract class Model implements Serializable{
 	private int frameWidth;
 	private int frameHeight;
 	private int time;
+	private boolean timerRunning;
 	// A list of all the objects in the model
 	private ArrayList<GameObject> objects;
 	// Listens for codes to trigger actions
@@ -79,6 +80,14 @@ public abstract class Model implements Serializable{
 
 	public void setTime(int time) {
 		this.time = time;
+	}
+
+	public boolean isTimerRunning() {
+		return timerRunning;
+	}
+
+	public void setTimerRunning(boolean timerRunning) {
+		this.timerRunning = timerRunning;
 	}
 
 }

@@ -112,6 +112,7 @@ public class Controller implements CodeListener, Serializable {
 				mouseListener.setModel(model);
 				view.timeUp((QuizModel) model);
 			}
+			model.setTimerRunning(false);
 			timerRunning = false;
 			time = 0;
 			break;
@@ -182,10 +183,14 @@ public class Controller implements CodeListener, Serializable {
 
 	private void loadValues(Model oldModel) {
 		oldModel.setListener(this);
+		if(oldModel instanceof ResearchModel) {
+			((ResearchModel)oldModel).getGoBack().setListener(this);
+		}
 		oldModel.setFrameHeight(height);
 		oldModel.setFrameWidth(width);
 		model = oldModel;
-		time = oldModel.getTime();
+		time = model.getTime();
+		timerRunning = model.isTimerRunning();
 		mouseListener.setModel(model);
 		if (model instanceof TitleModel) {
 			view.loadTitle(this, model.getGameObjects());

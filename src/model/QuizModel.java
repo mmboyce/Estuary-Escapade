@@ -10,6 +10,10 @@ import gameobject.Animal;
 import gameobject.Question;
 
 public class QuizModel extends Model {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6748182971185109149L;
 	// A collection of all the possible questions that can be asked on the quiz
 	private ArrayList<Question> questionPool;
 	// A list of the animals the player researched over the course of the game

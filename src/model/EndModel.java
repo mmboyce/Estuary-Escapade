@@ -3,6 +3,10 @@ package model;
 import controller.CodeListener;
 
 public class EndModel extends Model {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7351184289128317941L;
 	// The players final score
 	private int score;
 	private boolean quizCorrect;
