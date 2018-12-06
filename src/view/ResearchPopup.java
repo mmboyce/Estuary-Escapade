@@ -47,10 +47,10 @@ public class ResearchPopup extends JPanel implements ActionListener {
 		picLabel.setBorder(margin);
 		picLabel.setVerticalAlignment(JLabel.CENTER);
 		
-		name = labelFactory(a.getName());
-		funFact = labelFactory("Fun Fact: " + a.getQuestion().getFunFact());
-		weight = labelFactory("Weight: " + a.getWeight() + " lbs");
-		length = labelFactory("Length: " + a.getAvgSize() + " feet");
+		name = labelFactory("<i>" + a.getName() + "</i>");
+		funFact = labelFactory("<b>Fun Fact: " + a.getQuestion().getFunFact() + "</b>");
+		weight = labelFactory("<i>Weight: " + a.getWeight() + " lbs</i>");
+		length = labelFactory("<i>Length: " + a.getAvgSize() + " feet</i>");
 		exit = new JButton("Resume Game");
 		exit.setFont(font);
 		exit.addActionListener(this);
