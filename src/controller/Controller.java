@@ -76,6 +76,10 @@ public class Controller implements CodeListener {
 		switch (c) {
 		case NEXT:
 			model = model.nextModel();// calls nextmodel and move to next game state
+			if(model instanceof ResearchModel) {
+				// this is to prevent the bug that occurs when you click on a fish while a popup is present
+				t.start();
+			}
 			view.next(model.getGameObjects());
 			mouseListener.setModel(model);
 			keyListener.setModel(model);

@@ -38,12 +38,14 @@ public class TutorialPopup extends JPanel implements ActionListener {
 
 		switch (this.which) {
 		case 1:
-			name = labelFactory(
-					"When you start, you will be told to capture and research a certain animal. Tap on the correct one to catch it and you will bring it to the lab. You get one point for each animal succesfully caught and researched.");
+			name = labelFactory("As a researcher, you will catch<br>"
+					+ "and research certain animals one at time.<br><br>"
+					+ "Tap on the correct one to catch it and you will bring it to the lab.<br><br>");
 			break;
 		case 2:
-			name = labelFactory(
-					"Now that you're in the lab, you can gather data on the animal. Drag the tool on top of the animal to use it. Once you're done it will be recorded in your notebook. Be sure to remember the information for the quiz later.");
+			name = labelFactory("<b><i>Drag each tool on top of the<br>"
+					+ "	animal to gather data.</i></b><br><br>"
+					+ "Be sure to remember the information you gather for the quiz later!<br><br>");
 			break;
 		}
 
