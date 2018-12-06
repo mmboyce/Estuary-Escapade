@@ -7,6 +7,7 @@ public class PurpleFish extends Animal {
 		super(xPos, yPos, depth, xSize, ySize);
 		this.startingPos = xPos;
 		this.setImagePath("images/PurpleFishLeft.png");
+		this.setRealPic("images/escolar.png");// Not sure of the royalties on this one LOL
 		this.setName("Escolar");
 		this.setSpeed(15);
 		this.setAvgSize(2);
@@ -15,8 +16,6 @@ public class PurpleFish extends Animal {
 				"At what depth below would you be able to find a Escolar", "1000 feet", "10 feet", "5000 feet",
 				"200 feet"));
 		this.setPathLength(xSize * 15);
-		this.setRealPic("images/escolar.jpeg");// Not sure of the royalties on this one
-
 	}
 
 	@Override

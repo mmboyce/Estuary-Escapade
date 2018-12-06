@@ -5,6 +5,7 @@ public class GoldFish extends Animal {
 		super(xPos, yPos, depth, xSize, ySize);
 
 		setImagePath("images/GoldfishRight.png");
+		setRealPic("images/yellowtailflounder.png");
 		setName("Yellow Tail Flounder");
 		setAvgSize(2);
 		setWeight(25);

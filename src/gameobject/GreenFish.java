@@ -5,6 +5,7 @@ public class GreenFish extends Animal {
 		super(xPos, yPos, depth, xSize, ySize);
 		// Initail image
 		this.setImagePath("images/GreenFishRight.png");
+		this.setRealPic("images/americanshad.png");
 		// Species Name weight and speed
 		this.setName("American Shad");
 		this.setWeight(5);
@@ -13,7 +14,6 @@ public class GreenFish extends Animal {
 		this.setQuestion(new Question("American Shads are found in freshwater.", "Where are American Shads found?",
 				"Fresh water", "Salt Water", "Seashore", "All the Above"));
 		this.setPathLength(xSize * 10 / this.getSpeed());
-		this.setRealPic("images/americanshad.jpg");
 	}
 
 	@Override
