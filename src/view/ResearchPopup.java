@@ -40,6 +40,8 @@ public class ResearchPopup extends JPanel implements ActionListener {
 
 		realAnimalImg = ObjectView.createImage(a.getRealPic());
 		JLabel picLabel = new JLabel(new ImageIcon(realAnimalImg));
+		Border margin = new EmptyBorder(width/40, 0, realAnimalImg.getHeight() / 200, 0);
+		picLabel.setBorder(margin);
 		picLabel.setVerticalAlignment(JLabel.CENTER);
 		
 		name = labelFactory(a.getName());
@@ -51,8 +53,8 @@ public class ResearchPopup extends JPanel implements ActionListener {
 		exit.addActionListener(this);
 
 		this.add(picLabel);
-		this.setBorder(new EmptyBorder(0, width/20, 0, 0));
-		this.add(Box.createVerticalStrut(width / 25));
+		this.setBorder(new EmptyBorder(0, width/ 20, 0, 0));
+		this.add(Box.createVerticalStrut(width / 60));
 		this.add(name);
 		this.add(funFact);
 		this.add(weight);
