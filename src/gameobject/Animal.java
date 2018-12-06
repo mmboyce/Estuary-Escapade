@@ -35,8 +35,20 @@ public abstract class Animal extends GameObject {
 
 	/**
 	 * Default constructor for the Animal class.
+	 * <p>
+	 * All parameters not set by this constructer will be set in the constructor
+	 * for each specific animal.
 	 * 
-	 * @see GameObject#GameObject(int, int, int, int, int, String)
+	 * @param name The name of the fish.
+	 * @param weight The weight of the fish (in lbs.)
+	 * @param size The size of the fish sprite.
+	 * @param speed The speed the fish moves at.
+	 * @param question The {@link Question} object for the fish.
+	 * @param pathState How far along the fish is on its pathfinding.
+	 * @param pathLength How long the fish's pathfinding is.
+	 * @param movingForward Whether the fish is moving forward or not.
+	 * @see GameObject#GameObject(int, int, int, int, int, String) This constructor
+	 * sets everything the parent class does.
 	 */
 	public Animal(int xPos, int yPos, int depth, int xSize, int ySize) {
 		/*

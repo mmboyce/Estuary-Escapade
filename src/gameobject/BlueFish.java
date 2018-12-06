@@ -1,5 +1,12 @@
 package gameobject;
 
+/**
+ * The BlueFish is a Blue Marlin.
+ * 
+ * @author W Mathieu Mimms-Boyce
+ * @author Dylan Martin
+ * @see Animal
+ */
 public class BlueFish extends Animal {
 
 	public BlueFish(int xPos, int yPos, int depth, int xSize, int ySize) {
@@ -16,6 +23,9 @@ public class BlueFish extends Animal {
 		this.setPathLength(xSize * 30);
 	}
 
+	/* (non-Javadoc)
+	 * @see gameobject.GameObject#update()
+	 */
 	@Override
 	public void update() {
 		// creates the fish path goes to the right then down then back to its original
