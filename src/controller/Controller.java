@@ -1,12 +1,12 @@
 package controller;
 
 import java.awt.event.ActionEvent;
+import java.io.Serializable;
 
 import javax.swing.AbstractAction;
 import javax.swing.Timer;
 
 import gameobject.Animal;
-import gameobject.Question;
 import model.EndModel;
 import model.GameStateModel;
 import model.Model;
@@ -14,8 +14,9 @@ import model.QuizModel;
 import model.TitleModel;
 import view.ViewContainer;
 
-public class Controller implements CodeListener {
+public class Controller implements CodeListener, Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private Timer t;
 	private Model model;
 	private ViewContainer view;
@@ -111,7 +112,7 @@ public class Controller implements CodeListener {
 			break;
 		case FLASHSCREEN:
 			view.flash();
-			break;	
+			break;
 		case PAUSE:
 			t.stop();
 			break;
