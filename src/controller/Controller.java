@@ -17,6 +17,7 @@ import model.EndModel;
 import model.GameStateModel;
 import model.Model;
 import model.QuizModel;
+import model.ResearchModel;
 import model.TitleModel;
 import view.ViewContainer;
 
@@ -84,6 +85,16 @@ public class Controller implements CodeListener, Serializable {
 		switch (c) {
 		case NEXT:
 			model = model.nextModel();// calls nextmodel and move to next game state
+			if (model instanceof ResearchModel) {
+				// this is to prevent the bug that occurs when you click on a fish while a popup
+				// is present
+				t.start();
+			}
+			view.next(model.getGameObjects());
+			mouseListener.setModel(model);
+			break;
+		case TUTORIAL:
+			model = model.tutorialModel();
 			view.next(model.getGameObjects());
 			mouseListener.setModel(model);
 			break;
@@ -108,13 +119,13 @@ public class Controller implements CodeListener, Serializable {
 		case RIGHT:
 			if (model instanceof QuizModel && view.checkQuizView()) {
 				model = ((QuizModel) model).questionAnswered(true);
-				view.questionAnswered(model.getGameObjects(), ((EndModel) model).getScore());
+				view.questionAnswered(model.getGameObjects(), ((EndModel) model).getScore(), true);
 			}
 			break;
 		case WRONG:
 			if (model instanceof QuizModel && view.checkQuizView()) {
 				model = ((QuizModel) model).questionAnswered(false);
-				view.questionAnswered(model.getGameObjects(), ((EndModel) model).getScore());
+				view.questionAnswered(model.getGameObjects(), ((EndModel) model).getScore(), false);
 			}
 			break;
 		case FLASHSCREEN:
@@ -126,6 +137,8 @@ public class Controller implements CodeListener, Serializable {
 		case RESUME:
 			view.resetView();
 			t.restart();
+			break;
+		default:
 			break;
 		}
 	}
@@ -217,6 +230,18 @@ public class Controller implements CodeListener, Serializable {
 	public void researchPopup(Animal a) {
 		this.codeEmitted(Code.PAUSE);
 		view.researchPopup(a, this);
+	}
+
+	@Override
+	public void tutorialPopup1() {
+		this.codeEmitted(Code.PAUSE);
+		view.tutorialPopup1(this);
+	}
+
+	@Override
+	public void tutorialPopup2() {
+		this.codeEmitted(Code.PAUSE);
+		view.tutorialPopup2(this);
 	}
 
 }

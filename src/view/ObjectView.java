@@ -1,6 +1,10 @@
 package view;
 
+import java.awt.AlphaComposite;
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.io.File;
@@ -9,17 +13,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.imageio.ImageIO;
-import javax.swing.JLayeredPane;
 
 import controller.CodeListener;
 import gameobject.Camera;
 import gameobject.GameObject;
 import gameobject.Question;
-
-import java.awt.Graphics2D;
-import java.awt.AlphaComposite;
-import java.awt.Color;
-import java.awt.RenderingHints;
 
 public abstract class ObjectView extends View {
 
@@ -46,7 +44,11 @@ public abstract class ObjectView extends View {
 			// pair
 			map.put(currentObj, img);
 		}
-		background = createImage("images/underwater.png");
+		if (this instanceof ResearchView) {
+			background = createImage("images/whiteTiles.png");
+		} else {
+			background = createImage("images/underwater.png");
+		}
 	}
 
 	/**
@@ -59,32 +61,31 @@ public abstract class ObjectView extends View {
 	@Override
 	public void paint(Graphics g) {
 		g.drawImage(background, 0, 0, getWidth(), getHeight(), (ImageObserver) this);
-		// Start of experimental code
 		int xpos = 0;
-		int ypos = getHeight()*9/10;
-		// Renders in plants on the sand
-		BufferedImage weed = createImage("images/GreenWeed.png");
-		int imgHeight = getHeight()/5;
-		g.drawImage(weed, getWidth()/4, ypos + (ypos / 20) - imgHeight, getWidth() / 10, imgHeight,
-				(ImageObserver) this);
-		g.drawImage(weed, getWidth()/2, ypos + (ypos / 20) - imgHeight, getWidth() / 10, imgHeight,
-				(ImageObserver) this);
-		g.drawImage(weed, getWidth()/4*3, ypos + (ypos / 20) - imgHeight, getWidth() / 10, imgHeight,
-				(ImageObserver) this);
-		// Renders in sand at the bottom of the screen
-		BufferedImage sand = createImage("images/SandBlock.png");
-		
-		do {
-			g.drawImage(sand, xpos, ypos, getHeight() / 10, getHeight() / 10, (ImageObserver) this);
-			xpos += getHeight() / 10;
-		} while (xpos < getWidth());
+		int ypos = getHeight() * 9 / 10;
+		if (this instanceof EstuaryView) {
+			// Renders in plants on the sand
+			BufferedImage weed = createImage("images/GreenWeed.png");
+			int imgHeight = getHeight() / 5;
+			g.drawImage(weed, getWidth() / 4, ypos + (ypos / 20) - imgHeight, getWidth() / 10, imgHeight,
+					(ImageObserver) this);
+			g.drawImage(weed, getWidth() / 2, ypos + (ypos / 20) - imgHeight, getWidth() / 10, imgHeight,
+					(ImageObserver) this);
+			g.drawImage(weed, getWidth() / 4 * 3, ypos + (ypos / 20) - imgHeight, getWidth() / 10, imgHeight,
+					(ImageObserver) this);
+			// Renders in sand at the bottom of the screen
+			BufferedImage sand = createImage("images/SandBlock.png");
 
-		// End of experimental code
+			do {
+				g.drawImage(sand, xpos, ypos, getHeight() / 10, getHeight() / 10, (ImageObserver) this);
+				xpos += getHeight() / 10;
+			} while (xpos < getWidth());
+
+		}
 		for (GameObject object : this.map.keySet()) {
 			if (object.isVisible()) {
 				g.drawImage(createImage(object.getImagePath()), object.getxPos(), object.getyPos(), object.getxSize(),
 						object.getySize(), (ImageObserver) this);
-
 
 				g.drawImage(createImage(object.getImagePath()), object.getxPos(), object.getyPos(), object.getxSize(),
 						object.getySize(), (ImageObserver) this);
@@ -120,7 +121,7 @@ public abstract class ObjectView extends View {
 				alpha = 0.0f;
 				stopFlash = false;
 			}
-		}		
+		}
 		timer.paint(g);
 
 	}

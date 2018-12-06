@@ -17,7 +17,7 @@ public class EndModel extends Model {
 	public EndModel(int frameWidth, int frameHeight, CodeListener listener) {
 		super(frameWidth, frameHeight, listener);
 	}
-	
+
 	public EndModel(int frameWidth, int frameHeight, CodeListener listener, int score) {
 		super(frameWidth, frameHeight, listener);
 		this.score = score;

@@ -1,7 +1,5 @@
 package gameobject;
 
-import java.awt.image.BufferedImage;
-
 public abstract class Animal extends GameObject {
 	private String name;
 	private int weight;
@@ -16,7 +14,7 @@ public abstract class Animal extends GameObject {
 	// how many steps are in our path
 	// this should be assigned in the constructor of child classes
 	private int pathLength;
-	
+
 	// this is so the fish knows which way to go
 	protected int pathCount = 0;
 
@@ -24,10 +22,10 @@ public abstract class Animal extends GameObject {
 	// false if returning from last waypoint.
 	private boolean movingForward = true;
 
-	//Real information on animal real pic from Nat geo
-	//and Aveage size 
+	// Real information on animal real pic from Nat geo
+	// and Aveage size
 	private String realPic = "";
-	private double avgSize=0;
+	private double avgSize = 0;
 
 	public Animal(int xPos, int yPos, int depth, int xSize, int ySize) {
 		/*
@@ -58,7 +56,7 @@ public abstract class Animal extends GameObject {
 		 */
 	}
 
-	/** 
+	/**
 	 * void updatePosition
 	 * 
 	 * this is used to advance through our pathfinding.
@@ -137,16 +135,20 @@ public abstract class Animal extends GameObject {
 	public void setMovingForward(boolean movingForward) {
 		this.movingForward = movingForward;
 	}
-	public void setAvgSize(int AvgSize){
+
+	public void setAvgSize(int AvgSize) {
 		this.avgSize = AvgSize;
 	}
-	public double getAvgSize(){
+
+	public double getAvgSize() {
 		return avgSize;
 	}
-	public void setRealPic(String imagePath){
+
+	public void setRealPic(String imagePath) {
 		this.realPic = imagePath;
 	}
-	public String getRealPic(){
+
+	public String getRealPic() {
 		return realPic;
 	}
 }

@@ -6,10 +6,12 @@ import java.awt.event.WindowEvent;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 
 import controller.CodeListener;
+import controller.Controller;
 import controller.CustomKeyListener;
 import controller.CustomMouseListener;
 import gameobject.Animal;
@@ -38,14 +40,15 @@ public class ViewContainer implements Serializable{
 		height = screenSize.height;
 	}
 
-	public void initialize(CustomMouseListener m, CustomKeyListener k, CodeListener c, ArrayList<GameObject> o, int cycles) {
+	public void initialize(CustomMouseListener m, CustomKeyListener k, CodeListener c, ArrayList<GameObject> o,
+			int cycles) {
 		/*
 		 * This adds the MouseListener to the frame and initializes the view, this has
 		 * to happen after the constructor because the model needs to be set up first
 		 * and that requires the size of the screen
 		 */
 		pane.addMouseListener(m);
-		pane.addMouseMotionListener(m);	
+		pane.addMouseMotionListener(m);
 		frame.addKeyListener(k);
 		view = new TitleView(title, width, height, c, o);
 		timerImage = new TimerImage(cycles); // Adds timer image
@@ -67,8 +70,8 @@ public class ViewContainer implements Serializable{
 		resetView();
 	}
 
-	public void questionAnswered(ArrayList<GameObject> o, int score) {
-		view = ((QuizView) view).questionAnswered(o, score);
+	public void questionAnswered(ArrayList<GameObject> o, int score, boolean quizCorrect) {
+		view = ((QuizView) view).questionAnswered(o, score, quizCorrect);
 		resetView();
 	}
 
@@ -77,6 +80,14 @@ public class ViewContainer implements Serializable{
 		// wrong
 		pane.removeAll();
 		pane.add(view, JLayeredPane.DEFAULT_LAYER);
+		frame.revalidate();
+		frame.repaint();
+	}
+
+	public void resetView(JComponent component) {
+		// If this is not done the JFrame will not display properly and things will look
+		// wrong
+		pane.remove(component);
 		frame.revalidate();
 		frame.repaint();
 	}
@@ -107,7 +118,23 @@ public class ViewContainer implements Serializable{
 	}
 
 	public void researchPopup(Animal a, CodeListener cl) {
-		ResearchPopup pop = new ResearchPopup(a, cl, width);
+		ResearchPopup pop = new ResearchPopup(a, cl, width, height);
+		pop.setBounds(width / 4, 0, width / 2, height);
+		pane.add(pop, JLayeredPane.POPUP_LAYER);
+		frame.revalidate();
+		frame.repaint();
+	}
+
+	public void tutorialPopup1(Controller controller) {
+		TutorialPopup pop = new TutorialPopup(1, controller, width);
+		pop.setBounds(width / 4, height / 6, width / 2, (height * 2) / 3);
+		pane.add(pop, JLayeredPane.POPUP_LAYER);
+		frame.revalidate();
+		frame.repaint();
+	}
+
+	public void tutorialPopup2(Controller controller) {
+		TutorialPopup pop = new TutorialPopup(2, controller, width);
 		pop.setBounds(width / 4, height / 6, width / 2, (height * 2) / 3);
 		pane.add(pop, JLayeredPane.POPUP_LAYER);
 		frame.revalidate();
@@ -129,7 +156,7 @@ public class ViewContainer implements Serializable{
 	public int getHeight() {
 		return height;
 	}
-	
+
 	public static String getTitle() {
 		return title;
 	}

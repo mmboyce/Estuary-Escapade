@@ -4,14 +4,14 @@ public class Crab extends Animal {
 	public Crab(int xPos, int yPos, int depth, int xSize, int ySize) {
 		super(xPos, yPos, depth, xSize, ySize);
 		this.setImagePath("images/Crab_UW_F1.png");
+		this.setRealPic("images/bluecrab.png");
 		this.setName("Blue Crab");
 		this.setWeight(5);
 		this.setSpeed(10);
-		this.setAvgSize(1/2);
-		this.setQuestion(new Question("The Blue Crab have teeth in its stomach.",
+		this.setAvgSize(1);
+		this.setQuestion(new Question("Blue Crabs have teeth in their stomach.",
 				"What do Blue Crabs have in their stomach?", "Teeth", "Eyes", "Claws", "Hair"));
 		this.setPathLength(xSize * 16 / this.getSpeed());
-		this.setRealPic("images/bluecrab.jpg");
 	}
 
 	@Override

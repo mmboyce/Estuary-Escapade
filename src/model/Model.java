@@ -50,9 +50,11 @@ public abstract class Model implements Serializable{
 
 	public abstract Model nextModel();
 
-	public void update() {};
+	public void update() {
+	};
 
-	public void registerClick(MouseEvent e) {}
+	public void registerClick(MouseEvent e) {
+	}
 
 	public CodeListener getListener() {
 		return listener;
@@ -60,6 +62,10 @@ public abstract class Model implements Serializable{
 
 	public void setListener(CodeListener listener) {
 		this.listener = listener;
+	}
+
+	public Model tutorialModel() {
+		return null;
 	}
 
 }
