@@ -107,8 +107,8 @@ public class ViewContainer {
 	}
 
 	public void researchPopup(Animal a, CodeListener cl) {
-		ResearchPopup pop = new ResearchPopup(a, cl, width);
-		pop.setBounds(width / 4, height / 6, width / 2, (height * 2) / 3);
+		ResearchPopup pop = new ResearchPopup(a, cl, width, height);
+		pop.setBounds(width / 4, 0 , width / 2, height);
 		pane.add(pop, JLayeredPane.POPUP_LAYER);
 		frame.revalidate();
 		frame.repaint();

@@ -2,6 +2,7 @@ package view;
 
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -28,12 +29,14 @@ public class ResearchPopup extends JPanel implements ActionListener {
 	JButton exit;
 	CodeListener listener;
 	int width;
+	int height;
 
 	private Font font;
 
-	public ResearchPopup(Animal a, CodeListener cl, int width) {
+	public ResearchPopup(Animal a, CodeListener cl, int width, int height) {
 		listener = cl;
 		this.width = width;
+		this.height = height;
 
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		font = new Font("Arial", Font.PLAIN, width / 35);
@@ -71,7 +74,7 @@ public class ResearchPopup extends JPanel implements ActionListener {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		BufferedImage notebook = ObjectView.createImage("images/legal-pad.png");
-		g.drawImage(notebook, 0, 0, width / 2, width / 2, null);
+		g.drawImage(notebook, 0, 0, width / 2, height, null);
 	}
 
 	private JLabel labelFactory(String text) {

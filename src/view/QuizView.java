@@ -75,10 +75,7 @@ public class QuizView extends View implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println(((JButton) e.getSource()).getText());
-		System.out.println("/////////////////");
 		String x = "<HTML>" + question.getCorrectAnswer() + "<HTML>";
-		System.out.println(x);
 		if (((JButton) e.getSource()).getText().equals(x)) {
 			super.getListener().codeEmitted(Code.RIGHT);
 		} else {
