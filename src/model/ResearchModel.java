@@ -166,6 +166,7 @@ public class ResearchModel extends Model implements GameStateModel {
 		}
 	}
 	
+	// DEBUG finishes researching the animal we're looking at
 	public void debugDoneResearching() {
 		setMeasured(true);
 		setPhotographed(true);

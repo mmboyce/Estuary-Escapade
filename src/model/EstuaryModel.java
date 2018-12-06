@@ -131,6 +131,7 @@ public class EstuaryModel extends Model implements GameStateModel {
 			animalCaught(clicked);
 	}
 	
+	//  DEBUG for grabbing the target immediately
 	public void debugChooseTarget() {
 		animalCaught(target);
 	}
@@ -151,6 +152,7 @@ public class EstuaryModel extends Model implements GameStateModel {
 			getListener().codeEmitted(Code.NEXT);
 		}
 		else {
+			// this has the popup come back if the wrong animal got clicked
 			popupHappened = false;
 		}
 	}
@@ -189,7 +191,8 @@ public class EstuaryModel extends Model implements GameStateModel {
 		}
 		return count == 0;
 	}
-	
+
+	// Researches all fish and skips to quiz
 	public void debugResearchAll() {
 		for(GameObject o : getGameObjects()) {
 			if(o instanceof Animal) {
