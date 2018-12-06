@@ -15,11 +15,10 @@ public class EndView extends View {
 		String scoreStr = "Your Score is : " + score.toString();
 
 		if (quizCorrect) {
-			scoreStr = "<HTML> You answered the quiz correctly, congratulations that doubles your score!\n" + scoreStr
-					+ "<HTML>";
+			scoreStr = "You answered the quiz correctly, congratulations that doubles your score!\n" + scoreStr;
 		} else {
-			scoreStr = "<HTML> You answered the quiz incorrectly, try to remember what you learned about the fish next time\n"
-					+ scoreStr + "<HTML>";
+			scoreStr = "You answered the quiz incorrectly, try to remember what you learned about the fish next time\n"
+					+ scoreStr;
 		}
 
 		TitlePanel Score = new TitlePanel(scoreStr, width); // This will display the title and any art
