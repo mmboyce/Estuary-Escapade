@@ -2,6 +2,7 @@ package view;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
@@ -9,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 
 import controller.CodeListener;
+import controller.CustomKeyListener;
 import controller.CustomMouseListener;
 import gameobject.Animal;
 import gameobject.GameObject;
@@ -29,7 +31,6 @@ public class ViewContainer {
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // This fullscreens the game
 		frame.setUndecorated(true); // This removes the window border
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 		pane = frame.getLayeredPane();
 		// These get the size of the screen
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -37,14 +38,15 @@ public class ViewContainer {
 		height = screenSize.height;
 	}
 
-	public void initialize(CustomMouseListener m, CodeListener c, ArrayList<GameObject> o, int cycles) {
+	public void initialize(CustomMouseListener m, CustomKeyListener k, CodeListener c, ArrayList<GameObject> o, int cycles) {
 		/*
 		 * This adds the MouseListener to the frame and initializes the view, this has
 		 * to happen after the constructor because the model needs to be set up first
 		 * and that requires the size of the screen
 		 */
 		pane.addMouseListener(m);
-		pane.addMouseMotionListener(m);
+		pane.addMouseMotionListener(m);	
+		frame.addKeyListener(k);
 		view = new TitleView(title, width, height, c, o);
 		timerImage = new TimerImage(cycles); // Adds timer image
 	}
@@ -82,6 +84,7 @@ public class ViewContainer {
 	public void start() {
 		pane.add(view, JLayeredPane.DEFAULT_LAYER);
 		frame.pack();
+		frame.setAutoRequestFocus(true); // frame must be in focus for key input to work
 		frame.setVisible(true);
 	}
 
@@ -125,6 +128,10 @@ public class ViewContainer {
 
 	public int getHeight() {
 		return height;
+	}
+	
+	public static String getTitle() {
+		return title;
 	}
 
 	public void flash() {
