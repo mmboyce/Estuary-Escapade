@@ -11,7 +11,7 @@ public class GoldFish extends Animal {
 		setWeight(25);
 		setSpeed(5);
 		setQuestion(new Question(
-				"Yellowtail Flounders can use camouflage and change the color and pattern of their skin to match the surrounding environment.",
+				"Yellowtail Flounders can use camouflage to change both skin color and pattern to match their environment.",
 				"The Yellowtail Flounder can ...", "use camouflage to blend into its surroundings",
 				"jump out of the water", "swim very fast", "squirt ink at predators"));
 		setPathLength(xSize * 3);
