@@ -56,7 +56,7 @@ public class CustomKeyListener implements KeyListener {
 			}
 			
 			if (key == KeyEvent.VK_W) {
-				// take photo
+				// research current animal
 				if (model instanceof ResearchModel) {
 					((ResearchModel) model).debugDoneResearching();
 				}
