@@ -15,6 +15,7 @@ public class TitleNavigation extends JPanel implements ActionListener {
 
 	private JButton start;
 	private JButton exit;
+	private JButton tutorial;
 	private CodeListener codeListener;
 	private Font font;
 
@@ -32,9 +33,16 @@ public class TitleNavigation extends JPanel implements ActionListener {
 		exit.setFont(font);
 		exit.addActionListener(this);
 
+		// Starts the tutorial 
+		tutorial = new JButton("How To Play");
+		tutorial.setFont(font);
+		tutorial.addActionListener(this);
+		
 		setLayout(new FlowLayout());
+		
 		add(start);
 		add(exit);
+		add(tutorial);
 	}
 
 	@Override
@@ -44,6 +52,8 @@ public class TitleNavigation extends JPanel implements ActionListener {
 			codeListener.codeEmitted(Code.NEXT);
 		} else if (pressed == exit) {
 			codeListener.codeEmitted(Code.EXIT);
+		} else if (pressed == tutorial) {
+			codeListener.codeEmitted(Code.TUTORIAL);
 		}
 	}
 

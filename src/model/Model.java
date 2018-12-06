@@ -61,4 +61,8 @@ public abstract class Model {
 		this.listener = listener;
 	}
 
+	public Model tutorialModel() {
+		return null;
+	}
+
 }

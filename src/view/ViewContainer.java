@@ -5,10 +5,12 @@ import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 
 import controller.CodeListener;
+import controller.Controller;
 import controller.CustomMouseListener;
 import gameobject.Animal;
 import gameobject.GameObject;
@@ -78,6 +80,14 @@ public class ViewContainer {
 		frame.revalidate();
 		frame.repaint();
 	}
+	
+	public void resetView(JComponent component) {
+		// If this is not done the JFrame will not display properly and things will look
+		// wrong
+		pane.remove(component);
+		frame.revalidate();
+		frame.repaint();
+	}
 
 	public void start() {
 		pane.add(view, JLayeredPane.DEFAULT_LAYER);
@@ -131,6 +141,22 @@ public class ViewContainer {
 		if (view instanceof ResearchView) {
 			view.flash();
 		}
+	}
+
+	public void tutorialPopup1(Controller controller) {
+		TutorialPopup pop = new TutorialPopup(1, controller, width);
+		pop.setBounds(width / 4, height / 6, width / 2, (height * 2) / 3);
+		pane.add(pop, new Integer(301));
+		frame.revalidate();
+		frame.repaint();
+	}
+
+	public void tutorialPopup2(Controller controller) {
+		TutorialPopup pop = new TutorialPopup(2, controller, width);
+		pop.setBounds(width / 4, height / 6, width / 2, (height * 2) / 3);
+		pane.add(pop, new Integer(301));
+		frame.revalidate();
+		frame.repaint();
 	}
 
 }

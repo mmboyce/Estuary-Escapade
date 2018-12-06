@@ -25,11 +25,15 @@ public class EstuaryModel extends Model implements GameStateModel {
 	// The animal the user is currently researching
 	Animal target;
 	private boolean popupHappened;
+	private boolean tutorialPopupHappened;
+	private boolean tutorialMode;
 	private final int spriteSize = this.getFrameHeight()/10;
 
-	public EstuaryModel(int frameWidth, int frameHeight, CodeListener listener) {
+	public EstuaryModel(int frameWidth, int frameHeight, CodeListener listener, boolean tutorialMode) {
 		super(frameWidth, frameHeight, listener);
 		popupHappened = false;
+		tutorialPopupHappened = false;
+		this.tutorialMode = tutorialMode;
 		listener.codeEmitted(Code.STARTTIMER);
 		researched = new ArrayList<Animal>();
 		instantiateFish();
@@ -57,15 +61,19 @@ public class EstuaryModel extends Model implements GameStateModel {
 
 		
 		// Adds all the fish that are in the estuary
-		addGameObject(new GoldFish(this.getFrameWidth()/8, this.getFrameHeight()/6, 0, spriteSize, spriteSize));
-		addGameObject(new PufferFish(this.getFrameWidth()/3,this.getFrameHeight()/3,0,spriteSize,spriteSize));
-		addGameObject(new Crab(this.getFrameWidth()/8,this.getFrameHeight()*9/10,0,spriteSize,spriteSize));
-		addGameObject(new ZappyBoi(this.getFrameWidth()/4,this.getFrameHeight()*4/6,0,spriteSize,spriteSize));
-		addGameObject(new GreenFish(this.getFrameWidth()/2,this.getFrameHeight()/4,0,spriteSize,spriteSize));
-		addGameObject(new BlueFish(this.getFrameWidth() / 6,this.getFrameHeight()/5, 0, spriteSize, spriteSize));
-		addGameObject(new RedFish(this.getFrameWidth()*5/6, this.getFrameHeight()/2, 0, spriteSize, spriteSize));
-		addGameObject(new PurpleFish(this.getFrameWidth()*6/5, this.getFrameHeight()/3, 0, spriteSize, spriteSize));
-
+		if (tutorialMode) {
+			addGameObject(new GoldFish(this.getFrameWidth()/8, this.getFrameHeight()/6, 0, spriteSize, spriteSize));
+		}
+		else {
+			addGameObject(new GoldFish(this.getFrameWidth()/8, this.getFrameHeight()/6, 0, spriteSize, spriteSize));
+			addGameObject(new PufferFish(this.getFrameWidth()/3,this.getFrameHeight()/3,0,spriteSize,spriteSize));
+			addGameObject(new Crab(this.getFrameWidth()/8,this.getFrameHeight()*9/10,0,spriteSize,spriteSize));
+			addGameObject(new ZappyBoi(this.getFrameWidth()/4,this.getFrameHeight()*4/6,0,spriteSize,spriteSize));
+			addGameObject(new GreenFish(this.getFrameWidth()/2,this.getFrameHeight()/4,0,spriteSize,spriteSize));
+			addGameObject(new BlueFish(this.getFrameWidth() / 6,this.getFrameHeight()/5, 0, spriteSize, spriteSize));
+			addGameObject(new RedFish(this.getFrameWidth()*5/6, this.getFrameHeight()/2, 0, spriteSize, spriteSize));
+			addGameObject(new PurpleFish(this.getFrameWidth()*6/5, this.getFrameHeight()/3, 0, spriteSize, spriteSize));
+		}
 	}
 
 	/*
@@ -170,7 +178,12 @@ public class EstuaryModel extends Model implements GameStateModel {
 	 * 
 	 */
 	public boolean allResearched() {
-		return 8 == researched.size();
+		if (tutorialMode) {
+			return 1 == researched.size();
+		}
+		else {
+			return 8 == researched.size();
+		}
 	}
 
 	@Override
@@ -184,10 +197,19 @@ public class EstuaryModel extends Model implements GameStateModel {
 	 * Updates all data in the model such as fish pathfinding
 	 */
 	public void update() {
-		if(!popupHappened) {
+		if(!popupHappened && tutorialPopupHappened ) {
 			super.getListener().estuaryPopup(target);
 			popupHappened = true;
 		}
+		
+		if(!tutorialPopupHappened) {
+			if (tutorialMode) {
+				super.getListener().tutorialPopup1();
+				tutorialPopupHappened = true;
+		    }
+		}
+		
+		
 		updatePositions();
 	}
 	

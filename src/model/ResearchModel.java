@@ -16,6 +16,7 @@ public class ResearchModel extends Model implements GameStateModel {
 	private boolean isMeasured = false;
 	private boolean isPhotographed = false;
 	private boolean popupClosed;
+	private boolean tutorialPopupClosed;
 	// Used to determine if the user is holding an animal or nots
 	private boolean isHolding = false;
 	private boolean isHoldingCamera=false;
@@ -67,6 +68,7 @@ public class ResearchModel extends Model implements GameStateModel {
 			CodeListener listener) {
 		super(frameWidth, frameHeight, listener);
 		popupClosed = false;
+		tutorialPopupClosed = false;
 		this.caught = animalCaught;
 		this.goBack = goBack;
 		instantiateObjects();
@@ -189,6 +191,10 @@ public class ResearchModel extends Model implements GameStateModel {
 	public void update() {
 		if(popupClosed) {
 			super.getListener().codeEmitted(Code.NEXT);
+		}
+		if(!tutorialPopupClosed) {
+			super.getListener().tutorialPopup2();
+			tutorialPopupClosed = true;
 		}
 	}
 	
