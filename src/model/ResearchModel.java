@@ -7,7 +7,6 @@ import controller.CodeListener;
 import gameobject.Animal;
 import gameobject.Camera;
 import gameobject.Measure;
-import gameobject.GameObject;
 
 public class ResearchModel extends Model implements GameStateModel {
 

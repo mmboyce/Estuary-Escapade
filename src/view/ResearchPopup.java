@@ -2,7 +2,6 @@ package view;
 
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -43,7 +42,7 @@ public class ResearchPopup extends JPanel implements ActionListener {
 
 		realAnimalImg = ObjectView.createImage(a.getRealPic());
 		JLabel picLabel = new JLabel(new ImageIcon(realAnimalImg));
-		Border margin = new EmptyBorder(width/40, 0, realAnimalImg.getHeight() / 200, 0);
+		Border margin = new EmptyBorder(width / 40, 0, realAnimalImg.getHeight() / 200, 0);
 		picLabel.setBorder(margin);
 		picLabel.setVerticalAlignment(JLabel.CENTER);
 		
@@ -56,7 +55,7 @@ public class ResearchPopup extends JPanel implements ActionListener {
 		exit.addActionListener(this);
 
 		this.add(picLabel);
-		this.setBorder(new EmptyBorder(0, width/ 20, 0, 0));
+		this.setBorder(new EmptyBorder(0, width / 20, 0, 0));
 		this.add(Box.createVerticalStrut(width / 60));
 		this.add(name);
 		this.add(funFact);

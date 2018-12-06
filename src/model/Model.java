@@ -49,9 +49,11 @@ public abstract class Model {
 
 	public abstract Model nextModel();
 
-	public void update() {};
+	public void update() {
+	};
 
-	public void registerClick(MouseEvent e) {}
+	public void registerClick(MouseEvent e) {
+	}
 
 	public CodeListener getListener() {
 		return listener;

@@ -5,6 +5,7 @@ import controller.CodeListener;
 public class EndModel extends Model {
 	// The players final score
 	private int score;
+
 	public int getScore() {
 		return score;
 	}
@@ -16,7 +17,7 @@ public class EndModel extends Model {
 	public EndModel(int frameWidth, int frameHeight, CodeListener listener) {
 		super(frameWidth, frameHeight, listener);
 	}
-	
+
 	public EndModel(int frameWidth, int frameHeight, CodeListener listener, int score) {
 		super(frameWidth, frameHeight, listener);
 		this.score = score;

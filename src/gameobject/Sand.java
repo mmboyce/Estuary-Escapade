@@ -1,6 +1,6 @@
 package gameobject;
 
-public class Sand extends GameObject{
+public class Sand extends GameObject {
 
 	public Sand(int xPos, int yPos, int depth, int xSize, int ySize) {
 		super(xPos, yPos, depth, xSize, ySize, "");
@@ -14,8 +14,7 @@ public class Sand extends GameObject{
 
 	@Override
 	public void update() {
-		
-		
+
 	}
 
 }

@@ -1,15 +1,14 @@
 package view;
 
-import java.awt.Graphics;
 import java.util.ArrayList;
 
 import controller.CodeListener;
 import gameobject.GameObject;
 
 public class ResearchView extends ObjectView {
-	
+
 	public ResearchView(int width, int height, ArrayList<GameObject> objects, CodeListener listener) {
-		super(width, height, objects,listener);
+		super(width, height, objects, listener);
 	}
 
 	@Override
@@ -17,5 +16,5 @@ public class ResearchView extends ObjectView {
 		// Returns the next model for transition purposes
 		return new EstuaryView(getWidth(), getHeight(), objects, super.getListener());
 	}
-	
+
 }

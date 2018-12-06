@@ -23,7 +23,7 @@ public abstract class GameObject {
 	public boolean clickedOn(int clickX, int clickY) {
 		// Given a click x and y this returns a boolean for whether or not this object
 		// was clicked on
-		if(!visible) {
+		if (!visible) {
 			return false;
 		}
 		return ((clickX >= xPos && clickX <= xPos + xSize) && (clickY >= yPos && clickY <= yPos + ySize));
@@ -84,7 +84,8 @@ public abstract class GameObject {
 	public boolean isVisible() {
 		return visible;
 	}
- 	public void setVisible(boolean visible) {
+
+	public void setVisible(boolean visible) {
 		this.visible = visible;
 	}
 }

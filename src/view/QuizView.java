@@ -1,10 +1,7 @@
 package view;
 
-import java.awt.Button;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -49,7 +46,6 @@ public class QuizView extends View implements ActionListener {
 		title.setBorder(new CompoundBorder(border, margin));
 		title.setFont(font);
 		title.setForeground(Color.white);
-
 
 		ArrayList<String> answers = new ArrayList<String>(Arrays.asList(question.getAllAnswers()));
 		Collections.shuffle(answers);

@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
-import controller.Code;
 import controller.CodeListener;
 import gameobject.Animal;
 import gameobject.Question;
