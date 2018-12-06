@@ -28,13 +28,13 @@ public class QuizView extends View implements ActionListener {
 	JButton response2;
 	JButton response3;
 	JButton response4;
-	
+
 	private Font font;
-	
+
 	public QuizView(int width, int height, Question question, ArrayList<GameObject> objects, CodeListener listener) {
 		super(width, height, objects, listener);
 		this.question = question;
-		font = new Font("Arial", Font.PLAIN, width/20);
+		font = new Font("Arial", Font.PLAIN, width / 20);
 
 		JLabel title = new JLabel("<HTML>" + question.getQuestion() + "<HTML>");
 		title.setHorizontalAlignment(JLabel.CENTER);
@@ -42,7 +42,7 @@ public class QuizView extends View implements ActionListener {
 
 		// This border is used to line up the question text
 		Border border = title.getBorder();
-		Border margin = new EmptyBorder(width/100, width/100, width/100, width/100);
+		Border margin = new EmptyBorder(width / 100, width / 100, width / 100, width / 100);
 		title.setBorder(new CompoundBorder(border, margin));
 		title.setFont(font);
 
@@ -53,7 +53,7 @@ public class QuizView extends View implements ActionListener {
 		response2 = buttonFactory(answers.get(1));
 		response3 = buttonFactory(answers.get(2));
 		response4 = buttonFactory(answers.get(3));
-	
+
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		setBackground(View.SEA_BLUE);
 		add(title);
@@ -65,7 +65,7 @@ public class QuizView extends View implements ActionListener {
 
 	@Override
 	public View nextView(ArrayList<GameObject> objects) {
-		return new EndView(getWidth(), getHeight(), objects, super.getListener(),-1);
+		return new EndView(getWidth(), getHeight(), objects, super.getListener(), -1, false);
 	}
 
 	@Override
@@ -83,10 +83,10 @@ public class QuizView extends View implements ActionListener {
 		}
 	}
 
-	public View questionAnswered(ArrayList<GameObject> objects, int score) {
-		return new EndView(getWidth(), getHeight(), objects, super.getListener(),score);
+	public View questionAnswered(ArrayList<GameObject> objects, int score, boolean quizCorrect) {
+		return new EndView(getWidth(), getHeight(), objects, super.getListener(), score, quizCorrect);
 	}
-	
+
 	private JButton buttonFactory(String text) {
 		JButton button = new JButton("<HTML>" + text + "<HTML>");
 		button.addActionListener(this);
