@@ -94,7 +94,6 @@ public class ResearchModel extends Model implements GameStateModel {
 	}
 	/**
 	 * void registerClick
-	 * takes x and y location of click and compares it to the locations of the different objects on the screen. When the values are equal it holds the object. 
 	 * @param e a mouse event
 	 * 
 	 */
@@ -164,9 +163,14 @@ public class ResearchModel extends Model implements GameStateModel {
 		goBack.getGameObjects().remove(caught);
 		super.getListener().researchPopup(caught);
 		popupClosed = true;
-		if(goBack.allResearched()){
-			super.getListener().codeEmitted(Code.TIMEUP);
-		}
+	}
+	
+	// DEBUG finishes researching the animal we're looking at
+	public void debugDoneResearching() {
+		setMeasured(true);
+		setPhotographed(true);
+		setWeighed(true);
+		doneResearching();
 	}
 
 	public void setCameraHolding(boolean value) {
@@ -199,8 +203,10 @@ public class ResearchModel extends Model implements GameStateModel {
 				tutorialPopupClosed = true;
 			}
 		}
-		
-		if(popupClosed) {
+		else if(popupClosed && goBack.allResearched()) {
+			super.getListener().codeEmitted(Code.TIMEUP);
+		}
+		else if(popupClosed) {
 			super.getListener().codeEmitted(Code.NEXT);
 		}
 		

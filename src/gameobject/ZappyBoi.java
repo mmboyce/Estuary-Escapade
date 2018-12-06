@@ -5,6 +5,7 @@ public class ZappyBoi extends Animal {
 	public ZappyBoi(int xPos, int yPos, int depth, int xSize, int ySize) {
 		super(xPos, yPos, depth, xSize, ySize);
 		this.setImagePath("images/ZappyBoiRight.png");
+		this.setRealPic("images/americaneel.png");
 		this.setName("American Eel");
 		this.setWeight(9);
 		this.setAvgSize(2);
@@ -13,7 +14,6 @@ public class ZappyBoi extends Animal {
 				"How often does the American Eel have to come to the surface for air? ", "Every 10 minutes",
 				"Every 5 minutes", "Every hour", "Once a day"));
 		this.setPathLength(this.getxSize() * 7 / this.getSpeed());
-		this.setRealPic("images/americaneel.jpg");
 	}
 
 	@Override

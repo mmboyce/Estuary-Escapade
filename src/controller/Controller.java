@@ -6,11 +6,12 @@ import javax.swing.AbstractAction;
 import javax.swing.Timer;
 
 import gameobject.Animal;
-import gameobject.Question;
 import model.EndModel;
+import model.EstuaryModel;
 import model.GameStateModel;
 import model.Model;
 import model.QuizModel;
+import model.ResearchModel;
 import model.TitleModel;
 import view.ViewContainer;
 
@@ -21,12 +22,12 @@ public class Controller implements CodeListener {
 	private ViewContainer view;
 	private AbstractAction updateAction;
 	private CustomMouseListener mouseListener;
+	private CustomKeyListener keyListener;
 	private boolean timerRunning;
 	private int time;
 	private int width;
 	private int height;
 
-	private final static String title = "Estuary Escapade";
 	private final int cycles = 750; // This controlls how long the game runs for
 	private final int timerDelay = 40; // The delay between every game state update
 
@@ -41,7 +42,8 @@ public class Controller implements CodeListener {
 
 		model = new TitleModel(width, height, this);
 		mouseListener = new CustomMouseListener(model);
-		view.initialize(mouseListener, this, model.getGameObjects(), cycles);
+		keyListener = new CustomKeyListener(model);
+		view.initialize(mouseListener, keyListener, this, model.getGameObjects(), cycles);
 
 		updateAction = new AbstractAction() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -78,6 +80,7 @@ public class Controller implements CodeListener {
 			model = model.nextModel();// calls nextmodel and move to next game state
 			view.next(model.getGameObjects());
 			mouseListener.setModel(model);
+			keyListener.setModel(model);
 			break;
 		case TUTORIAL:
 			model = model.tutorialModel();
@@ -95,6 +98,7 @@ public class Controller implements CodeListener {
 			if (model instanceof GameStateModel && view.checkObjectView()) {
 				model = ((GameStateModel) model).timeUp();
 				mouseListener.setModel(model);
+				keyListener.setModel(model);
 				view.timeUp((QuizModel) model);
 			}
 			timerRunning = false;
@@ -128,7 +132,7 @@ public class Controller implements CodeListener {
 			break;
 		}
 	}
-
+	
 	public void start() {
 		t.start();
 		view.start();
@@ -153,7 +157,7 @@ public class Controller implements CodeListener {
 	public ViewContainer getViewContainer() {
 		return view;
 	}
-
+	
 	public void setViewContainer(ViewContainer view) {
 		this.view = view;
 	}

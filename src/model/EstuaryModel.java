@@ -16,7 +16,6 @@ import gameobject.GreenFish;
 import gameobject.PufferFish;
 import gameobject.PurpleFish;
 import gameobject.RedFish;
-import gameobject.Sand;
 import gameobject.ZappyBoi;
 
 public class EstuaryModel extends Model implements GameStateModel {
@@ -41,8 +40,13 @@ public class EstuaryModel extends Model implements GameStateModel {
 	}
 	
 	public void chooseTarget() {
-		Random rand = new Random();
-		target = (Animal) super.getGameObjects().get(rand.nextInt(super.getGameObjects().size()));
+		if(allResearched()) {
+			getListener().codeEmitted(Code.TIMEUP);
+		}
+		else {
+			Random rand = new Random();
+			target = (Animal) super.getGameObjects().get(rand.nextInt(super.getGameObjects().size()));
+		}
 	}
 
 	/*
@@ -51,14 +55,6 @@ public class EstuaryModel extends Model implements GameStateModel {
 	 * sets the target and loads all fish into the schoolOfFish
 	 */
 	private void instantiateFish() {
-//		// Adds all the other objects to be rendered
-//		int xpos = 0;
-//		int ypos = getFrameHeight()*17/20;
-//		do {
-//			addGameObject(new Sand(xpos,ypos,1,spriteSize, spriteSize));
-//			xpos += getFrameHeight()/10;
-//		}while(xpos < getFrameWidth());
-
 		
 		// Adds all the fish that are in the estuary
 		if (tutorialMode) {
@@ -130,9 +126,13 @@ public class EstuaryModel extends Model implements GameStateModel {
 			}
 		}
 
-		if (clicked == target) {
+		if(clicked != null)
 			animalCaught(clicked);
-		}
+	}
+	
+	//  DEBUG for grabbing the target immediately
+	public void debugChooseTarget() {
+		animalCaught(target);
 	}
 
 	/*
@@ -146,10 +146,14 @@ public class EstuaryModel extends Model implements GameStateModel {
 	 */
 	private void animalCaught(Animal animal) {
 		// determines that the animal clicked on is the target animal
-//		if (animal.equals(target)) {
+		if (animal.equals(target)) {
 			this.target = animal;
 			getListener().codeEmitted(Code.NEXT);
-//		}
+		}
+		else {
+			// this has the popup come back if the wrong animal got clicked
+			popupHappened = false;
+		}
 	}
 
 	/*
@@ -179,13 +183,30 @@ public class EstuaryModel extends Model implements GameStateModel {
 	 */
 	public boolean allResearched() {
 		if (tutorialMode) {
-			return 1 == researched.size();
+			return researched.size() > 0;
 		}
 		else {
-			return 8 == researched.size();
-		}
+			int count = 0;
+			for (Object o : getGameObjects()) {
+				if (o instanceof Animal) {
+					count++;
+				}
+			}
+			return count == 0;
+			}
 	}
 
+	// Researches all fish and skips to quiz
+	public void debugResearchAll() {
+		for(GameObject o : getGameObjects()) {
+			if(o instanceof Animal) {
+				researched.add((Animal) o);
+			}
+		}
+		getGameObjects().removeAll(researched);
+		getListener().codeEmitted(Code.TIMEUP);
+	}
+	
 	@Override
 	/*
 	 * (non-Javadoc)

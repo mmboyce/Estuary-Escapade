@@ -5,6 +5,7 @@ public class PufferFish extends Animal {
 	public PufferFish(int xPos, int yPos, int depth, int xSize, int ySize) {
 		super(xPos, yPos, depth, xSize, ySize);
 		this.setImagePath("images/PuffDaddyRight.png");
+		this.setRealPic("images/northernpuffer.png");
 		this.setName("Northern Puffer");
 		this.setWeight(2);
 		this.setAvgSize(1);
@@ -13,7 +14,6 @@ public class PufferFish extends Animal {
 				"What does the Northern Puffer do when threatened?", "Blow up like a balloon", "Swim away",
 				"Squirt ink", "Bite"));
 		this.setPathLength(xSize * 20);
-		this.setRealPic("images/northernpuffer.jpg");
 		this.setAvgSize(2);
 	}
 
