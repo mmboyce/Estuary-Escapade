@@ -2,9 +2,9 @@ package controller;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.Serializable;
 
 import model.EstuaryModel;
-import model.Model;
 import model.ResearchModel;
 
 /**
@@ -16,17 +16,21 @@ import model.ResearchModel;
  * @author W Mathieu Mimms-Boyce
  * @author Miguel Fuentes
  */
-public class CustomKeyListener implements KeyListener {
-	private Model model;
+public class CustomKeyListener implements KeyListener, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Controller controller;
 	private boolean debugging;
 
 	/**
 	 * Constructor for the CustomKeyListener
 	 * 
-	 * @param m The model we are affecting with our keypresses
+	 * @param c The controller we are affecting with our keypresses
 	 */
-	public CustomKeyListener(Model m) {
-		this.model = m;
+	public CustomKeyListener(Controller c) {
+		this.controller = c;
 	}
 
 	/**
@@ -44,13 +48,19 @@ public class CustomKeyListener implements KeyListener {
 		int key = e.getKeyCode();
 
 		if (key == KeyEvent.VK_ESCAPE) {
-			model.getListener().codeEmitted(Code.EXIT);
+			controller.getModel().getListener().codeEmitted(Code.EXIT);
 		}
 	}
 
 	/**
 	 * Handles actions for when a key is released. These were placed here so
 	 * that holding a key down would not repeatedly perform an action
+	 * <p>
+	 * Saving and Loading
+	 * <ul>
+	 * 	<li><b>S</b> - <i>Saves State</i></li>
+	 * 	<li><b>L</b> - <i>Loads State</i></li>
+	 * </ul>
 	 * <p>
 	 * Debugging Keys
 	 * <ul>
@@ -62,10 +72,20 @@ public class CustomKeyListener implements KeyListener {
 	 * 		<li><b>R</b> - <i>Skips to Quiz with current fishes caught </i></li>
 	 * 	</ul>
 	 * </ul>
+	 * 
+	 * @param e The KeyEvent
 	 */
 	@Override
 	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
+		
+		if (key == KeyEvent.VK_S) {
+			controller.saveState();
+		}
+
+		if (key == KeyEvent.VK_L) {
+			controller.loadState();
+		}
 
 		// DEBUGGING KEYS BELOW
 
@@ -86,27 +106,27 @@ public class CustomKeyListener implements KeyListener {
 		if (isDebugging()) {
 			if (key == KeyEvent.VK_Q) {
 				// catch target
-				if (model instanceof EstuaryModel) {
-					((EstuaryModel) model).debugChooseTarget();
+				if (controller.getModel() instanceof EstuaryModel) {
+					((EstuaryModel) controller.getModel()).debugChooseTarget();
 				}
 			}
 
 			if (key == KeyEvent.VK_W) {
 				// research current animal
-				if (model instanceof ResearchModel) {
-					((ResearchModel) model).debugDoneResearching();
+				if (controller.getModel() instanceof ResearchModel) {
+					((ResearchModel) controller.getModel()).debugDoneResearching();
 				}
 			}
 
 			if (key == KeyEvent.VK_E) {
 				// skip to quiz with all caught
-				if (model instanceof EstuaryModel)
-					((EstuaryModel) model).debugResearchAll();
+				if (controller.getModel() instanceof EstuaryModel)
+					((EstuaryModel) controller.getModel()).debugResearchAll();
 			}
 
 			if (key == KeyEvent.VK_R) {
 				// skip to quiz with current amount caught
-				model.getListener().codeEmitted(Code.TIMEUP);
+				controller.getModel().getListener().codeEmitted(Code.TIMEUP);
 			}
 		}
 	}
@@ -131,12 +151,5 @@ public class CustomKeyListener implements KeyListener {
 	 */
 	public boolean isDebugging() {
 		return debugging;
-	}
-
-	/**
-	 * @param model The model to switch to
-	 */
-	public void setModel(Model model) {
-		this.model = model;
 	}
 }

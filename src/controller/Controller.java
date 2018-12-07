@@ -1,12 +1,20 @@
 package controller;
 
 import java.awt.event.ActionEvent;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
 import javax.swing.AbstractAction;
+import javax.swing.JFileChooser;
 import javax.swing.Timer;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import gameobject.Animal;
 import model.EndModel;
+import model.EstuaryModel;
 import model.GameStateModel;
 import model.Model;
 import model.QuizModel;
@@ -14,8 +22,9 @@ import model.ResearchModel;
 import model.TitleModel;
 import view.ViewContainer;
 
-public class Controller implements CodeListener {
+public class Controller implements CodeListener, Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private Timer t;
 	private Model model;
 	private ViewContainer view;
@@ -41,7 +50,7 @@ public class Controller implements CodeListener {
 
 		model = new TitleModel(width, height, this);
 		mouseListener = new CustomMouseListener(model);
-		keyListener = new CustomKeyListener(model);
+		keyListener = new CustomKeyListener(this);
 		view.initialize(mouseListener, keyListener, this, model.getGameObjects(), cycles);
 
 		updateAction = new AbstractAction() {
@@ -52,7 +61,9 @@ public class Controller implements CodeListener {
 				 * the time increments and if the time runs out the TIMEUP code is emitted
 				 */
 				model.update();
+				model.setTime(time);
 				view.repaint(time);
+				model.setTimerRunning(timerRunning);
 				if (timerRunning) {
 					time++;
 				}
@@ -62,7 +73,6 @@ public class Controller implements CodeListener {
 			}
 		};
 		t = new Timer(timerDelay, updateAction);
-
 	}
 
 	/*
@@ -77,13 +87,13 @@ public class Controller implements CodeListener {
 		switch (c) {
 		case NEXT:
 			model = model.nextModel();// calls nextmodel and move to next game state
-			if(model instanceof ResearchModel) {
-				// this is to prevent the bug that occurs when you click on a fish while a popup is present
+			if (model instanceof ResearchModel) {
+				// this is to prevent the bug that occurs when you click on a fish while a popup
+				// is present
 				t.start();
 			}
 			view.next(model.getGameObjects());
 			mouseListener.setModel(model);
-			keyListener.setModel(model);
 			break;
 		case TUTORIAL:
 			model = model.tutorialModel();
@@ -101,7 +111,6 @@ public class Controller implements CodeListener {
 			if (model instanceof GameStateModel && view.checkObjectView()) {
 				model = ((GameStateModel) model).timeUp();
 				mouseListener.setModel(model);
-				keyListener.setModel(model);
 				view.timeUp((QuizModel) model);
 			}
 			timerRunning = false;
@@ -133,6 +142,66 @@ public class Controller implements CodeListener {
 			break;
 		default:
 			break;
+		}
+	}
+
+	public void saveState() {
+		String fileName = "estuaryGameState.est";
+		try {
+			FileOutputStream fos = new FileOutputStream(fileName);
+			ObjectOutputStream out = new ObjectOutputStream(fos);
+			out.writeObject(model);
+			out.close();
+		} catch (Exception e) {
+			System.out.println("Problem saving");
+			e.printStackTrace();
+		}
+	}
+
+	public void loadState() {
+		codeEmitted(Code.PAUSE);
+		JFileChooser jf = new JFileChooser();
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("Estuary Game Files", "est");
+		jf.setFileFilter(filter);
+		try {
+			int r = jf.showOpenDialog(null);
+			if (r == JFileChooser.APPROVE_OPTION) {
+				// set the label to the path of the selected directory
+				String filename = jf.getSelectedFile().getAbsolutePath();
+				FileInputStream fis = new FileInputStream(filename);
+				ObjectInputStream in = new ObjectInputStream(fis);
+				Model oldModel = (Model) in.readObject();
+				in.close();
+				loadValues(oldModel);
+			}
+		} catch (Exception e) {
+			System.out.println("Problem loading");
+			e.printStackTrace();
+		}
+		codeEmitted(Code.RESUME);
+	}
+
+	private void loadValues(Model oldModel) {
+		oldModel.setListener(this);
+		if(oldModel instanceof ResearchModel) {
+			((ResearchModel)oldModel).getGoBack().setListener(this);
+		}
+		oldModel.setFrameHeight(height);
+		oldModel.setFrameWidth(width);
+		model = oldModel;
+		time = model.getTime();
+		timerRunning = model.isTimerRunning();
+		mouseListener.setModel(model);
+		if (model instanceof TitleModel) {
+			view.loadTitle(this, model.getGameObjects());
+		} else if (model instanceof EstuaryModel) {
+			view.loadEstuary(this, model.getGameObjects());
+		} else if (model instanceof ResearchModel) {
+			view.loadResearch(this, model.getGameObjects());
+		} else if (model instanceof QuizModel) {
+			view.loadQuiz(((QuizModel) model).getQuestion(), this, model.getGameObjects());
+		} else if (model instanceof EndModel) {
+			view.loadEnd(this, model.getGameObjects(), ((EndModel) model).isQuizCorrect());
 		}
 	}
 

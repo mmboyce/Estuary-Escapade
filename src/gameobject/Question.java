@@ -1,5 +1,6 @@
 package gameobject;
 
+import java.io.Serializable;
 /**
  * This class stores the question, fun-fact, and answers to the question. These
  * are passed to the {@link view.QuizView QuizView} and {@link model.QuizModel QuizModel}
@@ -8,7 +9,7 @@ package gameobject;
  * @author Miguel Fuentes
  * @author W Mathieu Mimms-Boyce
  */
-public class Question {
+public class Question implements Serializable{
 
 	private String question;
 	private String funFact;

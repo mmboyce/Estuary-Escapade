@@ -1,7 +1,6 @@
 package gameobject;
 
-import java.awt.image.BufferedImage;
-import java.awt.image.BufferedImageFilter;
+import java.io.Serializable;
 
 /**
  * GameObject is an abstract class representing items that are drawn to the screen.
@@ -11,7 +10,7 @@ import java.awt.image.BufferedImageFilter;
  * @author      W Mathieu Mimms-Boyce
  * @author      Miguel Fuentes
  */
-public abstract class GameObject {
+public abstract class GameObject implements Serializable{
 
 	private int xPos;
 	private int yPos;

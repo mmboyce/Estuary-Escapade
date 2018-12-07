@@ -156,7 +156,7 @@ class GameTests {
 	
 	@Test
 	void EndTests() {
-		EndModel em = new EndModel(500, 500, c);
+		EndModel em = new EndModel(500, 500, c, 0, true);
 		em.setScore(19);
 		assertEquals(em.getScore(), 19);
 		assertTrue(em.nextModel() instanceof Model);

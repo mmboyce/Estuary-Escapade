@@ -10,6 +10,10 @@ import gameobject.Animal;
 import gameobject.Question;
 
 public class QuizModel extends Model {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6748182971185109149L;
 	// A collection of all the possible questions that can be asked on the quiz
 	private ArrayList<Question> questionPool;
 	// A list of the animals the player researched over the course of the game
@@ -50,14 +54,14 @@ public class QuizModel extends Model {
 	@Override
 	public Model nextModel() {
 		// Transition to the end screen which displays the score
-		return new EndModel(super.getFrameWidth(), super.getFrameHeight(), getListener(), -1);
+		return new EndModel(super.getFrameWidth(), super.getFrameHeight(), getListener(), -1, false);
 	}
 
 	public Model questionAnswered(boolean questionCorrect) {
 		if (questionCorrect) {
-			return new EndModel(super.getFrameWidth(), super.getFrameHeight(), getListener(), questionPool.size() * 2);
+			return new EndModel(super.getFrameWidth(), super.getFrameHeight(), getListener(), questionPool.size() * 2, true);
 		} else {
-			return new EndModel(super.getFrameWidth(), super.getFrameHeight(), getListener(), questionPool.size());
+			return new EndModel(super.getFrameWidth(), super.getFrameHeight(), getListener(), questionPool.size(), false);
 		}
 	}
 
