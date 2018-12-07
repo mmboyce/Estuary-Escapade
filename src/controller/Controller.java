@@ -56,7 +56,7 @@ public class Controller implements CodeListener, Serializable {
 		time = 0;
 		timerRunning = false; // The time will only start once the player leaves the start screen
 
-		view = new ViewContainer(cycles);
+		view = new ViewContainer();
 
 		width = view.getWidth();
 		height = view.getHeight();
@@ -170,6 +170,8 @@ public class Controller implements CodeListener, Serializable {
 	
 	/**
 	 * Opens a file dialog to load serialized data of the game.
+	 * 
+	 * @see Controller#loadValues(Model)
 	 */
 	public void loadState() {
 		codeEmitted(Code.PAUSE);
