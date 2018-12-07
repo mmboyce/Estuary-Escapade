@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import controller.Code;
 import controller.CodeListener;
@@ -8,11 +9,19 @@ import gameobject.Animal;
 import gameobject.Camera;
 import gameobject.Measure;
 
+/**
+ * This model has to handle the positions of the various research tools, and
+ * handle various popups
+ * 
+ * @author Miguel Fuentes
+ * @author W Mathieu Mimms-Boyce
+ * @author Devon Pirestani
+ * @author Andre Green
+ * @author Dylan Martin
+ *
+ */
 public class ResearchModel extends Model implements GameStateModel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -3435910244830997851L;
 	// Used to determine if the animal is fully researched
 	private boolean isWeighed = false;
@@ -22,7 +31,6 @@ public class ResearchModel extends Model implements GameStateModel {
 	private boolean tutorialPopupClosed;
 	private boolean tutorialMode;
 	// Used to determine if the user is holding an animal or nots
-	private boolean isHolding = false;
 	private boolean isHoldingCamera = false;
 	private boolean isHoldingRuler = false;
 	private boolean isHoldingScale = false;
@@ -41,31 +49,66 @@ public class ResearchModel extends Model implements GameStateModel {
 	private int right = 500;
 	private int top = 300;
 
+	/**
+	 * @return boolean isWeighed
+	 */
 	public boolean isWeighed() {
 		return isWeighed;
 	}
 
+	/**
+	 * Setter for isWighed
+	 * 
+	 * @param isWeighed
+	 */
 	public void setWeighed(boolean isWeighed) {
 		this.isWeighed = isWeighed;
 	}
 
+	/**
+	 * @return boolean isMeasured
+	 */
 	public boolean isMeasured() {
 		return isMeasured;
 	}
 
+	/**
+	 * Setter for isMeasured
+	 * 
+	 * @param isMeasured
+	 */
 	public void setMeasured(boolean isMeasured) {
 		this.isMeasured = isMeasured;
 	}
 
+	/**
+	 * @return boolean isPhotographed
+	 */
 	public boolean isPhotographed() {
 		return isPhotographed;
 	}
 
+	/**
+	 * Setter for isPhotographed
+	 * 
+	 * @param isWeighed
+	 */
 	public void setPhotographed(boolean isPhotographed) {
 		this.isPhotographed = isPhotographed;
 	}
 
-	// Constructor
+	/**
+	 * This calls the super class constructor, sets some popup booleans, sets
+	 * animalCaught to keep track of which animal was caught and goBack to return to
+	 * the same state you came from when done researching
+	 * 
+	 * @param frameWidth   width of the screen
+	 * @param frameHeight  height of the screen
+	 * @param animalCaught which animal was caught
+	 * @param goBack       the {@link EstuaryView} that led to this state
+	 * @param listener     the {@link CodeListener}
+	 * @param tutorialMode whether or not the game is in tutorial mode
+	 */
 	public ResearchModel(int frameWidth, int frameHeight, Animal animalCaught, EstuaryModel goBack,
 			CodeListener listener, boolean tutorialMode) {
 		super(frameWidth, frameHeight, listener);
@@ -77,6 +120,10 @@ public class ResearchModel extends Model implements GameStateModel {
 		instantiateObjects();
 	}
 
+	/**
+	 * This sets the position of the {@link Animal} which was caught and adds
+	 * everything to {@link Model.objects}
+	 */
 	public void instantiateObjects() {
 		// TODO: make this so its not hard coded
 		this.caught.setxPos(right);
@@ -88,6 +135,10 @@ public class ResearchModel extends Model implements GameStateModel {
 		addGameObject(this.scale);
 	}
 
+	/**
+	 * This resets things to get ready for more research then chooses a new
+	 * {@link Animal} for the player to catch
+	 */
 	@Override
 	public Model nextModel() {
 		getGoBack().setPopupHappened(false);
@@ -96,7 +147,8 @@ public class ResearchModel extends Model implements GameStateModel {
 	}
 
 	/**
-	 * void registerClick
+	 * This will select a tool if the start of a user's drag touches it and deselect
+	 * a tool once the user stops dragging
 	 * 
 	 * @param e a mouse event
 	 * 
@@ -138,8 +190,8 @@ public class ResearchModel extends Model implements GameStateModel {
 	}
 
 	/**
-	 * void mouseMoved if hold a tool moving the mouse changes the location of that
-	 * object
+	 * This will update the position of a tool if you are holding it as the mouse
+	 * moves
 	 * 
 	 * @param mouseX
 	 * @param mouseY
@@ -159,6 +211,11 @@ public class ResearchModel extends Model implements GameStateModel {
 		}
 	}
 
+	/**
+	 * This moves the animal you have finished researching to
+	 * {@link EstuaryModel.researched} and sends a code to put up a popup with the
+	 * {@link Animal}'s info
+	 */
 	private void doneResearching() {
 		getGoBack().researched.add(caught);
 		getGoBack().getGameObjects().remove(caught);
@@ -166,7 +223,9 @@ public class ResearchModel extends Model implements GameStateModel {
 		popupClosed = true;
 	}
 
-	// DEBUG finishes researching the animal we're looking at
+	/**
+	 * This will skip the research, this is for debugging purposes
+	 */
 	public void debugDoneResearching() {
 		setMeasured(true);
 		setPhotographed(true);
@@ -174,28 +233,45 @@ public class ResearchModel extends Model implements GameStateModel {
 		doneResearching();
 	}
 
-	public void setCameraHolding(boolean value) {
-		this.isHoldingCamera = value;
+	/**
+	 * Setter for isHoldingCamera
+	 * 
+	 * @param holdingCamera
+	 */
+	public void setCameraHolding(boolean holdingCamera) {
+		this.isHoldingCamera = holdingCamera;
 	}
 
-	public void setRulerHolding(boolean value) {
-		this.isHoldingRuler = value;
+	/**
+	 * Setter for isHoldingRuler
+	 * 
+	 * @param holdingRuler
+	 */
+	public void setRulerHolding(boolean holdingRuler) {
+		this.isHoldingRuler = holdingRuler;
 	}
 
-	public void setScaleHolding(boolean value) {
-		this.isHoldingScale = value;
+	/**
+	 * Setter for isHoldingScale
+	 * 
+	 * @param holdingScale
+	 */
+	public void setScaleHolding(boolean holdingScale) {
+		this.isHoldingScale = holdingScale;
 	}
 
-	public boolean getHolding() {
-		return this.isHolding;
-	}
-
-	@Override
+	/**
+	 * This transitions the Quiz and passes the {@link ArrayList} of {@link Animal}s
+	 * which have been researched to the {@link QuizModel}
+	 */
 	public QuizModel timeUp() {
 		// Transition to the QuizModel
 		return new QuizModel(getFrameWidth(), getFrameHeight(), getGoBack().researched, super.getListener());
 	}
 
+	/**
+	 * This handles the popups on this screen
+	 */
 	@Override
 	public void update() {
 		if (tutorialMode) {
@@ -215,22 +291,39 @@ public class ResearchModel extends Model implements GameStateModel {
 		}
 	}
 
+	/**
+	 * @return ruler
+	 */
 	public Measure getRuler() {
 		return ruler;
 	}
 
+	/**
+	 * @return scale
+	 */
 	public Measure getScale() {
 		return scale;
 	}
 
+	/**
+	 * @return camera
+	 */
 	public Camera getCamera() {
 		return camera;
 	}
 
+	/**
+	 * @return goBack
+	 */
 	public EstuaryModel getGoBack() {
 		return goBack;
 	}
 
+	/**
+	 * This sets the model which will be returned to once the research is done
+	 * 
+	 * @param goBack Previous model
+	 */
 	public void setGoBack(EstuaryModel goBack) {
 		this.goBack = goBack;
 	}

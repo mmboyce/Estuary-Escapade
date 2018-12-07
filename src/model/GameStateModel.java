@@ -1,7 +1,17 @@
 package model;
 
+/**
+ * This interface enforces Models having a way to transition to the quiz when
+ * the time runs out
+ * 
+ * @author Miguel Fuentes
+ */
 public interface GameStateModel {
-	// TODO Decide if we should make this an abstract class and extend it instead of
-	// implement like we do with the view, currently it is inconsistent
+	/**
+	 * This is used in game states where the timer is running so that the game will
+	 * transition to the quiz once time runs out
+	 * 
+	 * @return QuizModel
+	 */
 	public QuizModel timeUp();
 }
