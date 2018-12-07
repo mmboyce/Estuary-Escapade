@@ -283,4 +283,17 @@ class GameTests {
 		EndView ev = new EndView(500, 500, animals, c, 0, false);
 		assertTrue(ev.nextView(animals) instanceof View);
 	}
+
+	@Test
+	void ModelTests() {
+		Controller controlla = new Controller();
+		EstuaryModel em = new EstuaryModel(500, 500, controlla, false);
+		assertEquals(em.tutorialModel(), null);
+		
+		em.setTime(0);
+		assertEquals(em.getTime(), 0);
+		
+		em.setTimerRunning(true);
+		assertTrue(em.isTimerRunning());
+	}
 }
