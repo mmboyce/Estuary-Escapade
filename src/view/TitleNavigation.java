@@ -11,6 +11,14 @@ import javax.swing.JPanel;
 import controller.Code;
 import controller.CodeListener;
 
+/**
+ * The pane at the bottom of the Title Screen for starting the game, exiting,
+ * or loading in the tutorial.
+ * 
+ * @author Devon Pirestni
+ * @author Andre Green
+ * @author Miguel Fuentes
+ */
 public class TitleNavigation extends JPanel implements ActionListener {
 
 	private JButton start;
@@ -19,6 +27,12 @@ public class TitleNavigation extends JPanel implements ActionListener {
 	private CodeListener codeListener;
 	private Font font;
 
+	/**
+	 * Constructor for TitleNavigation
+	 * 
+	 * @param cl The CodeListener
+	 * @param width The width of the pane
+	 */
 	public TitleNavigation(CodeListener cl, int width) {
 		codeListener = cl;
 		font = new Font("Arial", Font.PLAIN, width / 40);
@@ -45,6 +59,9 @@ public class TitleNavigation extends JPanel implements ActionListener {
 		add(tutorial);
 	}
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent buttonPress) {
 		JButton pressed = (JButton) buttonPress.getSource();

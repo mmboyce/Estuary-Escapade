@@ -19,7 +19,15 @@ import controller.Code;
 import controller.CodeListener;
 import gameobject.Animal;
 
-public class ResearchPopup extends JPanel implements ActionListener {
+/**
+ * The ResearchPopup represents popups that will appear during the research
+ * scene. This is our notebook with the <b>funfact</b> displayed.
+ * 
+ * @author Dylan Martin
+ * @author Miguel Fuentes
+ * @author W Mathieu Mimms-Boyce
+ */
+public class ResearchPopup extends JLabel implements ActionListener {
 	BufferedImage realAnimalImg;
 	JLabel name;
 	JLabel funFact;
@@ -32,6 +40,14 @@ public class ResearchPopup extends JPanel implements ActionListener {
 
 	private Font font;
 
+	/**
+	 * Constructor for the ResearchPopup
+	 * 
+	 * @param a The animal to display in the popup
+	 * @param cl The CodeListener
+	 * @param width the width of the popup
+	 * @param height the height of the popup
+	 */
 	public ResearchPopup(Animal a, CodeListener cl, int width, int height) {
 		listener = cl;
 		this.width = width;
@@ -64,11 +80,17 @@ public class ResearchPopup extends JPanel implements ActionListener {
 		this.add(exit);
 	}
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent exitPressed) {
 		listener.codeEmitted(Code.RESUME);
 	}
 
+	/* (non-Javadoc)
+	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+	 */
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -76,6 +98,12 @@ public class ResearchPopup extends JPanel implements ActionListener {
 		g.drawImage(notebook, 0, 0, width / 2, height, null);
 	}
 
+	/**
+	 * Creates a JLabel of the popup's text.
+	 * 
+	 * @param text The text of the popup
+	 * @return The new JLabel
+	 */
 	private JLabel labelFactory(String text) {
 		JLabel label = new JLabel("<HTML>" + text + "<HTML>");
 		label.setFont(font);

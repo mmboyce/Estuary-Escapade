@@ -1,7 +1,19 @@
 package gameobject;
 
+/**
+ * The ZappyBoi is an American Eel
+ * 
+ * @author Dylan Martin
+ * @see Animal
+ */
 public class ZappyBoi extends Animal {
 
+	/**
+	 * This Constructor establishes the position, depth, and size of the fish.
+	 * Its other parameters are unique values corresponding to the fish.
+	 * 
+	 * @see Animal#Animal(int, int, int, int, int)
+	 */
 	public ZappyBoi(int xPos, int yPos, int depth, int xSize, int ySize) {
 		super(xPos, yPos, depth, xSize, ySize);
 		this.setImagePath("images/ZappyBoiRight.png");
@@ -16,6 +28,9 @@ public class ZappyBoi extends Animal {
 		this.setPathLength(this.getxSize() * 7 / this.getSpeed());
 	}
 
+	/* (non-Javadoc)
+	 * @see gameobject.GameObject#update()
+	 */
 	@Override
 	public void update() {
 		// creates a path for the eel by using a series of waypoints.

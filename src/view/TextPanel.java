@@ -10,8 +10,21 @@ import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 
+/**
+ * The panel used to display text at the end of the game on the
+ * {@link EndView}
+ * 
+ * @author Miguel Fuentes
+ * @author W Mathieu Mimmms-Boyce
+ */
 public class TextPanel extends JPanel {
 
+	/**
+	 * Constructor for the TextPanel
+	 * 
+	 * @param text The text to be displayed on the panel
+	 * @param width The width of the panel
+	 */
 	TextPanel(String text, int width) {
 		Font font = new Font("Arial", Font.BOLD, width / 15);
 

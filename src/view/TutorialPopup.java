@@ -16,6 +16,13 @@ import javax.swing.border.EmptyBorder;
 import controller.Code;
 import controller.CodeListener;
 
+/**
+ * The TutorialPopup class represents popups that will appear during the Tutorial.
+ * 
+ * @author Devon Pirestani
+ * @author W Mathieu Mimms-Boyce
+ * @author Miguel Fuentes
+ */
 public class TutorialPopup extends JPanel implements ActionListener {
 	JLabel name;
 	JLabel funFact;
@@ -28,6 +35,14 @@ public class TutorialPopup extends JPanel implements ActionListener {
 
 	private Font font;
 
+	/**
+	 * Constructor for the TutorialPopup
+	 * 
+	 * @param which This is set to either 1 or 2 and controls what text will
+	 * appear during the popup
+	 * @param cl The CodeListener for the popup
+	 * @param width The width of the popup
+	 */
 	public TutorialPopup(int which, CodeListener cl, int width) {
 		listener = cl;
 		this.width = width;
@@ -59,11 +74,17 @@ public class TutorialPopup extends JPanel implements ActionListener {
 		this.add(exit);
 	}
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent exitPressed) {
 		listener.codeEmitted(Code.RESUME);
 	}
 
+	/* (non-Javadoc)
+	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+	 */
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -71,6 +92,12 @@ public class TutorialPopup extends JPanel implements ActionListener {
 		g.drawImage(notebook, 0, 0, width / 2, width / 2, null);
 	}
 
+	/**
+	 * Creates a JLabel of the popup's text.
+	 * 
+	 * @param text The text of the popup
+	 * @return The new JLabel
+	 */
 	private JLabel labelFactory(String text) {
 		JLabel label = new JLabel("<HTML>" + text + "<HTML>");
 		label.setFont(font);

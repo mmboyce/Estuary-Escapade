@@ -1,8 +1,21 @@
 package gameobject;
 
+/**
+ * The PurpleFish is an Escolar.
+ * 
+ * @author W Mathieu Mimms-Boyce
+ * @author Dylan Martin
+ * @see Animal
+ */
 public class PurpleFish extends Animal {
 	int startingPos;
 
+	/**
+	 * This Constructor establishes the position, depth, and size of the fish.
+	 * Its other parameters are unique values corresponding to the fish.
+	 * 
+	 * @see Animal#Animal(int, int, int, int, int)
+	 */
 	public PurpleFish(int xPos, int yPos, int depth, int xSize, int ySize) {
 		super(xPos, yPos, depth, xSize, ySize);
 		this.startingPos = xPos;
@@ -18,6 +31,9 @@ public class PurpleFish extends Animal {
 		this.setPathLength(xSize * 15);
 	}
 
+	/* (non-Javadoc)
+	 * @see gameobject.GameObject#update()
+	 */
 	@Override
 	public void update() {
 		// creates a path for the fish that loops around the screen and updates the

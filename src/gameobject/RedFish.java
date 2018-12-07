@@ -1,7 +1,19 @@
 package gameobject;
 
+/**
+ * The RedFish is a Red Drum
+ * 
+ * @author Dylan Martin
+ * @see Animal
+ */
 public class RedFish extends Animal {
 
+	/**
+	 * This Constructor establishes the position, depth, and size of the fish.
+	 * Its other parameters are unique values corresponding to the fish.
+	 * 
+	 * @see Animal#Animal(int, int, int, int, int)
+	 */
 	public RedFish(int xPos, int yPos, int depth, int xSize, int ySize) {
 		super(xPos, yPos, depth, xSize, ySize);
 		this.setImagePath("images/RedFishLeft.png");
@@ -15,6 +27,9 @@ public class RedFish extends Animal {
 		this.setPathLength(xSize * 22);
 	}
 
+	/* (non-Javadoc)
+	 * @see gameobject.GameObject#update()
+	 */
 	@Override
 	public void update() {
 		// Creates a diamond pattern for the red fish and updates its position and

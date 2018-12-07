@@ -6,7 +6,22 @@ import java.util.ArrayList;
 import controller.CodeListener;
 import gameobject.GameObject;
 
+/**
+ * The view at the end of the game. This draws the score the player received,
+ * and lets them know if they answered correctly or not.
+ * 
+ * @author Miguel Fuentes
+ * @author W Mathieu Mimms-Boyce
+ */
 public class EndView extends View {
+	
+	/**
+	 * The constructor or the EndView
+	 * 
+	 * @param scoreIn The score the player received
+	 * @param quizCorrect If the player answered correctly
+	 * @see View
+	 */
 	public EndView(int width, int height, ArrayList<GameObject> objects, CodeListener listener, int scoreIn,
 			boolean quizCorrect) {
 		super(width, height, objects, listener);
@@ -52,11 +67,9 @@ public class EndView extends View {
 		setVisible(true);
 	}
 
-	@Override
-	public void update(ArrayList<GameObject> objects) {
-		// Intentionally blank
-	}
-
+	/* (non-Javadoc)
+	 * @see view.View#nextView(java.util.ArrayList)
+	 */
 	@Override
 	public View nextView(ArrayList<GameObject> objects) {
 		return new TitleView(ViewContainer.getTitle(), getWidth(), getHeight(), super.getListener(), objects);

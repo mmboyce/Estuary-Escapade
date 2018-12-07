@@ -18,6 +18,12 @@ import controller.Code;
 import controller.CodeListener;
 import gameobject.Animal;
 
+/**
+ * The EstuaryPopup displays the Animal the player must catch next, and a continue
+ * button.
+ * 
+ * @author Miguel Fuentes
+ */
 public class EstuaryPopup extends JPanel implements ActionListener {
 	BufferedImage animalImg;
 	JButton exit;
@@ -26,6 +32,12 @@ public class EstuaryPopup extends JPanel implements ActionListener {
 
 	private Font font;
 
+	/** Constructor for the EstuaryPopup
+	 * 
+	 * @param a The animal to draw on the popup
+	 * @param cl The CodeListener
+	 * @param width The width of the popup
+	 */
 	public EstuaryPopup(Animal a, CodeListener cl, int width) {
 		listener = cl;
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -52,6 +64,9 @@ public class EstuaryPopup extends JPanel implements ActionListener {
 		this.add(bottom);
 	}
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent exitPressed) {
 		listener.codeEmitted(Code.RESUME);

@@ -1,6 +1,19 @@
 package gameobject;
 
+/**
+ * The Crab is a Blue Crab
+ * 
+ * @author Dylan Martin
+ * @see Animal
+ */
 public class Crab extends Animal {
+	
+	/**
+	 * This Constructor establishes the position, depth, and size of the fish.
+	 * Its other parameters are unique values corresponding to the fish.
+	 * 
+	 * @see Animal#Animal(int, int, int, int, int)
+	 */
 	public Crab(int xPos, int yPos, int depth, int xSize, int ySize) {
 		super(xPos, yPos, depth, xSize, ySize);
 		this.setImagePath("images/Crab_UW_F1.png");
@@ -14,6 +27,9 @@ public class Crab extends Animal {
 		this.setPathLength(xSize * 16 / this.getSpeed());
 	}
 
+	/* (non-Javadoc)
+	 * @see gameobject.GameObject#update()
+	 */
 	@Override
 	public void update() {
 		// Creates the path for the crab, going back and fourth at the bottom of the
