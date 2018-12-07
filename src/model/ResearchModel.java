@@ -37,17 +37,16 @@ public class ResearchModel extends Model implements GameStateModel {
 
 	// Different research tools
 
-	private Camera camera = new Camera(50, 50, 1, 100, 100);
-	private Measure ruler = new Measure(50, 300, 1, 100, 100, "images/ruler.png");
-	private Measure scale = new Measure(50, 550, 1, 100, 100, "images/scale.png");
+	private Camera camera = new Camera(getFrameWidth() / 10, getFrameHeight() / 4, 1, 100, 100);
+	private Measure ruler = new Measure(getFrameWidth() / 10, getFrameHeight() / 2, 1, 100, 100, "images/ruler.png");
+	private Measure scale = new Measure(getFrameWidth() / 10, (getFrameHeight() * 3) / 4, 1, 100, 100,
+			"images/scale.png");
 	private Animal caught;
 	// the EstuaryModel that gave us this ResearchModel
 	private EstuaryModel goBack;
 
-	// TODO figure out how to set this relationally based on screen size instead of
-	// hard coding
-	private int right = 500;
-	private int top = 300;
+	private int right = getFrameWidth() / 2;
+	private int top = getFrameHeight() / 2;
 
 	/**
 	 * @return boolean isWeighed
