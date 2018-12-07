@@ -49,6 +49,10 @@ class GameTests {
 		em = new EstuaryModel(500,500,c, false);
 		assertEquals(em.getFrameHeight(), 500);
 		assertEquals(em.getFrameWidth(), 500);
+		em.setFrameHeight(600);
+		em.setFrameWidth(600);
+		assertEquals(em.getFrameHeight(), 600);
+		assertEquals(em.getFrameWidth(), 600);
 		assertTrue(em.nextModel() instanceof ResearchModel);
 		// Test to make sure addGameObject works		
 		int tmp = em.getGameObjects().size();
@@ -69,7 +73,16 @@ class GameTests {
 		CustomMouseListener m = new CustomMouseListener(em);
 		MouseEvent me = new MouseEvent(btn, 0, 0, 0, em.getGameObjects().get(0).getxPos(), em.getGameObjects().get(0).getyPos(), 1, false);
 		m.mouseClicked(me);
-		assertEquals(tmp, em.getGameObjects().size());	
+		assertEquals(tmp, em.getGameObjects().size());
+		em.debugResearchAll();
+		
+		//Tutorial tests
+		em = new EstuaryModel(500,500,c, true);
+		em.update();
+		CustomMouseListener m1 = new CustomMouseListener(em);
+		MouseEvent me1 = new MouseEvent(btn, 0, 0, 0, em.getGameObjects().get(0).getxPos(), em.getGameObjects().get(0).getyPos(), 1, false);
+		m1.mouseClicked(me1);
+		em.registerClick(me1);
  	}
 	
 	@Test
@@ -136,6 +149,72 @@ class GameTests {
 		rm.update();
 		assertEquals(rm.nextModel(),em);
 		assertTrue(rm.timeUp() instanceof QuizModel);
+		
+		//Turorial mode tests
+		em = new EstuaryModel(500,500,c, true);
+		GoldFish goldie1 = new GoldFish(20, 20, 0, 100, 100);
+		ResearchModel rm1  = new ResearchModel(500, 500, goldie1, em, c, true);
+		// Test setters and getters
+		assertEquals(rm1.getFrameHeight(), 500);
+		assertEquals(rm1.getFrameWidth(), 500);
+		rm1.setMeasured(true);
+		rm1.setWeighed(true);
+		rm1.setPhotographed(true);
+		assertTrue(rm1.isPhotographed());
+		assertTrue(rm1.isWeighed());
+		assertTrue(rm1.isMeasured());
+		// Test isClicked
+		rm1.setPhotographed(false);
+		rm1.setMeasured(false);
+		assertFalse(rm1.isPhotographed());
+		rm1.setRulerHolding(false);
+		rm1.setCameraHolding(true);
+		rm1.setScaleHolding(false);
+		GoldFish fish1 = null;
+		Camera cam1 = rm1.getCamera();
+		Measure ruler1 = rm1.getRuler();
+		Measure scale1 = rm1.getScale();
+		for (int i = 0; i < rm1.getGameObjects().size(); i++) {
+			if (rm1.getGameObjects().get(i) instanceof GoldFish) {
+				fish1 = (GoldFish) rm1.getGameObjects().get(i);
+			} 
+		}
+		Button btn1 = new Button();
+		MouseEvent fishLoc1 = new MouseEvent(btn1, 0, 0, 0, fish1.getxPos(), fish1.getyPos(), 1, false);
+		MouseEvent camPos1 = new MouseEvent(btn1, 0, 0, 0, cam1.getxPos(), cam1.getyPos(), 1, false);
+		MouseEvent rulerPos1 = new MouseEvent(btn1, 0, 0, 0, ruler1.getxPos(), ruler1.getyPos(), 1, false);
+		MouseEvent scalePos1 = new MouseEvent(btn1, 0, 0 ,0 ,scale1.getxPos(), scale1.getyPos(),1,false);
+		rm1.registerClick(fishLoc1);
+		rm1.mouseMoved(30, 40);
+		rm1.registerClick(camPos1);
+		fishLoc1 = new MouseEvent(btn1, 0, 0, 0, fish1.getxPos(), fish1.getyPos(), 1, false);
+		rm1.registerClick(fishLoc1);
+		rm1.mouseMoved(20, 30);
+		rm1.registerClick(camPos1);
+		rm1.registerClick(rulerPos1);
+		rm1.mouseMoved(20, 30);
+		rm1.registerClick(scalePos1);
+		rm1.setCameraHolding(false);
+		rm1.setRulerHolding(true);
+		rm1.mouseMoved(0, 0);
+		rm1.registerClick(camPos1);
+		rm1.registerClick(rulerPos1);	
+		rm1.registerClick(scalePos1);
+		rm1.setRulerHolding(false);
+		rm1.setScaleHolding(true);
+		rm1.mouseMoved(0, 0);
+		rm1.registerClick(camPos1);
+		rm1.registerClick(rulerPos1);	
+		rm1.registerClick(scalePos1);
+		rm1.setMeasured(true);
+		rm1.setWeighed(true);
+		rm1.setPhotographed(true);
+		rm1.mouseMoved(0,0);
+		rm1.registerClick(fishLoc1);
+		rm1.update();
+		assertEquals(rm1.nextModel(),em);
+		assertTrue(rm1.timeUp() instanceof QuizModel);
+		rm1.debugDoneResearching();
 	}	
 	
 	@Test
@@ -152,6 +231,7 @@ class GameTests {
 		assertTrue(qm.nextModel() instanceof Model);
 		EndModel m1 = (EndModel)qm.questionAnswered(true);
 		EndModel m2 = (EndModel)qm.questionAnswered(false);
+		qm.setQuestionPool(null);
 	}
 	
 	@Test
@@ -159,6 +239,8 @@ class GameTests {
 		EndModel em = new EndModel(500, 500, c, 0, true);
 		em.setScore(19);
 		assertEquals(em.getScore(), 19);
+		em.setQuizCorrect(true);
+		assertTrue(em.isQuizCorrect());
 		assertTrue(em.nextModel() instanceof Model);
 	}
 	
@@ -168,6 +250,7 @@ class GameTests {
 		tm.setTitle("Test Title");
 		assertEquals(tm.getTitle(), "Test Title");
 		assertTrue(tm.nextModel() instanceof Model);
+		assertTrue(tm.tutorialModel() instanceof Model);
 	}
 	
 	@Test
@@ -199,5 +282,18 @@ class GameTests {
 	void EndViewTests() {
 		EndView ev = new EndView(500, 500, animals, c, 0, false);
 		assertTrue(ev.nextView(animals) instanceof View);
+	}
+
+	@Test
+	void ModelTests() {
+		Controller controlla = new Controller();
+		EstuaryModel em = new EstuaryModel(500, 500, controlla, false);
+		assertEquals(em.tutorialModel(), null);
+		
+		em.setTime(0);
+		assertEquals(em.getTime(), 0);
+		
+		em.setTimerRunning(true);
+		assertTrue(em.isTimerRunning());
 	}
 }
