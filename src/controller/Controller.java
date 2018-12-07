@@ -22,6 +22,16 @@ import model.ResearchModel;
 import model.TitleModel;
 import view.ViewContainer;
 
+/**
+ * The Controller handles all interaction between the View and Model. It handles
+ * the timer of the game and updates both the Model and View constantly.
+ * 
+ * @author Miguel Fuentes
+ * @author Devon Pirestani
+ * @author Andre Green
+ * @author Dylan Martin
+ * @author W Mathieu Mimms-Boyce
+ */
 public class Controller implements CodeListener, Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -39,6 +49,9 @@ public class Controller implements CodeListener, Serializable {
 	private final int cycles = 750; // This controlls how long the game runs for
 	private final int timerDelay = 40; // The delay between every game state update
 
+	/**
+	 * Constructor for the controller. It initializes the game.
+	 */
 	public Controller() {
 		time = 0;
 		timerRunning = false; // The time will only start once the player leaves the start screen
@@ -75,13 +88,6 @@ public class Controller implements CodeListener, Serializable {
 		t = new Timer(timerDelay, updateAction);
 	}
 
-	/*
-	 * void codeEmited
-	 * 
-	 * updates game on click based on command
-	 * 
-	 * params Code code the command uses
-	 */
 	@Override
 	public void codeEmitted(Code c) {
 		switch (c) {
@@ -145,6 +151,9 @@ public class Controller implements CodeListener, Serializable {
 		}
 	}
 
+	/**
+	 * Saves all the serialized data of the game.
+	 */
 	public void saveState() {
 		String fileName = "estuaryGameState.est";
 		try {
@@ -158,6 +167,10 @@ public class Controller implements CodeListener, Serializable {
 		}
 	}
 
+	
+	/**
+	 * Opens a file dialog to load serialized data of the game.
+	 */
 	public void loadState() {
 		codeEmitted(Code.PAUSE);
 		JFileChooser jf = new JFileChooser();
@@ -181,6 +194,12 @@ public class Controller implements CodeListener, Serializable {
 		codeEmitted(Code.RESUME);
 	}
 
+	/**
+	 * Used for loading in the data from the game being loaded in. A Helper
+	 * for the {@link Controller#loadState() loadState} method.
+	 * 
+	 * @param oldModel The model being loaded in that we are transfering data from.
+	 */
 	private void loadValues(Model oldModel) {
 		oldModel.setListener(this);
 		if(oldModel instanceof ResearchModel) {
@@ -205,39 +224,66 @@ public class Controller implements CodeListener, Serializable {
 		}
 	}
 
+	/**
+	 * This method will start the game.
+	 */
 	public void start() {
 		t.start();
 		view.start();
 	}
 
+	/**
+	 * @return The Timer
+	 */
 	public Timer getT() {
 		return t;
 	}
 
+	/**
+	 * @param t The new Timer to set
+	 */
 	public void setT(Timer t) {
 		this.t = t;
 	}
 
+	/**
+	 * @return The current model
+	 */
 	public Model getModel() {
 		return model;
 	}
 
+	/**
+	 * @param model The model to change to
+	 */
 	public void setModel(Model model) {
 		this.model = model;
 	}
 
+	/**
+	 * @return The current ViewContainer
+	 */
 	public ViewContainer getViewContainer() {
 		return view;
 	}
 
+	/**
+	 * @param view The ViewContainer to change to
+	 */
 	public void setViewContainer(ViewContainer view) {
 		this.view = view;
 	}
 
+	/**
+	 * @return The current AbstractAction
+	 */
 	public AbstractAction getUpdateAction() {
 		return updateAction;
 	}
 
+	/**
+	 * @param updateAction The AbstractAction to change to
+	 */
 	public void setUpdateAction(AbstractAction updateAction) {
 		this.updateAction = updateAction;
 	}

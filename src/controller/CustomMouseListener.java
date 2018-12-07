@@ -8,10 +8,21 @@ import java.io.Serializable;
 import model.Model;
 import model.ResearchModel;
 
+/**
+ * The CustomMouseListener helps the Controller modify the model based on where
+ * the player clicks.
+ * 
+ * @author Miguel Fuentes
+ */
 public class CustomMouseListener implements MouseListener, MouseMotionListener, Serializable {
 
 	private Model model;
 
+	/**
+	 * Default Constructor
+	 * 
+	 * @param m The model the Listener is Listening to
+	 */
 	public CustomMouseListener(Model m) {
 		model = m;
 	}
@@ -21,14 +32,21 @@ public class CustomMouseListener implements MouseListener, MouseMotionListener, 
 		// Intentionally empty
 	}
 
+	@Override
 	public void mouseMoved(MouseEvent e) {
 		// Intentionally empty
 	}
 
+	/**
+	 * @return The model the Listener is listening to
+	 */
 	public Model getModel() {
 		return model;
 	}
 
+	/**
+	 * @param model The model to switch Listening to
+	 */
 	public void setModel(Model model) {
 		this.model = model;
 	}
