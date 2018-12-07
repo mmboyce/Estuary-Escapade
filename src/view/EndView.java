@@ -53,11 +53,6 @@ public class EndView extends View {
 	}
 
 	@Override
-	public void update(ArrayList<GameObject> objects) {
-		// Intentionally blank
-	}
-
-	@Override
 	public View nextView(ArrayList<GameObject> objects) {
 		return new TitleView(ViewContainer.getTitle(), getWidth(), getHeight(), super.getListener(), objects);
 	}

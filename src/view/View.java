@@ -25,10 +25,6 @@ public abstract class View extends JPanel {
 		setSize(frameWidth, frameHeight);
 	}
 
-	// TODO consider not making this abstract and defining it as an epmty function
-	// because most of the views leave this blank
-	public abstract void update(ArrayList<GameObject> objects);
-
 	public abstract View nextView(ArrayList<GameObject> objects);
 
 	public void flash() {

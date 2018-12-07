@@ -70,11 +70,6 @@ public class QuizView extends View implements ActionListener {
 	}
 
 	@Override
-	public void update(ArrayList<GameObject> objects) {
-		// Do nothing
-	}
-
-	@Override
 	public void actionPerformed(ActionEvent e) {
 		String x = "<HTML>" + question.getCorrectAnswer() + "<HTML>";
 		if (((JButton) e.getSource()).getText().equals(x)) {
