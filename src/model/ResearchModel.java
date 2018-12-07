@@ -91,7 +91,7 @@ public class ResearchModel extends Model implements GameStateModel {
 	/**
 	 * Setter for isPhotographed
 	 * 
-	 * @param isWeighed
+	 * @param isPhotographed
 	 */
 	public void setPhotographed(boolean isPhotographed) {
 		this.isPhotographed = isPhotographed;
@@ -105,7 +105,7 @@ public class ResearchModel extends Model implements GameStateModel {
 	 * @param frameWidth   width of the screen
 	 * @param frameHeight  height of the screen
 	 * @param animalCaught which animal was caught
-	 * @param goBack       the {@link EstuaryView} that led to this state
+	 * @param goBack       the {@link EstuaryModel} that led to this state
 	 * @param listener     the {@link CodeListener}
 	 * @param tutorialMode whether or not the game is in tutorial mode
 	 */
@@ -122,7 +122,7 @@ public class ResearchModel extends Model implements GameStateModel {
 
 	/**
 	 * This sets the position of the {@link Animal} which was caught and adds
-	 * everything to {@link Model.objects}
+	 * everything to {@link Model#getGameObjects()}
 	 */
 	public void instantiateObjects() {
 		// TODO: make this so its not hard coded

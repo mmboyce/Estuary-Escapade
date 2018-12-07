@@ -7,6 +7,11 @@ import java.awt.geom.Arc2D;
 
 import javax.swing.JPanel;
 
+/**
+ * Class for creation of the circular TimerImage
+ * 
+ * @author Andre Green
+ */
 public class TimerImage extends JPanel {
 	public int time; // current time
 	public double numPoints; // number of points around full circle when drawing arc
@@ -14,6 +19,11 @@ public class TimerImage extends JPanel {
 	public int frameWidth;
 	public int frameHeight;
 
+	/**
+	 * Constructor for TimerImage
+	 * 
+	 * @param cycles
+	 */
 	public TimerImage(int cycles) {
 		fullCircle = 360.0;
 		time = 0;
@@ -21,9 +31,7 @@ public class TimerImage extends JPanel {
 	}
 
 	/**
-	 * void update
-	 * 
-	 * updates the time so that paint redraws the arc to correlate with that time on
+	 * Updates the time so that paint redraws the arc to correlate with that time on
 	 * a full circle
 	 * 
 	 * @param time time current indicated by timer
@@ -32,11 +40,18 @@ public class TimerImage extends JPanel {
 		this.time = time;
 	}
 
+	/**
+	 * @param width The frame width
+	 * @param height The frame height
+	 */
 	public void setFrameSize(int width, int height) {
 		this.frameWidth = width;
 		this.frameHeight = height;
 	}
 
+	/* (non-Javadoc)
+	 * @see javax.swing.JComponent#paint(java.awt.Graphics)
+	 */
 	@Override
 	public void paint(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;

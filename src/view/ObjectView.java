@@ -19,6 +19,15 @@ import gameobject.Camera;
 import gameobject.GameObject;
 import gameobject.Question;
 
+/**
+ * ObjectView is an abstract class that is representative of any view that 
+ * draws {@link GameObject GameObjects}
+ * 
+ * @author Andre Green
+ * @author Miguel Fuentes
+ * @author Dylan Martin
+ * @author Devon Pirestani
+ */
 public abstract class ObjectView extends View {
 
 	HashMap<GameObject, BufferedImage> map = new HashMap<>();
@@ -33,6 +42,11 @@ public abstract class ObjectView extends View {
 								// have to typecast
 	BufferedImage background;
 
+	/**
+	 * Constructor for the ObjectView
+	 * 
+	 * @see View
+	 */
 	public ObjectView(int width, int height, ArrayList<GameObject> objects, CodeListener listener) {
 		super(width, height, objects, listener);
 		this.setBackground(View.SEA_BLUE);
@@ -51,13 +65,9 @@ public abstract class ObjectView extends View {
 		}
 	}
 
-	/**
-	 * void paint Paints the updated game objects to the screen and the effects from
-	 * clicking with the tools
-	 * 
-	 * @param g the graphics object used for the drawImage method
+	/* (non-Javadoc)
+	 * @see javax.swing.JComponent#paint(java.awt.Graphics)
 	 */
-
 	@Override
 	public void paint(Graphics g) {
 		g.drawImage(background, 0, 0, getWidth(), getHeight(), (ImageObserver) this);
@@ -127,10 +137,8 @@ public abstract class ObjectView extends View {
 	}
 
 	/**
-	 * void flash Sets the startFlash boolean to true and that is used to paint a
+	 * flash Sets the startFlash boolean to true and that is used to paint a
 	 * flash animation
-	 * 
-	 * @return void
 	 */
 	public void flash() {
 		startFlash = true;
@@ -143,24 +151,26 @@ public abstract class ObjectView extends View {
 	}
 
 	/**
-	 * void update Updates the game objects array
+	 * Updates the game objects array
 	 * 
-	 * @param objects an arraylist of the game objects with updated attributes
+	 * @param objects an arraylist of the game objects to be drawn
 	 */
-
 	public void update(ArrayList<GameObject> objects) {
 		setObjects(objects); // Update the objects attribute
 	}
 
 	/**
-	 * BufferedImage createImage Reads an image from the file system and returns it
-	 * as a BufferedImage, or an IOException if not found
+	 * Reads an image from the file system and returns it
+	 * as a BufferedImage, or null if not found
+	 * <p> 
+	 * <i>
+	 * This was made static because it does not rely on this object being
+	 * instantiated. Visibility was set to package so that EstuaryPopup 
+	 * could access it
+	 * </i>
 	 * 
-	 * @param imagePath: the path to the image taken from the game object this was
-	 *        made static because it does not rely on this object being instanciated
-	 *        visibility was set to package so that EstuaryPopup could access it
+	 * @param imagePath The path to the image taken from the game object. 
 	 */
-
 	static BufferedImage createImage(String imagePath) {
 		BufferedImage bufferedImage;
 		try {
@@ -173,10 +183,21 @@ public abstract class ObjectView extends View {
 		return null;
 	}
 
+	/**
+	 * Sets the timer to t
+	 * 
+	 * @param t the timer for the game
+	 */
 	public void passTimer(TimerImage t) {
 		timer = t;
 	}
 
+	/**
+	 * When time expires durning an ObjectView you will be taken to the quiz
+	 * 
+	 * @param q The question object for the quiz
+	 * @return The quiz with the proper question
+	 */
 	public QuizView timeUp(Question q) {
 		return new QuizView(super.getWidth(), super.getHeight(), q, new ArrayList<GameObject>(), super.getListener());
 	}

@@ -11,6 +11,12 @@ import javax.swing.JPanel;
 import controller.Code;
 import controller.CodeListener;
 
+/**
+ * The Navigation bar at the end of the game. 
+ * 
+ * @author Miguel Fuentes
+ * @see TitleNavigation
+ */
 public class EndNavigation extends JPanel implements ActionListener {
 
 	private JButton start;
@@ -18,6 +24,12 @@ public class EndNavigation extends JPanel implements ActionListener {
 	private CodeListener codeListener;
 	private Font font;
 
+	/**
+	 * Constructor for EndNavigation
+	 * 
+	 * @param cl The CodeListener
+	 * @param width the width of the Navigation bar
+	 */
 	public EndNavigation(CodeListener cl, int width) {
 		codeListener = cl;
 		font = new Font("Arial", Font.PLAIN, width / 40);
@@ -38,6 +50,9 @@ public class EndNavigation extends JPanel implements ActionListener {
 		add(exit);
 	}
 
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent buttonPress) {
 		JButton pressed = (JButton) buttonPress.getSource();

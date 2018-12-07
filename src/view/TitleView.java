@@ -10,8 +10,21 @@ import javax.swing.JLabel;
 import controller.CodeListener;
 import gameobject.GameObject;
 
+/**
+ * The View representing the Title Screen of the game.
+ * 
+ * @author Andre Green
+ * @author Devon Pirestani
+ * @author Miguel Fuentes
+ *  */
 public class TitleView extends View {
 
+	/**
+	 * Constructor for the TitleView
+	 * 
+	 * @param title The title of tje game
+	 * @see View Other
+	 */
 	public TitleView(String title, int width, int height, CodeListener listener, ArrayList<GameObject> objects) {
 		super(width, height, objects, listener);
 
@@ -28,6 +41,9 @@ public class TitleView extends View {
 		setVisible(true);
 	}
 
+	/* (non-Javadoc)
+	 * @see view.View#nextView(java.util.ArrayList)
+	 */
 	@Override
 	public View nextView(ArrayList<GameObject> objects) {
 		return new EstuaryView(getWidth(), getHeight(), objects, super.getListener());

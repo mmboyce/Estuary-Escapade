@@ -11,7 +11,7 @@ import model.ResearchModel;
  * CustomKeyListener handles all {@link KeyEvent KeyEvents} during the game.
  * <p>
  * For some reason you must alt+tab out and back, then click on the game for the
- * KeyEvents to occur. <b><i>Pretty much only used for debugging.</i><b>
+ * KeyEvents to occur. <b><i>Pretty much only used for debugging.</i></b>
  * 
  * @author W Mathieu Mimms-Boyce
  * @author Miguel Fuentes
@@ -65,12 +65,10 @@ public class CustomKeyListener implements KeyListener, Serializable {
 	 * Debugging Keys
 	 * <ul>
 	 * 	<li><b>Shift + D</b> - <i>Toggles Debug</i></li>
-	 * 	<ul>
-	 * 		<li><b>Q</b> - <i>Catches current Target on Estuary Screen</i></li>
-	 * 		<li><b>W</b> - <i>Reseraches Fish on Research Screen</i></li>
-	 * 		<li><b>E</b> - <i>Skips to Quiz with all fishes caught</i></li>
-	 * 		<li><b>R</b> - <i>Skips to Quiz with current fishes caught </i></li>
-	 * 	</ul>
+	 * <li><b>Q</b> - <i>Catches current Target on Estuary Screen</i></li>
+	 * <li><b>W</b> - <i>Reseraches Fish on Research Screen</i></li>
+	 * <li><b>E</b> - <i>Skips to Quiz with all fishes caught</i></li>
+	 * <li><b>R</b> - <i>Skips to Quiz with current fishes caught </i></li>
 	 * </ul>
 	 * 
 	 * @param e The KeyEvent
