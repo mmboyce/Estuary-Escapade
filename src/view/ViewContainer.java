@@ -254,7 +254,7 @@ public class ViewContainer implements Serializable {
 	 */
 	public void flash() {
 		if (view instanceof ResearchView) {
-			view.flash();
+			((ResearchView) view).flash();
 		}
 	}
 
