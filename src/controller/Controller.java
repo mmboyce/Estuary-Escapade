@@ -48,6 +48,7 @@ public class Controller implements CodeListener, Serializable {
 
 	private final int cycles = 750; // This controlls how long the game runs for
 	private final int timerDelay = 40; // The delay between every game state update
+	private final String fileName = "estuaryGameState.est";
 
 	/**
 	 * Constructor for the controller. It initializes the game.
@@ -155,7 +156,6 @@ public class Controller implements CodeListener, Serializable {
 	 * Saves all the serialized data of the game.
 	 */
 	public void saveState() {
-		String fileName = "estuaryGameState.est";
 		try {
 			FileOutputStream fos = new FileOutputStream(fileName);
 			ObjectOutputStream out = new ObjectOutputStream(fos);
@@ -175,20 +175,12 @@ public class Controller implements CodeListener, Serializable {
 	 */
 	public void loadState() {
 		codeEmitted(Code.PAUSE);
-		JFileChooser jf = new JFileChooser();
-		FileNameExtensionFilter filter = new FileNameExtensionFilter("Estuary Game Files", "est");
-		jf.setFileFilter(filter);
 		try {
-			int r = jf.showOpenDialog(null);
-			if (r == JFileChooser.APPROVE_OPTION) {
-				// set the label to the path of the selected directory
-				String filename = jf.getSelectedFile().getAbsolutePath();
-				FileInputStream fis = new FileInputStream(filename);
-				ObjectInputStream in = new ObjectInputStream(fis);
-				Model oldModel = (Model) in.readObject();
-				in.close();
-				loadValues(oldModel);
-			}
+			FileInputStream fis = new FileInputStream(fileName);
+			ObjectInputStream in = new ObjectInputStream(fis);
+			Model oldModel = (Model) in.readObject();
+			in.close();
+			loadValues(oldModel);
 		} catch (Exception e) {
 			System.out.println("Problem loading");
 			e.printStackTrace();

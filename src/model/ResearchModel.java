@@ -1,6 +1,5 @@
 package model;
 
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import controller.Code;
@@ -153,12 +152,9 @@ public class ResearchModel extends Model implements GameStateModel {
 	 * 
 	 */
 	@Override
-	public void registerClick(MouseEvent e) {
-		int mouseX = e.getX();
-		int mouseY = e.getY();
-
+	public void registerClick(int clickX, int clickY) {
 		if (isHoldingCamera || isHoldingRuler || isHoldingScale) {
-			if (caught.clickedOn(mouseX, mouseY)) {
+			if (caught.clickedOn(clickX, clickY)) {
 				if (isHoldingCamera) {
 					getListener().codeEmitted(Code.FLASHSCREEN);
 					this.camera.setVisible(false);
@@ -178,11 +174,11 @@ public class ResearchModel extends Model implements GameStateModel {
 				}
 			}
 		} else {
-			if (camera.clickedOn(mouseX, mouseY)) {
+			if (camera.clickedOn(clickX, clickY)) {
 				setCameraHolding(true);
-			} else if (ruler.clickedOn(mouseX, mouseY)) {
+			} else if (ruler.clickedOn(clickX, clickY)) {
 				setRulerHolding(true);
-			} else if (scale.clickedOn(mouseX, mouseY)) {
+			} else if (scale.clickedOn(clickX, clickY)) {
 				setScaleHolding(true);
 			}
 		}

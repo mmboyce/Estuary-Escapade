@@ -72,4 +72,14 @@ public class EndModel extends Model {
 	public void setQuizCorrect(boolean quizCorrect) {
 		this.quizCorrect = quizCorrect;
 	}
+
+	@Override
+	public void update() {
+		// Intentionally empty
+	}
+
+	@Override
+	public void registerClick(int clickX, int clickY) {
+		// Intentionally empty
+	}
 }

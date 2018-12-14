@@ -1,6 +1,5 @@
 package model;
 
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -125,14 +124,12 @@ public class EstuaryModel extends Model implements GameStateModel {
 	 * {@link animalCaught}.
 	 */
 	@Override
-	public void registerClick(MouseEvent e) {
-		int mouseX = e.getX();
-		int mouseY = e.getY();
+	public void registerClick(int clickX, int clickY) {
 		Animal clicked = null;
 
 		for (GameObject object : getGameObjects()) {
 			if (object instanceof Animal) {
-				if (object.clickedOn(mouseX, mouseY)) {
+				if (object.clickedOn(clickX, clickY)) {
 					clicked = (Animal) object;
 					break;
 				}

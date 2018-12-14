@@ -56,4 +56,14 @@ public class TitleModel extends Model {
 	public Model tutorialModel() {
 		return new EstuaryModel(super.getFrameWidth(), super.getFrameHeight(), getListener(), true);
 	}
+
+	@Override
+	public void update() {
+		// Intentionally empty
+	}
+
+	@Override
+	public void registerClick(int clickX, int clickY) {
+		// Intentionally empty
+	}
 }

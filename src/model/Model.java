@@ -100,14 +100,14 @@ public abstract class Model implements Serializable {
 	 * anything
 	 */
 	public abstract void update();
-	
+
 	/**
 	 * This takes a {@link MouseEvent}, this is intentionally empty because not
 	 * every model will have to handle clicks
 	 * 
 	 * @param e
 	 */
-	public abstract void registerClick(MouseEvent e);
+	public abstract void registerClick(int clickX, int clickY);
 
 	/**
 	 * @return listener
