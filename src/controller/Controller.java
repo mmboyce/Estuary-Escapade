@@ -75,7 +75,7 @@ public class Controller implements CodeListener, Serializable {
 				 */
 				model.update();
 				model.setTime(time);
-				view.repaint(time);
+				view.update(time);
 				model.setTimerRunning(timerRunning);
 				if (timerRunning) {
 					time++;

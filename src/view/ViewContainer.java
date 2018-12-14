@@ -148,7 +148,7 @@ public class ViewContainer implements Serializable {
 	 * 
 	 * @param time The time to update our timer to
 	 */
-	public void repaint(int time) {
+	public void update(int time) {
 		timerImage.update(time);
 		frame.repaint();
 	}
