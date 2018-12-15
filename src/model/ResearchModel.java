@@ -148,7 +148,8 @@ public class ResearchModel extends Model implements GameStateModel {
 	 * This will select a tool if the start of a user's drag touches it and deselect
 	 * a tool once the user stops dragging
 	 * 
-	 * @param e a mouse event
+	 * @param clickX
+	 * @param clickY
 	 * 
 	 */
 	@Override
