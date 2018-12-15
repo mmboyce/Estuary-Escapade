@@ -34,7 +34,7 @@ public abstract class Animal extends GameObject {
 	private double avgSize = 0;
 
 	/**
-	 * Default constructor for the Animal class.
+	 * Constructor for the Animal class, which is used by each subclass
 	 * <p>
 	 * All parameters not set by this constructer will be set in the constructor
 	 * for each specific animal.
