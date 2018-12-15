@@ -63,12 +63,12 @@ public class CustomMouseListener implements MouseListener, MouseMotionListener, 
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		model.registerClick(e);
+		model.registerClick(e.getX(), e.getY());
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		model.registerClick(e);
+		model.registerClick(e.getX(), e.getY());
 	}
 
 	@Override

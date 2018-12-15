@@ -113,4 +113,14 @@ public class QuizModel extends Model {
 	public boolean checkAnswer(String answer) {
 		return (question.getCorrectAnswer().equals(answer));
 	}
+
+	@Override
+	public void update() {
+		// Intentionally empty
+	}
+
+	@Override
+	public void registerClick(int clickX, int clickY) {
+		// Intentionally empty
+	}
 }
